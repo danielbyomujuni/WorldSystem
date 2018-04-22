@@ -58,6 +58,29 @@ public class WorldConfig {
 		owner = UUID.fromString(worldname.substring(worldname.length() - 36));
 		id = Integer.parseInt(worldname.split("-")[0].substring(2));
 	}
+	
+	public void create() {
+		File file = new File(PluginConfig.getWorlddir() + getWorldName() +  "/worldconfig.yml");
+		try {
+			file.createNewFile();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			System.err.println("Error while creating worldconfig for " + owner.toString());
+		}
+		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+		cfg.set("Informations.ID", id);
+		cfg.set("Informations.Owner.PlayerUUID", owner.toString());
+		cfg.set("Informations.Owner.Actualname", Bukkit.getOfflinePlayer(owner).getName());
+		cfg.set("Settings.TNTDamage", false);
+		cfg.set("Settings.Fire", false);
+		cfg.set("Members", null);
+		try {
+			cfg.save(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.err.println("Error while saving worldconfig for " + owner.toString());
+		}
+	}
 
 	/**
 	 * Add a permission to a player of this world
@@ -238,10 +261,20 @@ public class WorldConfig {
 		return false;
 	}
 
+	/**
+	 * Checks wheater a player can build or not
+	 * @param player to check
+	 * @return if the can build or not
+	 */
 	public boolean canBuild(UUID player) {
 		return hasPermission(player, WorldPerm.BUILD);
 	}
 
+	/**
+	 * Allow or disallow a player to build on this world
+	 * @param player to edit
+	 * @param allowed if he is allowed to build
+	 */
 	public void setBuild(UUID player, boolean allowed) {
 		if (allowed) {
 			addPermission(player, WorldPerm.BUILD);
@@ -250,6 +283,13 @@ public class WorldConfig {
 		}
 	}
 
+	/**
+	 * Allow or disallow a player to build with the permissions of a spefic player
+	 * @param player who gets his permission checked
+	 * @param target to allow or disallow
+	 * @param allowed if he is allowed to build
+	 * @return if the player has the permissions
+	 */
 	public boolean setBuild(UUID player, UUID target, boolean allowed) {
 		if (isAllowedToAdministrateMember(player, target) == false)
 			return false;
@@ -262,10 +302,20 @@ public class WorldConfig {
 				&& hasPermission(player, WorldPerm.ADMINISTRATEMEMBERS);
 	}
 
+	/**
+	 * Checks wheater a player can build on this world or not
+	 * @param player to check
+	 * @return if the player can build
+	 */
 	public boolean canGamemode(UUID player) {
 		return hasPermission(player, WorldPerm.GAMEMODE);
 	}
 
+	/**
+	 * Allow or disallow a player to change his gamemode
+	 * @param player to allow or disallow
+	 * @param allowed if he is allowed to change his gamemode or not
+	 */
 	public void setGamemode(UUID player, boolean allowed) {
 		if (allowed) {
 			addPermission(player, WorldPerm.GAMEMODE);
@@ -285,6 +335,11 @@ public class WorldConfig {
 		return hasPermission(player, WorldPerm.TELEPORT);
 	}
 
+	/**
+	 * Allow or disallow a player to teleport
+	 * @param player to allow or disallow
+	 * @param allowed if he is allowed to teleport or not
+	 */
 	public void setTeleport(UUID player, boolean allowed) {
 		if (allowed) {
 			addPermission(player, WorldPerm.TELEPORT);
@@ -414,6 +469,12 @@ public class WorldConfig {
 		this.tnt = tnt;
 	}
 
+	/**
+	 * Allow or Disallow TNT Damage on this world
+	 * @param player
+	 * @param tnt if tnt is enabled
+	 * @return if the player has the permissions to change the value
+	 */
 	public boolean setTnt(UUID player, boolean tnt) {
 		if (hasPermission(player, WorldPerm.ADMINISTRATEWORLD) == false)
 			return false;
@@ -421,6 +482,10 @@ public class WorldConfig {
 		return true;
 	}
 
+	/**
+	 * Get the id of this world. The id is written in the filename at the xx position: 'IDxx-uuid.yml'
+	 * @return id of this world
+	 */
 	public int getId() {
 		return id;
 	}

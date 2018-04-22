@@ -253,7 +253,7 @@ public class MessageConfig {
 		List<String> list = getConfig().getStringList("command_help.list");
 		if (list == null)
 			list = defaultCmdHelp;
-		
-		return list;list = list.stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
+		list = list.stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
+		return list;
 	}
 }
