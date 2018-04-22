@@ -1,0 +1,14 @@
+
+2.0.1:
+- WorldPlayer, bsp: changeBuild auf WorldConfig übertragen
+- SystemWorld, GUI auch auf neue WorldConfig
+
+2.0.2:
+- Events dokumentieren
+- Config dokumentieren
+- WorldConfig dokumentieren
+- Mehrere TemplateWorlds, WeltGenerator konfigurieren - FLAT, DEFAULT, VOID, ...
+-
+
+2.0.3:
+- PlotMe Generator erstellen -> Config gibt Feldgröße an

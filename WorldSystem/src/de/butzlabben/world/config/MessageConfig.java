@@ -1,0 +1,259 @@
+package de.butzlabben.world.config;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import de.butzlabben.world.WorldSystem;
+import net.md_5.bungee.api.ChatColor;
+
+public class MessageConfig {
+
+	private MessageConfig() {
+	}
+
+	private static List<String> defaultCmdHelp = new ArrayList<>(20);
+
+	{
+		defaultCmdHelp.add("/ws get §8- §7Will give you a World");
+		defaultCmdHelp.add("/ws home §8- §7Teleports you on your World");
+		defaultCmdHelp.add("/ws tp §8- §7Teleports you on a specific World");
+		defaultCmdHelp.add("/ws addmember §8- §7Adds a player to your World");
+		defaultCmdHelp.add("/ws delmember§8 - §7Removes a player from your World");
+		defaultCmdHelp.add("/ws tnt §8- §7Allows/Denys TNT on your World");
+		defaultCmdHelp.add("/ws fire §8- §7Allows/Denys Fire on your World");
+		defaultCmdHelp.add("/ws togglechgm §8- §7Allows/Denys a player changing gamemode");
+		defaultCmdHelp.add("/ws togglebuild §8- §7Allows/Denys a player building");
+		defaultCmdHelp.add("/ws toggletp §8- §7Allows/Denys a player teleporting");
+		defaultCmdHelp.add("/ws info §8- §7Shows information about the World");
+		defaultCmdHelp.add("/ws reset §8- §7Will reset your World");
+	}
+
+	private static File file;
+	// private static HashMap<String, File> languages = new HashMap<>();
+
+	public static void checkConfig(File f) {
+		file = f;
+		// languages.put(f.getName().split(".yml")[0], f);
+		if (file.exists() == false) {
+			try {
+				InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource(f.getName());
+				;
+				if (in == null) {
+					in = JavaPlugin.getPlugin(WorldSystem.class).getResource("custom.yml");
+				}
+				Files.copy(in, file.toPath());
+			} catch (IOException e) {
+				System.err.println("Wasn't able to create Config");
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private static YamlConfiguration getConfig() {
+		return YamlConfiguration.loadConfiguration(file);
+	}
+
+	private static String getRawMessage(String path, String alt) {
+		return ChatColor.translateAlternateColorCodes('&', getConfig().getString(path, alt));
+	}
+
+	private static String getMessage(String path, String alt) {
+		return PluginConfig.getPrefix() + getRawMessage(path, alt);
+	}
+
+	public static String getNoPermission() {
+		return getMessage("nopermission", "§cYou don't have permissions!");
+	}
+
+	public static String getSettingUpWorld() {
+		return getMessage("world.setting_up", "§aSetting up world...");
+	}
+
+	public static String getPlayerList() {
+		return getMessage("world.playerlist", "Player in this world: %player");
+	}
+
+	public static String getLagDetection() {
+		return getMessage("lagdetection", "Lagdetection in world from: §c%world");
+	}
+
+	public static String getWrongUsage() {
+		return getMessage("wrong_usage", "§c%usage");
+	}
+
+	public static String getNoWorldOwn() {
+		return getMessage("world.does_not_exists.own", "§cYou don't have a world!");
+	}
+
+	public static String getNoWorldOther() {
+		return getMessage("world.does_not_exists.other", "§cThis player doesn't has a world!");
+	}
+
+	public static String getNotRegistered() {
+		return getMessage("not_registered", "§cThis player hasn't joined yet!");
+	}
+
+	public static String getAlreadyMember() {
+		return getMessage("member.already_added", "§cThis player is already a member!");
+	}
+
+	public static String getMemberAdded() {
+		return getMessage("member.added", "You have added &c%player&6 to your World!");
+	}
+
+	public static String getUnknownError() {
+		return getMessage("unknown_error", "§cSomething went wrong...");
+	}
+
+	public static String getDeleteWorldOwn() {
+		return getMessage("world.delete.own", "§cYour world was deleted!");
+	}
+
+	public static String getDeleteWorldOther() {
+		return getMessage("world.delete.other", "You deleted the world of §c%player§6!");
+	}
+
+	public static String getNoMemberOwn() {
+		return getMessage("member.not_added.own", "§cThis player isn't a member!");
+	}
+
+	public static String getMemberRemoved() {
+		return getMessage("member.removed", "You removed §c%player§6 from your world!");
+	}
+
+	public static String getWorldAlreadyExists() {
+		return getMessage("world.already_exists", "§cYou already have a world!");
+	}
+
+	public static String getWorldCreated() {
+		return getMessage("world.created", "Your world is now ready. Get there with §a/ws home");
+	}
+
+	public static String getNotOnWorld() {
+		return getMessage("world.not_on", "§cYou are not on a world!");
+	}
+
+	public static String getWorldStillLoaded() {
+		return getMessage("world.still_loaded", "§cYour world is still loaded!");
+	}
+
+	public static String getNoRequestSend() {
+		return getMessage("request.not_sent", "§cYou didn't send a request!");
+	}
+
+	public static String getWorldReseted() {
+		return getMessage("world.reseted", "Your world was reseted!");
+	}
+
+	public static String getInvalidInput() {
+		return getMessage("request.invalid_input", "§c%input is not a valid input!");
+	}
+
+	public static String getRequestAlreadySent() {
+		return getMessage("request.already_sent", "§cYou already sent a request!");
+	}
+
+	public static String getRequestExpired() {
+		return getMessage("request.expired", "§cYou request is expired!");
+	}
+
+	public static String getTimeUntilExpires() {
+		return getMessage("request.until_expire", "§cYour request expires in %time seconds!");
+	}
+
+	public static String getConfirmRequest() {
+		return getMessage("request.confirm", "§cPlease confirm reset of your world: %command");
+	}
+
+	public static String getNoMemberOther() {
+		return getMessage("member.not_added.other", "§cYou are not added to this world!");
+	}
+
+	public static String getInfoOwner() {
+		return getMessage("info.owner", "Owner: %data");
+	}
+
+	public static String getInfoId() {
+		return getMessage("info.id", "ID: %data");
+	}
+
+	public static String getInfoMember() {
+		return getMessage("info.member", "Member: %data");
+	}
+
+	public static String getInfoTnt() {
+		return getMessage("info.tnt", "TNT: %data");
+	}
+
+	public static String getInfoFire() {
+		return getMessage("info.fire", "Fire: %data");
+	}
+
+	public static String getInfoEnabled() {
+		return getRawMessage("info.enabled", "§aOn");
+	}
+
+	public static String getInfoDisabled() {
+		return getRawMessage("info.disabled", "§cOff");
+	}
+
+	public static String getToggleGameModeEnabled() {
+		return getMessage("toggle.gamemode.enabled", "§a%player§6 can now change his gamemode!");
+	}
+
+	public static String getToggleGameModeDisabled() {
+		return getMessage("toggle.gamemode.disabled", "§c%player§6 can no longer change his gamemode!");
+	}
+
+	public static String getToggleTeleportEnabled() {
+		return getMessage("toggle.teleport.enabled", "§a%player§6 can now teleport!");
+	}
+
+	public static String getToggleTeleportDisabled() {
+		return getMessage("toggle.teleport.disabled", "§c%player§6 can no longer teleport!");
+	}
+
+	public static String getToggleBuildEnabled() {
+		return getMessage("toggle.build.enabled", "§a%player§6 can now build!");
+	}
+
+	public static String getToggleBuildDisabled() {
+		return getMessage("toggle.build.disabled", "§c%player§6 can no longer build!");
+	}
+
+	public static String getToggleFireEnabled() {
+		return getMessage("toggle.fire.enabled", "§aYou activated fire!");
+	}
+
+	public static String getToggleFireDisabled() {
+		return getMessage("toggle.fire.disabled", "§cYou deactivated fire!");
+	}
+
+	public static String getToggleTntEnabled() {
+		return getMessage("toggle.tnt.enabled", "§aYou activated TNT-Damage!");
+	}
+
+	public static String getToggleTntDisabled() {
+		return getMessage("toggle.tnt.disabled", "§cYou deactivated TNT-Damage!");
+	}
+
+	public static String getDeleteCommandHelp() {
+		return getMessage("command_help.delete", "/ws delete §8- §7Will delete a World");
+	}
+
+	public static List<String> getCommandHelp() {
+		List<String> list = getConfig().getStringList("command_help.list");
+		if (list == null)
+			list = defaultCmdHelp;
+		
+		return list;list = list.stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
+	}
+}

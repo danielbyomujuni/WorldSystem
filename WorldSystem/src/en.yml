@@ -1,0 +1,80 @@
+nopermission: "&cYou don't have permissions!"
+unknown_error: "&cSomething went wrong..."
+lagdetection: "Lagdetection in world: &c%world"
+wrong_usage: "&c%usage"
+not_registered: "&cThis player hasn't joined yet!"
+
+world:
+  reseted: "Your world was reseted!"
+  still_loaded: "&cYour world is still loaded!"
+  not_on: "&cYou are not on a world!"
+  created: "Your world is now ready. Get there with &a/ws home"
+  already_exists: "&cYou already have a world!"
+  delete:
+    own: "&cYour world was deleted!"
+    other: "You deleted the world of &c%player&6!"
+  does_not_exists: 
+    own: "&cYou don't have a world!"
+    other: "&cThis player doesn't has a world!"
+  setting_up: "&aSetting up world..."
+  playerlist: "Player in this world: %players"
+
+member:
+  removed: "You removed &c%player&6 from your world!"
+  added: "You have added &c%player&6 to your world!"
+  already_added: "&cThis player is already a member!"
+  not_added:
+    own: "&cThis player isn't a member!"
+    other: "&cYou are not added to this world"
+
+request:
+  expired: "&cYou request is expired!"
+  confirm: "&cPlease confirm reset of your world: %command"
+  until_expire: "&cYour request expires in %time seconds!"
+  already_sent: "&cYou already sent a request!"
+  not_sent: "&cYou didn't send a request!"
+  invalid_input: "&c%input is not a valid input!"
+
+toggle:
+  gamemode:
+    enabled: "&a%player&6 can now change his gamemode!"
+    disabled: "&c%player&6 can no longer change his gamemode!"
+  teleport:
+    enabled: "&a%player&6 can now teleport!"
+    disabled: "&c%player&6 can no longer teleport!"
+  build:
+    enabled: "&a%player&6 can now build!"
+    disabled: "&c%player&6 can no longer build!"
+  fire:
+    enabled: "&aYou activated fire!"
+    disabled: "&cYou deactivated fire!"
+  tnt:
+    enabled: "&aYou activated TNT-Damage!"
+    disabled: "&cYou deactivated TNT-Damage!"
+
+info:
+  owner: "Owner: %data"
+  id: "ID: %data"
+  member: "Member: %data"
+  tnt: "TNT: %data"
+  fire: "Fire: %data"
+  enabled: "&aOn"
+  disabled: "&cOff"
+  
+command_help:
+  list:
+    - "/ws get &8- &7Will give you a world"
+    - "/ws home &8- &7Teleports you on your world"
+    - "/ws gui &8- &7Opens the GUI menu if you are the worldowner"
+    - "/ws tp &8- &7Teleports you on a specific world"
+    - "/ws addmember &8- &7Adds a player to your world"
+    - "/ws delmember &8- &7Removes a player from your world"
+    - "/ws leave &8- &7Leave a world"
+    - "/ws tnt &8- &7Allows/Denys TNT on your world"
+    - "/ws fire &8- &7Allows/Denys Fire on your world"
+    - "/ws togglegm &8- &7Allows/Denys a player changing gamemode"
+    - "/ws togglebuild &8- &7Allows/Denys a player building"
+    - "/ws toggletp &8- &7Allows/Denys a player teleporting"
+    - "/ws info &8- &7Shows information about the world"
+    - "/ws reset &8- &7Will reset your world"
+  delete_command: "/ws delete &8- &7Will delete a world"

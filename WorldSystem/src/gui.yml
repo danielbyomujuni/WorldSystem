@@ -1,0 +1,263 @@
+# 
+# Config for the GUI "/gui"
+# Counting for rows and columns starts always at 1
+#
+
+options:
+
+  # How the enabled item should look like
+  enabled:
+    # ItemID, for seeing them press F3 + H
+    material: 351
+    # Data, how it should look like eg. blue, red, green
+    data: 10
+    # Displayname
+    display: '&aEnabled'
+    
+  # How the disabled item should look like
+  disabled:
+    material: 351
+    data: 1
+    display: '&cDisabled'
+    
+  # How the comming-soon item should look like
+  coming_soon:
+    material: 351
+    data: 14
+    display: '&6Coming soon...'
+    
+  # WorldoptionsGUI
+  world:
+    # Rows
+    rows: 2
+    # Reset button
+    reset:
+      # If feature should be enabled or not
+      enabled: true
+      slot:
+        row: 1
+        col: 8
+      material: 293
+      data: 0
+      display: '&eReset World'
+      
+    # Fire button
+    fire:
+      enabled: true
+      slot:
+        row: 1
+        col: 2
+      # Where the state item should be
+      state:
+        row: 2
+        col: 2
+      material: 259
+      data: 0
+      display: '&eToggle Fire'
+      
+    # TNT button
+    tnt:
+      enabled: true
+      slot:
+        row: 1
+        col: 5
+      state:
+        row: 2
+        col: 5
+      material: 46
+      data: 0
+      display: '&eToggle TNT-Explosion'
+      
+  players:
+    rows: 6
+    nextpage:
+      enabled: true
+      slot:
+        row: 6
+        col: 9
+      material: 175
+      data: 0
+      display: '&eNext Page'
+    pagebefore:
+      enabled: true
+      slot:
+        row: 6
+        col: 1
+      material: 175
+      data: 0
+      display: '&ePage before'
+    currentpage:
+      enabled: true
+      slot:
+        row: 6
+        col: 5
+      material: 339
+      data: 0
+      display: '&eCurrent page: %page'
+    player_list_to_row: 4
+    playerhead:
+      display: '&e%player'
+      
+  # PlayerGUI for managing one player on a world
+  player:
+    rows: 2
+    build:
+      enabled: true
+      slot:
+        row: 1
+        col: 1
+      state:
+        row: 2
+        col: 1
+      material: 286
+      data: 0
+      display: '&eToggle Build-Permission'
+      lore:
+      - '&7Toggles the permission for a player'
+      - '&7To build on this world'
+    gamemode:
+      enabled: true
+      slot:
+        row: 1
+        col: 2
+      state:
+        row: 2
+        col: 2
+      material: 426
+      data: 0
+      display: '&eToggle GameMode-Permission'
+      lore:
+      - '&7Toggles the permission for a player'
+      - '&7To change the GameMode on this world'
+    teleport:
+      enabled: true
+      slot:
+        row: 1
+        col: 3
+      state:
+        row: 2
+        col: 3
+      material: 345
+      data: 0
+      display: '&eToggle Teleport-Permission'
+      lore:
+      - '&7Toggles the permission for a player'
+      - '&7To teleport on this world'
+    time:
+      enabled: false
+      slot:
+        row: 1
+        col: 4
+      state:
+        row: 2
+        col: 4
+      material: 347
+      data: 0
+      display: '&eToggle Time-Permission'
+      lore:
+      - '&7Toggles the permission for a player'
+      - '&7To change the time on this world'
+    worldborder:
+      enabled: false
+      slot:
+        row: 1
+        col: 5
+      state:
+        row: 2
+        col: 5
+      material: 345
+      data: 0
+      display: '&eToggle Worldborder-Permission'
+      lore:
+      - '&7Toggles the permission for a player'
+      - '&7To change the worldborder on this world'
+    addmember:
+      enabled: false
+      slot:
+        row: 1
+        col: 6
+      state:
+        row: 2
+        col: 6
+      material: 399
+      data: 0
+      display: '&eToggle Addmember-Permission'
+      lore:
+      - '&7Toggles the permission for a player'
+      - '&7To add a member to this world'
+    delmember:
+      enabled: false
+      slot:
+        row: 1
+        col: 6
+      state:
+        row: 2
+        col: 6
+      material: 286
+      data: 0
+      display: '&eToggle Delmember-Permission'
+      lore:
+      - '&7Toggles the permission for a player'
+      - '&7To remove a member from this world'
+    addmember:
+      enabled: false
+      slot:
+        row: 1
+        col: 7
+      state:
+        row: 2
+        col: 7
+      material: 399
+      data: 0
+      display: '&eToggle Addmember-Permission'
+      lore:
+      - '&7Toggles the permission for a player'
+      - '&7To add a member to this world'
+    setpermissions:
+      enabled: false
+      slot:
+        row: 1
+        col: 8
+      state:
+        row: 2
+        col: 8
+      material: 331
+      data: 0
+      display: '&eToggle Setpermissions-Permission'
+      lore:
+      - '&7Toggles the permission for a player'
+      - '&7To set permissions for a member of this world'
+    administrateworld:
+      enabled: false
+      slot:
+        row: 1
+        col: 9
+      state:
+        row: 2
+        col: 9
+      material: 421
+      data: 0
+      display: '&eToggle Addmember-Permission'
+      lore:
+      - '&7Toggles the permission for a player'
+      - '&7To adminstrate this world'
+      
+# WorldsystemGUI
+worldsystem:
+  rows: 1
+  playeroptions:
+    enabled: true
+    slot:
+      row: 1
+      col: 4
+    material: 298
+    data: 0
+    display: '&ePlayer Options'
+  worldoptions:
+    enabled: true
+    slot:
+      row: 1
+      col: 6
+    material: 2
+    data: 0
+    display: '&eWorld Options'

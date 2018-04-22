@@ -1,0 +1,79 @@
+nopermission: "&cDu besitzt keine Berechtigungen!"
+unknown_error: "&cEtwas lief schief..."
+lagdetection: "Lags in Welt: &c%world"
+wrong_usage: "&c%usage"
+not_registered: "&cDieser Spieler war noch nie auf dem Server"
+
+world:
+  reseted: "Deine Welt wurde zur\u00fcckgesetzt!"
+  still_loaded: "&cDeine Welt ist noch geladen!"
+  not_on: "&cDu bist auf keiner Welt!"
+  created: "Deine Welt ist nun bereit. Nutze &a/ws home"
+  already_exists: "&cDu besitzt bereits eine Welt!"
+  delete:
+    own: "&cDeine Welt wurde entfernt!"
+    other: "Die Welt von &c%player&6 wurde entfernt!"
+  does_not_exists: 
+    own: "&cDu besitzt keine Welt!"
+    other: "&cDieser Spieler besitzt keine Welt!"
+  setting_up: "&aBereite Welt vor..."
+  playerlist: "Spieler in der Welt: %players"
+
+member:
+  removed: "Du hast &c%player&6 von deiner Welt entfernt!"
+  added: "Du hast &c%player&6 zu deiner Welt hinzugef\u00fcgt!"
+  already_added: "&cDer Spieler ist bereits Mitglied deiner Welt!"
+  not_added:
+    own: "&cDer Spieler ist kein Mitglied deiner Welt!"
+    other: "&cDu bist nicht zu der Welt hinzugef\u00fcgt!"
+
+request:
+  expired: "&cDeine Anfrage ist ausgelaufen!"
+  confirm: "&cBitte bestätige das Zur\u00fccksetzen: %command"
+  until_expire: "&cDeine Anfrage l\u00e4uft in %time Sekunden aus!"
+  already_sent: "&cDu hast bereits eine Anfrage gesendet!"
+  not_sent: "&cDu hast keine Anfrage gesendet!"
+  invalid_input: "&c%input ist eine ung\u00fcltige Eingabe!"
+
+toggle:
+  gamemode:
+    enabled: "&a%player&6 kann nun seinen Spielmodus \u00e4ndern!"
+    disabled: "&c%player&6 kann seinen Spielmodus nicht mehr \u00e4ndern!"
+  teleport:
+    enabled: "&a%player&6 kann sich nun teleportieren!"
+    disabled: "&c%player&6 kann sich nicht l\u00e4nger teleportieren!"
+  build:
+    enabled: "&a%player&6 kann nun bauen!"
+    disabled: "&c%player&6 kann nicht mehr bauen!"
+  fire:
+    enabled: "&aFeuer aktiviert!"
+    disabled: "&cFeuer deaktiviert!"
+  tnt:
+    enabled: "&aTNT-Schaden aktiviert!"
+    disabled: "&cTNT-Schaden deaktiviert!"
+
+info:
+  owner: "Eigent\u00fcmer: %data"
+  id: "ID: %data"
+  member: "Mitglieder: %data"
+  tnt: "TNT: %data"
+  fire: "Feuer: %data"
+  enabled: "&aAn"
+  disabled: "&cAus"
+  
+command_help:
+  list:
+    - "/ws get &8- &7Gibt dir eine Welt"
+    - "/ws home &8- &7Teleportiert dich auf deine Welt"
+    - "/ws gui &8- &7\u00f6ffnets das GUI-Menu wenn du der Weltenbesitzer bist"
+    - "/ws tp &8- &7Teleportiert dich auf eine bestimmte Welt"
+    - "/ws addmember &8- &7F\u00fcgt jemanden zu deiner Welt hinzu"
+    - "/ws delmember&8 - &7Entfernt jemanden von deiner Welt"
+    - "/ws tnt &8- &7Erlaubt/Verbietet TNT auf deiner Welt"
+    - "/ws fire &8- &7Erlaubt/Verbietet Feuer auf deiner Welt"
+    - "/ws togglegm &8- &7Erlaubt/Verbietet einem Spieler den Spielmodus zu wechseln"
+    - "/ws togglebuild &8- &7Erlaubt/Verbietet einem Spieler zu bauen"
+    - "/ws toggletp &8- &7Erlaubt/Verbietet einem Spieler sich zu teleportieren"
+    - "/ws info &8- &7Zeigt Informationen \u00fcber die Welt"
+    - "/ws reset &8- &7Setzt deine Welt zur\u00fcck"
+  delete_command: "/ws delete &8- &7L\u00f6scht eine Welt"

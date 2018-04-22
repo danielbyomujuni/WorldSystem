@@ -1,0 +1,48 @@
+# Center will be at the spawn or the worldspawn
+worldborder: 
+  # If WorldSystem should change the worldborder
+  should_change: true
+  # Default size
+  normal: 1000
+  # Size with ws.big permission
+  big: 2000
+  # Size with ws.large permission
+  large: 5000
+  
+  # Set a specialized center wich is not the spawn
+  center:
+    as_spawn: true
+    x: 0
+    y: 20
+    z: 0
+
+# All Gamerules in 1.12
+# Not supported gamerules will be ignored
+#
+# If you need help, look at
+# https://minecraft.gamepedia.com/Commands/gamerule
+
+announceAdvancements: true
+commandBlockOutput: false
+disableElytraMovementCheck: false
+doDaylightCycle: false
+doEntityDrops: true
+doFireTick: true
+doLimitedCrafting: false
+doMobLoot: true
+doMobSpawning: true
+doTileDrops: false
+doWeatherCycle: false
+gameLoopFunction: false
+keepInventory: true
+logAdminCommands: true
+maxCommandChainLength: 65536
+maxEntityCramming: 24
+mobGriefing: true
+naturalRegeneration: true
+randomTickSpeed: 3
+reducedDebugInfo: false
+sendCommandFeedback: true
+showDeathMessages: true
+spawnRadius: 10
+spectatorsGenerateChunks: true
