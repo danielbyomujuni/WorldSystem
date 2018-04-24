@@ -8,7 +8,7 @@
 - Config dokumentieren
 - WorldConfig dokumentieren
 - Mehrere TemplateWorlds, WeltGenerator konfigurieren - FLAT, DEFAULT, VOID, ...
--
+- AutoUpdater
 
 2.0.3:
 - PlotMe Generator erstellen -> Config gibt Feldgröße an

@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.wrapper.WorldPlayer;
 
@@ -21,7 +22,7 @@ public class GuiCommand implements CommandExecutor {
 			sender.sendMessage(MessageConfig.getNoPermission());
 			return true;
 		}
-		((Player) sender).openInventory(new WorldSystemGUI().getInventory((Player) sender));
+		((Player) sender).openInventory(WorldSystem.mainGUI.getInventory((Player) sender));
 		return true;
 	}
 
