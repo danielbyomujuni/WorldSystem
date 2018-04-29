@@ -45,7 +45,7 @@ public class MessageConfig {
 		if (file.exists() == false) {
 			try {
 				InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource(f.getName());
-				;
+				
 				if (in == null) {
 					in = JavaPlugin.getPlugin(WorldSystem.class).getResource("custom.yml");
 				}
