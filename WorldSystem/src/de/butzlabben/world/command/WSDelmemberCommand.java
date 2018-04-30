@@ -41,7 +41,7 @@ public class WSDelmemberCommand implements CommandExecutor {
 		WorldConfig2.delMember(p, a);
 		if(a.isOnline()) {
 			Player t = (Player) a;
-			if(t.getWorld().getName().equals(new DependenceConfig(p).getWorldname()) || t.getWorld().getName().equals(new DependenceConfig(p).getOldWorldname())) {
+			if(t.getWorld().getName().equals(new DependenceConfig(p).getWorldname())) {
 				t.teleport(PluginConfig.getSpawn());
 				t.setGameMode(PluginConfig.getSpawnGamemode());
 			}			

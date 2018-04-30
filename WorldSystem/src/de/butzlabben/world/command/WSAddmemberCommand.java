@@ -34,7 +34,7 @@ public class WSAddmemberCommand implements CommandExecutor{
 		if (a == null) {
 			p.sendMessage(MessageConfig.getNotRegistered());
 			return true;
-		} else if (WorldConfig2.isMember(a, new DependenceConfig(p).getWorldname()) || WorldConfig2.isMember(a, new DependenceConfig(p).getOldWorldname())) {
+		} else if (WorldConfig2.isMember(a, new DependenceConfig(p).getWorldname())) {
 			p.sendMessage(MessageConfig.getAlreadyMember());
 			return true;
 		}

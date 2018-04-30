@@ -32,11 +32,6 @@ public class WSResetCommand implements CommandExecutor {
 		DependenceConfig dc = new DependenceConfig(p);
 		String worldname = dc.getWorldname();
 		SystemWorld sw = SystemWorld.getSystemWorld(worldname);
-		if(sw == null) {
-			worldname = dc.getOldWorldname();
-			sw = SystemWorld.getSystemWorld(worldname);
-			
-		}
 		if (!dc.hasWorld()) {
 			p.sendMessage(MessageConfig.getNoWorldOwn());
 			return true;

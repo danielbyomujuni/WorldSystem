@@ -32,7 +32,7 @@ public class SettingsConfig {
 				String worldname = w.getName();
 				UUID uuid = UUID.fromString(worldname.substring(worldname.length() - 36));
 				Player p = Bukkit.getPlayer(uuid);
-				if (p.isOnline()) {
+				if (p != null && p.isOnline()) {
 					if (p.hasPermission("ws.large")) {
 						size = cfg.getDouble("worldborder.large", 5000);
 					} else if (p.hasPermission("ws.big"))

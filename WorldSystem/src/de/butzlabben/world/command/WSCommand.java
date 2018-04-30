@@ -133,7 +133,7 @@ public class WSCommand implements CommandExecutor, TabCompleter {
 		List<String> cmdHelp = MessageConfig.getCommandHelp();
 		cmdHelp.forEach(s -> cs.sendMessage(prefix + s));
 		if (cs.hasPermission("ws.delete"))
-			cs.sendMessage(prefix + "/ws delete §8- §7Will delete a World");
+			cs.sendMessage(MessageConfig.getDeleteCommandHelp());
 		return true;
 	}
 

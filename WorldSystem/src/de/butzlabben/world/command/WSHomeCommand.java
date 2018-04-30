@@ -35,8 +35,6 @@ public class WSHomeCommand implements CommandExecutor {
 			SystemWorld.tryUnloadLater(Bukkit.getWorld(worldname));
 		}
 		SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname());
-		if (sw == null)
-			sw = SystemWorld.getSystemWorld(dc.getOldWorldname());
 		if(sw == null) {
 			p.sendMessage(MessageConfig.getNoWorldOwn());
 			return true;

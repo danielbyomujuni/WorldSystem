@@ -31,10 +31,6 @@ public class WSTPCommand implements CommandExecutor {
 			return true;
 		}
 		SystemWorld sw = SystemWorld.getSystemWorld(worldname);
-		if(sw == null) {
-			worldname = dc.getOldWorldNamebyOfflinePlayer();
-			sw = SystemWorld.getSystemWorld(worldname);
-		}
 		WorldPlayer wp1 = new WorldPlayer(p, p.getWorld().getName());
 		WorldPlayer wp = new WorldPlayer(p, worldname);
 		if (p.getWorld().getName().equals(worldname)) {

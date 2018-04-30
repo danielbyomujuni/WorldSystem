@@ -21,7 +21,6 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.mojang.authlib.GameProfile;
@@ -64,9 +63,7 @@ public class GameProfileBuilder {
 		if ((!forceNew) && (cache.containsKey(uuid))) {
 			return ((CachedProfile) cache.get(uuid)).profile;
 		}
-		JsonObject error = (JsonObject) new JsonParser()
-				.parse(new BufferedReader(new InputStreamReader(connection.getErrorStream())).readLine());
-		throw new IOException(error.get("error").getAsString() + ": " + error.get("errorMessage").getAsString());
+		throw new IOException("Could not connect to mojang servers for unknown player: " + uuid.toString());
 	}
 
 	public static GameProfile getProfile(UUID uuid, String name, String skin) {

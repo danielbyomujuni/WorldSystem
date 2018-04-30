@@ -100,28 +100,6 @@ public class DependenceConfig {
 		String worldname = "ID" + id + "-" + uuid;
 		return worldname;
 	}
-	
-	public String getOldWorldname() {
-		File dconfig = new File("plugins//WorldSystem//dependence.yml");
-		YamlConfiguration dcfg = YamlConfiguration.loadConfiguration(dconfig);
-		String uuid = op.getUniqueId().toString();
-		int id = dcfg.getInt("Dependences." + uuid + ".ID");
-		String worldname = "ID" + id + " " + uuid;
-		return worldname;
-	}
-	
-	public String getOldWorldNamebyOfflinePlayer() {
-		String name = "";
-		String uuid = op.getUniqueId().toString();
-		File dconfig = new File("plugins//WorldSystem//dependence.yml");
-		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
-		if (cfg.getString("Dependences." + uuid + ".ActualName") == null) {
-			name = "n";
-		} else {
-			name = "ID" + cfg.getInt("Dependences." + uuid + ".ID") + "-" + uuid;
-		}
-		return name;
-	}
 
 	public String getWorldNamebyOfflinePlayer() {
 		String name = "";
@@ -131,7 +109,7 @@ public class DependenceConfig {
 		if (cfg.getString("Dependences." + uuid + ".ActualName") == null) {
 			name = "n";
 		} else {
-			name = "ID" + cfg.getInt("Dependences." + uuid + ".ID") + " " + uuid;
+			name = "ID" + cfg.getInt("Dependences." + uuid + ".ID") + "-" + uuid;
 		}
 		return name;
 	}

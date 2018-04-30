@@ -150,7 +150,7 @@ public class WorldPlayer {
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(worldconfig);
 		String uuid = p.getUniqueId().toString();
 		if (uuid.equals(cfg.getString("Members." + uuid + ".PlayerUUID"))) {
-			cfg.set("Members." + uuid + ".ActualName", p.getName());
+			cfg.set("Members." + uuid + ".Actualname", p.getName());
 			try {
 				cfg.save(worldconfig);
 			} catch (IOException e) {
@@ -201,7 +201,7 @@ public class WorldPlayer {
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(worldconfig);
 		if (p.getUniqueId().toString().equals(cfg.getString("Informations.Owner.PlayerUUID"))) {
 			String playerName = p.getName();
-			cfg.set("Informations.Owner.ActualName", playerName);
+			cfg.set("Informations.Owner.Actualname", playerName);
 			try {
 				cfg.save(worldconfig);
 			} catch (IOException e) {

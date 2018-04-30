@@ -26,7 +26,7 @@ public class PlayerOptionsGUI extends OrcInventory {
 	public final static HashMap<UUID, String> data = new HashMap<>();
 
 	public PlayerOptionsGUI() {
-		super("Player Options", GuiConfig.getRows("options.player"), false);
+		super("Player Options", GuiConfig.getRows("options.player"), true);
 		loadItem("build", "/ws togglebuild %data", new BuildStatus());
 		loadItem("gamemode", "/ws togglegm %data", new GamemodeStatus());
 		loadItem("teleport", "/ws toggletp %data", new TeleportStatus());

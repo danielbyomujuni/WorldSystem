@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
-import de.butzlabben.world.wrapper.SystemWorld;
+import de.butzlabben.world.config.WorldConfig2;
 import de.butzlabben.world.wrapper.WorldPlayer;
 
 public class WSToggleGMCommand implements CommandExecutor {
@@ -31,10 +31,11 @@ public class WSToggleGMCommand implements CommandExecutor {
 		}
 		@SuppressWarnings("deprecation")
 		OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
-		SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname());
+		if (!WorldConfig2.isMember(a, dc.getWorldname())) {
+			p.sendMessage(MessageConfig.getNoMemberOwn());
+			return true;
+		}
 		WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
-		if(sw == null)
-			wp = new WorldPlayer(a, dc.getOldWorldname());
 		if (wp.toggleGamemode()) {
 			p.sendMessage(MessageConfig.getToggleGameModeEnabled().replaceAll("%player", a.getName()));
 		} else {

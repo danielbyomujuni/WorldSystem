@@ -121,15 +121,7 @@ public class WorldConfig2 {
 		String worldname = dc.getWorldname();
 		File file = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
 		if (!file.exists()) {
-			worldname = dc.getOldWorldname();
-			file = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
-		}
-		if (!file.exists()) {
 			worldname = dc.getWorldname();
-			file = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");
-		}
-		if (!file.exists()) {
-			worldname = dc.getOldWorldname();
 			file = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");
 		}
 		if (!file.exists())
@@ -137,7 +129,7 @@ public class WorldConfig2 {
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		String uuid = target.getUniqueId().toString();
 		cfg.set("Members." + uuid + ".PlayerUUID", uuid);
-		cfg.set("Members." + uuid + ".ActualName", target.getName());
+		cfg.set("Members." + uuid + ".Actualname", target.getName());
 		cfg.set("Members." + uuid + ".Permissions.ChangeGM", true);
 		cfg.set("Members." + uuid + ".Permissions.CanBuild", true);
 		cfg.set("Members." + uuid + ".Permissions.CanTP", false);
@@ -149,19 +141,11 @@ public class WorldConfig2 {
 		String worldname = dc.getWorldname();
 		File file = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
 		if (!file.exists()) {
-			worldname = dc.getOldWorldname();
-			file = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
-		}
-		if (!file.exists()) {
 			worldname = dc.getWorldname();
 			file = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");
 		}
-		if (!file.exists()) {
-			worldname = dc.getOldWorldname();
-			file = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");
-		}
 		if (!file.exists())
-			throw new IllegalArgumentException("This World does not exist");
+			throw new IllegalArgumentException("This world does not exist");
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		String uuid = target.getUniqueId().toString();
 		cfg.set("Members." + uuid, null);
@@ -181,18 +165,9 @@ public class WorldConfig2 {
 		String worldname = dc.getWorldname();
 		File file = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
 		if (!file.exists()) {
-			worldname = dc.getOldWorldname();
-			file = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
-		}
-		if (!file.exists()) {
 			worldname = dc.getWorldname();
 			file = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");
 		}
-		if (!file.exists()) {
-			worldname = dc.getOldWorldname();
-			file = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");
-		}
-
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		WorldToggleTntEvent event = new WorldToggleTntEvent(p, SystemWorld.getSystemWorld(worldname),
 				cfg.getBoolean("Settings.TNTDamage"));
@@ -222,15 +197,7 @@ public class WorldConfig2 {
 		String worldname = dc.getWorldname();
 		File file = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
 		if (!file.exists()) {
-			worldname = dc.getOldWorldname();
-			file = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
-		}
-		if (!file.exists()) {
 			worldname = dc.getWorldname();
-			file = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");
-		}
-		if (!file.exists()) {
-			worldname = dc.getOldWorldname();
 			file = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");
 		}
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
@@ -267,7 +234,9 @@ public class WorldConfig2 {
 		StringBuilder sb = new StringBuilder();
 		if (cfg.getConfigurationSection("Members") != null) {
 			for (String s : cfg.getConfigurationSection("Members").getKeys(false)) {
-				UUID uuid = UUID.fromString(cfg.getString("Members." + s + ".PlayerUUID"));
+				if (s == null)
+					continue;
+				UUID uuid = UUID.fromString(s);
 				OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
 				if (op == null || op.getName() == null) {
 					try {
