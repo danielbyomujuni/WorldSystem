@@ -1,0 +1,80 @@
+nopermission: "&cNie posiadasz uprawnień do tego!"
+unknown_error: "&cCoś poszło nie tak..."
+lagdetection: "Wykryto laga na świecie: &c%world"
+wrong_usage: "&c%usage"
+not_registered: "&cTen gracz nie dołączył jeszcze na serwer!"
+
+world:
+  reseted: "Twój świat został zresetowany!"
+  still_loaded: "&cTwój serwer wciąż się ładuje!"
+  not_on: "&cNie jesteś na swoim świecie!"
+  created: "Twój świat jest gotowy. Dostań się na niego za pomocą &a/ws home"
+  already_exists: "&cJuż posiadasz swój świat!"
+  delete:
+    own: "&cTwój świat został skasowany!"
+    other: "Usunąłeś świat gracza: &c%player&6!"
+  does_not_exists: 
+    own: "&cNie masz swojego świata!"
+    other: "&cTen gracz nie ma swojego świata!"
+  setting_up: "&aUstawianie świata..."
+  playerlist: "Gracze na tym świecie: %players"
+
+member:
+  removed: "Usunąłeś &c%player&6 ze swojego świata!"
+  added: "Dodałeś &c%player&6 na swój świat!"
+  already_added: "&cTen gracz jest już dodany na Twoim świecie!"
+  not_added:
+    own: "&cTen gracz nie jest dodany do Twojego świata!"
+    other: "&cNie jesteś dodany na ten świat!"
+
+request:
+  expired: "&cTwoja prośba wygasła!"
+  confirm: "&cPotwierdź zresetowanie swojego świata komendą: %command"
+  until_expire: "&cTwója prośba wygaśnie za %time sek.!"
+  already_sent: "&cJuż wysłałeś prośbę!"
+  not_sent: "&cNie wysłałeś prośby!"
+  invalid_input: "&c%input nie jest poprawnym argumentem komendy!"
+
+toggle:
+  gamemode:
+    enabled: "&a%player&6 może teraz zmienić swój gamemode!"
+    disabled: "&c%player&6 nie może już zmienić swojego gamemode!"
+  teleport:
+    enabled: "&a%player&6 może teleportować się!"
+    disabled: "&c%player&6 nie może teleportować się!"
+  build:
+    enabled: "&a%player&6 może budować!"
+    disabled: "&c%player&6 nie może już budować!"
+  fire:
+    enabled: "&aWłączyłeś ogień!"
+    disabled: "&cWyłączyłeś ogień!"
+  tnt:
+    enabled: "&aWłączyłeś obrażenia od TNT!"
+    disabled: "&cWyłączyłeś obrażenia od TNT!"
+
+info:
+  owner: "Właściciel: %data"
+  id: "ID: %data"
+  member: "Członek: %data"
+  tnt: "TNT: %data"
+  fire: "Ogień: %data"
+  enabled: "&aWłączone"
+  disabled: "&cWyłączone"
+  
+command_help:
+  list:
+    - "/ws get &8- &7Will give you a world"
+    - "/ws home &8- &7Teleportuje Cie na Twój świat"
+    - "/ws gui &8- &7Otwiera GUI świata jeżeli jesteś jego właścicielem"
+    - "/ws tp &8- &7Teleportuje Cie na określony świat"
+    - "/ws addmember &8- &7Dodaj gracza na swój świat"
+    - "/ws delmember &8- &7Usuń gracza ze swojego świata"
+    - "/ws leave &8- &7Opuść świat"
+    - "/ws tnt &8- &7Zezwól/Odmów TNT na swoim świecie"
+    - "/ws fire &8- &7Zezwól/Odmów Ogień na swoim świecie"
+    - "/ws togglegm &8- &7Zezwól/Odmów graczowi zmieniać swój gamemode"
+    - "/ws togglebuild &8- &7Zezwól/Odmów graczowi budowanie"
+    - "/ws toggletp &8- &7Zezwól/Odmów graczowi teleportowanie się"
+    - "/ws info &8- &7Pokazuje informacje o świecie"
+    - "/ws reset &8- &7Zresetuje Twój świat"
+  delete_command: "/ws delete &8- &7Usunie Twój świat"

@@ -172,6 +172,7 @@ public class WorldSystem extends JavaPlugin {
 		MessageConfig.checkConfig(new File(languages, "nl.yml"));
 		MessageConfig.checkConfig(new File(languages, "pl.yml"));
 		MessageConfig.checkConfig(new File(languages, "es.yml"));
+		MessageConfig.checkConfig(new File(languages, "ru.yml"));
 		MessageConfig.checkConfig(new File(languages, PluginConfig.getLanguage() + ".yml"));
 		if (!dconfig.exists()) {
 			try {

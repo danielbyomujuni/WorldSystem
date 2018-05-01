@@ -1,0 +1,113 @@
+name: WorldSystem
+version: 2.0.1
+author: Butzlabben
+main: de.butzlabben.world.WorldSystem
+
+commands:
+  ws:
+    description: Commands for WorldSystem
+    aliases: [worldsystem, world, worlds]
+    usage: /ws
+  ws get:
+    aliases: [worldsystem get, world get, worlds get]
+    usage: /ws get
+  ws help:
+    aliases: [worldsystem help, world help, worlds help]
+    usage: /ws help
+  ws home:
+    aliases: [worldsystem home, world home, worlds home]
+    usage: /ws home
+  ws addmember:
+    aliases: [worldsystem addmember, world addmember, worlds addmember]
+    usage: /ws addmember <player>
+  ws delmember:
+    aliases: [worldsystem delmember, world delmember, worlds delmember]
+    usage: /ws delmember <player>
+  ws leave:
+    aliases: [worldsystem leave, world leave, worlds leave]
+    usage: /ws leave
+  ws tp:
+    aliases: [worldsystem tp, world tp, worlds tp]
+    usage: /ws tp <target>
+  ws tnt:
+    aliases: [worldsystem tnt, world tnt, worlds tnt]
+    usage: /ws tnt
+  ws fire:
+    aliases: [worldsystem, world fire, worlds fire]
+    usage: /ws fire
+  ws info:
+    aliases: [worldsystem info, world info, worlds info]
+    usage: /ws info
+  ws togglebuild:
+    aliases: [worldsystem togglebuild, world  togglebuild, worlds togglebuild]
+    usage: /ws togglebuild <player>
+  ws togglegm:
+    aliases: [worldsystem togglegm, world togglegm, worlds togglegm]
+    usage: /ws togglegm <player>
+  ws toggletp:
+    aliases: [worldsystem toggletp, world toggletp, worlds toggletp]
+    usage: /ws toggletp <player>
+  ws reset:
+    aliases: [worldsystem reset, world reset, worlds reset]
+    usage: /ws reset
+  ws gui:
+    aliases: [worldsystem gui, world gui, worlds gui]
+    usage: /ws gui
+  ws delete:
+    aliases: [worldsystem delete, world delete, worlds delete]
+    usage: /ws delete <player>
+    permission: ws.delete
+
+permissions:
+  ws.*:
+    default: op
+    description: Gives '*'-Perms to all Commands
+    children:
+      ws.tp.*: true
+      ws.tp.world: true
+      ws.tp.toother: true
+      ws.tp.other: true
+      ws.build: true
+      ws.gamemode: true
+      ws.delete: true
+      ws.lag: true
+      ws.big: true
+      ws.large: true
+  ws.tp.*:
+    default: op
+    description: You can teleport everything
+    children:
+      ws.tp.toother: true
+      ws.tp.other: true
+      ws.tp.world: true
+  ws.build:
+    default: op
+    description: You can build on other Worlds without WorldPermissions
+  ws.delete:
+    default: op
+    description: You can delete a world
+  ws.gamemode:
+    default: op
+    description: You can change GameMode on other worlds
+  ws.tp.other:
+    default: op
+    description: You can teleport other persons
+  ws.tp.toother:
+    default: op
+    description: You can teleport across worlds
+  ws.tp.world:
+    default: op
+    description: You can teleport to without rights World
+  ws.lag:
+    default: op
+    description: You can see lag messages
+  ws.big:
+    default: op      
+    description: Gives you a bigger world (if set)
+  ws.large:
+    default: op
+    children:
+      ws.big: true
+    description: Gives you a even bigger world (if set)
+    
+default-permission: admin
