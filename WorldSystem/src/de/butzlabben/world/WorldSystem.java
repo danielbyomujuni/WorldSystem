@@ -29,6 +29,7 @@ import de.butzlabben.world.command.WSToggleBuildCommand;
 import de.butzlabben.world.command.WSToggleGMCommand;
 import de.butzlabben.world.command.WSToggleTPCommand;
 import de.butzlabben.world.config.DependenceConfig;
+import de.butzlabben.world.config.Entry;
 import de.butzlabben.world.config.GuiConfig;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
@@ -125,11 +126,12 @@ public class WorldSystem extends JavaPlugin {
 		getCommand("ws delete").setExecutor(new WSDeleteCommand());
 
 		getCommand("ws gui").setExecutor(new GuiCommand());
-		
+
 		mainGUI = new WorldSystemGUI();
-		
+
 		System.setProperty("bstats.relocatecheck", "false");
 		Metrics m = new Metrics(this);
+		m.addCustomChart(new Metrics.SingleLineChart("worlds", Entry::entrys));
 		m.getPluginData();
 
 		Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Succesfully enabled WorldSystem v" + version);

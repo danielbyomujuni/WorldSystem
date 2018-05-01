@@ -2,6 +2,7 @@ package de.butzlabben.world.wrapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
@@ -33,6 +34,8 @@ public class SystemWorld {
 	private World w;
 	private String worldname;
 	private boolean unloading = false;
+	
+	private static HashMap<String, SystemWorld> cached = new HashMap<>();
 
 	/**
 	 * This method is the online way to get a system world instance
@@ -45,9 +48,13 @@ public class SystemWorld {
 	 */
 	public static SystemWorld getSystemWorld(String worldname) {
 		Preconditions.checkNotNull(worldname, "worldname must not be null");
+		if(cached.containsKey(worldname))
+			return cached.get(worldname);
 		SystemWorld sw = new SystemWorld(worldname);
-		if (sw.exists())
+		if(sw != null && sw.exists()) {
+			cached.put(worldname, sw);
 			return sw;
+		}
 		return null;
 	}
 
@@ -201,6 +208,7 @@ public class SystemWorld {
 			worldname = myName.toString();
 		}
 		// Teleport the Player
+		
 		World worldinserver = Bukkit.createWorld(new WorldCreator(worldname));
 		Bukkit.getServer().getWorlds().add(worldinserver);
 		w = worldinserver;
@@ -251,8 +259,8 @@ public class SystemWorld {
 			System.err.println("Couldn't create world for " + p.getName());
 			e.printStackTrace();
 		}
-		WorldConfig2 wc = new WorldConfig2();
-		wc.createConfig(p);
+		WorldConfig2 wc2 = new WorldConfig2();
+		wc2.createConfig(p);
 		if (PluginConfig.getExampleWorldName() == null || PluginConfig.getExampleWorldName().equals("")
 				|| !exampleworld.exists()) {
 			// Move World into Server dir
@@ -275,7 +283,15 @@ public class SystemWorld {
 					e.printStackTrace();
 				}
 			}
-			World worldinserver = Bukkit.createWorld(new WorldCreator(worldname));
+			WorldCreator wc = new WorldCreator(worldname);
+			System.out.println(PluginConfig.getEnvironment().name());
+			wc.environment(PluginConfig.getEnvironment());
+			System.out.println(PluginConfig.getWorldType().name());
+			wc.type(PluginConfig.getWorldType());
+			long seed = PluginConfig.getSeed();
+			if(seed != 0) 
+				wc.seed(seed);
+			World worldinserver = Bukkit.createWorld(wc);
 			Bukkit.getServer().getWorlds().add(worldinserver);
 		}
 		return true;

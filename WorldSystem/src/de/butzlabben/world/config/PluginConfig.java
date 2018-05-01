@@ -12,6 +12,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.World.Environment;
+import org.bukkit.WorldType;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,6 +38,9 @@ public class PluginConfig {
 					cfg.isInt("lagsystem.period_in_seconds") && cfg.isInt("lagsystem.entities_per_world")
 					&& cfg.isBoolean("lagsystem.garbagecollector.use")
 					&& cfg.isInt("lagsystem.garbagecollector.period_in_minutes") &&
+					
+					cfg.isString("worldgeneration.type") && cfg.isString("worldgeneration.environment")
+					&& (cfg.isLong("worldgeneration.seed") || cfg.isInt("worldgeneration.seed")) &&
 
 					cfg.isString("spawn.spawnpoint.world") && cfg.isInt("spawn.gamemode")
 					&& (cfg.isDouble("spawn.spawnpoint.x") || cfg.isInt("spawn.spawnpoint.x"))
@@ -139,6 +144,34 @@ public class PluginConfig {
 	public static Location getSpawn() {
 		YamlConfiguration cfg = getConfig();
 		return getLocation(cfg, "spawn.spawnpoint", Bukkit.getWorld(cfg.getString("spawn.spawnpoint.world", "world")));
+	}
+
+	public static long getSeed() {
+		return getConfig().getLong("worldgeneration.seed");
+	}
+
+	public static Environment getEnvironment() {
+		YamlConfiguration cfg = getConfig();
+		String t = cfg.getString("worldgeneration.environment");
+		Environment e = Environment.NORMAL;
+		try {
+			e = Environment.valueOf(t.toUpperCase());
+		} catch (Exception ex) {
+			System.out.println("'" + t + "' is not a valid environment");
+		}
+		return e;
+	}
+
+	public static WorldType getWorldType() {
+		YamlConfiguration cfg = getConfig();
+		String t = cfg.getString("worldgeneration.type");
+		WorldType wt = WorldType.NORMAL;
+		try {
+			wt = WorldType.valueOf(t.toUpperCase());
+		} catch (Exception e) {
+			System.out.println("'" + t + "' is not a valid worldtype");
+		}
+		return wt;
 	}
 
 	public static int getRequestExpire() {
