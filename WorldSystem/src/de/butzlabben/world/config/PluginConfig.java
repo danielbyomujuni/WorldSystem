@@ -33,7 +33,7 @@ public class PluginConfig {
 			YamlConfiguration cfg = getConfig();
 			if (false == (cfg.isString("worldfolder") && cfg.isString("worldsource") && cfg.isInt("unloadingtime")
 					&& cfg.isBoolean("survival") && cfg.isString("language") && cfg.isString("prefix")
-					&& cfg.isInt("request_expires") &&
+					&& cfg.isInt("request_expires") && cfg.isBoolean("need_confirm") &&
 
 					cfg.isInt("lagsystem.period_in_seconds") && cfg.isInt("lagsystem.entities_per_world")
 					&& cfg.isBoolean("lagsystem.garbagecollector.use")
@@ -182,5 +182,9 @@ public class PluginConfig {
 		return new Location(world, cfg.getDouble(path + ".x", 0), cfg.getDouble(path + ".y", 20),
 				cfg.getDouble(path + ".z", 0), (float) cfg.getDouble(path + ".yaw", 0),
 				(float) cfg.getDouble(path + ".pitch", 0));
+	}
+
+	public static boolean confirmNeed() {
+		return getConfig().getBoolean("need_confirm", true);
 	}
 }

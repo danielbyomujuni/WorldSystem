@@ -12,9 +12,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import de.butzlabben.autoupdater.AutoUpdater;
 import de.butzlabben.inventory.OrcInventory;
 import de.butzlabben.world.command.WSAddmemberCommand;
 import de.butzlabben.world.command.WSCommand;
+import de.butzlabben.world.command.WSConfirmCommand;
 import de.butzlabben.world.command.WSDeleteCommand;
 import de.butzlabben.world.command.WSDelmemberCommand;
 import de.butzlabben.world.command.WSFireCommand;
@@ -124,6 +126,8 @@ public class WorldSystem extends JavaPlugin {
 		getCommand("ws togglegm").setExecutor(new WSToggleGMCommand());
 		getCommand("ws togglebuild").setExecutor(new WSToggleBuildCommand());
 		getCommand("ws delete").setExecutor(new WSDeleteCommand());
+		
+		getCommand("ws confirm").setExecutor(new WSConfirmCommand());
 
 		getCommand("ws gui").setExecutor(new GuiCommand());
 
@@ -132,8 +136,9 @@ public class WorldSystem extends JavaPlugin {
 		System.setProperty("bstats.relocatecheck", "false");
 		Metrics m = new Metrics(this);
 		m.addCustomChart(new Metrics.SingleLineChart("worlds", Entry::entrys));
-		m.getPluginData();
-
+		
+		AutoUpdater.startAsync();
+		
 		Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Succesfully enabled WorldSystem v" + version);
 	}
 

@@ -15,6 +15,9 @@ worldfolder: 'plugins/WorldSystem/Worlds'
 # Name of the template world
 worldsource: ''
 
+# If a confirm is needed before auto-update
+need_confirm: true
+
 # When nobody is on a world time until it get unloaded
 unloadingtime: 20
 

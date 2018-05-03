@@ -1,62 +1,48 @@
 name: WorldSystem
-version: 2.0.2
+version: 2.0.3
 author: Butzlabben
 main: de.butzlabben.world.WorldSystem
 
 commands:
   ws:
     description: Commands for WorldSystem
-    aliases: [worldsystem, world, worlds]
     usage: /ws
   ws get:
-    aliases: [worldsystem get, world get, worlds get]
     usage: /ws get
   ws help:
-    aliases: [worldsystem help, world help, worlds help]
     usage: /ws help
   ws home:
-    aliases: [worldsystem home, world home, worlds home]
     usage: /ws home
   ws addmember:
-    aliases: [worldsystem addmember, world addmember, worlds addmember]
     usage: /ws addmember <player>
   ws delmember:
-    aliases: [worldsystem delmember, world delmember, worlds delmember]
     usage: /ws delmember <player>
   ws leave:
-    aliases: [worldsystem leave, world leave, worlds leave]
     usage: /ws leave
   ws tp:
-    aliases: [worldsystem tp, world tp, worlds tp]
     usage: /ws tp <target>
   ws tnt:
-    aliases: [worldsystem tnt, world tnt, worlds tnt]
     usage: /ws tnt
   ws fire:
-    aliases: [worldsystem, world fire, worlds fire]
     usage: /ws fire
   ws info:
-    aliases: [worldsystem info, world info, worlds info]
     usage: /ws info
   ws togglebuild:
-    aliases: [worldsystem togglebuild, world  togglebuild, worlds togglebuild]
     usage: /ws togglebuild <player>
   ws togglegm:
-    aliases: [worldsystem togglegm, world togglegm, worlds togglegm]
     usage: /ws togglegm <player>
   ws toggletp:
-    aliases: [worldsystem toggletp, world toggletp, worlds toggletp]
     usage: /ws toggletp <player>
   ws reset:
-    aliases: [worldsystem reset, world reset, worlds reset]
     usage: /ws reset
   ws gui:
-    aliases: [worldsystem gui, world gui, worlds gui]
     usage: /ws gui
   ws delete:
-    aliases: [worldsystem delete, world delete, worlds delete]
     usage: /ws delete <player>
     permission: ws.delete
+  ws confirm:
+    usage: /ws confirm
+    permission: ws.confirm
 
 permissions:
   ws.*:
@@ -73,6 +59,7 @@ permissions:
       ws.lag: true
       ws.big: true
       ws.large: true
+      ws.confirm: true
   ws.tp.*:
     default: op
     description: You can teleport everything
@@ -109,5 +96,8 @@ permissions:
     children:
       ws.big: true
     description: Gives you a even bigger world (if set)
+  ws.confirm:
+    default: op
+    description: You can confirm (if needed) an auto-update
     
 default-permission: admin

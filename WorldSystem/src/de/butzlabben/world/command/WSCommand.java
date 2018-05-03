@@ -21,7 +21,7 @@ public class WSCommand implements CommandExecutor, TabCompleter {
 	public List<String> onTabComplete(CommandSender cs, Command cmd, String label, String[] args) {
 		List<String> list = new LinkedList<>();
 		if (args.length == 1) {
-			list.add("addmember");			
+			list.add("addmember");
 			list.add("delete");
 			list.add("delmember");
 			list.add("fire");
@@ -114,8 +114,10 @@ public class WSCommand implements CommandExecutor, TabCompleter {
 				WorldSystem.getInstance().getCommand("ws togglebuild").execute(cs, label, args);
 			} else if (subcommand.equals("delete")) {
 				WorldSystem.getInstance().getCommand("ws delete").execute(cs, label, args);
-			}  else if (subcommand.equals("gui")) {
+			} else if (subcommand.equals("gui")) {
 				WorldSystem.getInstance().getCommand("ws gui").execute(cs, label, args);
+			} else if (subcommand.equals("confirm")) {
+				WorldSystem.getInstance().getCommand("ws confirm").execute(cs, label, args);
 			} else {
 				if (cs instanceof Player) {
 					Player p = (Player) cs;
