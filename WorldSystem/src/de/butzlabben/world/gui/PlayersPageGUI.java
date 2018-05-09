@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -28,26 +26,26 @@ public class PlayersPageGUI extends OrcInventory {
 	private final static String path = "options.players.";
 	private static HashMap<UUID, Pair<Integer, Integer>> pages = new HashMap<>();
 
-	public PlayersPageGUI(int page, UUID ex, UUID[] players, int next, int before) {
+	public PlayersPageGUI(int page, UUID ex, HashMap<UUID, String> players, int next, int before) {
 		super("Players added to this world", GuiConfig.getRows("options.players"), false);
 		pages.put(ex, Pair.of(next, before));
-		
+
 		loadItem("nextpage", (p, inv, orcitem) -> {
 			p.closeInventory();
 			new BukkitRunnable() {
 				@Override
 				public void run() {
 					p.closeInventory();
-					
+
 					inv.unregister();
 					int nextPage = pages.get(p.getUniqueId()).getLeft();
 					pages.remove(p.getUniqueId());
-					
+
 					p.openInventory(PlayersGUIManager.getPage(p, nextPage).getInventory(p));
 				}
 			}.run();
 		});
-		
+
 		loadItem("pagebefore", (p, inv, orcitem) -> {
 			p.closeInventory();
 			new BukkitRunnable() {
@@ -80,24 +78,24 @@ public class PlayersPageGUI extends OrcInventory {
 
 		// Spieler reinladen
 		int i = 0;
-		for (UUID uuid : players) {
-			OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
-			if (op != null && op.getName() != null) {
-				ItemStack is = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
-				SkullMeta sm = (SkullMeta) is.getItemMeta();
-				sm.setOwner(op.getName());
-				sm.setDisplayName(GuiConfig.getDisplay(cfg, PlayersPageGUI.path + "playerhead").replaceAll("%player", op.getName()));
-				is.setItemMeta(sm);
-				OrcItem item = new OrcItem(is);
-				item.setOnClick((p, inv, orcitem) -> {
-					p.closeInventory();
-					PlayerOptionsGUI.data.put(ex, op.getName());
-					pages.remove(p.getUniqueId());
-					p.openInventory(PlayerOptionsGUI.instance.getInventory(p));
-				});				
-				addItem(i, item);
-				i++;
-			}
+		for (UUID uuid : players.keySet()) {
+			String name = players.get(uuid);
+			ItemStack is = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+			SkullMeta sm = (SkullMeta) is.getItemMeta();
+			sm.setOwner(name);
+			sm.setDisplayName(
+					GuiConfig.getDisplay(cfg, PlayersPageGUI.path + "playerhead").replaceAll("%player", name));
+			is.setItemMeta(sm);
+			OrcItem item = new OrcItem(is);
+			item.setOnClick((p, inv, orcitem) -> {
+				p.closeInventory();
+				PlayerOptionsGUI.data.put(ex, name);
+				pages.remove(p.getUniqueId());
+				p.openInventory(PlayerOptionsGUI.instance.getInventory(p));
+			});
+			addItem(i, item);
+			i++;
+
 		}
 	}
 

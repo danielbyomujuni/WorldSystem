@@ -11,6 +11,7 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import com.google.common.collect.Sets;
 
@@ -59,18 +60,20 @@ public class WorldConfig {
 		id = Integer.parseInt(worldname.split("-")[0].substring(2));
 	}
 	
-	public void create() {
-		File file = new File(PluginConfig.getWorlddir() + getWorldName() +  "/worldconfig.yml");
+	public static void create(Player p) {
+		DependenceConfig dc = new DependenceConfig(p);
+		String worldname = dc.getWorldname();
+		File file = new File(PluginConfig.getWorlddir() + worldname +  "/worldconfig.yml");
 		try {
 			file.createNewFile();
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			System.err.println("Error while creating worldconfig for " + owner.toString());
+			System.err.println("Error while creating worldconfig for " + p.getUniqueId().toString());
 		}
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
-		cfg.set("Informations.ID", id);
-		cfg.set("Informations.Owner.PlayerUUID", owner.toString());
-		cfg.set("Informations.Owner.Actualname", Bukkit.getOfflinePlayer(owner).getName());
+		cfg.set("Informations.ID", dc.getID());
+		cfg.set("Informations.Owner.PlayerUUID", p.getUniqueId().toString());
+		cfg.set("Informations.Owner.Actualname", p.getName());
 		cfg.set("Settings.TNTDamage", false);
 		cfg.set("Settings.Fire", false);
 		cfg.set("Members", null);
@@ -78,7 +81,7 @@ public class WorldConfig {
 			cfg.save(file);
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.err.println("Error while saving worldconfig for " + owner.toString());
+			System.err.println("Error while saving worldconfig for " +  p.getUniqueId().toString());
 		}
 	}
 
@@ -454,6 +457,12 @@ public class WorldConfig {
 		this.fire = fire;
 	}
 
+	/**
+	 * Allow or Disallow Fire Damage on this world
+	 * @param player
+	 * @param tnt if tnt is enabled
+	 * @return if the player has the permissions to change the value
+	 */
 	public boolean setFire(UUID player, boolean fire) {
 		if (hasPermission(player, WorldPerm.ADMINISTRATEWORLD) == false)
 			return false;

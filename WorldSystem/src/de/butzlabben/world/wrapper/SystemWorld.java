@@ -3,15 +3,15 @@ package de.butzlabben.world.wrapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.GameMode;
 import org.bukkit.World;
+import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
+import org.bukkit.WorldType;
 import org.bukkit.entity.Player;
-
 import com.google.common.base.Preconditions;
 
 import de.butzlabben.event.WorldCreateEvent;
@@ -34,7 +34,7 @@ public class SystemWorld {
 	private World w;
 	private String worldname;
 	private boolean unloading = false;
-	
+
 	private static HashMap<String, SystemWorld> cached = new HashMap<>();
 
 	/**
@@ -42,16 +42,17 @@ public class SystemWorld {
 	 * 
 	 * @param worldname
 	 *            as in minecraft
-	 * @return a systemworld instance if it is a systemworld or null if is not a systemworld
+	 * @return a systemworld instance if it is a systemworld or null if is not a
+	 *         systemworld
 	 * @exception NullPointerException
 	 *                worldname == null
 	 */
 	public static SystemWorld getSystemWorld(String worldname) {
 		Preconditions.checkNotNull(worldname, "worldname must not be null");
-		if(cached.containsKey(worldname))
+		if (cached.containsKey(worldname))
 			return cached.get(worldname);
 		SystemWorld sw = new SystemWorld(worldname);
-		if(sw != null && sw.exists()) {
+		if (sw != null && sw.exists()) {
 			cached.put(worldname, sw);
 			return sw;
 		}
@@ -59,8 +60,8 @@ public class SystemWorld {
 	}
 
 	/**
-	 * @param w a
-	 *            world in bukkit, no matter if systemworld or not Trys to
+	 * @param w
+	 *            a world in bukkit, no matter if systemworld or not Trys to
 	 *            unload a systemworld later, with the given delay in the config
 	 */
 	public static void tryUnloadLater(World w) {
@@ -118,8 +119,8 @@ public class SystemWorld {
 	/**
 	 * Trys to unload this world later, with the given delay in the config
 	 * 
-	 * @param w the
-	 *            associated world
+	 * @param w
+	 *            the associated world
 	 * @exception NullPointerException
 	 *                w == null
 	 */
@@ -164,9 +165,12 @@ public class SystemWorld {
 	/**
 	 * Trys to load this world, and messages the player about the process
 	 * 
-	 * @param p the player to teleport on the world
-	 * @exception NullPointerException if p is null
-	 * @exception IllegalArgumentException if player is not online
+	 * @param p
+	 *            the player to teleport on the world
+	 * @exception NullPointerException
+	 *                if p is null
+	 * @exception IllegalArgumentException
+	 *                if player is not online
 	 */
 	public void load(Player p) {
 		Preconditions.checkNotNull(p, "player must not be null");
@@ -208,7 +212,7 @@ public class SystemWorld {
 			worldname = myName.toString();
 		}
 		// Teleport the Player
-		
+
 		World worldinserver = Bukkit.createWorld(new WorldCreator(worldname));
 		Bukkit.getServer().getWorlds().add(worldinserver);
 		w = worldinserver;
@@ -225,14 +229,19 @@ public class SystemWorld {
 	}
 
 	/**
-	 * Trys to create a new systemworld with all entries etc.
-	 * finally loads the world
-	 * @param p Player to create the world for
-	 * @return whether it succesfull or not 
+	 * Trys to create a new systemworld with all entries etc. finally loads the
+	 * world
+	 * 
+	 * @param p
+	 *            Player to create the world for
+	 * @return whether it succesfull or not
 	 */
 	public static boolean create(Player p) {
 		DependenceConfig dc = new DependenceConfig(p);
-		WorldCreateEvent event = new WorldCreateEvent(p);
+		long seed = PluginConfig.getSeed();
+		Environment env = PluginConfig.getEnvironment();
+		WorldType type = PluginConfig.getWorldType();
+		WorldCreateEvent event = new WorldCreateEvent(p, env, type, seed);
 		Bukkit.getPluginManager().callEvent(event);
 		if (event.isCancelled())
 			return false;
@@ -284,22 +293,20 @@ public class SystemWorld {
 				}
 			}
 			WorldCreator wc = new WorldCreator(worldname);
-			System.out.println(PluginConfig.getEnvironment().name());
-			wc.environment(PluginConfig.getEnvironment());
-			System.out.println(PluginConfig.getWorldType().name());
-			wc.type(PluginConfig.getWorldType());
-			long seed = PluginConfig.getSeed();
-			if(seed != 0) 
-				wc.seed(seed);
+			wc.environment(event.getEnv());
+			wc.type(event.getType());
+			if (event.getSeed() != 0)
+				wc.seed(event.getSeed());
+
 			World worldinserver = Bukkit.createWorld(wc);
 			Bukkit.getServer().getWorlds().add(worldinserver);
+
 		}
 		return true;
 	}
 
-	
 	/**
-	 *@return if the world is loaded
+	 * @return if the world is loaded
 	 */
 	public boolean isLoaded() {
 		File worldAsDir = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
@@ -323,9 +330,13 @@ public class SystemWorld {
 
 	/**
 	 * Teleports the player to the world with the given settings in the config
-	 * @param p player to teleport
-	 * @exception NullPointerException if player is null
-	 * @exception IllegalArgumentException if player is not online
+	 * 
+	 * @param p
+	 *            player to teleport
+	 * @exception NullPointerException
+	 *                if player is null
+	 * @exception IllegalArgumentException
+	 *                if player is not online
 	 */
 	public void teleportToWorldSpawn(Player p) {
 		Preconditions.checkNotNull(p, "player must not be null");

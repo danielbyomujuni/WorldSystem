@@ -50,7 +50,6 @@ public class UpdateInformations {
 
 			in.close();
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
 		return sb.toString();

@@ -2,16 +2,10 @@ package de.butzlabben.world.config;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.UUID;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 import org.bukkit.Bukkit;
-//import java.util.List;
-//import java.util.UUID;
-//
-//import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -40,20 +34,16 @@ public class WorldConfig2 {
 		}
 	}
 
-	public static UUID[] getMembersFiltered(String worldname) {
+	public static HashMap<UUID, String> getMembersWithNames(String worldname) {
 		File file = getWorldFile(worldname);
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		if (cfg.getConfigurationSection("Members") == null)
 			return null;
-		Set<String> players = cfg.getConfigurationSection("Members").getKeys(false);
-		Set<UUID> set = players.stream().map(new Function<String, UUID>() {
-			@Override
-			public UUID apply(String t) {
-				return UUID.fromString(t);
-			}
-		}).filter(uuid -> Bukkit.getOfflinePlayer(uuid) != null && Bukkit.getOfflinePlayer(uuid).getName() != null)
-				.collect(Collectors.toSet());
-		return set.toArray(new UUID[] {});
+		HashMap<UUID, String> map = new HashMap<>();
+		for (String s : cfg.getConfigurationSection("Members").getKeys(false)) {
+			map.put(UUID.fromString(s), cfg.getString("Members." + s + ".Actualname"));
+		}
+		return map;
 	}
 
 	public static UUID[] getMembers(String worldname) {

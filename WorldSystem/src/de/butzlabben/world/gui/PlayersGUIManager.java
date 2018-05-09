@@ -1,6 +1,7 @@
 package de.butzlabben.world.gui;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.entity.Player;
@@ -28,10 +29,10 @@ public class PlayersGUIManager {
 		String worldname = p.getWorld().getName();
 		SystemWorld sw = SystemWorld.getSystemWorld(worldname);
 		if (sw != null) {
-			UUID[] members = WorldConfig2.getMembersFiltered(worldname);
-			if (members == null || members.length == 0)
+			HashMap<UUID, String> members = WorldConfig2.getMembersWithNames(worldname);
+			if (members == null || members.size() == 0)
 				return null;
-			int pages = Math.round(members.length / headsPerInv) < 1 ? 1 : Math.round(members.length / headsPerInv);
+			int pages = Math.round(members.size() / headsPerInv) < 1 ? 1 : Math.round(members.size() / headsPerInv);
 			if (page > pages)
 				return null;
 			return getPage(p, page, pages);
@@ -43,15 +44,20 @@ public class PlayersGUIManager {
 		String worldname = p.getWorld().getName();
 		SystemWorld sw = SystemWorld.getSystemWorld(worldname);
 		if (sw != null) {
-			UUID[] members = WorldConfig2.getMembersFiltered(worldname);
-			if (members == null || members.length == 0)
+			HashMap<UUID, String> members = WorldConfig2.getMembersWithNames(worldname);
+			if (members == null || members.size() == 0)
 				return null;
-			UUID[] uuids = new UUID[headsPerInv + 1];
+			
+			
 
 			int startPos = pages == 1 ? 0 : headsPerInv * (page - 1);
-			int length = pages == 1 ? members.length : headsPerInv;
+			int length = pages == 1 ? members.size() : headsPerInv;
 
-			uuids = Arrays.copyOfRange(members, startPos, startPos + length);
+			ArrayList<UUID> list = new ArrayList<>(members.keySet());
+			HashMap<UUID, String> uuids = new HashMap<>();
+			for (int i = startPos; i < startPos + length; i++) {
+				uuids.put(list.get(i), members.get(list.get(i)));
+			}
 
 			int pageBefore = page == 1 ? pages : page - 1;
 			int nextPage = pages == page ? 1 : page + 1;

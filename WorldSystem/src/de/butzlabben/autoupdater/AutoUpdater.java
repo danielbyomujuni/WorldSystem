@@ -43,6 +43,11 @@ public class AutoUpdater implements Listener {
 	private AutoUpdater(JavaPlugin plugin) {
 		confirmNeed = PluginConfig.confirmNeed();
 		UpdateInformations ui = UpdateInformations.getInformations();
+		if (ui == null) {
+			Bukkit.getConsoleSender().sendMessage(
+					PluginConfig.getPrefix() + "§cCouldn't contact autoupdate server");
+			return;
+		}
 		String v = plugin.getDescription().getVersion();
 		if (!ui.getVersion().equals(plugin.getDescription().getVersion())) {
 			Bukkit.getConsoleSender().sendMessage(
@@ -72,14 +77,17 @@ public class AutoUpdater implements Listener {
 			au = new AutoUpdate(ui, jar);
 			if (!confirmNeed) {
 				Runtime.getRuntime().addShutdownHook(new Thread(au));
-				Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§aAutoupdate confirmed, §crestart §ato apply changes");
+				Bukkit.getConsoleSender()
+						.sendMessage(PluginConfig.getPrefix() + "§aAutoupdate confirmed, §crestart §ato apply changes");
 				confirmed = true;
 			} else {
 				Bukkit.getPluginManager().registerEvents(this, plugin);
-				for(Player p : Bukkit.getOnlinePlayers()) {
-					p.sendMessage(PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
+				for (Player p : Bukkit.getOnlinePlayers()) {
+					p.sendMessage(
+							PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
 				}
-				Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
+				Bukkit.getConsoleSender().sendMessage(
+						PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
 			}
 		}
 	}
@@ -87,7 +95,8 @@ public class AutoUpdater implements Listener {
 	@EventHandler
 	public void on(PlayerJoinEvent e) {
 		if (e.getPlayer().hasPermission("ws.confirm")) {
-			e.getPlayer().sendMessage(PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
+			e.getPlayer().sendMessage(
+					PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
 		}
 	}
 
