@@ -1,22 +1,17 @@
 package de.butzlabben.event;
 
-import org.bukkit.World.Environment;
-import org.bukkit.WorldType;
+import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 public class WorldCreateEvent extends WorldEvent {
 
 	private final Player owner;
-	private Environment env;
-	private WorldType type;
-	private long seed;
+	private  WorldCreator worldCreator;
 
-	public WorldCreateEvent(Player owner, Environment env, WorldType type, long seed) {
+	public WorldCreateEvent(Player owner, WorldCreator creator) {
 		this.owner = owner;
-		this.env = env;
-		this.type = type;
-		this.setSeed(seed);
+		this.setWorldCreator(creator);
 	}
 
 	public Player getOwner() {
@@ -34,27 +29,15 @@ public class WorldCreateEvent extends WorldEvent {
 		return handlers;
 	}
 
-	public WorldType getType() {
-		return type;
+	/**
+	 * @return the worldcreator which will be used
+	 */
+	public WorldCreator getWorldCreator() {
+		return worldCreator;
 	}
 
-	public void setType(WorldType type) {
-		this.type = type;
+	public void setWorldCreator(WorldCreator worldCreator) {
+		this.worldCreator = worldCreator;
 	}
 
-	public Environment getEnv() {
-		return env;
-	}
-
-	public void setEnvironment(Environment env) {
-		this.env = env;
-	}
-
-	public long getSeed() {
-		return seed;
-	}
-
-	public void setSeed(long seed) {
-		this.seed = seed;
-	}
 }

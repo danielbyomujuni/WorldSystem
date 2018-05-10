@@ -238,10 +238,21 @@ public class SystemWorld {
 	 */
 	public static boolean create(Player p) {
 		DependenceConfig dc = new DependenceConfig(p);
+		
+		String uuid = p.getUniqueId().toString();
+		int id = dc.getHighestID();
+		String worldname = "ID" + id + "-" + uuid;
+		
+		WorldCreator creator = new WorldCreator(worldname);
 		long seed = PluginConfig.getSeed();
 		Environment env = PluginConfig.getEnvironment();
 		WorldType type = PluginConfig.getWorldType();
-		WorldCreateEvent event = new WorldCreateEvent(p, env, type, seed);
+		if(seed != 0)
+			creator.seed(seed);
+		creator.type(type);
+		creator.environment(env);
+		
+		WorldCreateEvent event = new WorldCreateEvent(p, creator);
 		Bukkit.getPluginManager().callEvent(event);
 		if (event.isCancelled())
 			return false;
@@ -252,15 +263,14 @@ public class SystemWorld {
 					+ " worlds. If you want more, contact me");
 			return false;
 		}
-		int id = dc.getHighestID();
+		
 		String worlddir = PluginConfig.getWorlddir();
 		File exampleworld = new File("plugins//WorldSystem//worldsources//" + PluginConfig.getExampleWorldName());
 		if (new File("plugins//WorldSystem//worldsources//" + PluginConfig.getExampleWorldName() + "/uid.dat")
 				.exists()) {
 			new File("plugins//WorldSystem//worldsources//" + PluginConfig.getExampleWorldName() + "/uid.dat").delete();
 		}
-		String uuid = p.getUniqueId().toString();
-		String worldname = "ID" + id + "-" + uuid;
+		
 		File newworld = new File(worlddir + "/" + worldname);
 		try {
 			FileUtils.copyDirectory(exampleworld, newworld);
@@ -292,13 +302,7 @@ public class SystemWorld {
 					e.printStackTrace();
 				}
 			}
-			WorldCreator wc = new WorldCreator(worldname);
-			wc.environment(event.getEnv());
-			wc.type(event.getType());
-			if (event.getSeed() != 0)
-				wc.seed(event.getSeed());
-
-			World worldinserver = Bukkit.createWorld(wc);
+			World worldinserver = Bukkit.createWorld(event.getWorldCreator());
 			Bukkit.getServer().getWorlds().add(worldinserver);
 
 		}

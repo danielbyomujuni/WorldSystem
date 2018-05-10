@@ -15,10 +15,16 @@ public class WorldDeleteEvent extends WorldEvent {
 		this.world = world;
 	}
 	
+	/**
+	 * @return get the world which will be deleted
+	 */
 	public SystemWorld getWorld() {
 		return world;
 	}
 	
+	/**
+	 * @return get the executor of the command
+	 */
 	public CommandSender getExecutor() {
 		return executor;
 	}

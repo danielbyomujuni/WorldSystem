@@ -56,6 +56,9 @@ worldgeneration:
   # Type of the world eg. flat, amplified, ...
   # Valid types are 'NORMAL', 'VERSION_1_1', 'FLAT', 'AMPLIFIED', 'CUSTOMIZED' or 'LARGE_BIOMES'
   type: NORMAL
+  # Put in here the name of a generator
+  # If you have one from one plugin
+  generator: ''
 
 # Location where you will be teleported when you leave you world
 spawn:
