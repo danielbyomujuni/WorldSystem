@@ -38,8 +38,9 @@ public class PluginConfig {
 					cfg.isInt("lagsystem.period_in_seconds") && cfg.isInt("lagsystem.entities_per_world")
 					&& cfg.isBoolean("lagsystem.garbagecollector.use")
 					&& cfg.isInt("lagsystem.garbagecollector.period_in_minutes") &&
-					
+
 					cfg.isString("worldgeneration.type") && cfg.isString("worldgeneration.environment")
+					&& cfg.isString("worldgeneration.generation")
 					&& (cfg.isLong("worldgeneration.seed") || cfg.isInt("worldgeneration.seed")) &&
 
 					cfg.isString("spawn.spawnpoint.world") && cfg.isInt("spawn.gamemode")
@@ -54,7 +55,10 @@ public class PluginConfig {
 					&& (cfg.isDouble("worldspawn.spawnpoint.y") || cfg.isInt("worldspawn.spawnpoint.y"))
 					&& (cfg.isDouble("worldspawn.spawnpoint.z") || cfg.isInt("worldspawn.spawnpoint.z"))
 					&& (cfg.isDouble("worldspawn.spawnpoint.yaw") || cfg.isInt("worldspawn.spawnpoint.yaw"))
-					&& (cfg.isDouble("worldspawn.spawnpoint.pitch") || cfg.isInt("worldspawn.spawnpoint.pitch")))) {
+					&& (cfg.isDouble("worldspawn.spawnpoint.pitch") || cfg.isInt("worldspawn.spawnpoint.pitch"))
+
+					//Should fix #2
+					&& getSpawn().getWorld() != null)) {
 				try {
 					Files.copy(file.toPath(),
 							new File(file.getParentFile(), "config-broken-"
@@ -162,6 +166,10 @@ public class PluginConfig {
 		return e;
 	}
 
+	public static String getGenerator() {
+		return getConfig().getString("worldgeneration.generator");
+	}
+
 	public static WorldType getWorldType() {
 		YamlConfiguration cfg = getConfig();
 		String t = cfg.getString("worldgeneration.type");
@@ -187,4 +195,5 @@ public class PluginConfig {
 	public static boolean confirmNeed() {
 		return getConfig().getBoolean("need_confirm", true);
 	}
+
 }

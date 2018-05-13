@@ -251,6 +251,9 @@ public class SystemWorld {
 			creator.seed(seed);
 		creator.type(type);
 		creator.environment(env);
+		String generator = PluginConfig.getGenerator();
+		if(!generator.trim().isEmpty())
+			creator.generator(generator);
 		
 		WorldCreateEvent event = new WorldCreateEvent(p, creator);
 		Bukkit.getPluginManager().callEvent(event);

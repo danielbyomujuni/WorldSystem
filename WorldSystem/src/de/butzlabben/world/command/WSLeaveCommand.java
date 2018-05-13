@@ -27,7 +27,15 @@ public class WSLeaveCommand implements CommandExecutor {
 		}
 		String worldname = p.getWorld().getName();
 		WorldPlayer wp = new WorldPlayer(p, worldname);
+
 		if (wp.isOnSystemWorld()) {
+			// Extra safety for #2
+			if (PluginConfig.getSpawn().getWorld() == null) {
+				Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§cThe spawn is not properly set");
+				cs.sendMessage(PluginConfig.getPrefix() + "§cThe spawn is not properly set");
+				return true;
+			}
+			
 			p.teleport(PluginConfig.getSpawn());
 			p.setGameMode(PluginConfig.getSpawnGamemode());
 			World w = Bukkit.getWorld(p.getWorld().getName());
