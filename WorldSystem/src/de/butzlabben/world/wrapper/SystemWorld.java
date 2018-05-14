@@ -21,6 +21,7 @@ import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
+import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.config.WorldConfig2;
 
 /**
@@ -281,8 +282,9 @@ public class SystemWorld {
 			System.err.println("Couldn't create world for " + p.getName());
 			e.printStackTrace();
 		}
-		WorldConfig2 wc2 = new WorldConfig2();
-		wc2.createConfig(p);
+
+		WorldConfig.create(p);
+		
 		if (PluginConfig.getExampleWorldName() == null || PluginConfig.getExampleWorldName().equals("")
 				|| !exampleworld.exists()) {
 			// Move World into Server dir

@@ -6,6 +6,7 @@ package de.butzlabben.world.command;
  */
 public class TabCompleter {
 
+	// TODO TabCompleter like on SeaGiants
 	private TabCompleter() {
 		
 	}

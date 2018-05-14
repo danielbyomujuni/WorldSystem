@@ -1,5 +1,7 @@
 package de.butzlabben.world.command;
 
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -7,10 +9,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import de.butzlabben.event.WorldAddmemberEvent;
 import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
-import de.butzlabben.world.config.WorldConfig2;
+import de.butzlabben.world.config.PluginConfig;
+import de.butzlabben.world.config.WorldConfig;
 
 public class WSAddmemberCommand implements CommandExecutor{
 
@@ -31,14 +35,26 @@ public class WSAddmemberCommand implements CommandExecutor{
 		}
 		@SuppressWarnings("deprecation")
 		OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+		WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
 		if (a == null) {
 			p.sendMessage(MessageConfig.getNotRegistered());
 			return true;
-		} else if (WorldConfig2.isMember(a, new DependenceConfig(p).getWorldname())) {
+		} else if (wc.isMember(a.getUniqueId())) {
 			p.sendMessage(MessageConfig.getAlreadyMember());
 			return true;
 		}
-		WorldConfig2.addMember(p, a);
+
+		WorldAddmemberEvent event = new WorldAddmemberEvent(a.getUniqueId(), dc.getWorldname(), p);
+		Bukkit.getPluginManager().callEvent(event);
+		if (event.isCancelled())
+			return true;
+		wc.addMember(a.getUniqueId());
+		try {
+			wc.save();
+		} catch (IOException e) {
+			p.sendMessage(PluginConfig.getPrefix() + "§cSomething went wrong");
+			e.printStackTrace();
+		}
 		p.sendMessage(MessageConfig.getMemberAdded().replaceAll("%player", a.getName()));
 		return true;
 	}

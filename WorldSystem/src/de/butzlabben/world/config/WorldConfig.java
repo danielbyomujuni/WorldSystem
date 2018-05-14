@@ -400,6 +400,7 @@ public class WorldConfig {
 		fire = cfg.getBoolean("Settings.Fire", true);
 
 		if (membersOldFormatted(cfg)) {
+			System.out.println("sfdjkl");
 			for (String s : cfg.getConfigurationSection("Members").getKeys(false)) {
 				HashSet<WorldPerm> perms = new HashSet<>();
 				perms.add(WorldPerm.MEMBER);
@@ -437,7 +438,7 @@ public class WorldConfig {
 		if (cfg.getConfigurationSection("Members") == null)
 			return false;
 		String name = cfg.getString(
-				"Members." + cfg.getConfigurationSection("Members").getKeys(false).iterator().next() + ".ActualName");
+				"Members." + cfg.getConfigurationSection("Members").getKeys(false).iterator().next() + ".Actualname");
 		return name != null;
 	}
 
@@ -460,7 +461,7 @@ public class WorldConfig {
 	/**
 	 * Allow or Disallow Fire Damage on this world
 	 * @param player
-	 * @param tnt if tnt is enabled
+	 * @param fire if fire is enabled
 	 * @return if the player has the permissions to change the value
 	 */
 	public boolean setFire(UUID player, boolean fire) {
