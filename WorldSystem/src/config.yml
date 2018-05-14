@@ -34,6 +34,11 @@ language: en
 # Prefix which will be shown before each message
 prefix: '&8[&3WorldSystem&8] &6'
 
+# Whether WorldSystem should contact the Mojang authserver
+# If not, some unknown playernames will not be displayed
+# eg. in the gui or in /ws info
+contact_authserver: true
+
 # Options for the LagSystem:
 # period_in_seconds - how often will be checked for entities in seconds
 # entities_per_world - maximal allowed entities per world

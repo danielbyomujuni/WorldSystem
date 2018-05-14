@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
-import de.butzlabben.world.config.WorldConfig2;
+import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.wrapper.WorldPlayer;
 
 public class WSToggleGMCommand implements CommandExecutor {
@@ -20,9 +20,10 @@ public class WSToggleGMCommand implements CommandExecutor {
 		if (!(cs instanceof Player))
 			return true;
 		Player p = (Player) cs;
-		if(args.length != 2) {
-			p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", WorldSystem.getInstance().getCommand("ws togglegm").getUsage()));
-			return true;			
+		if (args.length != 2) {
+			p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage",
+					WorldSystem.getInstance().getCommand("ws togglegm").getUsage()));
+			return true;
 		}
 		DependenceConfig dc = new DependenceConfig(p);
 		if (!dc.hasWorld()) {
@@ -31,7 +32,8 @@ public class WSToggleGMCommand implements CommandExecutor {
 		}
 		@SuppressWarnings("deprecation")
 		OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
-		if (!WorldConfig2.isMember(a, dc.getWorldname())) {
+		WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+		if (wc.isMember(a.getUniqueId())) {
 			p.sendMessage(MessageConfig.getNoMemberOwn());
 			return true;
 		}
@@ -44,4 +46,3 @@ public class WSToggleGMCommand implements CommandExecutor {
 		return true;
 	}
 }
-

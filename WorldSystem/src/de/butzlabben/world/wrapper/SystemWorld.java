@@ -3,6 +3,7 @@ package de.butzlabben.world.wrapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -12,6 +13,7 @@ import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.entity.Player;
+
 import com.google.common.base.Preconditions;
 
 import de.butzlabben.event.WorldCreateEvent;
@@ -22,7 +24,6 @@ import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
-import de.butzlabben.world.config.WorldConfig2;
 
 /**
  * This class represents a systemworld, loaded or not

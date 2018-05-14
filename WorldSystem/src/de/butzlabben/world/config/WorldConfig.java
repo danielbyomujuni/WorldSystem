@@ -400,7 +400,6 @@ public class WorldConfig {
 		fire = cfg.getBoolean("Settings.Fire", true);
 
 		if (membersOldFormatted(cfg)) {
-			System.out.println("sfdjkl");
 			for (String s : cfg.getConfigurationSection("Members").getKeys(false)) {
 				HashSet<WorldPerm> perms = new HashSet<>();
 				perms.add(WorldPerm.MEMBER);
