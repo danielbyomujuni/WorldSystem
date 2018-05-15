@@ -12,6 +12,13 @@ import com.google.common.base.Preconditions;
 
 import de.butzlabben.world.config.WorldConfig;
 
+/**
+ * This class represents a player, on a systemworld or not
+ * but be carefull when accesing some methods
+ * when the player is not on a systemworld like toggleBuild()
+ * @author Butzlabben
+ * @since 15.03.2018
+ */
 public class WorldPlayer {
 	
 	private OfflinePlayer p;

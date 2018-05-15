@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.bukkit.entity.Player;
 
 import de.butzlabben.world.config.GuiConfig;
-import de.butzlabben.world.config.WorldConfig2;
+import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.wrapper.SystemWorld;
 
 /**
@@ -29,7 +29,7 @@ public class PlayersGUIManager {
 		String worldname = p.getWorld().getName();
 		SystemWorld sw = SystemWorld.getSystemWorld(worldname);
 		if (sw != null) {
-			HashMap<UUID, String> members = WorldConfig2.getMembersWithNames(worldname);
+			HashMap<UUID, String> members = WorldConfig.getWorldConfig(worldname).getMembersWithNames();
 			if (members == null || members.size() == 0)
 				return null;
 			int pages = Math.round(members.size() / headsPerInv) < 1 ? 1 : Math.round(members.size() / headsPerInv);
@@ -44,7 +44,7 @@ public class PlayersGUIManager {
 		String worldname = p.getWorld().getName();
 		SystemWorld sw = SystemWorld.getSystemWorld(worldname);
 		if (sw != null) {
-			HashMap<UUID, String> members = WorldConfig2.getMembersWithNames(worldname);
+			HashMap<UUID, String> members = WorldConfig.getWorldConfig(worldname).getMembersWithNames();
 			if (members == null || members.size() == 0)
 				return null;
 			

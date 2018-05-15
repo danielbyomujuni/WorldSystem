@@ -78,7 +78,7 @@ spawn:
 
 # Location where you spawn when you join a world
 worldspawn:
-  use: true
+  use: false
   spawnpoint:
     x: 0
     y: 20

@@ -9,12 +9,22 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import com.google.common.collect.Sets;
+import com.mojang.authlib.GameProfile;
 
+import de.butzlabben.world.GameProfileBuilder;
+
+/**
+ * This class represents a worldconfig.yml file
+ * Here you can edit and read all things
+ * Get an instance via WorldConfig.getWorldConfig()
+ * @since 01.05.2018
+ */
 public class WorldConfig {
 
 	private static File getWorldFile(String worldname) {
@@ -59,11 +69,11 @@ public class WorldConfig {
 		owner = UUID.fromString(worldname.substring(worldname.length() - 36));
 		id = Integer.parseInt(worldname.split("-")[0].substring(2));
 	}
-	
+
 	public static void create(Player p) {
 		DependenceConfig dc = new DependenceConfig(p);
 		String worldname = dc.getWorldname();
-		File file = new File(PluginConfig.getWorlddir() + worldname +  "/worldconfig.yml");
+		File file = new File(PluginConfig.getWorlddir() + worldname + "/worldconfig.yml");
 		try {
 			file.createNewFile();
 		} catch (IOException e1) {
@@ -81,7 +91,7 @@ public class WorldConfig {
 			cfg.save(file);
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.err.println("Error while saving worldconfig for " +  p.getUniqueId().toString());
+			System.err.println("Error while saving worldconfig for " + p.getUniqueId().toString());
 		}
 	}
 
@@ -266,7 +276,9 @@ public class WorldConfig {
 
 	/**
 	 * Checks wheater a player can build or not
-	 * @param player to check
+	 * 
+	 * @param player
+	 *            to check
 	 * @return if the can build or not
 	 */
 	public boolean canBuild(UUID player) {
@@ -275,8 +287,11 @@ public class WorldConfig {
 
 	/**
 	 * Allow or disallow a player to build on this world
-	 * @param player to edit
-	 * @param allowed if he is allowed to build
+	 * 
+	 * @param player
+	 *            to edit
+	 * @param allowed
+	 *            if he is allowed to build
 	 */
 	public void setBuild(UUID player, boolean allowed) {
 		if (allowed) {
@@ -287,10 +302,15 @@ public class WorldConfig {
 	}
 
 	/**
-	 * Allow or disallow a player to build with the permissions of a spefic player
-	 * @param player who gets his permission checked
-	 * @param target to allow or disallow
-	 * @param allowed if he is allowed to build
+	 * Allow or disallow a player to build with the permissions of a spefic
+	 * player
+	 * 
+	 * @param player
+	 *            who gets his permission checked
+	 * @param target
+	 *            to allow or disallow
+	 * @param allowed
+	 *            if he is allowed to build
 	 * @return if the player has the permissions
 	 */
 	public boolean setBuild(UUID player, UUID target, boolean allowed) {
@@ -307,7 +327,9 @@ public class WorldConfig {
 
 	/**
 	 * Checks wheater a player can build on this world or not
-	 * @param player to check
+	 * 
+	 * @param player
+	 *            to check
 	 * @return if the player can build
 	 */
 	public boolean canGamemode(UUID player) {
@@ -316,8 +338,11 @@ public class WorldConfig {
 
 	/**
 	 * Allow or disallow a player to change his gamemode
-	 * @param player to allow or disallow
-	 * @param allowed if he is allowed to change his gamemode or not
+	 * 
+	 * @param player
+	 *            to allow or disallow
+	 * @param allowed
+	 *            if he is allowed to change his gamemode or not
 	 */
 	public void setGamemode(UUID player, boolean allowed) {
 		if (allowed) {
@@ -340,8 +365,11 @@ public class WorldConfig {
 
 	/**
 	 * Allow or disallow a player to teleport
-	 * @param player to allow or disallow
-	 * @param allowed if he is allowed to teleport or not
+	 * 
+	 * @param player
+	 *            to allow or disallow
+	 * @param allowed
+	 *            if he is allowed to teleport or not
 	 */
 	public void setTeleport(UUID player, boolean allowed) {
 		if (allowed) {
@@ -360,6 +388,25 @@ public class WorldConfig {
 
 	public HashSet<UUID> getMembers() {
 		return Sets.newHashSet(permissions.keySet());
+	}
+
+	public HashMap<UUID, String> getMembersWithNames() {
+		HashMap<UUID, String> map = new HashMap<>();
+		for (UUID uuid : permissions.keySet()) {
+			OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
+			if (op == null || op.getName() == null) {
+				if (PluginConfig.contact_auth()) {
+					try {
+						GameProfile prof = GameProfileBuilder.fetch(uuid);
+						map.put(uuid, prof.getName());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			} else
+				map.put(uuid, op.getName());
+		}
+		return map;
 	}
 
 	public WorldConfig save() throws IOException {
@@ -459,8 +506,10 @@ public class WorldConfig {
 
 	/**
 	 * Allow or Disallow Fire Damage on this world
-	 * @param player
-	 * @param fire if fire is enabled
+	 * 
+	 * @param player the player which toggles fire
+	 * @param fire
+	 *            if fire is enabled
 	 * @return if the player has the permissions to change the value
 	 */
 	public boolean setFire(UUID player, boolean fire) {
@@ -480,8 +529,10 @@ public class WorldConfig {
 
 	/**
 	 * Allow or Disallow TNT Damage on this world
-	 * @param player
-	 * @param tnt if tnt is enabled
+	 * 
+	 * @param player which toggles tnt
+	 * @param tnt
+	 *            if tnt is enabled
 	 * @return if the player has the permissions to change the value
 	 */
 	public boolean setTnt(UUID player, boolean tnt) {
@@ -492,7 +543,9 @@ public class WorldConfig {
 	}
 
 	/**
-	 * Get the id of this world. The id is written in the filename at the xx position: 'IDxx-uuid.yml'
+	 * Get the id of this world. The id is written in the filename at the xx
+	 * position: 'IDxx-uuid.yml'
+	 * 
 	 * @return id of this world
 	 */
 	public int getId() {

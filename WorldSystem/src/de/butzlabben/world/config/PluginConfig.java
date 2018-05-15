@@ -33,14 +33,15 @@ public class PluginConfig {
 			YamlConfiguration cfg = getConfig();
 			if (false == (cfg.isString("worldfolder") && cfg.isString("worldsource") && cfg.isInt("unloadingtime")
 					&& cfg.isBoolean("survival") && cfg.isString("language") && cfg.isString("prefix")
-					&& cfg.isInt("request_expires") && cfg.isBoolean("need_confirm") && cfg.isBoolean("contact_authserver") &&
+					&& cfg.isInt("request_expires") && cfg.isBoolean("need_confirm")
+					&& cfg.isBoolean("contact_authserver") &&
 
 					cfg.isInt("lagsystem.period_in_seconds") && cfg.isInt("lagsystem.entities_per_world")
 					&& cfg.isBoolean("lagsystem.garbagecollector.use")
 					&& cfg.isInt("lagsystem.garbagecollector.period_in_minutes") &&
 
 					cfg.isString("worldgeneration.type") && cfg.isString("worldgeneration.environment")
-					&& cfg.isString("worldgeneration.generation")
+					&& cfg.isString("worldgeneration.generator")
 					&& (cfg.isLong("worldgeneration.seed") || cfg.isInt("worldgeneration.seed")) &&
 
 					cfg.isString("spawn.spawnpoint.world") && cfg.isInt("spawn.gamemode")
@@ -55,10 +56,7 @@ public class PluginConfig {
 					&& (cfg.isDouble("worldspawn.spawnpoint.y") || cfg.isInt("worldspawn.spawnpoint.y"))
 					&& (cfg.isDouble("worldspawn.spawnpoint.z") || cfg.isInt("worldspawn.spawnpoint.z"))
 					&& (cfg.isDouble("worldspawn.spawnpoint.yaw") || cfg.isInt("worldspawn.spawnpoint.yaw"))
-					&& (cfg.isDouble("worldspawn.spawnpoint.pitch") || cfg.isInt("worldspawn.spawnpoint.pitch"))
-
-					//Should fix #2
-					&& getSpawn().getWorld() != null)) {
+					&& (cfg.isDouble("worldspawn.spawnpoint.pitch") || cfg.isInt("worldspawn.spawnpoint.pitch")))) {
 				try {
 					Files.copy(file.toPath(),
 							new File(file.getParentFile(), "config-broken-"
@@ -79,6 +77,11 @@ public class PluginConfig {
 				System.err.println("Wasn't able to create Config");
 				e.printStackTrace();
 			}
+		}
+
+		// Should fix #2
+		if (getSpawn().getWorld() == null) {
+			Bukkit.getConsoleSender().sendMessage(getPrefix() + "§cWorld is null in spawn.world!");
 		}
 	}
 
