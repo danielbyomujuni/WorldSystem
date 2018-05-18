@@ -10,9 +10,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.PluginConfig;
 
 /**
@@ -36,22 +36,26 @@ public class AutoUpdater implements Listener {
 
 	public static synchronized AutoUpdater getInstance() {
 		if (instance == null)
-			instance = new AutoUpdater(WorldSystem.getInstance());
+			instance = new AutoUpdater();
 		return instance;
 	}
 
-	private AutoUpdater(JavaPlugin plugin) {
+	private AutoUpdater() {
 		confirmNeed = PluginConfig.confirmNeed();
 		UpdateInformations ui = UpdateInformations.getInformations();
 		if (ui == null) {
-			Bukkit.getConsoleSender().sendMessage(
-					PluginConfig.getPrefix() + "§cCouldn't contact autoupdate server");
+			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§cCouldn't contact autoupdate server");
 			return;
 		}
+		Plugin plugin = Bukkit.getPluginManager().getPlugin(ui.getPlugin());
+		if (plugin == null)
+			return;
 		String v = plugin.getDescription().getVersion();
 		if (!ui.getVersion().equals(plugin.getDescription().getVersion())) {
-			Bukkit.getConsoleSender().sendMessage(
-					PluginConfig.getPrefix() + "Found new version. Current: " + v + ", Available: " + ui.getVersion());
+
+			if (!ui.isSilent())
+				Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Found new version. Current: " + v
+						+ ", Available: " + ui.getVersion());
 
 			// Get jar file
 			Method getFileMethod = null;
@@ -75,10 +79,11 @@ public class AutoUpdater implements Listener {
 
 			String jar = file.getAbsolutePath();
 			au = new AutoUpdate(ui, jar);
-			if (!confirmNeed) {
+			if (ui.isSilent() || !confirmNeed) {
 				Runtime.getRuntime().addShutdownHook(new Thread(au));
-				Bukkit.getConsoleSender()
-						.sendMessage(PluginConfig.getPrefix() + "§aAutoupdate confirmed, §crestart §ato apply changes");
+				if (!ui.isSilent())
+					Bukkit.getConsoleSender().sendMessage(
+							PluginConfig.getPrefix() + "§aAutoupdate confirmed, §crestart §ato apply changes");
 				confirmed = true;
 			} else {
 				Bukkit.getPluginManager().registerEvents(this, plugin);
