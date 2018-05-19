@@ -18,6 +18,10 @@ public class GuiCommand implements CommandExecutor {
 			return true;
 		}
 		WorldPlayer wp = new WorldPlayer((Player) sender);
+		if(!wp.isOnSystemWorld()) {
+			sender.sendMessage(MessageConfig.getNotOnWorld());
+			return true;
+		}
 		if (!wp.isOwnerofWorld()) {
 			sender.sendMessage(MessageConfig.getNoPermission());
 			return true;

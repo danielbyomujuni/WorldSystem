@@ -9,7 +9,7 @@ worldborder:
   # Size with ws.large permission
   large: 5000
   
-  # Set a specialized center wich is not the spawn
+  # Set a specialized center which is not the spawn
   center:
     as_spawn: true
     x: 0

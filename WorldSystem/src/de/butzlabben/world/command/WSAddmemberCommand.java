@@ -37,7 +37,7 @@ public class WSAddmemberCommand implements CommandExecutor{
 		OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
 		WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
 		if (a == null) {
-			p.sendMessage(MessageConfig.getNotRegistered());
+			p.sendMessage(MessageConfig.getNotRegistered().replaceAll("%player", args[1]));
 			return true;
 		} else if (wc.isMember(a.getUniqueId())) {
 			p.sendMessage(MessageConfig.getAlreadyMember());

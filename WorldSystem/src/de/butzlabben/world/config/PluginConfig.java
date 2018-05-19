@@ -1,8 +1,12 @@
 package de.butzlabben.world.config;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
@@ -86,7 +90,12 @@ public class PluginConfig {
 	}
 
 	private static YamlConfiguration getConfig() {
-		return YamlConfiguration.loadConfiguration(file);
+		try {
+			return YamlConfiguration.loadConfiguration(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static String getLicenseKey() {

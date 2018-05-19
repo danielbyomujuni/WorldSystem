@@ -1,5 +1,5 @@
 name: WorldSystem
-version: 2.1.1
+version: 2.1.2
 author: Butzlabben
 main: de.butzlabben.world.WorldSystem
 
@@ -9,6 +9,7 @@ commands:
     usage: /ws
   ws get:
     usage: /ws get
+    permission: ws.get
   ws help:
     usage: /ws help
   ws home:
@@ -50,6 +51,7 @@ permissions:
     description: Gives '*'-Perms to all Commands
     children:
       ws.tp.*: true
+      ws.get: true
       ws.tp.world: true
       ws.tp.toother: true
       ws.tp.other: true
@@ -70,6 +72,9 @@ permissions:
   ws.build:
     default: op
     description: You can build on other Worlds without WorldPermissions
+  ws.get:
+    default: true
+    description: You can create a world via /ws get
   ws.delete:
     default: op
     description: You can delete a world

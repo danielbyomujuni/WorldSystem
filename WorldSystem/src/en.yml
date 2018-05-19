@@ -1,11 +1,11 @@
-nopermission: "&cYou don't have permissions!"
+nopermission: "&cYou do not have permission to that command!"
 unknown_error: "&cSomething went wrong..."
 lagdetection: "Lagdetection in world: &c%world"
 wrong_usage: "&c%usage"
 not_registered: "&cThis player hasn't joined yet!"
 
 world:
-  reseted: "Your world was reseted!"
+  reseted: "You would was reset!"
   still_loaded: "&cYour world is still loaded!"
   not_on: "&cYou are not on a world!"
   created: "Your world is now ready. Get there with &a/ws home"
@@ -16,8 +16,8 @@ world:
   does_not_exists: 
     own: "&cYou don't have a world!"
     other: "&cThis player doesn't has a world!"
-  setting_up: "&aSetting up world..."
-  playerlist: "Player in this world: %players"
+  setting_up: "&aLoading world..."
+  playerlist: "Players in this world: %players"
 
 member:
   removed: "You removed &c%player&6 from your world!"
@@ -25,20 +25,20 @@ member:
   already_added: "&cThis player is already a member!"
   not_added:
     own: "&cThis player isn't a member!"
-    other: "&cYou are not added to this world"
+    other: "&cYou have not been added to this world!"
 
 request:
-  expired: "&cYou request is expired!"
-  confirm: "&cPlease confirm reset of your world: %command"
+  expired: "&cYour request has expired!"
+  confirm: "WARNING - Please confirm reset of your world: %command"
   until_expire: "&cYour request expires in %time seconds!"
   already_sent: "&cYou already sent a request!"
-  not_sent: "&cYou didn't send a request!"
-  invalid_input: "&c%input is not a valid input!"
+  not_sent: "&cYou have not sent a request!"
+  invalid_input: "&c%input is not a valid request!"
 
 toggle:
   gamemode:
-    enabled: "&a%player&6 can now change his gamemode!"
-    disabled: "&c%player&6 can no longer change his gamemode!"
+    enabled: "&a%player&6 can now change their gamemode!"
+    disabled: "&c%player&6 can no longer change their gamemode!"
   teleport:
     enabled: "&a%player&6 can now teleport!"
     disabled: "&c%player&6 can no longer teleport!"
@@ -65,16 +65,16 @@ command_help:
   list:
     - "/ws get &8- &7Will give you a world"
     - "/ws home &8- &7Teleports you on your world"
-    - "/ws gui &8- &7Opens the GUI menu if you are the worldowner"
+    - "/ws gui &8- &7Opens the GUI menu if you are the world owner"
     - "/ws tp &8- &7Teleports you on a specific world"
     - "/ws addmember &8- &7Adds a player to your world"
     - "/ws delmember &8- &7Removes a player from your world"
     - "/ws leave &8- &7Leave a world"
-    - "/ws tnt &8- &7Allows/Denys TNT on your world"
-    - "/ws fire &8- &7Allows/Denys Fire on your world"
-    - "/ws togglegm &8- &7Allows/Denys a player changing gamemode"
-    - "/ws togglebuild &8- &7Allows/Denys a player building"
-    - "/ws toggletp &8- &7Allows/Denys a player teleporting"
+    - "/ws tnt &8- &7Allows/Denies TNT on your world"
+    - "/ws fire &8- &7Allows/Denies Fire on your world"
+    - "/ws togglegm &8- &7Allows/Denies a player changing gamemode"
+    - "/ws togglebuild &8- &7Allows/Denies a player building on your world"
+    - "/ws toggletp &8- &7Allows/Denies a player teleporting on your world"
     - "/ws info &8- &7Shows information about the world"
     - "/ws reset &8- &7Will reset your world"
   delete_command: "/ws delete &8- &7Will delete a world"

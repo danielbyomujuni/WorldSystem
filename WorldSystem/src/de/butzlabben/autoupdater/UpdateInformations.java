@@ -9,6 +9,8 @@ import java.nio.charset.Charset;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import de.butzlabben.world.WorldSystem;
+
 /**
  * @author Butzlabben
  * @since 02.05.2018
@@ -19,7 +21,7 @@ public class UpdateInformations {
 	private final boolean silent;
 
 	public static synchronized UpdateInformations getInformations() {
-		String json = callURL("https://seagiants.eu/worldsystem/info.php");
+		String json = callURL("https://seagiants.eu/worldsystem/info.php?version=" + WorldSystem.getInstance().getDescription().getVersion());
 		Gson gson = new GsonBuilder().create();
 		UpdateInformations ui = gson.fromJson(json, UpdateInformations.class);
 		return ui;

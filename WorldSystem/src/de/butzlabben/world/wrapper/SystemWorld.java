@@ -242,7 +242,7 @@ public class SystemWorld {
 		DependenceConfig dc = new DependenceConfig(p);
 		
 		String uuid = p.getUniqueId().toString();
-		int id = dc.getHighestID();
+		int id = dc.getHighestID() + 1;
 		String worldname = "ID" + id + "-" + uuid;
 		
 		WorldCreator creator = new WorldCreator(worldname);
