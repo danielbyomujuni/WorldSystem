@@ -13,7 +13,6 @@ import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.entity.Player;
-
 import com.google.common.base.Preconditions;
 
 import de.butzlabben.event.WorldCreateEvent;
