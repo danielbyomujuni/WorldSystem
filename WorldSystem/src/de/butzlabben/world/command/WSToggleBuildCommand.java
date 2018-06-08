@@ -33,7 +33,7 @@ public class WSToggleBuildCommand implements CommandExecutor {
 		@SuppressWarnings("deprecation")
 		OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
 		WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
-		if (wc.isMember(a.getUniqueId())) {
+		if (!wc.isMember(a.getUniqueId())) {
 			p.sendMessage(MessageConfig.getNoMemberOwn());
 			return true;
 		}

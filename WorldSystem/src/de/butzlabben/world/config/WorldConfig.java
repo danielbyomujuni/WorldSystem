@@ -27,7 +27,7 @@ import de.butzlabben.world.GameProfileBuilder;
  */
 public class WorldConfig {
 
-	private static File getWorldFile(String worldname) {
+	public static File getWorldFile(String worldname) {
 		File worldconfig = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
 		if (!worldconfig.exists()) {
 			worldconfig = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");

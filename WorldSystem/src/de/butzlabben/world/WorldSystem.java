@@ -44,6 +44,8 @@ import de.butzlabben.world.listener.BlockListener;
 import de.butzlabben.world.listener.CommandListener;
 import de.butzlabben.world.listener.PlayerDeathListener;
 import de.butzlabben.world.listener.PlayerLeaveListener;
+import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
+import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
 
 /**
@@ -59,6 +61,8 @@ public class WorldSystem extends JavaPlugin {
 
 	final private String version = this.getDescription().getVersion();
 	public static OrcInventory mainGUI;
+
+	public static CreatorAdapter creator;
 
 	@Override
 	public void onEnable() {
@@ -126,7 +130,7 @@ public class WorldSystem extends JavaPlugin {
 		getCommand("ws togglegm").setExecutor(new WSToggleGMCommand());
 		getCommand("ws togglebuild").setExecutor(new WSToggleBuildCommand());
 		getCommand("ws delete").setExecutor(new WSDeleteCommand());
-		
+
 		getCommand("ws confirm").setExecutor(new WSConfirmCommand());
 
 		getCommand("ws gui").setExecutor(new GuiCommand());
@@ -136,9 +140,20 @@ public class WorldSystem extends JavaPlugin {
 		System.setProperty("bstats.relocatecheck", "false");
 		Metrics m = new Metrics(this);
 		m.addCustomChart(new Metrics.SingleLineChart("worlds", Entry::entrys));
-		
+
 		AutoUpdater.startAsync();
-		
+
+		//Choose right creatoradapter for #16
+		if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null
+				&& Bukkit.getPluginManager().getPlugin("WorldEdit") != null) {
+			creator = new AsyncCreatorAdapter();
+			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Found FAWE! Try now to create worlds async");
+		} else {
+			creator = (c) -> {
+				Bukkit.getWorlds().add(c.createWorld());
+			};
+		}
+
 		Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Succesfully enabled WorldSystem v" + version);
 	}
 

@@ -212,8 +212,9 @@ public class SystemWorld {
 			world.renameTo(new File(Bukkit.getWorldContainer(), myName.toString()));
 			worldname = myName.toString();
 		}
-		// Teleport the Player
-
+		// For #16
+		WorldSystem.creator.create(new WorldCreator(worldname));
+		
 		World worldinserver = Bukkit.createWorld(new WorldCreator(worldname));
 		Bukkit.getServer().getWorlds().add(worldinserver);
 		w = worldinserver;
@@ -307,9 +308,11 @@ public class SystemWorld {
 					e.printStackTrace();
 				}
 			}
-			World worldinserver = Bukkit.createWorld(event.getWorldCreator());
-			Bukkit.getServer().getWorlds().add(worldinserver);
-
+			//For #16
+			WorldSystem.creator.create(event.getWorldCreator());
+			
+//			World worldinserver = Bukkit.createWorld(event.getWorldCreator());
+//			Bukkit.getServer().getWorlds().add(worldinserver);
 		}
 		return true;
 	}
