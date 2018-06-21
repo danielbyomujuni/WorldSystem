@@ -63,6 +63,23 @@ public class WSResetCommand implements CommandExecutor {
 					FileUtils.copyDirectory(exampleworld, f);
 					toConfirm.remove(p);
 					p.sendMessage(MessageConfig.getWorldReseted());
+					
+					//Currently problems with 
+					/*WorldCreator creator = new WorldCreator(worldname);
+					long seed = PluginConfig.getSeed();
+					Environment env = PluginConfig.getEnvironment();
+					WorldType type = PluginConfig.getWorldType();
+					if(seed != 0)
+						creator.seed(seed);
+					creator.type(type);
+					creator.environment(env);
+					String generator = PluginConfig.getGenerator();
+					if(!generator.trim().isEmpty())
+						creator.generator(generator);
+					
+					// For #16
+					WorldSystem.creator.create(creator, sw);*/
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 					p.sendMessage(MessageConfig.getUnknownError());

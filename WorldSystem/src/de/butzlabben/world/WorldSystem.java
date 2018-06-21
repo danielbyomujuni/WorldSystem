@@ -56,7 +56,6 @@ import de.butzlabben.world.wrapper.SystemWorld;
  */
 public class WorldSystem extends JavaPlugin {
 
-	private static int maxWorlds = 100;
 	public static HashMap<Player, World> deathLocations = new HashMap<>();
 
 	final private String version = this.getDescription().getVersion();
@@ -73,22 +72,6 @@ public class WorldSystem extends JavaPlugin {
 		pm.registerEvents(new BlockListener(), this);
 		pm.registerEvents(new PlayerDeathListener(), this);
 		pm.registerEvents(new CommandListener(), this);
-
-		new Thread(() -> {
-			int ch = 0;
-			if (PluginConfig.getLicenseKey() == null || PluginConfig.getLicenseKey().equals(""))
-				try {
-					ch = ConnectionHolder.getMaxPlayers();
-				} catch (Exception e) {
-				}
-			else
-				try {
-					ch = ConnectionHolder.getMaxPlayersWithLicense(PluginConfig.getLicenseKey());
-				} catch (Exception e) {
-				}
-			if (ch != 0)
-				maxWorlds = ch;
-		}).start();
 
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new WorldCheckerRunnable(), 20 * 5,
 				20 * PluginConfig.getLagCheckPeriod());
@@ -143,14 +126,17 @@ public class WorldSystem extends JavaPlugin {
 
 		AutoUpdater.startAsync();
 
-		//Choose right creatoradapter for #16
+		// Choose right creatoradapter for #16
 		if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null
 				&& Bukkit.getPluginManager().getPlugin("WorldEdit") != null) {
 			creator = new AsyncCreatorAdapter();
-			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Found FAWE! Try now to create worlds async");
+			Bukkit.getConsoleSender()
+					.sendMessage(PluginConfig.getPrefix() + "Found FAWE! Try now to create worlds async");
 		} else {
-			creator = (c) -> {
+			creator = (c, sw) -> {
 				Bukkit.getWorlds().add(c.createWorld());
+				if (sw != null)
+					sw.stopCreating();
 			};
 		}
 
@@ -170,10 +156,6 @@ public class WorldSystem extends JavaPlugin {
 		WorldOptionsGUI.instance.unregister();
 		Bukkit.getConsoleSender()
 				.sendMessage(PluginConfig.getPrefix() + "Succesfully disabled WorldSystem v" + version);
-	}
-
-	public static int getMaxWorlds() {
-		return maxWorlds;
 	}
 
 	public static void createConfigs() {

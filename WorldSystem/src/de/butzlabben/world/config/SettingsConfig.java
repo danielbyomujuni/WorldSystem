@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -18,6 +19,8 @@ import de.butzlabben.world.wrapper.SystemWorld;
 
 public class SettingsConfig {
 
+	private static HashMap<String, Long> borderSizes = new HashMap<>();
+
 	private static File file;
 
 	public static void editWorld(World w) {
@@ -27,16 +30,16 @@ public class SettingsConfig {
 
 		boolean shouldChange = cfg.getBoolean("worldborder.should_change", false);
 		if (shouldChange) {
-			double size = cfg.getDouble("worldborder.normal", 1000);
+			long size = cfg.getLong("worldborder.normal", 1000);
 			if (sw != null && sw.isLoaded()) {
 				String worldname = w.getName();
 				UUID uuid = UUID.fromString(worldname.substring(worldname.length() - 36));
 				Player p = Bukkit.getPlayer(uuid);
 				if (p != null && p.isOnline()) {
-					if (p.hasPermission("ws.large")) {
-						size = cfg.getDouble("worldborder.large", 5000);
-					} else if (p.hasPermission("ws.big"))
-						size = cfg.getDouble("worldborder.big", 2000);
+					for (String string : borderSizes.keySet()) {
+						if (p.hasPermission(string))
+							size = borderSizes.get(string);
+					}
 				}
 			}
 
@@ -143,6 +146,11 @@ public class SettingsConfig {
 				System.err.println("Wasn't able to create Config");
 				e.printStackTrace();
 			}
+		}
+		YamlConfiguration cfg = getConfig();
+		for (String s : cfg.getConfigurationSection("worldborder.ranks").getKeys(false)) {
+			if (cfg.isInt("worldborder.ranks." + s) || cfg.isLong("worldborder.ranks." + s))
+				borderSizes.put(s, cfg.getLong("worldborder.ranks." + s));
 		}
 	}
 

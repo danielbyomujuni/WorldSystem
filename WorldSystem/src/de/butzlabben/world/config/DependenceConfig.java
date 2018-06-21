@@ -7,8 +7,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import de.butzlabben.world.WorldSystem;
-
 public class DependenceConfig {
 
 	private OfflinePlayer op;
@@ -62,14 +60,12 @@ public class DependenceConfig {
 		}
 	}
 
-	public boolean createNewEntry() {
+	public void createNewEntry() {
 		File dconfig = new File("plugins//WorldSystem//dependence.yml");
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
 		String uuid = this.op.getUniqueId().toString();
 		int id = cfg.getInt("HighestID");
 		id++;
-		if (Entry.entrys() >= WorldSystem.getMaxWorlds())
-			return false;
 		cfg.set("HighestID", id);
 		cfg.set("Dependences." + uuid + ".ID", id);
 		cfg.set("Dependences." + uuid + ".ActualName", op.getName());
@@ -78,7 +74,6 @@ public class DependenceConfig {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return true;
 	}
 
 	public boolean hasWorld() {

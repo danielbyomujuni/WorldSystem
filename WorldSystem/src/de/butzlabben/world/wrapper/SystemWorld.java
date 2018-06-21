@@ -35,6 +35,7 @@ public class SystemWorld {
 	private World w;
 	private String worldname;
 	private boolean unloading = false;
+	private boolean creating = false;
 
 	private static HashMap<String, SystemWorld> cached = new HashMap<>();
 
@@ -176,6 +177,10 @@ public class SystemWorld {
 	public void load(Player p) {
 		Preconditions.checkNotNull(p, "player must not be null");
 		Preconditions.checkArgument(p.isOnline(), "player must be online");
+
+		if (creating)
+			return;
+
 		unloading = false;
 		WorldLoadEvent event = new WorldLoadEvent(p, this);
 		Bukkit.getPluginManager().callEvent(event);
@@ -212,12 +217,14 @@ public class SystemWorld {
 			world.renameTo(new File(Bukkit.getWorldContainer(), myName.toString()));
 			worldname = myName.toString();
 		}
-		// For #16
-		WorldSystem.creator.create(new WorldCreator(worldname));
-		
-		World worldinserver = Bukkit.createWorld(new WorldCreator(worldname));
-		Bukkit.getServer().getWorlds().add(worldinserver);
-		w = worldinserver;
+
+		WorldCreator creator = new WorldCreator(worldname);
+
+		World w = Bukkit.getWorld(worldname);
+		if (w == null)
+			w = Bukkit.createWorld(creator);
+
+		this.w = w;
 		if (PluginConfig.isSurvival()) {
 			p.setGameMode(GameMode.SURVIVAL);
 		} else {
@@ -240,42 +247,37 @@ public class SystemWorld {
 	 */
 	public static boolean create(Player p) {
 		DependenceConfig dc = new DependenceConfig(p);
-		
+
 		String uuid = p.getUniqueId().toString();
 		int id = dc.getHighestID() + 1;
 		String worldname = "ID" + id + "-" + uuid;
-		
+
 		WorldCreator creator = new WorldCreator(worldname);
 		long seed = PluginConfig.getSeed();
 		Environment env = PluginConfig.getEnvironment();
 		WorldType type = PluginConfig.getWorldType();
-		if(seed != 0)
+		if (seed != 0)
 			creator.seed(seed);
 		creator.type(type);
 		creator.environment(env);
 		String generator = PluginConfig.getGenerator();
-		if(!generator.trim().isEmpty())
+		if (!generator.trim().isEmpty())
 			creator.generator(generator);
-		
+
 		WorldCreateEvent event = new WorldCreateEvent(p, creator);
 		Bukkit.getPluginManager().callEvent(event);
 		if (event.isCancelled())
 			return false;
-		if (!dc.createNewEntry()) {
-			int i = WorldSystem.getMaxWorlds();
-			p.sendMessage(PluginConfig.getPrefix() + "§cThis Server is limited to " + i + " worlds. Sorry :(");
-			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§cThe Server is limited to " + i
-					+ " worlds. If you want more, contact me");
-			return false;
-		}
-		
+
+		dc.createNewEntry();
+
 		String worlddir = PluginConfig.getWorlddir();
 		File exampleworld = new File("plugins//WorldSystem//worldsources//" + PluginConfig.getExampleWorldName());
 		if (new File("plugins//WorldSystem//worldsources//" + PluginConfig.getExampleWorldName() + "/uid.dat")
 				.exists()) {
 			new File("plugins//WorldSystem//worldsources//" + PluginConfig.getExampleWorldName() + "/uid.dat").delete();
 		}
-		
+
 		File newworld = new File(worlddir + "/" + worldname);
 		try {
 			FileUtils.copyDirectory(exampleworld, newworld);
@@ -285,7 +287,7 @@ public class SystemWorld {
 		}
 
 		WorldConfig.create(p);
-		
+
 		if (PluginConfig.getExampleWorldName() == null || PluginConfig.getExampleWorldName().equals("")
 				|| !exampleworld.exists()) {
 			// Move World into Server dir
@@ -308,11 +310,8 @@ public class SystemWorld {
 					e.printStackTrace();
 				}
 			}
-			//For #16
-			WorldSystem.creator.create(event.getWorldCreator());
-			
-//			World worldinserver = Bukkit.createWorld(event.getWorldCreator());
-//			Bukkit.getServer().getWorlds().add(worldinserver);
+			// For #16
+			WorldSystem.creator.create(event.getWorldCreator(), null);
 		}
 		return true;
 	}
@@ -374,6 +373,14 @@ public class SystemWorld {
 	 */
 	public World getWorld() {
 		return w;
+	}
+
+	public void stopCreating() {
+		creating = false;
+	}
+
+	public boolean isCreating() {
+		return creating;
 	}
 
 	/**

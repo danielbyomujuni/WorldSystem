@@ -3,11 +3,13 @@ worldborder:
   # If WorldSystem should change the worldborder
   should_change: true
   # Default size
-  normal: 1000
-  # Size with ws.big permission
-  big: 2000
-  # Size with ws.large permission
-  large: 5000
+  normal: 500
+  # Here you can define your own ranks, as many as you want
+  # The permission node will be the key and the value the size
+  ranks:
+    # For example, with the permission ws.big you will get a worldborder with the size 1000
+    ws.big: 1000
+    ws.bigger: 1500
   
   # Set a specialized center which is not the spawn
   center:

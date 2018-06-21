@@ -12,24 +12,28 @@ import com.boydti.fawe.util.TaskManager;
  * @author Butzlabben
  * @since 08.06.2018
  */
-public class AsyncCreatorAdapter implements CreatorAdapter{
+public class AsyncCreatorAdapter implements CreatorAdapter {
 
 	// Create worlds async to close #16
 	@Override
-	public void create(WorldCreator creator) {
+	public void create(WorldCreator creator, SystemWorld sw) {
 		TaskManager.IMP.async(new Runnable() {
-		    @Override
-		    public void run() {
-		        // Create or load a world async with the provided WorldCreator settings
-		        AsyncWorld world = AsyncWorld.create(creator);
-		        // AsyncWorld world = AsyncWorld.wrap(bukkitWorld); // Or wrap existing world
-		        Block block = world.getBlockAt(0, 0, 0);
-		        block.setType(Material.BEDROCK);
-		        // When you are done
-		        world.commit();
+			@Override
+			public void run() {
+				AsyncWorld world;
+				if (Bukkit.getWorld(creator.name()) == null)
+					world = AsyncWorld.create(creator);
+				else
+					world = AsyncWorld.wrap(Bukkit.getWorld(creator.name()));
 
-		        Bukkit.getWorlds().add(world);
-		    }
+				Block block = world.getBlockAt(0, 0, 0);
+				block.setType(Material.BEDROCK);
+				// When you are done
+				world.commit();
+				Bukkit.getWorlds().add(world);
+				if (sw != null)
+					sw.stopCreating();
+			}
 		});
 		return;
 	}

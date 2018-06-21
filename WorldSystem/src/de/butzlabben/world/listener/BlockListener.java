@@ -35,7 +35,7 @@ public class BlockListener implements Listener {
 		if (!wp.isOnSystemWorld())
 			return;
 		if(!wp.isMember())
-			return;
+			e.setCancelled(true);
 		if (!wp.isOwnerofWorld()) {
 			e.setCancelled(!wp.canBuild());
 		}
@@ -51,7 +51,7 @@ public class BlockListener implements Listener {
 		if (!wp.isOnSystemWorld())
 			return;
 		if(!wp.isMember())
-			return;
+			e.setCancelled(true);
 		if (!wp.isOwnerofWorld()) {
 			e.setCancelled(!wp.canBuild());
 		}

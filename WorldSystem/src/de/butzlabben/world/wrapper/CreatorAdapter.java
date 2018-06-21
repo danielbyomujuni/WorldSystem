@@ -8,5 +8,5 @@ import org.bukkit.WorldCreator;
  */
 public interface CreatorAdapter {
 
-	public void create(WorldCreator creator);
+	public void create(WorldCreator creator, SystemWorld world);
 }
