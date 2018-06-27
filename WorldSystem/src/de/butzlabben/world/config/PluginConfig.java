@@ -38,7 +38,7 @@ public class PluginConfig {
 			if (false == (cfg.isString("worldfolder") && cfg.isString("worldsource") && cfg.isInt("unloadingtime")
 					&& cfg.isBoolean("survival") && cfg.isString("language") && cfg.isString("prefix")
 					&& cfg.isInt("request_expires") && cfg.isBoolean("need_confirm")
-					&& cfg.isBoolean("contact_authserver") &&
+					&& cfg.isBoolean("contact_authserver") && cfg.isBoolean("spawn_teleportation") &&
 
 					cfg.isInt("lagsystem.period_in_seconds") && cfg.isInt("lagsystem.entities_per_world")
 					&& cfg.isBoolean("lagsystem.garbagecollector.use")
@@ -189,7 +189,7 @@ public class PluginConfig {
 		try {
 			wt = WorldType.valueOf(t.toUpperCase());
 		} catch (Exception e) {
-			System.out.println("'" + t + "' is not a valid worldtype");
+			System.err.println("'" + t + "' is not a valid worldtype");
 		}
 		return wt;
 	}
@@ -208,7 +208,11 @@ public class PluginConfig {
 		return getConfig().getBoolean("need_confirm", true);
 	}
 
-	public static boolean contact_auth() {
+	public static boolean contactAuth() {
 		return getConfig().getBoolean("contact_authserver", true);
+	}
+	
+	public static boolean spawnTeleportation() {
+		return getConfig().getBoolean("spawn_teleportation", true);
 	}
 }

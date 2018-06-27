@@ -43,7 +43,7 @@ import de.butzlabben.world.gui.WorldSystemGUI;
 import de.butzlabben.world.listener.BlockListener;
 import de.butzlabben.world.listener.CommandListener;
 import de.butzlabben.world.listener.PlayerDeathListener;
-import de.butzlabben.world.listener.PlayerLeaveListener;
+import de.butzlabben.world.listener.PlayerListener;
 import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
 import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
@@ -52,7 +52,7 @@ import de.butzlabben.world.wrapper.SystemWorld;
  * @author Butzlabben
  * @author Jubeki
  * @since 10.07.2017
- * @version 1.0
+ * @version 2.2.0.1
  */
 public class WorldSystem extends JavaPlugin {
 
@@ -68,7 +68,7 @@ public class WorldSystem extends JavaPlugin {
 		createConfigs();
 
 		PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new PlayerLeaveListener(), this);
+		pm.registerEvents(new PlayerListener(), this);
 		pm.registerEvents(new BlockListener(), this);
 		pm.registerEvents(new PlayerDeathListener(), this);
 		pm.registerEvents(new CommandListener(), this);

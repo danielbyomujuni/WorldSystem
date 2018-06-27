@@ -25,6 +25,9 @@ unloadingtime: 20
 # Except for players with the permissions: ws.gamemode | ws.tp.*
 survival: false
 
+# If true players will teleported to the spawn on join
+spawn_teleportation: true
+
 # Time in seconds until a request expires
 request_expires: 20
 

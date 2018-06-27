@@ -37,6 +37,16 @@ public class WorldConfig {
 		}
 		return worldconfig;
 	}
+	
+	/**
+	 * Returns wether a worldconfig exists for this worldname
+	 * 
+	 * @param worldname name of the world
+	 * @return Wether this world has a worldconfig
+	 */
+	public static boolean exists(String worldname) {
+		return getWorldFile(worldname).exists();
+	}
 
 	private static HashMap<String, WorldConfig> instances = new HashMap<>();
 
@@ -63,8 +73,7 @@ public class WorldConfig {
 	private boolean fire, tnt;
 
 	private WorldConfig(String worldname) {
-		File file = getWorldFile(worldname);
-		if (file.exists() == false)
+		if (exists(worldname) == false)
 			throw new IllegalArgumentException("WorldConfig doesn't exist");
 		owner = UUID.fromString(worldname.substring(worldname.length() - 36));
 		id = Integer.parseInt(worldname.split("-")[0].substring(2));
@@ -395,7 +404,7 @@ public class WorldConfig {
 		for (UUID uuid : permissions.keySet()) {
 			OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
 			if (op == null || op.getName() == null) {
-				if (PluginConfig.contact_auth()) {
+				if (PluginConfig.contactAuth()) {
 					try {
 						GameProfile prof = GameProfileBuilder.fetch(uuid);
 						map.put(uuid, prof.getName());

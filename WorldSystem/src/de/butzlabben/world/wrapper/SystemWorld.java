@@ -132,6 +132,7 @@ public class SystemWorld {
 		Bukkit.getPluginManager().callEvent(event);
 		if (event.isCancelled())
 			return;
+		//Set unloading to true
 		unloading = true;
 		w.save();
 		Chunk[] arrayOfChunk;
@@ -144,9 +145,11 @@ public class SystemWorld {
 			a.teleport(PluginConfig.getSpawn());
 			a.setGameMode(PluginConfig.getSpawnGamemode());
 		}
-		Bukkit.getScheduler().runTaskLater(Bukkit.getPluginManager().getPlugin("WorldSystem"), new Runnable() {
+		
+		Bukkit.getScheduler().runTaskLater(WorldSystem.getInstance(), new Runnable() {
 			@Override
 			public void run() {
+				// Still in world unloading process?
 				if (unloading) {
 					if (Bukkit.unloadWorld(w, true)) {
 						File worldinserver = new File(Bukkit.getWorldContainer(), worldname);
@@ -181,27 +184,30 @@ public class SystemWorld {
 		if (creating)
 			return;
 
-		unloading = false;
+		
 		WorldLoadEvent event = new WorldLoadEvent(p, this);
 		Bukkit.getPluginManager().callEvent(event);
 		if (event.isCancelled())
 			return;
+		
+		unloading = false;
+		
 		p.sendMessage(MessageConfig.getSettingUpWorld());
 		// Move World into Server dir
 		String worlddir = PluginConfig.getWorlddir();
 		File world = new File(worlddir + "/" + worldname);
-		world = new File(worlddir + "/" + worldname);
 		if (!world.exists()) {
 			world = new File(Bukkit.getWorldContainer(), worldname);
 		} else {
 			if (new File(Bukkit.getWorldContainer(), worldname).exists()
 					&& new File(PluginConfig.getWorlddir() + "/" + worldname).exists()) {
-				try {
-					FileUtils.deleteDirectory(new File(Bukkit.getWorldContainer(), worldname));
-				} catch (IOException e) {
-					p.sendMessage(PluginConfig.getPrefix() + "§cError");
-					e.printStackTrace();
-				}
+				System.err.println("World " + worldname + " exists twice!");
+//				try {
+//					FileUtils.deleteDirectory(new File(Bukkit.getWorldContainer(), worldname));
+//				} catch (IOException e) {
+//					p.sendMessage(PluginConfig.getPrefix() + "§cError");
+//					e.printStackTrace();
+//				}
 			}
 			try {
 				FileUtils.moveDirectoryToDirectory(world, Bukkit.getWorldContainer(), false);
@@ -211,6 +217,7 @@ public class SystemWorld {
 				e.printStackTrace();
 			}
 		}
+		
 		if (worldname.charAt(worldname.length() - 37) == ' ') {
 			StringBuilder myName = new StringBuilder(worldname);
 			myName.setCharAt(worldname.length() - 37, '-');
