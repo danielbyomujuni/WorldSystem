@@ -27,7 +27,7 @@ public class SettingsConfig {
 		YamlConfiguration cfg = getConfig();
 
 		SystemWorld sw = SystemWorld.getSystemWorld(w.getName());
-
+	
 		boolean shouldChange = cfg.getBoolean("worldborder.should_change", false);
 		if (shouldChange) {
 			long size = cfg.getLong("worldborder.normal", 1000);
@@ -37,8 +37,9 @@ public class SettingsConfig {
 				Player p = Bukkit.getPlayer(uuid);
 				if (p != null && p.isOnline()) {
 					for (String string : borderSizes.keySet()) {
-						if (p.hasPermission(string))
+						if (p.hasPermission(string) && size < borderSizes.get(string)) {
 							size = borderSizes.get(string);
+						}
 					}
 				}
 			}
@@ -148,7 +149,7 @@ public class SettingsConfig {
 			}
 		}
 		YamlConfiguration cfg = getConfig();
-		for (String s : cfg.getConfigurationSection("worldborder.ranks").getKeys(false)) {
+		for (String s : cfg.getConfigurationSection("worldborder.ranks").getKeys(true)) {
 			if (cfg.isInt("worldborder.ranks." + s) || cfg.isLong("worldborder.ranks." + s))
 				borderSizes.put(s, cfg.getLong("worldborder.ranks." + s));
 		}

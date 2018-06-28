@@ -63,7 +63,7 @@ info:
   
 command_help:
   list:
-    - "/ws get &8- &7Will give you a world"
+    - "/ws get &8- &7Tworzy Twój świat"
     - "/ws home &8- &7Teleportuje Cie na Twój świat"
     - "/ws gui &8- &7Otwiera GUI świata jeżeli jesteś jego właścicielem"
     - "/ws tp &8- &7Teleportuje Cie na określony świat"

@@ -1,0 +1,80 @@
+nopermission: "&cVous n'avez pas la permission de le faire!"
+unknown_error: "&cQuelque chose s'est mal passé ..."
+lagdetection: "Décalage Détection dans le monde: &c%world"
+wrong_usage: "&c%usage"
+not_registered: "&cCe joueur n'a pas encore rejoint!!"
+
+world:
+  reseted: "Vous auriez été réinitialisé!"
+  still_loaded: "&cVotre monde est toujours chargé!"
+  not_on: "&cVous n'êtes pas sur un monde!"
+  created: "Votre monde est maintenant prêt. Allez-y avec &a/ws home"
+  already_exists: "&cVous avez déjà un monde!"
+  delete:
+    own: "&cVotre monde a été supprimé!"
+    other: "Vous avez supprimé le monde du &c%player&6!"
+  does_not_exists: 
+    own: "&cTu n'as pas de monde!"
+    other: "&cCe joueur n'a pas de monde!"
+  setting_up: "&aChargement du monde ..."
+  playerlist: "Joueurs dans ce monde: %players"
+
+member:
+  removed: "Vous avez supprimé &c%player&6 de votre monde!"
+  added: "Vous avez ajouté un &c%player&6 à votre monde!"
+  already_added: "&cCe joueur est déjà membre!"
+  not_added:
+    own: "&cCe joueur n'est pas membre!"
+    other: "&cVous n'avez pas été ajouté à ce monde!"
+
+request:
+  expired: "&cVotre demande a expiré!"
+  confirm: "AVERTISSEMENT - Veuillez confirmer la réinitialisation de votre monde: %command"
+  until_expire: "&cVotre demande expire dans %time secondes!"
+  already_sent: "&cVous avez déjà envoyé une demande!"
+  not_sent: "&cVous n'avez pas envoyé de demande!"
+  invalid_input: "&c%input n'est pas une demande valide!"
+
+toggle:
+  gamemode:
+    enabled: "&a%player&6 peut maintenant changer leur mode de jeu!"
+    disabled: "&c%player&6 ne peut maintenant changer leur mode de jeu!"
+  teleport:
+    enabled: "&a%player&6 peut maintenant téléporter!"
+    disabled: "&c%player&6 ne peut maintenant téléporter!"
+  build:
+    enabled: "&a%player&6 peut maintenant construire!"
+    disabled: "&c%player&6 ne peut maintenant construire!"
+  fire:
+    enabled: "&aVous avez activé le feu!"
+    disabled: "&cVous avez désactivé le feu!"
+  tnt:
+    enabled: "&aVous avez activé les TNT dégâts!"
+    disabled: "&cVous avez désactivé les TNT dégâts!"
+
+info:
+  owner: "Propriétaire: %data"
+  id: "ID: %data"
+  member: "Membre: %data"
+  tnt: "TNT: %data"
+  fire: "Feu: %data"
+  enabled: "&aAllumer"
+  disabled: "&cÉteindre"
+  
+command_help:
+  list:
+    - "/ws get &8- &7Je vais vous donner un monde"
+    - "/ws home &8- &7Vous téléporte sur votre monde"
+    - "/ws gui &8- &7Ouvre le menu de l'interface graphique si vous êtes le propriétaire mondial"
+    - "/ws tp &8- &7Vous téléporte sur un monde spécifique"
+    - "/ws addmember &8- &7Ajoute un joueur à ton monde"
+    - "/ws delmember &8- &7Supprime un joueur de votre monde"
+    - "/ws leave &8- &7Laissez un monde"
+    - "/ws tnt &8- &7Permet / Refuse TNT sur votre monde"
+    - "/ws fire &8- &7Permet / Refuse le feu sur votre monde"
+    - "/ws togglegm &8- &7Permet / Refuse à un joueur de changer de mode de jeu"
+    - "/ws togglebuild &8- &7Permet / Refuse à un joueur de construire sur votre monde"
+    - "/ws toggletp &8- &7Permet / Refuse à un joueur de se téléporter sur votre monde"
+    - "/ws info &8- &7Affiche des informations sur le monde"
+    - "/ws reset &8- &7Réinitialisera votre monde"
+  delete_command: "/ws delete &8- &7Va supprimer un monde"
