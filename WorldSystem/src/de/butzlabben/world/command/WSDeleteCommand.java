@@ -1,7 +1,6 @@
 package de.butzlabben.world.command;
 
 import java.io.File;
-
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -41,10 +40,12 @@ public class WSDeleteCommand implements CommandExecutor {
 		if (sw != null && sw.isLoaded())
 			sw.directUnload(Bukkit.getWorld(worldname));
 		Bukkit.getScheduler().runTaskLater(WorldSystem.getInstance(), () -> {
-			@SuppressWarnings("deprecation")
-			OfflinePlayer op = Bukkit.getOfflinePlayer(args[1]);
+			OfflinePlayer op = dc.getOwner();
+
 			String uuid = op.getUniqueId().toString();
 			File dir = new File(PluginConfig.getWorlddir() + "/" + worldname);
+			if(!dir.exists())
+				dir = new File(Bukkit.getWorldContainer(), worldname);
 			if (dir.exists())
 				try {
 					FileUtils.deleteDirectory(dir);

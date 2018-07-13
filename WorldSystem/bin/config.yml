@@ -37,6 +37,10 @@ language: en
 # Prefix which will be shown before each message
 prefix: '&8[&3WorldSystem&8] &6'
 
+# Time in days after a not used world will be deleted
+# Set to -1 to disable
+delete_after: -1
+
 # Whether WorldSystem should contact the Mojang authserver
 # If not, some unknown playernames will not be displayed
 # eg. in the gui or in /ws info

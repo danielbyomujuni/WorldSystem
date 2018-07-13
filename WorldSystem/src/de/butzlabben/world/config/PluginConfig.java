@@ -16,6 +16,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.WorldCreator;
 import org.bukkit.World.Environment;
 import org.bukkit.WorldType;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -38,7 +39,8 @@ public class PluginConfig {
 			if (false == (cfg.isString("worldfolder") && cfg.isString("worldsource") && cfg.isInt("unloadingtime")
 					&& cfg.isBoolean("survival") && cfg.isString("language") && cfg.isString("prefix")
 					&& cfg.isInt("request_expires") && cfg.isBoolean("need_confirm")
-					&& cfg.isBoolean("contact_authserver") && cfg.isBoolean("spawn_teleportation") &&
+					&& cfg.isBoolean("contact_authserver") && cfg.isBoolean("spawn_teleportation") 
+					&& cfg.isInt("delete_after") &&
 
 					cfg.isInt("lagsystem.period_in_seconds") && cfg.isInt("lagsystem.entities_per_world")
 					&& cfg.isBoolean("lagsystem.garbagecollector.use")
@@ -96,10 +98,6 @@ public class PluginConfig {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public static String getLicenseKey() {
-		return getConfig().getString("license");
 	}
 
 	public static int getGCPeriod() {
@@ -214,5 +212,28 @@ public class PluginConfig {
 	
 	public static boolean spawnTeleportation() {
 		return getConfig().getBoolean("spawn_teleportation", true);
+	}
+	
+	public static boolean shouldDelete() {
+		return getConfig().getInt("delete_after") != -1;
+	}
+	
+	public static int deleteAfter() {
+		return getConfig().getInt("delete_after");
+	}
+	
+	public static WorldCreator getWorldCreator(String worldname) {
+		WorldCreator creator = new WorldCreator(worldname);
+		long seed = PluginConfig.getSeed();
+		Environment env = PluginConfig.getEnvironment();
+		WorldType type = PluginConfig.getWorldType();
+		if (seed != 0)
+			creator.seed(seed);
+		creator.type(type);
+		creator.environment(env);
+		String generator = PluginConfig.getGenerator();
+		if (!generator.trim().isEmpty())
+			creator.generator(generator);
+		return creator;
 	}
 }

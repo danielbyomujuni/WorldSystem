@@ -75,6 +75,7 @@ public class WorldSystem extends JavaPlugin {
 
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new WorldCheckerRunnable(), 20 * 5,
 				20 * PluginConfig.getLagCheckPeriod());
+
 		if (PluginConfig.useGC()) {
 			Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new GCRunnable(), 20 * 5,
 					20 * PluginConfig.getGCPeriod());
@@ -139,6 +140,12 @@ public class WorldSystem extends JavaPlugin {
 					sw.stopCreating();
 			};
 		}
+		
+		// Starting for #28
+		if (PluginConfig.shouldDelete()) {
+			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Searching for old worlds to delete if not loaded for " + PluginConfig.deleteAfter() + " days");
+			DependenceConfig.checkWorlds();
+		}
 
 		Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Succesfully enabled WorldSystem v" + version);
 	}
@@ -172,6 +179,7 @@ public class WorldSystem extends JavaPlugin {
 		PluginConfig.checkConfig(config);
 		// Done with #6
 		MessageConfig.checkConfig(new File(languages, "en.yml"));
+
 		MessageConfig.checkConfig(new File(languages, "de.yml"));
 		MessageConfig.checkConfig(new File(languages, "hu.yml"));
 		MessageConfig.checkConfig(new File(languages, "nl.yml"));

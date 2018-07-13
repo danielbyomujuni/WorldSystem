@@ -8,10 +8,9 @@ import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.GameMode;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
-import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
-import org.bukkit.WorldType;
 import org.bukkit.entity.Player;
 import com.google.common.base.Preconditions;
 
@@ -150,7 +149,7 @@ public class SystemWorld {
 			@Override
 			public void run() {
 				// Still in world unloading process?
-				if (unloading) {
+				if (unloading && w.getPlayers().size() == 0) {
 					if (Bukkit.unloadWorld(w, true)) {
 						File worldinserver = new File(Bukkit.getWorldContainer(), worldname);
 						File worlddir = new File(PluginConfig.getWorlddir());
@@ -225,7 +224,7 @@ public class SystemWorld {
 			worldname = myName.toString();
 		}
 
-		WorldCreator creator = new WorldCreator(worldname);
+		WorldCreator creator = PluginConfig.getWorldCreator(worldname);
 
 		World w = Bukkit.getWorld(worldname);
 		if (w == null)
@@ -242,6 +241,10 @@ public class SystemWorld {
 		} else {
 			p.teleport(w.getSpawnLocation());
 		}
+		
+		OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
+		DependenceConfig dc = new DependenceConfig(owner);
+		dc.setLastLoaded();
 	}
 
 	/**
@@ -259,17 +262,7 @@ public class SystemWorld {
 		int id = dc.getHighestID() + 1;
 		String worldname = "ID" + id + "-" + uuid;
 
-		WorldCreator creator = new WorldCreator(worldname);
-		long seed = PluginConfig.getSeed();
-		Environment env = PluginConfig.getEnvironment();
-		WorldType type = PluginConfig.getWorldType();
-		if (seed != 0)
-			creator.seed(seed);
-		creator.type(type);
-		creator.environment(env);
-		String generator = PluginConfig.getGenerator();
-		if (!generator.trim().isEmpty())
-			creator.generator(generator);
+		WorldCreator creator = PluginConfig.getWorldCreator(worldname);
 
 		WorldCreateEvent event = new WorldCreateEvent(p, creator);
 		Bukkit.getPluginManager().callEvent(event);

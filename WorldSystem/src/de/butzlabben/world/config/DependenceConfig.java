@@ -2,6 +2,8 @@ package de.butzlabben.world.config;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,15 +17,16 @@ public class DependenceConfig {
 		setConfig();
 	}
 
+	@SuppressWarnings("deprecation")
 	public DependenceConfig(String s) {
-		@SuppressWarnings("deprecation")
-		OfflinePlayer op = Bukkit.getOfflinePlayer(s);
-		if(op == null)
-			return;		
+		OfflinePlayer op = Bukkit.getOfflinePlayer(UUID.fromString(s));
+		if (op == null) {
+			op = Bukkit.getOfflinePlayer(s);
+			if (op == null)
+				return;
+		}
 		this.op = op;
 	}
-	
-
 
 	private void setConfig() {
 		File dconfig = new File("plugins//WorldSystem//dependence.yml");
@@ -40,7 +43,7 @@ public class DependenceConfig {
 		this.op = p;
 		refreshName();
 	}
-	
+
 	public DependenceConfig(OfflinePlayer p) {
 		this.op = p;
 		refreshName();
@@ -109,6 +112,18 @@ public class DependenceConfig {
 		return name;
 	}
 
+	public void setLastLoaded() {
+		File dconfig = new File("plugins//WorldSystem//dependence.yml");
+		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
+		String uuid = op.getUniqueId().toString();
+		cfg.set("Dependences." + uuid + ".last_loaded", System.currentTimeMillis());
+		try {
+			cfg.save(dconfig);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public int getHighestID() {
 		File dconfig = new File("plugins//WorldSystem//dependence.yml");
 		YamlConfiguration dcfg = YamlConfiguration.loadConfiguration(dconfig);
@@ -120,5 +135,27 @@ public class DependenceConfig {
 		YamlConfiguration dcfg = YamlConfiguration.loadConfiguration(dconfig);
 		return dcfg.getInt("Dependences." + op.getUniqueId().toString() + ".ID");
 	}
+	
+	public OfflinePlayer getOwner() {
+		return op;
+	}
 
+	public static void checkWorlds() {
+		File dconfig = new File("plugins//WorldSystem//dependence.yml");
+		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
+
+		long deleteTime = 1000 * 60 * 60 * 24 * PluginConfig.deleteAfter();
+		long now = System.currentTimeMillis();
+		for (String s : cfg.getConfigurationSection("Dependences").getKeys(false)) {
+			if (!cfg.isLong("Dependences." + s + ".last_loaded") && !cfg.isInt("Dependences." + s + ".last_loaded"))
+				continue;
+			long lastLoaded = cfg.getLong("Dependences." + s + ".last_loaded");
+			long diff = now - lastLoaded;
+			if (diff > deleteTime) {
+				Bukkit.getConsoleSender().sendMessage(
+						PluginConfig.getPrefix() + "World of " + s + " was not loaded for too long. Deleting!");
+				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ws delete " + s);
+			}
+		}
+	}
 }
