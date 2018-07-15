@@ -32,7 +32,7 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
 				world.commit();
 				Bukkit.getWorlds().add(world);
 				if (sw != null)
-					sw.stopCreating();
+					sw.setCreating(false);
 			}
 		});
 		return;

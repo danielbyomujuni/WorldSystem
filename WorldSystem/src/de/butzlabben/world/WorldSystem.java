@@ -137,13 +137,14 @@ public class WorldSystem extends JavaPlugin {
 			creator = (c, sw) -> {
 				Bukkit.getWorlds().add(c.createWorld());
 				if (sw != null)
-					sw.stopCreating();
+					sw.setCreating(false);
 			};
 		}
-		
+
 		// Starting for #28
 		if (PluginConfig.shouldDelete()) {
-			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Searching for old worlds to delete if not loaded for " + PluginConfig.deleteAfter() + " days");
+			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix()
+					+ "Searching for old worlds to delete if not loaded for " + PluginConfig.deleteAfter() + " days");
 			DependenceConfig.checkWorlds();
 		}
 

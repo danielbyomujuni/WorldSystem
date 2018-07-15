@@ -14,7 +14,6 @@ import de.butzlabben.world.gui.clicklistener.ComingSoonClickListener;
 import de.butzlabben.world.gui.clicklistener.CommandExecutorClickListener;
 import de.butzlabben.world.gui.worldoption.FireStatus;
 import de.butzlabben.world.gui.worldoption.TntStatus;
-import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 
 public class WorldOptionsGUI extends OrcInventory {
@@ -38,11 +37,7 @@ public class WorldOptionsGUI extends OrcInventory {
 		if (item != null) {
 			item.setOnClick((p, inv, i) -> {
 				p.closeInventory();
-				SystemWorld sw = SystemWorld.getSystemWorld(p.getWorld().getName());
-				if(sw != null && sw.isLoaded()) {
-					sw.directUnload(p.getWorld());
-					p.chat("/ws reset");
-				}
+				p.chat("/ws reset");
 			});
 			addItem(GuiConfig.getSlot(path + "reset"), item);
 		}

@@ -180,9 +180,10 @@ public class SystemWorld {
 		Preconditions.checkNotNull(p, "player must not be null");
 		Preconditions.checkArgument(p.isOnline(), "player must be online");
 
-		if (creating)
+		if (creating) {
+			p.sendMessage(PluginConfig.getPrefix() + "§cWorld is still creating...");
 			return;
-
+		}
 		
 		WorldLoadEvent event = new WorldLoadEvent(p, this);
 		Bukkit.getPluginManager().callEvent(event);
@@ -310,6 +311,9 @@ public class SystemWorld {
 					e.printStackTrace();
 				}
 			}
+			
+			SystemWorld sw = SystemWorld.getSystemWorld(worldname);
+			sw.setCreating(true);
 			// For #16
 			WorldSystem.creator.create(event.getWorldCreator(), null);
 		}
@@ -375,8 +379,8 @@ public class SystemWorld {
 		return w;
 	}
 
-	public void stopCreating() {
-		creating = false;
+	public void setCreating(boolean creating) {
+		this.creating = creating;
 	}
 
 	public boolean isCreating() {

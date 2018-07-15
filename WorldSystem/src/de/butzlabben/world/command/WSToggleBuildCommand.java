@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
+import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.wrapper.WorldPlayer;
 
@@ -38,6 +39,10 @@ public class WSToggleBuildCommand implements CommandExecutor {
 			return true;
 		}
 		WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
+		if (wp.isOwnerofWorld()) {
+			p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
+			return true;
+		}
 		if (wp.toggleBuild()) {
 			p.sendMessage(MessageConfig.getToggleBuildEnabled().replaceAll("%player", a.getName()));
 		} else {

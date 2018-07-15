@@ -171,6 +171,8 @@ public class WorldPlayer {
 	 * @return if he ist the owner
 	 */
 	public boolean isOwnerofWorld() {
+		if(!isOnSystemWorld())
+			return false;
 		WorldConfig wc = WorldConfig.getWorldConfig(worldname);
 		return wc.getOwner().equals(p.getUniqueId());
 	}

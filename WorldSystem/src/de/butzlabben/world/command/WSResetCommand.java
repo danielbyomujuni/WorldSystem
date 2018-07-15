@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.World.Environment;
+import org.bukkit.WorldCreator;
+import org.bukkit.WorldType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,14 +24,15 @@ import de.butzlabben.world.wrapper.SystemWorld;
 public class WSResetCommand implements CommandExecutor {
 
 	private ArrayList<Player> toConfirm = new ArrayList<>();
-	
+
 	@Override
 	public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
 		Player p = (Player) cs;
-		if(args.length > 2) {
-			p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", WorldSystem.getInstance().getCommand("ws reset").getUsage()));
+		if (args.length > 2) {
+			p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage",
+					WorldSystem.getInstance().getCommand("ws reset").getUsage()));
 			return true;
-		}		
+		}
 		DependenceConfig dc = new DependenceConfig(p);
 		String worldname = dc.getWorldname();
 		SystemWorld sw = SystemWorld.getSystemWorld(worldname);
@@ -38,10 +42,9 @@ public class WSResetCommand implements CommandExecutor {
 		}
 		if (args.length > 1) {
 			if (args[1].equals("confirm")) {
-				if(sw.isLoaded()) {
-					p.sendMessage(MessageConfig.getWorldStillLoaded());
-					return true;
-				}
+				if (sw.isLoaded())
+					sw.directUnload(Bukkit.getWorld(worldname));
+				
 				if (!toConfirm.contains(p)) {
 					p.sendMessage(MessageConfig.getNoRequestSend());
 					return true;
@@ -62,24 +65,28 @@ public class WSResetCommand implements CommandExecutor {
 				try {
 					FileUtils.copyDirectory(exampleworld, f);
 					toConfirm.remove(p);
+
+					FileUtils.moveDirectoryToDirectory(f, Bukkit.getWorldContainer(), false);
+
 					p.sendMessage(MessageConfig.getWorldReseted());
-					
-					//Currently problems with 
-					/*WorldCreator creator = new WorldCreator(worldname);
+
+					// For fast worldcreating after reset
+					WorldCreator creator = new WorldCreator(worldname);
 					long seed = PluginConfig.getSeed();
 					Environment env = PluginConfig.getEnvironment();
 					WorldType type = PluginConfig.getWorldType();
-					if(seed != 0)
+					if (seed != 0)
 						creator.seed(seed);
 					creator.type(type);
 					creator.environment(env);
 					String generator = PluginConfig.getGenerator();
-					if(!generator.trim().isEmpty())
+					if (!generator.trim().isEmpty())
 						creator.generator(generator);
-					
+
+					sw.setCreating(true);
 					// For #16
-					WorldSystem.creator.create(creator, sw);*/
-					
+					WorldSystem.creator.create(creator, sw);
+
 				} catch (IOException e) {
 					e.printStackTrace();
 					p.sendMessage(MessageConfig.getUnknownError());
@@ -90,14 +97,14 @@ public class WSResetCommand implements CommandExecutor {
 				return true;
 			}
 		} else if (args.length == 1) {
-			if (sw.isLoaded()) {
-				p.sendMessage(MessageConfig.getWorldStillLoaded());
-				return true;
-			}
+			if (sw.isLoaded())
+				sw.directUnload(Bukkit.getWorld(worldname));
+
 			if (toConfirm.contains(p)) {
 				p.sendMessage(MessageConfig.getRequestAlreadySent());
 				return true;
 			}
+
 			int time = PluginConfig.getRequestExpire();
 			p.sendMessage(MessageConfig.getConfirmRequest().replaceAll("%command", "/ws reset confirm"));
 			p.sendMessage(MessageConfig.getTimeUntilExpires().replaceAll("%time", String.valueOf(time)));

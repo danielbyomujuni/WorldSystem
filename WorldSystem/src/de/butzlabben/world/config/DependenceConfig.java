@@ -19,11 +19,16 @@ public class DependenceConfig {
 
 	@SuppressWarnings("deprecation")
 	public DependenceConfig(String s) {
-		OfflinePlayer op = Bukkit.getOfflinePlayer(UUID.fromString(s));
+		OfflinePlayer op = null;
+		try {
+			op = Bukkit.getOfflinePlayer(UUID.fromString(s));
+		} catch (Exception e) {
+		}
 		if (op == null) {
 			op = Bukkit.getOfflinePlayer(s);
 			if (op == null)
 				return;
+
 		}
 		this.op = op;
 	}
@@ -135,7 +140,7 @@ public class DependenceConfig {
 		YamlConfiguration dcfg = YamlConfiguration.loadConfiguration(dconfig);
 		return dcfg.getInt("Dependences." + op.getUniqueId().toString() + ".ID");
 	}
-	
+
 	public OfflinePlayer getOwner() {
 		return op;
 	}
