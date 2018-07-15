@@ -1,5 +1,5 @@
 name: WorldSystem
-version: 2.2.0.4
+version: 2.2.0.5
 author: Butzlabben
 main: de.butzlabben.world.WorldSystem
 loadbefore: [FastAsyncWorldEdit, WorldEdit]

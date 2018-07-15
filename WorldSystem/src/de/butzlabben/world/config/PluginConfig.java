@@ -218,8 +218,8 @@ public class PluginConfig {
 		return getConfig().getInt("delete_after") != -1;
 	}
 	
-	public static int deleteAfter() {
-		return getConfig().getInt("delete_after");
+	public static long deleteAfter() {
+		return getConfig().getLong("delete_after");
 	}
 	
 	public static WorldCreator getWorldCreator(String worldname) {
