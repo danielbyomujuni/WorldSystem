@@ -6,7 +6,7 @@ import de.butzlabben.inventory.OrcClickListener;
 import de.butzlabben.inventory.OrcInventory;
 import de.butzlabben.inventory.OrcItem;
 import de.butzlabben.world.config.GuiConfig;
-import de.butzlabben.world.config.PluginConfig;
+import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.gui.clicklistener.InventoryOpenClickListener;
 
 public class WorldSystemGUI extends OrcInventory {
@@ -24,7 +24,7 @@ public class WorldSystemGUI extends OrcInventory {
 			if (ppg != null)
 				p.openInventory(ppg.getInventory(p));
 			else
-				p.sendMessage(PluginConfig.getPrefix() + "§cNo members added");
+				p.sendMessage(MessageConfig.getNoMemberAdded());
 		});
 		loadItem("worldoptions", new InventoryOpenClickListener(WorldOptionsGUI.instance));
 	}

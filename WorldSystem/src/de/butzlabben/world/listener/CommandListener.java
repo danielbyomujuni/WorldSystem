@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
+import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 
@@ -22,32 +23,38 @@ public class CommandListener implements Listener {
 		World from = e.getFrom().getWorld();
 		World to = e.getTo().getWorld();
 		WorldPlayer wp = new WorldPlayer(p);
+
+		if (from != to)
+			SystemWorld.tryUnloadLater(from);
+
 		if (e.getCause() == TeleportCause.SPECTATE) {
-			if (from != to) {
+			if (from != to && WorldConfig.exists(to.getName())) {
 				if (!p.hasPermission("ws.tp.toother")) {
 					e.setCancelled(true);
 					p.sendMessage(MessageConfig.getNoPermission());
 					return;
 				}
-				SystemWorld.tryUnloadLater(from);
 			}
 
-			if (wp.isOwnerofWorld() || wp.canTeleport() || p.hasPermission("ws.tp.toother"))
+			if (!wp.isOnSystemWorld() || wp.isOwnerofWorld() || wp.canTeleport() || p.hasPermission("ws.tp.toother"))
 				return;
 			e.setCancelled(true);
 			p.sendMessage(MessageConfig.getNoPermission());
-		} else {
-			if (from != to) {
-				SystemWorld.tryUnloadLater(from);
-			} else {
-				if (e.getCause() == TeleportCause.COMMAND) {
-					if (p.hasPermission("ws.tp.toother") || wp.isOwnerofWorld() || wp.canTeleport())
-						return;
+		} else if (e.getCause() == TeleportCause.COMMAND) {
+			if (from != to && WorldConfig.exists(to.getName())) {
+				if (!p.hasPermission("ws.tp.toother")) {
 					e.setCancelled(true);
 					p.sendMessage(MessageConfig.getNoPermission());
+					return;
 				}
 			}
+
+			if (!wp.isOnSystemWorld() || wp.isOwnerofWorld() || wp.canTeleport() || p.hasPermission("ws.tp.toother"))
+				return;
+			e.setCancelled(true);
+			p.sendMessage(MessageConfig.getNoPermission());
 		}
+
 	}
 
 	@EventHandler(priority = EventPriority.HIGH)
@@ -55,6 +62,10 @@ public class CommandListener implements Listener {
 		String cmd = e.getMessage().toLowerCase();
 		Player p = e.getPlayer();
 		WorldPlayer wp = new WorldPlayer(p);
+
+		if (!wp.isOnSystemWorld())
+			return;
+
 		if (cmd.startsWith("/gamemode") || cmd.startsWith("/gm")) {
 			if (!wp.isOnSystemWorld())
 				return;
@@ -65,6 +76,7 @@ public class CommandListener implements Listener {
 				p.sendMessage(MessageConfig.getNoPermission());
 				return;
 			}
+
 			if (!wp.canChangeGamemode() && !wp.isOwnerofWorld()) {
 				p.sendMessage(MessageConfig.getNoPermission());
 				e.setCancelled(true);

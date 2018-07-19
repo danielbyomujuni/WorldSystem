@@ -18,6 +18,7 @@ world:
     other: "&cKyseisellä pelaajalla ei ole maailmaa!"
   setting_up: "&aAlustetaan maailmaa..."
   playerlist: "Pelaajat tässä maailmassa: %players"
+  still_creating: "&cWorld is still creating"
 
 member:
   removed: "Poistit pelaajan &c%player&6 maailmastasi!"
@@ -26,6 +27,7 @@ member:
   not_added:
     own: "&cKyseinen pelaaja ei ole jäsen!"
     other: "&cSinua ei ole lisätty tähän maailmaan"
+  no_one_added: "&cThere are no members added"
 
 request:
   expired: "&cPyyntösi on vanhentunut!"

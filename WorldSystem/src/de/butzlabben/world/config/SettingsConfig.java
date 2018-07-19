@@ -50,10 +50,15 @@ public class SettingsConfig {
 
 			w.getWorldBorder().setSize(size);
 
+			System.out.println(cfg.getBoolean("worldborder.center.as_spawn", true));
 			if (cfg.getBoolean("worldborder.center.as_spawn", true)) {
+				System.out.println(w.getSpawnLocation());
+				System.out.println(w.getWorldBorder().getCenter());
 				if (PluginConfig.useWorldSpawn()) {
+					System.out.println("s");
 					w.getWorldBorder().setCenter(PluginConfig.getWorldSpawn(w));
 				} else {
+					System.out.println("a");
 					w.getWorldBorder().setCenter(w.getSpawnLocation());
 				}
 			} else {

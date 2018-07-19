@@ -18,6 +18,7 @@ world:
     other: "&cCe joueur n'a pas de monde!"
   setting_up: "&aChargement du monde ..."
   playerlist: "Joueurs dans ce monde: %players"
+  still_creating: "&cWorld is still creating"
 
 member:
   removed: "Vous avez supprimé &c%player&6 de votre monde!"
@@ -26,6 +27,7 @@ member:
   not_added:
     own: "&cCe joueur n'est pas membre!"
     other: "&cVous n'avez pas été ajouté à ce monde!"
+  no_one_added: "&cThere are no members added"
 
 request:
   expired: "&cVotre demande a expiré!"

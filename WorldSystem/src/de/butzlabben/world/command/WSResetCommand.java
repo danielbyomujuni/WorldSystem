@@ -44,7 +44,7 @@ public class WSResetCommand implements CommandExecutor {
 			if (args[1].equals("confirm")) {
 				if (sw.isLoaded())
 					sw.directUnload(Bukkit.getWorld(worldname));
-				
+
 				if (!toConfirm.contains(p)) {
 					p.sendMessage(MessageConfig.getNoRequestSend());
 					return true;
@@ -53,7 +53,13 @@ public class WSResetCommand implements CommandExecutor {
 				Bukkit.getPluginManager().callEvent(event);
 				if (event.isCancelled())
 					return true;
+
+				if (sw.isLoaded()) {
+					p.sendMessage(MessageConfig.getWorldStillLoaded());
+					return true;
+				}
 				File f = new File(PluginConfig.getWorlddir() + "/" + worldname);
+
 				File[] files = f.listFiles();
 				for (File file : files) {
 					if (file.getName().equals("worldconfig.yml"))
@@ -85,7 +91,10 @@ public class WSResetCommand implements CommandExecutor {
 
 					sw.setCreating(true);
 					// For #16
-					WorldSystem.creator.create(creator, sw);
+					WorldSystem.creator.create(creator, sw, () -> {
+						if (p != null && p.isOnline())
+							p.sendMessage(MessageConfig.getWorldCreated());
+					});
 
 				} catch (IOException e) {
 					e.printStackTrace();

@@ -94,6 +94,8 @@ public class AutoUpdater implements Listener {
 				Bukkit.getConsoleSender().sendMessage(
 						PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
 			}
+		} else {
+			confirmNeed = false;
 		}
 	}
 

@@ -18,6 +18,7 @@ world:
     other: "&cTen gracz nie ma swojego świata!"
   setting_up: "&aUstawianie świata..."
   playerlist: "Gracze na tym świecie: %players"
+  still_creating: "&cWorld is still creating"
 
 member:
   removed: "Usunąłeś &c%player&6 ze swojego świata!"
@@ -26,6 +27,7 @@ member:
   not_added:
     own: "&cTen gracz nie jest dodany do Twojego świata!"
     other: "&cNie jesteś dodany na ten świat!"
+  no_one_added: "&cThere are no members added"
 
 request:
   expired: "&cTwoja prośba wygasła!"

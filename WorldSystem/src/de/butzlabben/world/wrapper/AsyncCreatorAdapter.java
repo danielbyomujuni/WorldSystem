@@ -16,7 +16,7 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
 
 	// Create worlds async to close #16
 	@Override
-	public void create(WorldCreator creator, SystemWorld sw) {
+	public void create(WorldCreator creator, SystemWorld sw, Runnable r) {
 		TaskManager.IMP.async(new Runnable() {
 			@Override
 			public void run() {
@@ -28,11 +28,15 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
 
 				Block block = world.getBlockAt(0, 0, 0);
 				block.setType(Material.BEDROCK);
+				
 				// When you are done
 				world.commit();
 				Bukkit.getWorlds().add(world);
 				if (sw != null)
 					sw.setCreating(false);
+				
+				// Send the play the message
+				r.run();
 			}
 		});
 		return;

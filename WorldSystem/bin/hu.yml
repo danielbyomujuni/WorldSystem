@@ -18,6 +18,7 @@ world:
     other: "&cEz a játékos nem rendelkezik világgal!"
   setting_up: "&aA világ megteremtése..."
   playerlist: "Játékos ebben a világban: %player"
+  still_creating: "&cWorld is still creating"
 
 member:
   removed: "Törölted &c%player&6 játékost a világodból!"
@@ -26,6 +27,8 @@ member:
   not_added:
     own: "&cEz a játékos nem tagja!"
     other: "&cNem vagy hozzáadva ehhez a világhoz"
+  still_creating: "&cWorld is still creating"
+  no_one_added: "&cThere are no members added"
 
 request:
   expired: "&cA kérelem lejárt!"

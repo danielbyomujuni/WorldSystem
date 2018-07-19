@@ -18,6 +18,7 @@ world:
     other: "&cEse jugador no tiene un mundo."
   setting_up: "&aConfigurando el mundo..."
   playerlist: "Jugadores en este mundo: %players"
+  still_creating: "&cWorld is still creating"
 
 member:
   removed: "Has eliminado a &c%player&6 de tu mundo."
@@ -26,6 +27,7 @@ member:
   not_added:
     own: "&cEse jugador no es miembro de tu mundo."
     other: "&cNo estas agregado a este mundo."
+  no_one_added: "&cThere are no members added"
 
 request:
   expired: "&cTu solicitud ha expirado."

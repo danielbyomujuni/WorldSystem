@@ -18,6 +18,7 @@ world:
     other: "&cDeze speler heeft nog geen wereld!"
   setting_up: "&aWereld word aangemaakt"
   playerlist: "speler is in wereld: %players"
+  still_creating: "&cWorld is still creating"
 
 member:
   removed: "Jij hebt &c%player&6 verwijderd van jouw wereld!"
@@ -26,6 +27,7 @@ member:
   not_added:
     own: "&cDeze speler is nog niet toegevoegd!"
     other: "&cJij bent niet aan deze wereld toegevoegd"
+  no_one_added: "&cThere are no members added"
 
 request:
   expired: "&cJouw uitnodiging is verlopen!"

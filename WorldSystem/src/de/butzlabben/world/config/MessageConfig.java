@@ -135,6 +135,10 @@ public class MessageConfig {
 	public static String getMemberRemoved() {
 		return getMessage("member.removed", "You removed §c%player§6 from your world!");
 	}
+	
+	public static String getNoMemberAdded() {
+		return getMessage("member.no_one_added", "§cThere are no members added");
+	}
 
 	public static String getWorldAlreadyExists() {
 		return getMessage("world.already_exists", "§cYou already have a world!");
@@ -142,6 +146,10 @@ public class MessageConfig {
 
 	public static String getWorldCreated() {
 		return getMessage("world.created", "Your world is now ready. Get there with §a/ws home");
+	}
+	
+	public static String getWorldStillCreating() {
+		return getMessage("world.still_creating", "§cWorld is still creating");
 	}
 
 	public static String getNotOnWorld() {

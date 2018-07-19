@@ -131,7 +131,7 @@ public class SystemWorld {
 		Bukkit.getPluginManager().callEvent(event);
 		if (event.isCancelled())
 			return;
-		//Set unloading to true
+		// Set unloading to true
 		unloading = true;
 		w.save();
 		Chunk[] arrayOfChunk;
@@ -144,7 +144,7 @@ public class SystemWorld {
 			a.teleport(PluginConfig.getSpawn());
 			a.setGameMode(PluginConfig.getSpawnGamemode());
 		}
-		
+
 		Bukkit.getScheduler().runTaskLater(WorldSystem.getInstance(), new Runnable() {
 			@Override
 			public void run() {
@@ -181,17 +181,17 @@ public class SystemWorld {
 		Preconditions.checkArgument(p.isOnline(), "player must be online");
 
 		if (creating) {
-			p.sendMessage(PluginConfig.getPrefix() + "§cWorld is still creating...");
+			p.sendMessage(MessageConfig.getWorldStillCreating());
 			return;
 		}
-		
+
 		WorldLoadEvent event = new WorldLoadEvent(p, this);
 		Bukkit.getPluginManager().callEvent(event);
 		if (event.isCancelled())
 			return;
-		
+
 		unloading = false;
-		
+
 		p.sendMessage(MessageConfig.getSettingUpWorld());
 		// Move World into Server dir
 		String worlddir = PluginConfig.getWorlddir();
@@ -202,22 +202,23 @@ public class SystemWorld {
 			if (new File(Bukkit.getWorldContainer(), worldname).exists()
 					&& new File(PluginConfig.getWorlddir() + "/" + worldname).exists()) {
 				System.err.println("World " + worldname + " exists twice!");
-//				try {
-//					FileUtils.deleteDirectory(new File(Bukkit.getWorldContainer(), worldname));
-//				} catch (IOException e) {
-//					p.sendMessage(PluginConfig.getPrefix() + "§cError");
-//					e.printStackTrace();
-//				}
+				// try {
+				// FileUtils.deleteDirectory(new
+				// File(Bukkit.getWorldContainer(), worldname));
+				// } catch (IOException e) {
+				// p.sendMessage(PluginConfig.getPrefix() + "§cError");
+				// e.printStackTrace();
+				// }
 			}
 			try {
 				FileUtils.moveDirectoryToDirectory(world, Bukkit.getWorldContainer(), false);
 			} catch (IOException e) {
 				System.err.println("Couldn't load world of " + p.getName());
-				p.sendMessage(PluginConfig.getPrefix() + "§cError");
+				p.sendMessage(PluginConfig.getPrefix() + "§cError: " + e.getMessage());
 				e.printStackTrace();
 			}
 		}
-		
+
 		if (worldname.charAt(worldname.length() - 37) == ' ') {
 			StringBuilder myName = new StringBuilder(worldname);
 			myName.setCharAt(worldname.length() - 37, '-');
@@ -242,7 +243,7 @@ public class SystemWorld {
 		} else {
 			p.teleport(w.getSpawnLocation());
 		}
-		
+
 		OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
 		DependenceConfig dc = new DependenceConfig(owner);
 		dc.setLastLoaded();
@@ -307,15 +308,20 @@ public class SystemWorld {
 				try {
 					FileUtils.moveDirectoryToDirectory(world, Bukkit.getWorldContainer(), false);
 				} catch (IOException e) {
+					p.sendMessage(PluginConfig.getPrefix() + "§cError: " + e.getMessage());
 					System.err.println("Couldn't load world of " + p.getName());
 					e.printStackTrace();
+					return false;
 				}
 			}
-			
+
 			SystemWorld sw = SystemWorld.getSystemWorld(worldname);
 			sw.setCreating(true);
 			// For #16
-			WorldSystem.creator.create(event.getWorldCreator(), null);
+			WorldSystem.creator.create(event.getWorldCreator(), sw, () -> {
+				if (p != null && p.isOnline())
+					p.sendMessage(MessageConfig.getWorldCreated());
+			});
 		}
 		return true;
 	}
@@ -356,10 +362,17 @@ public class SystemWorld {
 	public void teleportToWorldSpawn(Player p) {
 		Preconditions.checkNotNull(p, "player must not be null");
 		Preconditions.checkArgument(p.isOnline(), "player must be online");
+
+		if (creating) {
+			p.sendMessage(MessageConfig.getWorldStillCreating());
+			return;
+		}
+
 		unloading = false;
 		w = Bukkit.getWorld(worldname);
 		if (w == null)
 			return;
+
 		if (PluginConfig.useWorldSpawn()) {
 			p.teleport(PluginConfig.getWorldSpawn(w));
 		} else {
@@ -370,6 +383,10 @@ public class SystemWorld {
 		} else {
 			p.setGameMode(GameMode.CREATIVE);
 		}
+
+		OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
+		DependenceConfig dc = new DependenceConfig(owner);
+		dc.setLastLoaded();
 	}
 
 	/**

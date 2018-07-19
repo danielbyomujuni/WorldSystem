@@ -18,6 +18,7 @@ world:
     other: ""
   setting_up: ""
   playerlist: "%players"
+  still_creating: ""
 
 member:
   removed: "%player"
@@ -26,6 +27,7 @@ member:
   not_added:
     own: ""
     other: ""
+  no_one_added
 
 request:
   expired: ""

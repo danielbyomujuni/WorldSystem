@@ -18,6 +18,7 @@ world:
     other: "&cУ этого игрока нету мира!"
   setting_up: "&aПриготовлеваю мир..."
   playerlist: "Игроков в мире: %players"
+  still_creating: "&cWorld is still creating"
 
 member:
   removed: "Ты удалил &c%player&6 из твоего мира!"
@@ -26,6 +27,7 @@ member:
   not_added:
     own: "&cЭтот игрок не член твоего мира!"
     other: "&cТебя не добавили к этому миру"
+  no_one_added: "&cThere are no members added"
 
 request:
   expired: "&cТвой запрос вытек!"

@@ -86,6 +86,7 @@ public class WorldSystem extends JavaPlugin {
 				SystemWorld sw = SystemWorld.getSystemWorld(w.getName());
 				if (sw != null && sw.isLoaded())
 					SettingsConfig.editWorld(w);
+					
 			}
 		}, 20, 20 * 10);
 
@@ -134,10 +135,11 @@ public class WorldSystem extends JavaPlugin {
 			Bukkit.getConsoleSender()
 					.sendMessage(PluginConfig.getPrefix() + "Found FAWE! Try now to create worlds async");
 		} else {
-			creator = (c, sw) -> {
+			creator = (c, sw, r) -> {
 				Bukkit.getWorlds().add(c.createWorld());
 				if (sw != null)
 					sw.setCreating(false);
+				r.run();
 			};
 		}
 
