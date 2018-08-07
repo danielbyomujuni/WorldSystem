@@ -36,7 +36,6 @@ public class GridGenerator extends AbstractGenerator {
 		}
 	}
 	
-	@Override
 	public byte[][] generateBlockSections(World world, Random random, int x, int z, BiomeGrid biomes) {
 		setBiome(biomes, Biome.PLAINS);
 		if(grid == 16) {

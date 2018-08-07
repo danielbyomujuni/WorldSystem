@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -31,7 +32,13 @@ public class GuiConfig {
 		file = f;
 		if (file.exists() == false) {
 			try {
-				InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource("gui.yml");
+				String guiFileResource;
+				if (WorldSystem.isIs1_13()) {
+					guiFileResource = "1_13_gui.yml";
+				} else {
+					guiFileResource = "old_gui.yml";
+				}
+				InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource(guiFileResource);
 				Files.copy(in, file.toPath());
 			} catch (IOException e) {
 				System.err.println("Wasn't able to create Config");
@@ -45,7 +52,8 @@ public class GuiConfig {
 
 	public static YamlConfiguration getConfig() {
 		try {
-			return YamlConfiguration.loadConfiguration(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
+			return YamlConfiguration
+					.loadConfiguration(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -83,18 +91,15 @@ public class GuiConfig {
 		return colored;
 	}
 
-	public static int getId(FileConfiguration cfg, String path) {
-		return cfg.getInt(path + ".material");
-	}
-
 	public static byte getData(FileConfiguration cfg, String path) {
-		return (byte) cfg.getInt(path + ".data");
+		return (byte) cfg.getInt(path + ".data", 0);
 	}
 
 	public static Material getMaterial(FileConfiguration cfg, String path) {
 		try {
 			return Material.valueOf(cfg.getString(path + ".material").toUpperCase());
 		} catch (IllegalArgumentException ex) {
+			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§cUnknown material: " + path);
 			return null;
 		}
 	}
@@ -102,7 +107,7 @@ public class GuiConfig {
 	public static OrcItem getItem(String path) {
 		YamlConfiguration cfg = getConfig();
 		try {
-			return new OrcItem(getId(cfg, path), getData(cfg, path), getDisplay(cfg, path), getLore(cfg, path));
+			return new OrcItem(getMaterial(cfg, path), getData(cfg, path), getDisplay(cfg, path), getLore(cfg, path));
 		} catch (Exception e) {
 		}
 		try {
@@ -124,4 +129,7 @@ public class GuiConfig {
 		return getItem("options.coming_soon");
 	}
 
+	public static Material getSkullItem() {
+		return getMaterial(getConfig(), "options.players.skull_item");
+	}
 }

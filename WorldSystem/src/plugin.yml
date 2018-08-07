@@ -2,6 +2,9 @@ name: WorldSystem
 version: 2.2.0.6
 author: Butzlabben
 main: de.butzlabben.world.WorldSystem
+
+api-version: 1.13
+
 loadbefore: [FastAsyncWorldEdit, WorldEdit]
 
 commands:

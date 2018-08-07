@@ -10,38 +10,41 @@ import org.bukkit.entity.Player;
 
 import com.google.common.base.Preconditions;
 
+import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
 
 /**
- * This class represents a player, on a systemworld or not
- * but be carefull when accesing some methods
- * when the player is not on a systemworld like toggleBuild()
+ * This class represents a player, on a systemworld or not but be carefull when
+ * accesing some methods when the player is not on a systemworld like
+ * toggleBuild()
+ * 
  * @author Butzlabben
  * @since 15.03.2018
  */
 public class WorldPlayer {
-	
+
 	private OfflinePlayer p;
 	private String worldname;
-	
+
 	/**
 	 * @return the worldname, where the worldplayer object was created for
 	 */
 	public String getWorldname() {
 		return worldname;
 	}
-	
+
 	/**
 	 * toggles building for this player
+	 * 
 	 * @return whether can build or not
 	 */
 	public boolean toggleBuild() {
 		Preconditions.checkArgument(isOnSystemWorld(), "player must be for this on a systemworld");
-		
+
 		WorldConfig wc = WorldConfig.getWorldConfig(worldname);
-		if (!wc.isMember(p.getUniqueId())) 
+		if (!wc.isMember(p.getUniqueId()))
 			return false;
-		
+
 		boolean build = wc.canBuild(p.getUniqueId());
 		build = !build;
 		wc.setBuild(p.getUniqueId(), build);
@@ -52,7 +55,7 @@ public class WorldPlayer {
 		}
 		return build;
 	}
-	
+
 	/**
 	 * @return whether can build or not
 	 */
@@ -61,18 +64,19 @@ public class WorldPlayer {
 		WorldConfig wc = WorldConfig.getWorldConfig(worldname);
 		return wc.canBuild(p.getUniqueId());
 	}
-	
+
 	/**
 	 * toggles teleporting for this player
+	 * 
 	 * @return whether can teleport or not
 	 */
 	public boolean toggleTeleport() {
 		Preconditions.checkArgument(isOnSystemWorld(), "player must be for this on a systemworld");
 
 		WorldConfig wc = WorldConfig.getWorldConfig(worldname);
-		if (!wc.isMember(p.getUniqueId())) 
+		if (!wc.isMember(p.getUniqueId()))
 			return false;
-		
+
 		boolean teleport = wc.canTeleport(p.getUniqueId());
 		teleport = !teleport;
 		wc.setTeleport(p.getUniqueId(), teleport);
@@ -83,7 +87,7 @@ public class WorldPlayer {
 		}
 		return teleport;
 	}
-	
+
 	/**
 	 * @return whether can teleport or not
 	 */
@@ -92,19 +96,19 @@ public class WorldPlayer {
 		WorldConfig wc = WorldConfig.getWorldConfig(worldname);
 		return wc.canTeleport(p.getUniqueId());
 	}
-	
+
 	/**
 	 * toggles gamemode changing for this player
+	 * 
 	 * @return whether can change his gamemode or not
 	 */
 	public boolean toggleGamemode() {
 		Preconditions.checkArgument(isOnSystemWorld(), "player must be for this on a systemworld");
 
-
 		WorldConfig wc = WorldConfig.getWorldConfig(worldname);
-		if (!wc.isMember(p.getUniqueId())) 
+		if (!wc.isMember(p.getUniqueId()))
 			return false;
-		
+
 		boolean changeGamemode = wc.canGamemode(p.getUniqueId());
 		changeGamemode = !changeGamemode;
 		wc.setGamemode(p.getUniqueId(), changeGamemode);
@@ -115,7 +119,7 @@ public class WorldPlayer {
 		}
 		return changeGamemode;
 	}
-	
+
 	/**
 	 * @return whether can change his gamemode or not
 	 */
@@ -124,7 +128,7 @@ public class WorldPlayer {
 		WorldConfig wc = WorldConfig.getWorldConfig(worldname);
 		return wc.canGamemode(p.getUniqueId());
 	}
-	
+
 	/**
 	 * @return if he is a member
 	 */
@@ -139,7 +143,7 @@ public class WorldPlayer {
 		this.p = p;
 		this.worldname = worldname;
 	}
-	
+
 	public WorldPlayer(Player p) {
 		this(p, p.getWorld().getName());
 	}
@@ -149,9 +153,12 @@ public class WorldPlayer {
 	 */
 	public boolean isOnSystemWorld() {
 		File worldconfig = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
+		if (!worldconfig.exists()) {
+			worldconfig = new File(PluginConfig.getWorlddir() + worldname + "/worldconfig.yml");
+		}
 		if (worldconfig.exists()) {
 			YamlConfiguration cfg = YamlConfiguration.loadConfiguration(worldconfig);
-			if(cfg.getString("Informations.Owner.PlayerUUID") == null) {
+			if (cfg.getString("Informations.Owner.PlayerUUID") == null) {
 				return false;
 			}
 			return true;
@@ -166,19 +173,19 @@ public class WorldPlayer {
 		return p;
 	}
 
-	
 	/**
 	 * @return if he ist the owner
 	 */
 	public boolean isOwnerofWorld() {
-		if(!isOnSystemWorld())
+		if (!isOnSystemWorld())
 			return false;
 		WorldConfig wc = WorldConfig.getWorldConfig(worldname);
 		return wc.getOwner().equals(p.getUniqueId());
 	}
 
 	/**
-	 * @param worldname of the world to be tested
+	 * @param worldname
+	 *            of the world to be tested
 	 * @return worldname if he is the owner of the specified world
 	 */
 	public boolean isMemberofWorld(String worldname) {

@@ -26,6 +26,7 @@ public class PlayersPageGUI extends OrcInventory {
 	private final static String path = "options.players.";
 	private static HashMap<UUID, Pair<Integer, Integer>> pages = new HashMap<>();
 
+	@SuppressWarnings("deprecation")
 	public PlayersPageGUI(int page, UUID ex, HashMap<UUID, String> players, int next, int before) {
 		super("Players added to this world", GuiConfig.getRows("options.players"), false);
 		pages.put(ex, Pair.of(next, before));
@@ -65,7 +66,7 @@ public class PlayersPageGUI extends OrcInventory {
 		YamlConfiguration cfg = GuiConfig.getConfig();
 		OrcItem oi = null;
 		try {
-			oi = new OrcItem(GuiConfig.getId(cfg, path), GuiConfig.getData(cfg, path),
+			oi = new OrcItem(GuiConfig.getMaterial(cfg, path), GuiConfig.getData(cfg, path),
 					GuiConfig.getDisplay(cfg, path).replaceAll("%page", "" + page), GuiConfig.getLore(cfg, path));
 		} catch (Exception e) {
 		}
@@ -76,11 +77,12 @@ public class PlayersPageGUI extends OrcInventory {
 		}
 		addItem(GuiConfig.getSlot(path), oi);
 
-		// Spieler reinladen
+		// Load players
 		int i = 0;
 		for (UUID uuid : players.keySet()) {
 			String name = players.get(uuid);
-			ItemStack is = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+			Material skullItem = GuiConfig.getSkullItem();
+			ItemStack is = new ItemStack(skullItem, 1, (short) 3);
 			SkullMeta sm = (SkullMeta) is.getItemMeta();
 			sm.setOwner(name);
 			sm.setDisplayName(

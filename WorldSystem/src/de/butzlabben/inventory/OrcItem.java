@@ -1,5 +1,6 @@
 package de.butzlabben.inventory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -32,28 +33,36 @@ public class OrcItem {
 		setItemStack(mat, display, lore);
 	}
 
-	public OrcItem(int id, byte data, String display, List<String> lore) {
-		setItemStack(id, data, display, lore);
-	}
+//	public OrcItem(int id, byte data, String display, List<String> lore) {
+//		setItemStack(id, data, display, lore);
+//	}
 
-	@SuppressWarnings("deprecation")
-	public OrcItem setItemStack(int id, byte data, String display, List<String> lore) {
-		is = new ItemStack(id, 1, data);
+//	@SuppressWarnings("deprecation")
+//	public OrcItem setItemStack(int id, byte data, String display, List<String> lore) {
+//		is = new ItemStack(id, 1, data);
+//		ItemMeta meta = is.getItemMeta();
+//		if (meta != null) {			
+//			meta.setDisplayName(display);
+//			meta.setLore(lore);
+//			is.setItemMeta(meta);
+//		}
+//		return this;
+//	}
+
+//	public OrcItem(int id, byte data, String display, String... lore) {
+//		setItemStack(id, data, display, lore);
+//	}
+
+//	public OrcItem setItemStack(int id, byte data, String display, String[] lore) {
+//		return setItemStack(id, data, display, Arrays.asList(lore));
+//	}
+
+	public OrcItem(Material material, byte data, String display, ArrayList<String> lore) {
+		is = new ItemStack(material, 1, data);
 		ItemMeta meta = is.getItemMeta();
-		if (meta != null) {			
-			meta.setDisplayName(display);
-			meta.setLore(lore);
-			is.setItemMeta(meta);
-		}
-		return this;
-	}
-
-	public OrcItem(int id, byte data, String display, String... lore) {
-		setItemStack(id, data, display, lore);
-	}
-
-	public OrcItem setItemStack(int id, byte data, String display, String[] lore) {
-		return setItemStack(id, data, display, Arrays.asList(lore));
+		meta.setDisplayName(display);
+		meta.setLore(lore);
+		is.setItemMeta(meta);
 	}
 
 	public OrcItem setItemStack(Material mat, String display, List<String> lore) {

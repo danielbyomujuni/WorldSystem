@@ -62,9 +62,15 @@ public class WorldSystem extends JavaPlugin {
 	public static OrcInventory mainGUI;
 
 	public static CreatorAdapter creator;
+	
+	private static boolean is1_13 = false;
 
 	@Override
 	public void onEnable() {
+		//Set right version
+		if(Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1_13") )
+			is1_13 = true;
+		
 		createConfigs();
 
 		PluginManager pm = Bukkit.getPluginManager();
@@ -216,4 +222,7 @@ public class WorldSystem extends JavaPlugin {
 		return JavaPlugin.getPlugin(WorldSystem.class);
 	}
 
+	public static boolean isIs1_13() {
+		return is1_13;
+	}
 }

@@ -22,7 +22,6 @@ public class FlatGenerator extends AbstractGenerator {
 		setGrass(height);
 	}
 	
-	@Override
 	public byte[][] generateBlockSections(World world, Random random, int x, int z, BiomeGrid biomes) {
 		setBiome(biomes, Biome.PLAINS);
 		return result;

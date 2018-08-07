@@ -90,6 +90,12 @@ public class SystemWorld {
 	 *                w == null
 	 */
 	public void directUnload(World w) {
+		if (!Bukkit.isPrimaryThread()) {
+			Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> {
+				directUnload(w);
+			});
+			return;
+		}
 		Preconditions.checkNotNull(w, "world must not be null");
 		unloading = true;
 		w.save();
@@ -126,6 +132,12 @@ public class SystemWorld {
 	 *                w == null
 	 */
 	public void unloadLater(World w) {
+		if (!Bukkit.isPrimaryThread()) {
+			Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> {
+				unloadLater(w);
+			});
+			return;
+		}
 		Preconditions.checkNotNull(w, "world must not be null");
 		WorldUnloadEvent event = new WorldUnloadEvent(this);
 		Bukkit.getPluginManager().callEvent(event);
@@ -177,6 +189,12 @@ public class SystemWorld {
 	 *                if player is not online
 	 */
 	public void load(Player p) {
+		if (!Bukkit.isPrimaryThread()) {
+			Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> {
+				load(p);
+			});
+			return;
+		}
 		Preconditions.checkNotNull(p, "player must not be null");
 		Preconditions.checkArgument(p.isOnline(), "player must be online");
 

@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Programmieren/FastAsyncWorldEdit.jar"/>
 	<classpathentry kind="lib" path="C:/Programmieren/worldedit-bukkit-6.1.7.2.jar"/>
-	<classpathentry kind="lib" path="C:/Programmieren/spigot-1.12.jar" sourcepath="C:/Users/jubek/Documents/Development/JavaLibraries/Bukkit_Spigot/BuildTools/Spigot"/>
+	<classpathentry kind="lib" path="C:/Programmieren/spigot-1.13-pre7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
