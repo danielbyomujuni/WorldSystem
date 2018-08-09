@@ -90,7 +90,7 @@ options:
         row: 6
         col: 5
       material: DOUBLE_PLANT
-      display: '&eCurrent page: %page'
+      display: '&eCurrent page: &a%page'
     player_list_to_row: 4
     playerhead:
       display: '&e%player'

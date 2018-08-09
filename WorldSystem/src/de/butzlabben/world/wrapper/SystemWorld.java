@@ -35,7 +35,7 @@ public class SystemWorld {
 	private String worldname;
 	private boolean unloading = false;
 	private boolean creating = false;
-
+	
 	private static HashMap<String, SystemWorld> cached = new HashMap<>();
 
 	/**
@@ -96,6 +96,7 @@ public class SystemWorld {
 			});
 			return;
 		}
+		
 		Preconditions.checkNotNull(w, "world must not be null");
 		unloading = true;
 		w.save();
