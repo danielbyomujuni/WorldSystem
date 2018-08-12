@@ -1,10 +1,9 @@
 package de.butzlabben.world.gui;
 
-import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 
 import de.butzlabben.inventory.DependListener;
 import de.butzlabben.inventory.OrcInventory;
@@ -19,26 +18,28 @@ import de.butzlabben.world.wrapper.WorldPlayer;
 
 public class PlayerOptionsGUI extends OrcInventory {
 
-	public static PlayerOptionsGUI instance;
-
 	private final static String path = "options.player.";
-
-	public final static HashMap<UUID, String> data = new HashMap<>();
-
-	public PlayerOptionsGUI() {
-		super("Player Options", GuiConfig.getRows("options.player"), true);
-		loadItem("build", "/ws togglebuild %data", new BuildStatus());
-		loadItem("gamemode", "/ws togglegm %data", new GamemodeStatus());
-		loadItem("teleport", "/ws toggletp %data", new TeleportStatus());
+	
+	public PlayerOptionsGUI(Player loader, String otherPlayer, UUID other) {
+		super(GuiConfig.getTitle(GuiConfig.getConfig(), "options.player").replace("%player", otherPlayer), GuiConfig.getRows("options.player"));
+		WorldPlayer wp = new WorldPlayer(Bukkit.getOfflinePlayer(other), loader.getWorld().getName());
+		loadItem("build", "/ws togglebuild " + otherPlayer, new BuildStatus(wp));
+		loadItem("gamemode", "/ws togglegm " + otherPlayer, new GamemodeStatus(wp));
+		loadItem("teleport", "/ws toggletp " + otherPlayer, new TeleportStatus(wp));
 		loadItem("time");
 		loadItem("addmember");
 		loadItem("delmember");
-		loadItem("worldborder");
 		loadItem("setpermissions");
 		loadItem("administrateworld");
-		if (instance != null)
-			instance.unregister();
-		instance = this;
+		
+		if (GuiConfig.isEnabled(path + "back")) {
+			OrcItem back = OrcItem.back.clone();
+			back.setOnClick((p, inv, i) -> {
+				p.closeInventory();
+				PlayersPageGUI.openGUI(p);
+			});
+			addItem(GuiConfig.getSlot(path + "back"), back);
+		}
 	}
 
 	public void loadItem(String subpath, String message, DependListener depend) {
@@ -66,24 +67,5 @@ public class PlayerOptionsGUI extends OrcInventory {
 
 	public void loadItem(String subpath) {
 		loadItem(subpath, null);
-	}
-
-	@Override
-	public Inventory getInventory(Player p, String title) {
-		if (data.containsKey(p.getUniqueId()))
-			return super.getInventory(p, title.replaceAll("%data", data.get(p.getUniqueId())));
-		return super.getInventory(p, title);
-	}
-
-	@Override
-	public Inventory getInventory(Player p) {
-		if (data.containsKey(p.getUniqueId()))
-			return super.getInventory(p, getTitle().replaceAll("%data", data.get(p.getUniqueId())));
-		return super.getInventory(p, getTitle());
-	}
-
-	@Override
-	public boolean canOpen(Player p) {
-		return new WorldPlayer(p).isOwnerofWorld();
 	}
 }

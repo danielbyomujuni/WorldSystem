@@ -1,12 +1,13 @@
 package de.butzlabben.world.gui;
 
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import de.butzlabben.inventory.OrcClickListener;
 import de.butzlabben.inventory.OrcInventory;
 import de.butzlabben.inventory.OrcItem;
 import de.butzlabben.world.config.GuiConfig;
-import de.butzlabben.world.config.MessageConfig;
+import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.gui.clicklistener.InventoryOpenClickListener;
 
 public class WorldSystemGUI extends OrcInventory {
@@ -14,19 +15,29 @@ public class WorldSystemGUI extends OrcInventory {
 	private final static String path = "worldsystem.";
 
 	public WorldSystemGUI() {
-		super("WorldSystem", GuiConfig.getRows("worldsystem"), true);
-		new WorldOptionsGUI();
-		new PlayerOptionsGUI();
+
+		super(GuiConfig.getTitle(GuiConfig.getConfig(), "worldsystem"), GuiConfig.getRows("worldsystem"));
 
 		loadItem("playeroptions", (p, inv, item) -> {
 			p.closeInventory();
-			PlayersPageGUI ppg = PlayersGUIManager.getFirstPage(p);
-			if (ppg != null)
-				p.openInventory(ppg.getInventory(p));
-			else
-				p.sendMessage(MessageConfig.getNoMemberAdded());
+			PlayersPageGUI.openGUI(p);
 		});
-		loadItem("worldoptions", new InventoryOpenClickListener(WorldOptionsGUI.instance));
+
+		loadItem("worldoptions", new InventoryOpenClickListener(new WorldOptionsGUI()));
+
+		if (GuiConfig.isEnabled(path + "back")) {
+			OrcItem back = OrcItem.back.clone();
+			back.setOnClick((p, inv, item) -> {
+				p.closeInventory();
+			});
+			addItem(GuiConfig.getSlot(path + "back"), back);
+		}
+	}
+
+	@Override
+	public Inventory getInventory(Player player) {
+		PlayersPageGUI.preloadPlayers(WorldConfig.getWorldConfig(player.getWorld().getName()));
+		return super.getInventory(player);
 	}
 
 	public void loadItem(String subpath, OrcClickListener listener) {
@@ -43,9 +54,7 @@ public class WorldSystemGUI extends OrcInventory {
 		loadItem(subpath, null);
 	}
 
-	@Override
 	public boolean canOpen(Player p) {
 		return true;
 	}
-
 }

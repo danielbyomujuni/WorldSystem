@@ -20,11 +20,27 @@ options:
   coming_soon:
     material: ORANGE_DYE
     display: '&6Coming soon...'
+  
+  # How the back item should look like
+  back: 
+    material: BARRIER
+    display: '&cBack'
     
   # WorldoptionsGUI
   world:
+    # What the title of the Inv should be
+    title: 'World Options'
+    
     # Rows
-    rows: 2
+    rows: 3
+    
+    # Where the back item should be
+    back:
+      enabled: true
+      slot:
+        row: 3
+        col: 5
+        
     # Reset button
     reset:
       # If feature should be enabled or not
@@ -60,41 +76,62 @@ options:
         col: 5
       material: TNT
       display: '&eToggle TNT-Explosion'
+    
+    back:
+      enabled: true
+      slot:
+        row: 3
+        col: 5
       
   players:
+    title: 'Players added to this world'
   
-    skull_item:
-      material: PLAYER_HEAD
+    back:
+      enabled: true
+      slot:
+        row: 6
+        col: 6 
   
     rows: 6
+    
     nextpage:
       enabled: true
       slot:
         row: 6
-        col: 9
+        col: 8
       material: PAPER
       display: '&eNext Page'
     pagebefore:
       enabled: true
       slot:
         row: 6
-        col: 1
+        col: 2
       material: PAPER
       display: '&ePage before'
     currentpage:
       enabled: true
       slot:
         row: 6
-        col: 5
+        col: 4
       material: SUNFLOWER
-      display: '&eCurrent page: &a%page'
-    player_list_to_row: 4
+      display: '&eCurrent page: &a%page' 
+    
     playerhead:
+      material: PLAYER_HEAD
       display: '&e%player'
       
   # PlayerGUI for managing one player on a world
   player:
-    rows: 2
+    title: 'Player options for %player'
+    
+    back: 
+      slot:
+        enabled: true
+        row: 3
+        col: 5
+  
+    rows: 3
+    
     build:
       enabled: true
       slot:
@@ -202,18 +239,27 @@ options:
       
 # WorldsystemGUI
 worldsystem:
+  title: 'WorldSystem'
+
   rows: 1
+  
+  back:
+    slot:
+      enabled: true
+      row: 1
+      col: 5
+      
   playeroptions:
     enabled: true
     slot:
       row: 1
-      col: 4
+      col: 1
     material: LEATHER_HELMET
     display: '&ePlayer Options'
   worldoptions:
     enabled: true
     slot:
       row: 1
-      col: 6
+      col: 9
     material: GRASS_BLOCK
     display: '&eWorld Options'

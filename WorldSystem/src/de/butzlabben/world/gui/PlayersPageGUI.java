@@ -1,125 +1,91 @@
 package de.butzlabben.world.gui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.UUID;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import de.butzlabben.inventory.OrcClickListener;
-import de.butzlabben.inventory.OrcInventory;
 import de.butzlabben.inventory.OrcItem;
+import de.butzlabben.inventory.pages.PageGUICreator;
 import de.butzlabben.world.config.GuiConfig;
-import de.butzlabben.world.wrapper.WorldPlayer;
+import de.butzlabben.world.config.MessageConfig;
+import de.butzlabben.world.config.WorldConfig;
 
 /**
  * @author Butzlabben
  * @since 20.04.2018
  */
-public class PlayersPageGUI extends OrcInventory {
-
-	private final static String path = "options.players.";
-	private static HashMap<UUID, Pair<Integer, Integer>> pages = new HashMap<>();
+public class PlayersPageGUI {
 
 	@SuppressWarnings("deprecation")
-	public PlayersPageGUI(int page, UUID ex, HashMap<UUID, String> players, int next, int before) {
-		super("Players added to this world", GuiConfig.getRows("options.players"), false);
-		pages.put(ex, Pair.of(next, before));
+	public static void openGUI(Player p) {
+		WorldConfig config = WorldConfig.getWorldConfig(p.getWorld().getName());
 
-		loadItem("nextpage", (p, inv, orcitem) -> {
-			p.closeInventory();
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-					p.closeInventory();
+		HashMap<UUID, String> members = config.getMembersWithNames();
 
-					inv.unregister();
-					int nextPage = pages.get(p.getUniqueId()).getLeft();
-					pages.remove(p.getUniqueId());
-
-					p.openInventory(PlayersGUIManager.getPage(p, nextPage).getInventory(p));
-				}
-			}.run();
-		});
-
-		loadItem("pagebefore", (p, inv, orcitem) -> {
-			p.closeInventory();
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-					p.closeInventory();
-					int pageBefore = pages.get(p.getUniqueId()).getRight();
-					pages.remove(p.getUniqueId());
-					inv.unregister();
-					p.openInventory(PlayersGUIManager.getPage(p, pageBefore).getInventory(p));
-				}
-			}.run();
-		});
-
-		String subpath = "currentpage";
-		String path = PlayersPageGUI.path + subpath;
-		YamlConfiguration cfg = GuiConfig.getConfig();
-		OrcItem oi = null;
-		try {
-			oi = new OrcItem(GuiConfig.getMaterial(cfg, path), GuiConfig.getData(cfg, path),
-					GuiConfig.getDisplay(cfg, path).replaceAll("%page", "" + page), GuiConfig.getLore(cfg, path));
-		} catch (Exception e) {
-		}
-		try {
-			oi = new OrcItem(GuiConfig.getMaterial(cfg, path),
-					GuiConfig.getDisplay(cfg, path).replaceAll("%page", "" + page), GuiConfig.getLore(cfg, path));
-		} catch (Exception e) {
-		}
-		addItem(GuiConfig.getSlot(path), oi);
-
-		// Load players
-		int i = 0;
-		for (UUID uuid : players.keySet()) {
-			String name = players.get(uuid);
-			Material skullItem = GuiConfig.getSkullItem();
-			ItemStack is = new ItemStack(skullItem, 1, (short) 3);
-			SkullMeta sm = (SkullMeta) is.getItemMeta();
-			sm.setOwner(name);
-			sm.setDisplayName(
-					GuiConfig.getDisplay(cfg, PlayersPageGUI.path + "playerhead").replaceAll("%player", name));
-			is.setItemMeta(sm);
-			OrcItem item = new OrcItem(is);
-			item.setOnClick((p, inv, orcitem) -> {
-				p.closeInventory();
-				PlayerOptionsGUI.data.put(ex, name);
-				pages.remove(p.getUniqueId());
-				p.openInventory(PlayerOptionsGUI.instance.getInventory(p));
-			});
-			addItem(i, item);
-			i++;
-
-		}
-	}
-
-	public void loadItem(String subpath, OrcClickListener depend) {
-		if (GuiConfig.isEnabled(path + subpath) == false)
+		if (members.size() == 0) {
+			p.sendMessage(MessageConfig.getNoMemberAdded());
 			return;
-		OrcItem item = GuiConfig.getItem(path + subpath);
-		if (item != null) {
-
-			item.setOnClick(depend);
-
-			addItem(GuiConfig.getSlot(path + subpath), item);
 		}
+
+		PageGUICreator<Entry<UUID, String>> creator = new PageGUICreator<>(GuiConfig.getRows("options.players"));
+
+		creator.create(GuiConfig.getTitle(GuiConfig.getConfig(), "options.players"), members.entrySet(), (entry) -> {
+			String name = entry.getValue();
+			OrcItem oi = new OrcItem(GuiConfig.getSkullItem(), GuiConfig
+					.getDisplay(GuiConfig.getConfig(), "options.players.playerhead").replaceAll("%player", name));
+			SkullMeta sm = (SkullMeta) oi.getItemStack().getItemMeta();
+			sm.setOwner(name);
+			oi.getItemStack().setItemMeta(sm);
+			oi.setOnClick((player, inv, item) -> {
+				player.closeInventory();
+				PlayerOptionsGUI gui = new PlayerOptionsGUI(player, name, entry.getKey());
+				player.openInventory(gui.getInventory(p));
+			});
+			return oi;
+		});
+
+		if (GuiConfig.isEnabled("options.players.back")) {
+			OrcItem back = OrcItem.back.clone();
+			back.setOnClick((player, inv, i) -> {
+				player.closeInventory();
+				player.openInventory(new WorldSystemGUI().getInventory(p));
+			});
+			creator.getInvPages().forEach((oi) -> {oi.addItem(GuiConfig.getSlot("options.players.back"), back);});
+		}
+
+		creator.show(p);
 	}
 
-	public void loadItem(String subpath) {
-		loadItem(subpath, null);
-	}
+	@SuppressWarnings("deprecation")
+	public static void preloadPlayers(WorldConfig config) {
+		new Thread(() -> {
+			int headsPerInv = GuiConfig.getRows("options.players") * 9;
+			HashMap<UUID, String> members = config.getMembersWithNames();
+			if (members == null || members.size() == 0)
+				return;
+			int pages = Math.round(members.size() / headsPerInv) < 1 ? 1 : Math.round(members.size() / headsPerInv);
+			for (int page = 0; page < pages; page++) {
+				int startPos = pages == 1 ? 0 : headsPerInv * (page - 1);
+				int length = pages == 1 ? members.size() : headsPerInv;
 
-	@Override
-	public boolean canOpen(Player p) {
-		return new WorldPlayer(p).isOwnerofWorld();
-	}
+				ArrayList<UUID> list = new ArrayList<>(members.keySet());
 
+				Inventory inv = Bukkit.createInventory(null, headsPerInv);
+				for (int i = startPos; i < startPos + length; i++) {
+					String name = members.get(list.get(i));
+					ItemStack is = new ItemStack(GuiConfig.getSkullItem(), 1, (short) 3);
+					SkullMeta sm = (SkullMeta) is.getItemMeta();
+					sm.setOwner(name);
+					is.setItemMeta(sm);
+					inv.addItem(is);
+				}
+			}
+		}).start();
+	}
 }

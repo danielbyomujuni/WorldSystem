@@ -33,7 +33,7 @@ public class GuiConfig {
 		if (file.exists() == false) {
 			try {
 				String guiFileResource;
-				if (WorldSystem.isIs1_13()) {
+				if (WorldSystem.is1_13()) {
 					guiFileResource = "1_13_gui.yml";
 				} else {
 					guiFileResource = "old_gui.yml";
@@ -48,6 +48,7 @@ public class GuiConfig {
 		OrcItem.enabled = getEnabled();
 		OrcItem.disabled = getDisabled();
 		OrcItem.coming_soon = getComingSoon();
+		OrcItem.back = getBack();
 	}
 
 	public static YamlConfiguration getConfig() {
@@ -94,6 +95,10 @@ public class GuiConfig {
 	public static byte getData(FileConfiguration cfg, String path) {
 		return (byte) cfg.getInt(path + ".data", 0);
 	}
+	
+	public static String getTitle(FileConfiguration cfg, String path) {
+		return cfg.getString(path + ".title");
+	}	
 
 	public static Material getMaterial(FileConfiguration cfg, String path) {
 		try {
@@ -128,8 +133,12 @@ public class GuiConfig {
 	public static OrcItem getComingSoon() {
 		return getItem("options.coming_soon");
 	}
+	
+	private static OrcItem getBack() {
+		return getItem("options.back");
+	}
 
 	public static Material getSkullItem() {
-		return getMaterial(getConfig(), "options.players.skull_item");
+		return getMaterial(getConfig(), "options.players.playerhead");
 	}
 }

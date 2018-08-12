@@ -40,6 +40,7 @@ public class GameProfileBuilder {
 			.registerTypeAdapter(PropertyMap.class, new PropertyMap.Serializer()).create();
 	private static HashMap<UUID, CachedProfile> cache = new HashMap<>();
 	private static long cacheTime = -1L;
+	private static Object sync = new Object();
 
 	public static GameProfile fetch(UUID uuid) throws IOException {
 		return fetch(uuid, false);
@@ -49,10 +50,14 @@ public class GameProfileBuilder {
 		if ((!forceNew) && (cache.containsKey(uuid)) && (((CachedProfile) cache.get(uuid)).isValid())) {
 			return ((CachedProfile) cache.get(uuid)).profile;
 		}
-		HttpURLConnection connection = (HttpURLConnection) new URL(
-				String.format("https://sessionserver.mojang.com/session/minecraft/profile/%s?unsigned=false",
-						new Object[] { UUIDTypeAdapter.fromUUID(uuid) })).openConnection();
-		connection.setReadTimeout(5000);
+		
+		HttpURLConnection connection;
+		synchronized (sync) {
+			connection = (HttpURLConnection) new URL(
+					String.format("https://sessionserver.mojang.com/session/minecraft/profile/%s?unsigned=false",
+							new Object[] { UUIDTypeAdapter.fromUUID(uuid) })).openConnection();
+			connection.setReadTimeout(5000);
+		}
 		if (connection.getResponseCode() == 200) {
 			String json = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
 

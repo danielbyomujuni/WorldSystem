@@ -18,8 +18,8 @@ public class InventoryOpenClickListener implements OrcClickListener {
 
 	@Override
 	public void onClick(Player p, OrcInventory inv, OrcItem item) {
+		p.closeInventory();
 		if (open == null) {
-			p.closeInventory();
 			return;
 		}
 		Inventory to = open.getInventory(p);

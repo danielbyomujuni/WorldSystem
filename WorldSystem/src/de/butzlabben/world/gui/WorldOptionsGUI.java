@@ -21,18 +21,16 @@ public class WorldOptionsGUI extends OrcInventory {
 	private final static String path = "options.world.";
 
 	public final static HashMap<UUID, String> data = new HashMap<>();
-	public static WorldOptionsGUI instance;
 
 	public WorldOptionsGUI() {
-		super("World Options", GuiConfig.getRows("options.world"), true);
-		if (instance != null)
-			return;
+		super(GuiConfig.getTitle(GuiConfig.getConfig(), "options.world"), GuiConfig.getRows("options.world"));
 
 		loadItem("fire", "/ws fire", true, new FireStatus());
 		loadItem("tnt", "/ws tnt", true, new TntStatus());
 
 		if (GuiConfig.isEnabled(path + "reset") == false)
 			return;
+
 		OrcItem item = GuiConfig.getItem(path + "reset");
 		if (item != null) {
 			item.setOnClick((p, inv, i) -> {
@@ -42,7 +40,14 @@ public class WorldOptionsGUI extends OrcInventory {
 			addItem(GuiConfig.getSlot(path + "reset"), item);
 		}
 
-		instance = this;
+		if (GuiConfig.isEnabled(path + "back")) {
+			OrcItem back = OrcItem.back.clone();
+			back.setOnClick((p, inv, i) -> {
+				p.closeInventory();
+				p.openInventory(new WorldSystemGUI().getInventory(p));
+			});
+			addItem(GuiConfig.getSlot(path + "back"), back);
+		}
 	}
 
 	public void loadItem(String subpath, String message, boolean state, DependListener depend) {
@@ -88,7 +93,6 @@ public class WorldOptionsGUI extends OrcInventory {
 		return super.getInventory(p, getTitle());
 	}
 
-	@Override
 	public boolean canOpen(Player p) {
 		return new WorldPlayer(p).isOwnerofWorld();
 	}

@@ -6,43 +6,31 @@ import java.util.Objects;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.HandlerList;
-import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.plugin.java.JavaPlugin;
 
-import de.butzlabben.world.WorldSystem;
-import de.butzlabben.world.wrapper.WorldPlayer;
+public abstract class OrcInventory {
 
-public abstract class OrcInventory implements Listener {
-
-	private String title;
+	protected String title;
 	private int rows;
 	private InventoryType type;
-	private final boolean isStatic;
 
-	private HashMap<Integer, OrcItem> items = new HashMap<>();
+	protected HashMap<Integer, OrcItem> items = new HashMap<>();
 
-	public OrcInventory(String title, boolean isStatic) {
-		this.isStatic = isStatic;
+	public OrcInventory(String title) {
 		Objects.requireNonNull(title, "title cannot be null");
 		this.title = title;
-		Bukkit.getPluginManager().registerEvents(this, JavaPlugin.getPlugin(WorldSystem.class));
 	}
 
-	public OrcInventory(String title, int rows, boolean isStatic) {
-		this(title, isStatic);
+	public OrcInventory(String title, int rows) {
+		this(title);
 		if (rows <= 0 || rows > 6)
 			throw new IllegalArgumentException("rows cannot be smaller than 1 or bigger than 6");
 		this.rows = rows;
 	}
 
-	public OrcInventory(String title, InventoryType type, boolean isStatic) {
-		this(title, isStatic);
+	public OrcInventory(String title, InventoryType type) {
+		this(title);
 		if (type == null || type == InventoryType.CHEST) {
 			this.type = null;
 			rows = 3;
@@ -74,10 +62,13 @@ public abstract class OrcInventory implements Listener {
 	public Inventory getInventory(Player p) {
 		return getInventory(p, title);
 	}
+	
+	public void redraw(Player p) {
+		p.closeInventory();
+		p.openInventory(getInventory(p));
+	}
 
 	public Inventory getInventory(Player p, String title) {
-		if (canOpen(p) == false)
-			return null;
 		Inventory inv;
 		int size;
 		if (type == null) {
@@ -87,16 +78,17 @@ public abstract class OrcInventory implements Listener {
 			inv = Bukkit.createInventory(null, type, title);
 			size = type.getDefaultSize();
 		}
-		WorldPlayer wp = new WorldPlayer(p);
 
 		for (Entry<Integer, OrcItem> entry : items.entrySet()) {
 			if (entry.getKey() >= 0 && entry.getKey() < size) {
-				inv.setItem(entry.getKey(), entry.getValue().getItemStack(p, wp));
+				inv.setItem(entry.getKey(), entry.getValue().getItemStack(p));
 			} else {
-				System.err.println("[WorldSystem] There is a problem with a configured Item!");
+				System.err.println("There is a problem with a configured Item!");
 			}
 		}
 
+		OrcListener.getInstance().register(p.getUniqueId(), this);
+		
 		return inv;
 	}
 
@@ -107,28 +99,4 @@ public abstract class OrcInventory implements Listener {
 	public String getTitle() {
 		return title;
 	}
-
-	@EventHandler
-	public void on(InventoryClickEvent e) {
-		if (e.getClickedInventory() != null && e.getClickedInventory().getTitle().equals(title)) {
-			e.setCancelled(true);
-			OrcItem item = items.get(e.getSlot());
-			if (item != null)
-				item.onClick((Player) e.getWhoClicked(), this);
-		}
-	}
-	
-	@EventHandler
-	public void on(InventoryCloseEvent e) {
-		if (e.getInventory() != null && e.getInventory().getTitle().equals(title) && !isStatic) {
-			unregister();
-		}
-	}
-	
-	public void unregister() {
-		HandlerList.unregisterAll(this);
-	}
-
-	public abstract boolean canOpen(Player p);
-
 }

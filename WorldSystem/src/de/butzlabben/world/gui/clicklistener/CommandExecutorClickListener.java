@@ -5,7 +5,6 @@ import org.bukkit.entity.Player;
 import de.butzlabben.inventory.OrcClickListener;
 import de.butzlabben.inventory.OrcInventory;
 import de.butzlabben.inventory.OrcItem;
-import de.butzlabben.world.gui.PlayerOptionsGUI;
 
 public class CommandExecutorClickListener implements OrcClickListener {
 	
@@ -19,8 +18,7 @@ public class CommandExecutorClickListener implements OrcClickListener {
 	public void onClick(Player p, OrcInventory inv, OrcItem item) {
 		p.closeInventory();
 		String msg = message;
-		if(PlayerOptionsGUI.data.containsKey(p.getUniqueId()))
-			msg = message.replaceAll("%data", PlayerOptionsGUI.data.get(p.getUniqueId()));
 		p.chat(msg);
+		inv.redraw(p);
 	}
 }

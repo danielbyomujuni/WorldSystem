@@ -25,7 +25,7 @@ public class FireStatus implements DependListener {
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		boolean b = cfg.getBoolean("Settings.Fire");
 		if (b)
-			return OrcItem.enabled.getItemStack(p, wp);
+			return OrcItem.enabled.getItemStack(p);
 
 		return null;
 		// TODO wenn enabled, dann return OrcItem.enabled.getItemStack(p, wp);

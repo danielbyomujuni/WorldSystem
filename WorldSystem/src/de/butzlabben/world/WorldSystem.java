@@ -13,7 +13,6 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.butzlabben.autoupdater.AutoUpdater;
-import de.butzlabben.inventory.OrcInventory;
 import de.butzlabben.world.command.WSAddmemberCommand;
 import de.butzlabben.world.command.WSCommand;
 import de.butzlabben.world.command.WSConfirmCommand;
@@ -37,9 +36,6 @@ import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.SettingsConfig;
 import de.butzlabben.world.gui.GuiCommand;
-import de.butzlabben.world.gui.PlayerOptionsGUI;
-import de.butzlabben.world.gui.WorldOptionsGUI;
-import de.butzlabben.world.gui.WorldSystemGUI;
 import de.butzlabben.world.listener.BlockListener;
 import de.butzlabben.world.listener.CommandListener;
 import de.butzlabben.world.listener.PlayerDeathListener;
@@ -59,7 +55,6 @@ public class WorldSystem extends JavaPlugin {
 	public static HashMap<Player, World> deathLocations = new HashMap<>();
 
 	final private String version = this.getDescription().getVersion();
-	public static OrcInventory mainGUI;
 
 	public static CreatorAdapter creator;
 	
@@ -125,9 +120,7 @@ public class WorldSystem extends JavaPlugin {
 		getCommand("ws confirm").setExecutor(new WSConfirmCommand());
 
 		getCommand("ws gui").setExecutor(new GuiCommand());
-
-		mainGUI = new WorldSystemGUI();
-
+		
 		System.setProperty("bstats.relocatecheck", "false");
 		Metrics m = new Metrics(this);
 		m.addCustomChart(new Metrics.SingleLineChart("worlds", Entry::entrys));
@@ -167,9 +160,7 @@ public class WorldSystem extends JavaPlugin {
 				sw.directUnload(w);
 			}
 		}
-		mainGUI.unregister();
-		PlayerOptionsGUI.instance.unregister();
-		WorldOptionsGUI.instance.unregister();
+
 		Bukkit.getConsoleSender()
 				.sendMessage(PluginConfig.getPrefix() + "Succesfully disabled WorldSystem v" + version);
 	}
@@ -222,7 +213,7 @@ public class WorldSystem extends JavaPlugin {
 		return JavaPlugin.getPlugin(WorldSystem.class);
 	}
 
-	public static boolean isIs1_13() {
+	public static boolean is1_13() {
 		return is1_13;
 	}
 }

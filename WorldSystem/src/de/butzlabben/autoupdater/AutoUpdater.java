@@ -53,10 +53,10 @@ public class AutoUpdater implements Listener {
 		String v = plugin.getDescription().getVersion();
 		if (!ui.getVersion().equals(plugin.getDescription().getVersion())) {
 
-			if (!ui.isSilent())
+			if (!ui.isSilent()) {
 				Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Found new version. Current: " + v
 						+ ", Available: " + ui.getVersion());
-
+			}
 			// Get jar file
 			Method getFileMethod = null;
 			try {
@@ -90,9 +90,11 @@ public class AutoUpdater implements Listener {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					p.sendMessage(
 							PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
+					p.sendMessage(PluginConfig.getPrefix() + "§aRead changelogs: https://www.spigotmc.org/resources/49756/updates");
 				}
 				Bukkit.getConsoleSender().sendMessage(
 						PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
+				Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§aRead changelogs: https://www.spigotmc.org/resources/49756/updates");
 			}
 		} else {
 			confirmNeed = false;
@@ -104,6 +106,7 @@ public class AutoUpdater implements Listener {
 		if (e.getPlayer().hasPermission("ws.confirm")) {
 			e.getPlayer().sendMessage(
 					PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
+			e.getPlayer().sendMessage(PluginConfig.getPrefix() + "§aRead changelogs: https://www.spigotmc.org/resources/49756/updates");
 		}
 	}
 
