@@ -19,6 +19,7 @@ world:
   setting_up: "&aBereite Welt vor..."
   playerlist: "Spieler in der Welt: %players"
   still_creating: "&cWelt wird noch erstellt..."
+  set_home: "Du hast das Home gesetzt"
 
 member:
   removed: "Du hast &c%player&6 von deiner Welt entfernt!"
@@ -67,6 +68,7 @@ command_help:
   list:
     - "/ws get &8- &7Gibt dir eine Welt"
     - "/ws home &8- &7Teleportiert dich auf deine Welt"
+    - "/ws sethome &8- &7Setzt ein bestimmtes Home"
     - "/ws gui &8- &7\u00f6ffnets das GUI-Menu wenn du der Weltenbesitzer bist"
     - "/ws tp &8- &7Teleportiert dich auf eine bestimmte Welt"
     - "/ws addmember &8- &7F\u00fcgt jemanden zu deiner Welt hinzu"

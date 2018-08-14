@@ -24,6 +24,7 @@ import de.butzlabben.world.command.WSHomeCommand;
 import de.butzlabben.world.command.WSInfoCommand;
 import de.butzlabben.world.command.WSLeaveCommand;
 import de.butzlabben.world.command.WSResetCommand;
+import de.butzlabben.world.command.WSSethomeCommand;
 import de.butzlabben.world.command.WSTPCommand;
 import de.butzlabben.world.command.WSTnTCommand;
 import de.butzlabben.world.command.WSToggleBuildCommand;
@@ -106,6 +107,8 @@ public class WorldSystem extends JavaPlugin {
 		getCommand("ws addmember").setExecutor(new WSAddmemberCommand());
 		getCommand("ws delmember").setExecutor(new WSDelmemberCommand());
 		getCommand("ws home").setExecutor(new WSHomeCommand());
+		// Here we go for #20 and #22
+		getCommand("ws sethome").setExecutor(new WSSethomeCommand());
 		getCommand("ws leave").setExecutor(new WSLeaveCommand());
 		getCommand("ws fire").setExecutor(new WSFireCommand());
 		getCommand("ws info").setExecutor(new WSInfoCommand());

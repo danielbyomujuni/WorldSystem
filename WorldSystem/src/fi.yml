@@ -19,6 +19,7 @@ world:
   setting_up: "&aAlustetaan maailmaa..."
   playerlist: "Pelaajat tässä maailmassa: %players"
   still_creating: "&cWorld is still creating"
+  set_home: "You set the home"
 
 member:
   removed: "Poistit pelaajan &c%player&6 maailmastasi!"
@@ -67,6 +68,7 @@ command_help:
   list:
     - "/ws get &8- &7Luo sinulle maailman"
     - "/ws home &8- &7Teleporttaa sinut maailmaasi"
+    - "/ws sethome &8- &7Sets a specific home"
     - "/ws gui &8- &7Avaa sinulle valikon jos omistat tämän maailman"
     - "/ws tp &8- &7Teleporttaa sinut tiettyyn maailmaan"
     - "/ws addmember &8- &7Lisää pelaajan sinun maailmaasi"

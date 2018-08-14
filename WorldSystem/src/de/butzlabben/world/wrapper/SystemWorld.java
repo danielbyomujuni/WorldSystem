@@ -35,7 +35,7 @@ public class SystemWorld {
 	private String worldname;
 	private boolean unloading = false;
 	private boolean creating = false;
-	
+
 	private static HashMap<String, SystemWorld> cached = new HashMap<>();
 
 	/**
@@ -96,7 +96,6 @@ public class SystemWorld {
 			});
 			return;
 		}
-		
 		Preconditions.checkNotNull(w, "world must not be null");
 		unloading = true;
 		w.save();
@@ -252,16 +251,8 @@ public class SystemWorld {
 			w = Bukkit.createWorld(creator);
 
 		this.w = w;
-		if (PluginConfig.isSurvival()) {
-			p.setGameMode(GameMode.SURVIVAL);
-		} else {
-			p.setGameMode(GameMode.CREATIVE);
-		}
-		if (PluginConfig.useWorldSpawn()) {
-			p.teleport(PluginConfig.getWorldSpawn(w));
-		} else {
-			p.teleport(w.getSpawnLocation());
-		}
+
+		teleportToWorldSpawn(p);
 
 		OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
 		DependenceConfig dc = new DependenceConfig(owner);
@@ -392,10 +383,15 @@ public class SystemWorld {
 		if (w == null)
 			return;
 
-		if (PluginConfig.useWorldSpawn()) {
-			p.teleport(PluginConfig.getWorldSpawn(w));
+		WorldConfig config = WorldConfig.getWorldConfig(worldname);
+		if (config.getHome() != null) {
+			p.teleport(config.getHome());
 		} else {
-			p.teleport(w.getSpawnLocation());
+			if (PluginConfig.useWorldSpawn()) {
+				p.teleport(PluginConfig.getWorldSpawn(w));
+			} else {
+				p.teleport(w.getSpawnLocation());
+			}
 		}
 		if (PluginConfig.isSurvival()) {
 			p.setGameMode(GameMode.SURVIVAL);

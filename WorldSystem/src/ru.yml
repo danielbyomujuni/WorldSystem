@@ -19,6 +19,7 @@ world:
   setting_up: "&aПриготовлеваю мир..."
   playerlist: "Игроков в мире: %players"
   still_creating: "&cWorld is still creating"
+  set_home: "You set the home"
 
 member:
   removed: "Ты удалил &c%player&6 из твоего мира!"
@@ -67,6 +68,7 @@ command_help:
   list:
     - "/ws get &8- &7Даст тебе мир"
     - "/ws home &8- &7Телепортирует тебя в твой мир"
+    - "/ws sethome &8- &7Sets a specific home"
     - "/ws gui &8- &7Открывает ГИП если ты владелец этого мира"
     - "/ws tp &8- &7Телепортирует тебя в определенный мир"
     - "/ws addmember &8- &7Добавляет кого-то к твоему миру"

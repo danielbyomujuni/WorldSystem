@@ -27,6 +27,7 @@ public class MessageConfig {
 	{
 		defaultCmdHelp.add("/ws get §8- §7Will give you a World");
 		defaultCmdHelp.add("/ws home §8- §7Teleports you on your World");
+		defaultCmdHelp.add("/ws sethome §8- §7Sets a specific home");
 		defaultCmdHelp.add("/ws tp §8- §7Teleports you on a specific World");
 		defaultCmdHelp.add("/ws addmember §8- §7Adds a player to your World");
 		defaultCmdHelp.add("/ws delmember§8 - §7Removes a player from your World");
@@ -270,5 +271,9 @@ public class MessageConfig {
 			list = defaultCmdHelp;
 		list = list.stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
 		return list;
+	}
+
+	public static String getHomeSet() {
+		return getMessage("world.set_home", "You set the home");
 	}
 }

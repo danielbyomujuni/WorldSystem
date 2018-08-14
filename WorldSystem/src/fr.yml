@@ -19,6 +19,7 @@ world:
   setting_up: "&aChargement du monde ..."
   playerlist: "Joueurs dans ce monde: %players"
   still_creating: "&cWorld is still creating"
+  set_home: "You set the home"
 
 member:
   removed: "Vous avez supprimé &c%player&6 de votre monde!"
@@ -67,6 +68,7 @@ command_help:
   list:
     - "/ws get &8- &7Je vais vous donner un monde"
     - "/ws home &8- &7Vous téléporte sur votre monde"
+    - "/ws sethome &8- &7Sets a specific home"
     - "/ws gui &8- &7Ouvre le menu de l'interface graphique si vous êtes le propriétaire mondial"
     - "/ws tp &8- &7Vous téléporte sur un monde spécifique"
     - "/ws addmember &8- &7Ajoute un joueur à ton monde"

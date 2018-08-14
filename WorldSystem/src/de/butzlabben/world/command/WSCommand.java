@@ -31,6 +31,7 @@ public class WSCommand implements CommandExecutor, TabCompleter {
 			list.add("info");
 			list.add("leave");
 			list.add("reset");
+			list.add("sethome");
 			list.add("tnt");
 			list.add("togglegm");
 			list.add("toggletp");
@@ -82,6 +83,10 @@ public class WSCommand implements CommandExecutor, TabCompleter {
 				if (!(cs instanceof Player))
 					return true;
 				WorldSystem.getInstance().getCommand("ws home").execute(cs, label, args);
+			} else if (subcommand.equals("sethome")) {
+				if (!(cs instanceof Player))
+					return true;
+				WorldSystem.getInstance().getCommand("ws sethome").execute(cs, label, args);
 			} else if (subcommand.equals("leave")) {
 				WorldSystem.getInstance().getCommand("ws leave").execute(cs, label, args);
 			} else if (subcommand.equals("info")) {

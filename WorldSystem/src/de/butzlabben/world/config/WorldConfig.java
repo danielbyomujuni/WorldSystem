@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -20,9 +21,9 @@ import com.mojang.authlib.GameProfile;
 import de.butzlabben.world.GameProfileBuilder;
 
 /**
- * This class represents a worldconfig.yml file
- * Here you can edit and read all things
- * Get an instance via WorldConfig.getWorldConfig()
+ * This class represents a worldconfig.yml file Here you can edit and read all
+ * things Get an instance via WorldConfig.getWorldConfig()
+ * 
  * @since 01.05.2018
  */
 public class WorldConfig {
@@ -37,11 +38,12 @@ public class WorldConfig {
 		}
 		return worldconfig;
 	}
-	
+
 	/**
 	 * Returns wether a worldconfig exists for this worldname
 	 * 
-	 * @param worldname name of the world
+	 * @param worldname
+	 *            name of the world
 	 * @return Wether this world has a worldconfig
 	 */
 	public static boolean exists(String worldname) {
@@ -71,6 +73,8 @@ public class WorldConfig {
 
 	private String ownerName;
 	private boolean fire, tnt;
+
+	private Location home = null;
 
 	private WorldConfig(String worldname) {
 		if (exists(worldname) == false)
@@ -428,6 +432,14 @@ public class WorldConfig {
 		cfg.set("Settings.TNTDamage", tnt);
 		cfg.set("Settings.Fire", fire);
 
+		if (home != null) {
+			cfg.set("Settings.home.x", home.getX());
+			cfg.set("Settings.home.y", home.getY());
+			cfg.set("Settings.home.z", home.getZ());
+			cfg.set("Settings.home.yaw", home.getYaw());
+			cfg.set("Settings.home.pitch", home.getPitch());
+		}
+
 		cfg.set("Members", null);
 
 		for (java.util.Map.Entry<UUID, HashSet<WorldPerm>> entry : permissions.entrySet()) {
@@ -454,6 +466,12 @@ public class WorldConfig {
 		ownerName = cfg.getString("Informations.Owner.Actualname", "Unknown Playername");
 		tnt = cfg.getBoolean("Settings.TNTDamage", true);
 		fire = cfg.getBoolean("Settings.Fire", true);
+
+		if (cfg.isSet("Settings.home")) {
+			home = new Location(null, cfg.getDouble("Settings.home.x"), cfg.getDouble("Settings.home.y"),
+					cfg.getDouble("Settings.home.z"), (float) cfg.getDouble("Settings.home.yaw"),
+					(float) cfg.getDouble("Settings.home.pitch"));
+		}
 
 		if (membersOldFormatted(cfg)) {
 			for (String s : cfg.getConfigurationSection("Members").getKeys(false)) {
@@ -497,6 +515,23 @@ public class WorldConfig {
 		return name != null;
 	}
 
+	/**
+	 * @param loc the new home of the world
+	 */
+	public void setHome(Location loc) {
+		home = loc;
+	}
+
+	/**
+	 * @return the home of the world. If not set returns null
+	 */
+	public Location getHome() {
+		if (home == null)
+			return null;
+		return new Location(Bukkit.getWorld(getWorldName()), home.getX(), home.getY(), home.getZ(), home.getYaw(),
+				home.getPitch());
+	}
+
 	public String getOwnerName() {
 		return ownerName;
 	}
@@ -516,7 +551,8 @@ public class WorldConfig {
 	/**
 	 * Allow or Disallow Fire Damage on this world
 	 * 
-	 * @param player the player which toggles fire
+	 * @param player
+	 *            the player which toggles fire
 	 * @param fire
 	 *            if fire is enabled
 	 * @return if the player has the permissions to change the value
@@ -539,7 +575,8 @@ public class WorldConfig {
 	/**
 	 * Allow or Disallow TNT Damage on this world
 	 * 
-	 * @param player which toggles tnt
+	 * @param player
+	 *            which toggles tnt
 	 * @param tnt
 	 *            if tnt is enabled
 	 * @return if the player has the permissions to change the value

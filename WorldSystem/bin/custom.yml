@@ -19,6 +19,7 @@ world:
   setting_up: ""
   playerlist: "%players"
   still_creating: ""
+  set_home: ""
 
 member:
   removed: "%player"

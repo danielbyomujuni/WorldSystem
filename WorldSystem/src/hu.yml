@@ -19,6 +19,7 @@ world:
   setting_up: "&aA világ megteremtése..."
   playerlist: "Játékos ebben a világban: %player"
   still_creating: "&cWorld is still creating"
+  set_home: "You set the home"
 
 member:
   removed: "Törölted &c%player&6 játékost a világodból!"
@@ -68,6 +69,7 @@ command_help:
   list:
     - "/ws get &8- &7Will give you a world"
     - "/ws home &8- &7Teleports you on your world"
+    - "/ws sethome &8- &7Sets a specific home"
     - "/ws gui &8- &7Opens the GUI menu if you are the worldowner"
     - "/ws tp &8- &7Teleports you on a specific world"
     - "/ws addmember &8- &7Adds a player to your world"

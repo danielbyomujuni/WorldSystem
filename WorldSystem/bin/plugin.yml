@@ -1,5 +1,5 @@
 name: WorldSystem
-version: 2.3.1
+version: 2.3.1.1
 author: Butzlabben
 main: de.butzlabben.world.WorldSystem
 
@@ -18,6 +18,9 @@ commands:
     usage: /ws help
   ws home:
     usage: /ws home
+  ws sethome:
+    usage: /ws sethome
+    permission: ws.sethome
   ws addmember:
     usage: /ws addmember <player>
   ws delmember:
@@ -66,6 +69,9 @@ permissions:
       ws.big: true
       ws.large: true
       ws.confirm: true
+  ws.sethome:
+    default: true
+    description: 'You can set a different worldspawn'
   ws.tp.*:
     default: op
     description: You can teleport everything

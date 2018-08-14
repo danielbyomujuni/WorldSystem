@@ -14,6 +14,8 @@ worldborder:
   # Set a specialized center which is not the spawn
   center:
     as_spawn: true
+    # Should the worldborder move with the home set by the owner
+    as_home: false
     x: 0
     y: 20
     z: 0

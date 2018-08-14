@@ -31,7 +31,7 @@ public class SettingsConfig {
 		YamlConfiguration cfg = getConfig();
 
 		SystemWorld sw = SystemWorld.getSystemWorld(w.getName());
-	
+
 		boolean shouldChange = cfg.getBoolean("worldborder.should_change", false);
 		if (shouldChange) {
 			long size = cfg.getLong("worldborder.normal", 1000);
@@ -60,6 +60,11 @@ public class SettingsConfig {
 				Location loc = new Location(w, cfg.getDouble("worldborder.center.x", 0),
 						cfg.getDouble("worldborder.center.y", 20), cfg.getDouble("worldborder.center.z", 0));
 				w.getWorldBorder().setCenter(loc);
+			}
+			if (cfg.getBoolean("worldborder.center.as_home")) {
+				WorldConfig config = WorldConfig.getWorldConfig(w.getName());
+				if (config.getHome() != null)
+					w.getWorldBorder().setCenter(config.getHome());
 			}
 		}
 
@@ -138,7 +143,8 @@ public class SettingsConfig {
 
 	private static YamlConfiguration getConfig() {
 		try {
-			return YamlConfiguration.loadConfiguration(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
+			return YamlConfiguration
+					.loadConfiguration(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
