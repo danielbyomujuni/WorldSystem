@@ -6,7 +6,7 @@ import de.butzlabben.world.wrapper.SystemWorld;
 
 /**
  * @author Butzlabben
- * @since 2017
+ * @since 09.05.2018
  */
 public class WorldUnloadEvent extends WorldEvent {
 
@@ -16,6 +16,9 @@ public class WorldUnloadEvent extends WorldEvent {
 		this.world = world;
 	}
 	
+	/**
+	 * @return world which gets unloaded
+	 */
 	public SystemWorld getWorld() {
 		return world;
 	}

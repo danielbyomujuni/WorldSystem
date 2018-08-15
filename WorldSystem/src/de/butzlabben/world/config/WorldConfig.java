@@ -438,6 +438,8 @@ public class WorldConfig {
 			cfg.set("Settings.home.z", home.getZ());
 			cfg.set("Settings.home.yaw", home.getYaw());
 			cfg.set("Settings.home.pitch", home.getPitch());
+		} else {
+			cfg.set("Settings.home", null);
 		}
 
 		cfg.set("Members", null);

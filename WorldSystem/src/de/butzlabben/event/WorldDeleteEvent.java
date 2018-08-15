@@ -5,6 +5,12 @@ import org.bukkit.event.HandlerList;
 
 import de.butzlabben.world.wrapper.SystemWorld;
 
+/**
+ * Event if a systemworld gets deleted
+ * 
+ * @author Butzlabben
+ * @since 09.05.2018
+ */
 public class WorldDeleteEvent extends WorldEvent {
 	
 	private final SystemWorld world;
@@ -28,8 +34,6 @@ public class WorldDeleteEvent extends WorldEvent {
 	public CommandSender getExecutor() {
 		return executor;
 	}
-	
-	
 	
 	public final static HandlerList handlers = new HandlerList();
 	

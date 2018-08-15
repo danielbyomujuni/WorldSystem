@@ -5,6 +5,12 @@ import org.bukkit.event.HandlerList;
 
 import de.butzlabben.world.wrapper.SystemWorld;
 
+/**
+ * Event for loading a world
+ * 
+ * @author Butzlabben
+ * @since 09.05.2018
+ */
 public class WorldLoadEvent extends WorldEvent {
 
 	private final Player owner;

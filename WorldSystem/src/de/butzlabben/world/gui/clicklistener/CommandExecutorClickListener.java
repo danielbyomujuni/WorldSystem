@@ -19,6 +19,7 @@ public class CommandExecutorClickListener implements OrcClickListener {
 		p.closeInventory();
 		String msg = message;
 		p.chat(msg);
+		// Fix for #9
 		inv.redraw(p);
 	}
 }

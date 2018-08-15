@@ -328,7 +328,7 @@ public class SystemWorld {
 			SystemWorld sw = SystemWorld.getSystemWorld(worldname);
 			sw.setCreating(true);
 			// For #16
-			WorldSystem.creator.create(event.getWorldCreator(), sw, () -> {
+			WorldSystem.getInstance().getAdapter().create(event.getWorldCreator(), sw, () -> {
 				if (p != null && p.isOnline())
 					p.sendMessage(MessageConfig.getWorldCreated());
 			});

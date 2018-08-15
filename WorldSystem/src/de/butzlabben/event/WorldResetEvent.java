@@ -5,6 +5,12 @@ import org.bukkit.event.HandlerList;
 
 import de.butzlabben.world.wrapper.SystemWorld;
 
+/**
+ * Event when a world gets reset
+ * 
+ * @author Butzlabben
+ * @since 09.05.2018
+ */
 public class WorldResetEvent extends WorldEvent {
 	
 	private final SystemWorld world;
@@ -15,10 +21,16 @@ public class WorldResetEvent extends WorldEvent {
 		this.world = world;
 	}
 	
+	/**
+	 * @return world which gets reset
+	 */
 	public SystemWorld getWorld() {
 		return world;
 	}
 	
+	/**
+	 * @return Executor of the command
+	 */
 	public CommandSender getExecutor() {
 		return executor;
 	}

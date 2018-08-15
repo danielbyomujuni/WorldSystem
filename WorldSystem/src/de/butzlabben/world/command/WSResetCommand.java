@@ -19,6 +19,7 @@ import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
+import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.wrapper.SystemWorld;
 
 public class WSResetCommand implements CommandExecutor {
@@ -73,6 +74,10 @@ public class WSResetCommand implements CommandExecutor {
 					toConfirm.remove(p);
 
 					FileUtils.moveDirectoryToDirectory(f, Bukkit.getWorldContainer(), false);
+					
+					WorldConfig config = WorldConfig.getWorldConfig(worldname);
+					config.setHome(null);
+					config.save();
 
 					p.sendMessage(MessageConfig.getWorldReseted());
 
@@ -91,7 +96,7 @@ public class WSResetCommand implements CommandExecutor {
 
 					sw.setCreating(true);
 					// For #16
-					WorldSystem.creator.create(creator, sw, () -> {
+					WorldSystem.getInstance().getAdapter().create(creator, sw, () -> {
 						if (p != null && p.isOnline())
 							p.sendMessage(MessageConfig.getWorldCreated());
 					});

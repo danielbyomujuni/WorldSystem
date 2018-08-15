@@ -2,13 +2,11 @@ package de.butzlabben.world;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -53,11 +51,9 @@ import de.butzlabben.world.wrapper.SystemWorld;
  */
 public class WorldSystem extends JavaPlugin {
 
-	public static HashMap<Player, World> deathLocations = new HashMap<>();
-
 	final private String version = this.getDescription().getVersion();
 
-	public static CreatorAdapter creator;
+	private CreatorAdapter creator;
 	
 	private static boolean is1_13 = false;
 
@@ -214,6 +210,10 @@ public class WorldSystem extends JavaPlugin {
 
 	public static WorldSystem getInstance() {
 		return JavaPlugin.getPlugin(WorldSystem.class);
+	}
+	
+	public CreatorAdapter getAdapter() {
+		return creator;
 	}
 
 	public static boolean is1_13() {

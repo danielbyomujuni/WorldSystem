@@ -1,5 +1,5 @@
 name: WorldSystem
-version: 2.3.1.1
+version: 2.3.1.4
 author: Butzlabben
 main: de.butzlabben.world.WorldSystem
 
@@ -59,6 +59,7 @@ permissions:
     children:
       ws.tp.*: true
       ws.get: true
+      ws.sethome: true
       ws.tp.world: true
       ws.tp.toother: true
       ws.tp.other: true
