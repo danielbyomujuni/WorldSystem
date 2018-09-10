@@ -1,7 +1,7 @@
 eclipse.preferences.version=1
-encoding//src/de/butzlabben/world/WorldSystem.java=UTF-8
-encoding//src/de/butzlabben/world/command/WSCommand.java=UTF-8
-encoding//src/de/butzlabben/world/config/GuiConfig.java=Cp1252
-encoding//src/de/butzlabben/world/config/PluginConfig.java=Cp1252
-encoding//src/de/butzlabben/world/gui/clicklistener/ComingSoonClickListener.java=Cp1252
-encoding//src/de/butzlabben/world/wrapper/SystemWorld.java=Cp1252
+encoding//src/main/java/de/butzlabben/world/WorldSystem.java=UTF-8
+encoding//src/main/java/de/butzlabben/world/command/WSCommand.java=UTF-8
+encoding//src/main/java/de/butzlabben/world/config/GuiConfig.java=Cp1252
+encoding//src/main/java/de/butzlabben/world/config/PluginConfig.java=Cp1252
+encoding//src/main/java/de/butzlabben/world/gui/clicklistener/ComingSoonClickListener.java=Cp1252
+encoding//src/main/java/de/butzlabben/world/wrapper/SystemWorld.java=Cp1252

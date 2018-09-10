@@ -4,3 +4,4 @@ bin/
 WorldSystem.iml
 .project
 .classpath
+/target/

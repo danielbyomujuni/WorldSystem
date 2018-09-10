@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.butzlabben.world</groupId>
+	<artifactId>WorldSystem</artifactId>
+	<version>2.4.0</version>
+   <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.number>-</project.build.number>
+        <project.build.version>${project.version}
+            Build:${project.build.number}</project.build.version>
+  	</properties>
+  	
+	<build>
+		<defaultGoal>package</defaultGoal>
+    	<sourceDirectory>src/main/java</sourceDirectory>
+    	<resources>
+      		<resource>
+        		<directory>src/main/resources</directory>
+      		</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>spigot-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+    		<id>fawe-repo</id>
+    		<url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
+		</repository>
+		<repository>
+			<id>we-repo</id>
+			<url>>http://maven.sk89q.com/repo/</url>
+		</repository>
+		
+		<!-- Mojang repo for GameProfileBuilder -->
+        <repository>
+            <id>mojang</id>
+            <name>Mojang's Repository</name>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
+
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>1.13-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>authlib</artifactId>
+            <version>1.5.21</version>
+        </dependency>
+        
+		<!--  
+		AsyncWorld is not in the api so I have to use a local file
+		Issue: https://github.com/boy0001/FastAsyncWorldedit/issues/1060
+		<dependency>
+			<groupId>com.boydti</groupId>
+			<artifactId>fawe-api</artifactId>
+			<scope>provided</scope>
+			<version>latest</version>
+		</dependency>
+		-->
+		
+		
+		<!-- Download FAWE and change to path to your path if you want to use it -->
+    	<dependency>
+         	<groupId>com.sk98q.worldedit</groupId>
+         	<artifactId>FastAsnycWorldEdit</artifactId>
+         	<scope>system</scope>
+         	<version>1.0</version>
+         	<systemPath>C:/FastAsyncWorldEdit.jar</systemPath>
+    	</dependency>
+		
+        <dependency>
+            <groupId>com.sk89q.worldedit</groupId>
+            <artifactId>worldedit-bukkit</artifactId>
+            <version>6.1.4-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+	</dependencies>
+</project>
