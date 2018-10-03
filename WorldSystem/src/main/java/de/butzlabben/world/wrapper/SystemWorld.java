@@ -18,6 +18,7 @@ import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
+import de.butzlabben.world.config.SettingsConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.event.WorldCreateEvent;
 import de.butzlabben.world.event.WorldLoadEvent;
@@ -41,12 +42,10 @@ public class SystemWorld {
 	/**
 	 * This method is the online way to get a system world instance
 	 * 
-	 * @param worldname
-	 *            as in minecraft
+	 * @param worldname as in minecraft
 	 * @return a systemworld instance if it is a systemworld or null if is not a
 	 *         systemworld
-	 * @exception NullPointerException
-	 *                worldname == null
+	 * @exception NullPointerException worldname == null
 	 */
 	public static SystemWorld getSystemWorld(String worldname) {
 		Preconditions.checkNotNull(worldname, "worldname must not be null");
@@ -61,9 +60,8 @@ public class SystemWorld {
 	}
 
 	/**
-	 * @param w
-	 *            a world in bukkit, no matter if systemworld or not Trys to
-	 *            unload a systemworld later, with the given delay in the config
+	 * @param w a world in bukkit, no matter if systemworld or not Trys to unload a
+	 *          systemworld later, with the given delay in the config
 	 */
 	public static void tryUnloadLater(World w) {
 		if (w != null)
@@ -84,10 +82,8 @@ public class SystemWorld {
 	/**
 	 * Trys to force-unload this world
 	 * 
-	 * @param w
-	 *            associated world
-	 * @exception NullPointerException
-	 *                w == null
+	 * @param w associated world
+	 * @exception NullPointerException w == null
 	 */
 	public void directUnload(World w) {
 		if (!Bukkit.isPrimaryThread()) {
@@ -126,10 +122,8 @@ public class SystemWorld {
 	/**
 	 * Trys to unload this world later, with the given delay in the config
 	 * 
-	 * @param w
-	 *            the associated world
-	 * @exception NullPointerException
-	 *                w == null
+	 * @param w the associated world
+	 * @exception NullPointerException w == null
 	 */
 	public void unloadLater(World w) {
 		if (!Bukkit.isPrimaryThread()) {
@@ -181,12 +175,9 @@ public class SystemWorld {
 	/**
 	 * Trys to load this world, and messages the player about the process
 	 * 
-	 * @param p
-	 *            the player to teleport on the world
-	 * @exception NullPointerException
-	 *                if p is null
-	 * @exception IllegalArgumentException
-	 *                if player is not online
+	 * @param p the player to teleport on the world
+	 * @exception NullPointerException     if p is null
+	 * @exception IllegalArgumentException if player is not online
 	 */
 	public void load(Player p) {
 		if (!Bukkit.isPrimaryThread()) {
@@ -211,6 +202,7 @@ public class SystemWorld {
 		unloading = false;
 
 		p.sendMessage(MessageConfig.getSettingUpWorld());
+		
 		// Move World into Server dir
 		String worlddir = PluginConfig.getWorlddir();
 		File world = new File(worlddir + "/" + worldname);
@@ -263,8 +255,7 @@ public class SystemWorld {
 	 * Trys to create a new systemworld with all entries etc. finally loads the
 	 * world
 	 * 
-	 * @param p
-	 *            Player to create the world for
+	 * @param p Player to create the world for
 	 * @return whether it succesfull or not
 	 */
 	public static boolean create(Player p) {
@@ -329,8 +320,13 @@ public class SystemWorld {
 			sw.setCreating(true);
 			// For #16
 			WorldSystem.getInstance().getAdapter().create(event.getWorldCreator(), sw, () -> {
-				if (p != null && p.isOnline())
+				if (p != null && p.isOnline()) {
 					p.sendMessage(MessageConfig.getWorldCreated());
+					SettingsConfig.getCommandsonGet().stream()
+							.map(s -> s.replace("%player", p.getName()).replace("%world", sw.getName()).replace("%uuid",
+									p.getUniqueId().toString()))
+							.forEach(s -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s));
+				}
 			});
 		}
 		return true;
@@ -362,12 +358,9 @@ public class SystemWorld {
 	/**
 	 * Teleports the player to the world with the given settings in the config
 	 * 
-	 * @param p
-	 *            player to teleport
-	 * @exception NullPointerException
-	 *                if player is null
-	 * @exception IllegalArgumentException
-	 *                if player is not online
+	 * @param p player to teleport
+	 * @exception NullPointerException     if player is null
+	 * @exception IllegalArgumentException if player is not online
 	 */
 	public void teleportToWorldSpawn(Player p) {
 		Preconditions.checkNotNull(p, "player must not be null");

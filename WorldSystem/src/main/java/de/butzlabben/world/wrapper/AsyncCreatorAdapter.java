@@ -35,7 +35,7 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
 				if (sw != null)
 					sw.setCreating(false);
 				
-				// Send the play the message
+				// Send the message
 				r.run();
 			}
 		});

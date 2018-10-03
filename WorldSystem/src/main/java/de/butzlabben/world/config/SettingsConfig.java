@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -169,6 +170,13 @@ public class SettingsConfig {
 			if (cfg.isInt("worldborder.ranks." + s) || cfg.isLong("worldborder.ranks." + s))
 				borderSizes.put(s, cfg.getLong("worldborder.ranks." + s));
 		}
+	}
+	/**
+	 * @return the commands specified in settings.yml on /ws get
+	 */
+	public static List<String> getCommandsonGet() {
+		YamlConfiguration cfg = getConfig();
+		return cfg.getStringList("commands_on_get");
 	}
 
 	private SettingsConfig() {

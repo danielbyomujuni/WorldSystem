@@ -20,6 +20,14 @@ worldborder:
     y: 20
     z: 0
 
+
+# Commands that should be executed on /ws get when it is ready
+# Placeholders: %player: Name of player, %world: Name of world, %uuid: UUID of player
+commands_on_get:
+#- tell %player You have got a world
+#- tell %player You are now on %world
+
+
 # All Gamerules in 1.12
 # Not supported gamerules will be ignored
 #
