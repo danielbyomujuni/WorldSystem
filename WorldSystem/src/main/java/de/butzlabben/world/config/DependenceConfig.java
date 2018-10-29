@@ -26,9 +26,6 @@ public class DependenceConfig {
 		}
 		if (op == null) {
 			op = Bukkit.getOfflinePlayer(s);
-			if (op == null)
-				return;
-
 		}
 		this.op = op;
 	}
@@ -88,10 +85,10 @@ public class DependenceConfig {
 		File dconfig = new File("plugins//WorldSystem//dependence.yml");
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
 		String uuid = op.getUniqueId().toString();
-		String entry = cfg.getString("Dependences." + uuid + ".ActualName");
-		if (entry != null) {
+		
+		//Fix for #40
+		if (cfg.isInt("Dependences." + uuid + ".ID")) 
 			return true;
-		}
 		return false;
 	}
 

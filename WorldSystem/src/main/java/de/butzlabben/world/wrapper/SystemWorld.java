@@ -12,6 +12,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+
 import com.google.common.base.Preconditions;
 
 import de.butzlabben.world.WorldSystem;
@@ -318,16 +320,23 @@ public class SystemWorld {
 
 			SystemWorld sw = SystemWorld.getSystemWorld(worldname);
 			sw.setCreating(true);
-			// For #16
-			WorldSystem.getInstance().getAdapter().create(event.getWorldCreator(), sw, () -> {
-				if (p != null && p.isOnline()) {
-					p.sendMessage(MessageConfig.getWorldCreated());
-					SettingsConfig.getCommandsonGet().stream()
-							.map(s -> s.replace("%player", p.getName()).replace("%world", sw.getName()).replace("%uuid",
-									p.getUniqueId().toString()))
-							.forEach(s -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s));
+			
+			//Run in scheduler so method returns without delay
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					// For #16
+					WorldSystem.getInstance().getAdapter().create(event.getWorldCreator(), sw, () -> {
+						if (p != null && p.isOnline()) {
+							p.sendMessage(MessageConfig.getWorldCreated());
+							SettingsConfig.getCommandsonGet().stream()
+									.map(s -> s.replace("%player", p.getName()).replace("%world", sw.getName()).replace("%uuid",
+											p.getUniqueId().toString()))
+									.forEach(s -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s));
+						}
+					});
 				}
-			});
+			}.runTaskLater(WorldSystem.getInstance(), 1);
 		}
 		return true;
 	}

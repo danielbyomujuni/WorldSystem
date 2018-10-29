@@ -25,7 +25,7 @@ public class WSGetCommand implements CommandExecutor {
 			return true;
 		}
 		Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> {
-			if(SystemWorld.create(p))
+			if (SystemWorld.create(p))
 				p.sendMessage(MessageConfig.getSettingUpWorld());
 		});
 		return true;
