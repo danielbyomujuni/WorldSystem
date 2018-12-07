@@ -24,6 +24,10 @@ public class WSTPCommand implements CommandExecutor {
 					WorldSystem.getInstance().getCommand("ws tp").getUsage()));
 			return true;
 		}
+		if(args[1].equalsIgnoreCase(p.getName()) || args[1].equalsIgnoreCase(p.getUniqueId().toString())) {
+			p.chat("/ws home");
+			return true;
+		}
 		DependenceConfig dc = new DependenceConfig(args[1]);
 		String worldname = dc.getWorldNamebyOfflinePlayer();
 		if (!dc.hasWorld()) {

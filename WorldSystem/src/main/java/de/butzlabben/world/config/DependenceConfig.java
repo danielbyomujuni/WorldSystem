@@ -85,7 +85,6 @@ public class DependenceConfig {
 		File dconfig = new File("plugins//WorldSystem//dependence.yml");
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
 		String uuid = op.getUniqueId().toString();
-		
 		//Fix for #40
 		if (cfg.isInt("Dependences." + uuid + ".ID")) 
 			return true;
