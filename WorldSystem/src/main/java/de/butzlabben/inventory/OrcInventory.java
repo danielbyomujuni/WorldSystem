@@ -14,6 +14,7 @@ public abstract class OrcInventory {
 	protected String title;
 	private int rows;
 	private InventoryType type;
+	private boolean fill = false;
 
 	protected HashMap<Integer, OrcItem> items = new HashMap<>();
 
@@ -27,6 +28,16 @@ public abstract class OrcInventory {
 		if (rows <= 0 || rows > 6)
 			throw new IllegalArgumentException("rows cannot be smaller than 1 or bigger than 6");
 		this.rows = rows;
+	}
+	
+	public OrcInventory(String title, int rows, boolean fill) {
+		this(title, rows);
+		this.fill = fill;
+		if(this.fill) {
+			for (int i = 0; i < rows * 9; i++) {
+				items.put(i, OrcItem.fill);
+			}
+		}
 	}
 
 	public OrcInventory(String title, InventoryType type) {

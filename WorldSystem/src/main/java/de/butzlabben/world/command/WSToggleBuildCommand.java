@@ -40,7 +40,7 @@ public class WSToggleBuildCommand implements CommandExecutor {
 		}
 		WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
 		if (wp.isOwnerofWorld()) {
-			p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
+			p.sendMessage(PluginConfig.getPrefix() + "Â§cYou are the owner");
 			return true;
 		}
 		if (wp.toggleBuild()) {

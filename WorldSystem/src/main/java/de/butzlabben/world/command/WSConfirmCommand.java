@@ -16,11 +16,11 @@ public class WSConfirmCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
 		if (AutoUpdater.getInstance().confirmed()) {
-			cs.sendMessage(PluginConfig.getPrefix() + "§cAlready confirmed or no confirm needed");
+			cs.sendMessage(PluginConfig.getPrefix() + "Â§cAlready confirmed or no confirm needed");
 			return true;
 		}
 		AutoUpdater.getInstance().confirm();
-		cs.sendMessage(PluginConfig.getPrefix() + "§aAutoupdate confirmed, §crestart §ato apply changes");
+		cs.sendMessage(PluginConfig.getPrefix() + "Â§aAutoupdate confirmed, Â§crestart Â§ato apply changes");
 		return true;
 	}
 }

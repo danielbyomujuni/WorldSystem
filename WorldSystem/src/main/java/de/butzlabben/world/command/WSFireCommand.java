@@ -38,7 +38,7 @@ public class WSFireCommand implements CommandExecutor {
 		try {
 			wc.save();
 		} catch (IOException e) {
-			p.sendMessage(PluginConfig.getPrefix() + "§cSomething went wrong");
+			p.sendMessage(PluginConfig.getPrefix() + "Â§cSomething went wrong");
 			e.printStackTrace();
 		}
 		fire = wc.isFire();

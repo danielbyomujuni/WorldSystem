@@ -23,7 +23,7 @@ public class WorldOptionsGUI extends OrcInventory {
 	public final static HashMap<UUID, String> data = new HashMap<>();
 
 	public WorldOptionsGUI() {
-		super(GuiConfig.getTitle(GuiConfig.getConfig(), "options.world"), GuiConfig.getRows("options.world"));
+		super(GuiConfig.getTitle(GuiConfig.getConfig(), "options.world"), GuiConfig.getRows("options.world"), GuiConfig.isFill("options.world"));
 
 		loadItem("fire", "/ws fire", true, new FireStatus());
 		loadItem("tnt", "/ws tnt", true, new TntStatus());

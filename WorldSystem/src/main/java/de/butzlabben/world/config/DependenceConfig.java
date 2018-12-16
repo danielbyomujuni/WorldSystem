@@ -125,7 +125,7 @@ public class DependenceConfig {
 		}
 	}
 
-	public int getHighestID() {
+	public static int getHighestID() {
 		File dconfig = new File("plugins//WorldSystem//dependence.yml");
 		YamlConfiguration dcfg = YamlConfiguration.loadConfiguration(dconfig);
 		return dcfg.getInt("HighestID");

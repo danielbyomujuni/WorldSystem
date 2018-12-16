@@ -26,8 +26,14 @@ options:
     material: BARRIER
     display: '&cBack'
     
+  # When filling of an inventory is true, how the item should look like
+  fill:
+    material: GRAY_STAINED_GLASS_PANE
+    display: ''
+    
   # WorldoptionsGUI
   world:
+    fill: false
     # What the title of the Inv should be
     title: 'World Options'
     
@@ -122,6 +128,7 @@ options:
       
   # PlayerGUI for managing one player on a world
   player:
+    fill: false
     title: 'Player options for %player'
     
     back: 
@@ -239,6 +246,7 @@ options:
       
 # WorldsystemGUI
 worldsystem:
+  fill: false
   title: 'WorldSystem'
 
   rows: 1
@@ -263,3 +271,36 @@ worldsystem:
       col: 9
     material: GRASS_BLOCK
     display: '&eWorld Options'
+    
+# GUI for choosing world template
+worldchoose:
+  fill: false
+  title: 'Choose world template'
+  
+  back:
+    enabled: true
+    slot:
+      row: 4
+      col: 5 
+
+  rows: 4
+  
+  # The key must be named exactly as in the config.yml
+  template_default:
+    enabled: true
+    slot:
+      row: 2
+      col: 3 
+    material: GRASS_BLOCK
+    display: '&aDefault template'
+    
+  another_template:
+    enabled: true
+    slot:
+      row: 2
+      col: 7 
+    material: STONE_BLOCK
+    display: '&aAnother template'
+    
+  
+  

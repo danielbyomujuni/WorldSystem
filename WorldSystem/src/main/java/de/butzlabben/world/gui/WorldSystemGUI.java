@@ -16,7 +16,7 @@ public class WorldSystemGUI extends OrcInventory {
 
 	public WorldSystemGUI() {
 
-		super(GuiConfig.getTitle(GuiConfig.getConfig(), "worldsystem"), GuiConfig.getRows("worldsystem"));
+		super(GuiConfig.getTitle(GuiConfig.getConfig(), "worldsystem"), GuiConfig.getRows("worldsystem"), GuiConfig.isFill("worldsystem"));
 
 		loadItem("playeroptions", (p, inv, item) -> {
 			p.closeInventory();

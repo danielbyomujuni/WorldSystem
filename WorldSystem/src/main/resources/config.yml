@@ -12,8 +12,19 @@
 # Path where the worlds will be saved
 worldfolder: 'plugins/WorldSystem/Worlds'
 
-# Name of the template world
-worldsource: ''
+worldtemplates:
+  # Wheter players can decide on different templates
+  multi_choose: false
+  # If multi_choose is disabled, which template should be choosen
+  default: 'template_default'
+  templates:
+    # The "1" can be any key
+    1: 
+      # Name of directory in plugins/WorldSystem/worldsources
+      # e.g. this would be plugins/WorldSystem/worldsources/template_default
+      name: 'template_default'
+    2:
+      name: 'another_template'
 
 # If a confirm is needed before auto-update
 need_confirm: true

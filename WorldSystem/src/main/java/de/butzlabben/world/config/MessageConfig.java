@@ -25,19 +25,19 @@ public class MessageConfig {
 
 	private static List<String> defaultCmdHelp = new ArrayList<>(20);
 	{
-		defaultCmdHelp.add("/ws get §8- §7Will give you a World");
-		defaultCmdHelp.add("/ws home §8- §7Teleports you on your World");
-		defaultCmdHelp.add("/ws sethome §8- §7Sets a specific home");
-		defaultCmdHelp.add("/ws tp §8- §7Teleports you on a specific World");
-		defaultCmdHelp.add("/ws addmember §8- §7Adds a player to your World");
-		defaultCmdHelp.add("/ws delmember§8 - §7Removes a player from your World");
-		defaultCmdHelp.add("/ws tnt §8- §7Allows/Denys TNT on your World");
-		defaultCmdHelp.add("/ws fire §8- §7Allows/Denys Fire on your World");
-		defaultCmdHelp.add("/ws togglechgm §8- §7Allows/Denys a player changing gamemode");
-		defaultCmdHelp.add("/ws togglebuild §8- §7Allows/Denys a player building");
-		defaultCmdHelp.add("/ws toggletp §8- §7Allows/Denys a player teleporting");
-		defaultCmdHelp.add("/ws info §8- §7Shows information about the World");
-		defaultCmdHelp.add("/ws reset §8- §7Will reset your World");
+		defaultCmdHelp.add("/ws get Â§8- Â§7Will give you a World");
+		defaultCmdHelp.add("/ws home Â§8- Â§7Teleports you on your World");
+		defaultCmdHelp.add("/ws sethome Â§8- Â§7Sets a specific home");
+		defaultCmdHelp.add("/ws tp Â§8- Â§7Teleports you on a specific World");
+		defaultCmdHelp.add("/ws addmember Â§8- Â§7Adds a player to your World");
+		defaultCmdHelp.add("/ws delmemberÂ§8 - Â§7Removes a player from your World");
+		defaultCmdHelp.add("/ws tnt Â§8- Â§7Allows/Denys TNT on your World");
+		defaultCmdHelp.add("/ws fire Â§8- Â§7Allows/Denys Fire on your World");
+		defaultCmdHelp.add("/ws togglechgm Â§8- Â§7Allows/Denys a player changing gamemode");
+		defaultCmdHelp.add("/ws togglebuild Â§8- Â§7Allows/Denys a player building");
+		defaultCmdHelp.add("/ws toggletp Â§8- Â§7Allows/Denys a player teleporting");
+		defaultCmdHelp.add("/ws info Â§8- Â§7Shows information about the World");
+		defaultCmdHelp.add("/ws reset Â§8- Â§7Will reset your World");
 	}
 
 	private static File file;
@@ -78,11 +78,11 @@ public class MessageConfig {
 	}
 
 	public static String getNoPermission() {
-		return getMessage("nopermission", "§cYou don't have permissions!");
+		return getMessage("nopermission", "Â§cYou don't have permissions!");
 	}
 
 	public static String getSettingUpWorld() {
-		return getMessage("world.setting_up", "§aSetting up world...");
+		return getMessage("world.setting_up", "Â§aSetting up world...");
 	}
 
 	public static String getPlayerList() {
@@ -90,27 +90,27 @@ public class MessageConfig {
 	}
 
 	public static String getLagDetection() {
-		return getMessage("lagdetection", "Lagdetection in world from: §c%world");
+		return getMessage("lagdetection", "Lagdetection in world from: Â§c%world");
 	}
 
 	public static String getWrongUsage() {
-		return getMessage("wrong_usage", "§c%usage");
+		return getMessage("wrong_usage", "Â§c%usage");
 	}
 
 	public static String getNoWorldOwn() {
-		return getMessage("world.does_not_exists.own", "§cYou don't have a world!");
+		return getMessage("world.does_not_exists.own", "Â§cYou don't have a world!");
 	}
 
 	public static String getNoWorldOther() {
-		return getMessage("world.does_not_exists.other", "§cThis player doesn't has a world!");
+		return getMessage("world.does_not_exists.other", "Â§cThis player doesn't has a world!");
 	}
 
 	public static String getNotRegistered() {
-		return getMessage("not_registered", "§cThis player hasn't joined yet!");
+		return getMessage("not_registered", "Â§cThis player hasn't joined yet!");
 	}
 
 	public static String getAlreadyMember() {
-		return getMessage("member.already_added", "§cThis player is already a member!");
+		return getMessage("member.already_added", "Â§cThis player is already a member!");
 	}
 
 	public static String getMemberAdded() {
@@ -118,51 +118,51 @@ public class MessageConfig {
 	}
 
 	public static String getUnknownError() {
-		return getMessage("unknown_error", "§cSomething went wrong...");
+		return getMessage("unknown_error", "Â§cSomething went wrong...");
 	}
 
 	public static String getDeleteWorldOwn() {
-		return getMessage("world.delete.own", "§cYour world was deleted!");
+		return getMessage("world.delete.own", "Â§cYour world was deleted!");
 	}
 
 	public static String getDeleteWorldOther() {
-		return getMessage("world.delete.other", "You deleted the world of §c%player§6!");
+		return getMessage("world.delete.other", "You deleted the world of Â§c%playerÂ§6!");
 	}
 
 	public static String getNoMemberOwn() {
-		return getMessage("member.not_added.own", "§cThis player isn't a member!");
+		return getMessage("member.not_added.own", "Â§cThis player isn't a member!");
 	}
 
 	public static String getMemberRemoved() {
-		return getMessage("member.removed", "You removed §c%player§6 from your world!");
+		return getMessage("member.removed", "You removed Â§c%playerÂ§6 from your world!");
 	}
 	
 	public static String getNoMemberAdded() {
-		return getMessage("member.no_one_added", "§cThere are no members added");
+		return getMessage("member.no_one_added", "Â§cThere are no members added");
 	}
 
 	public static String getWorldAlreadyExists() {
-		return getMessage("world.already_exists", "§cYou already have a world!");
+		return getMessage("world.already_exists", "Â§cYou already have a world!");
 	}
 
 	public static String getWorldCreated() {
-		return getMessage("world.created", "Your world is now ready. Get there with §a/ws home");
+		return getMessage("world.created", "Your world is now ready. Get there with Â§a/ws home");
 	}
 	
 	public static String getWorldStillCreating() {
-		return getMessage("world.still_creating", "§cWorld is still creating");
+		return getMessage("world.still_creating", "Â§cWorld is still creating");
 	}
 
 	public static String getNotOnWorld() {
-		return getMessage("world.not_on", "§cYou are not on a world!");
+		return getMessage("world.not_on", "Â§cYou are not on a world!");
 	}
 
 	public static String getWorldStillLoaded() {
-		return getMessage("world.still_loaded", "§cYour world is still loaded!");
+		return getMessage("world.still_loaded", "Â§cYour world is still loaded!");
 	}
 
 	public static String getNoRequestSend() {
-		return getMessage("request.not_sent", "§cYou didn't send a request!");
+		return getMessage("request.not_sent", "Â§cYou didn't send a request!");
 	}
 
 	public static String getWorldReseted() {
@@ -170,27 +170,27 @@ public class MessageConfig {
 	}
 
 	public static String getInvalidInput() {
-		return getMessage("request.invalid_input", "§c%input is not a valid input!");
+		return getMessage("request.invalid_input", "Â§c%input is not a valid input!");
 	}
 
 	public static String getRequestAlreadySent() {
-		return getMessage("request.already_sent", "§cYou already sent a request!");
+		return getMessage("request.already_sent", "Â§cYou already sent a request!");
 	}
 
 	public static String getRequestExpired() {
-		return getMessage("request.expired", "§cYou request is expired!");
+		return getMessage("request.expired", "Â§cYou request is expired!");
 	}
 
 	public static String getTimeUntilExpires() {
-		return getMessage("request.until_expire", "§cYour request expires in %time seconds!");
+		return getMessage("request.until_expire", "Â§cYour request expires in %time seconds!");
 	}
 
 	public static String getConfirmRequest() {
-		return getMessage("request.confirm", "§cPlease confirm reset of your world: %command");
+		return getMessage("request.confirm", "Â§cPlease confirm reset of your world: %command");
 	}
 
 	public static String getNoMemberOther() {
-		return getMessage("member.not_added.other", "§cYou are not added to this world!");
+		return getMessage("member.not_added.other", "Â§cYou are not added to this world!");
 	}
 
 	public static String getInfoOwner() {
@@ -214,55 +214,55 @@ public class MessageConfig {
 	}
 
 	public static String getInfoEnabled() {
-		return getRawMessage("info.enabled", "§aOn");
+		return getRawMessage("info.enabled", "Â§aOn");
 	}
 
 	public static String getInfoDisabled() {
-		return getRawMessage("info.disabled", "§cOff");
+		return getRawMessage("info.disabled", "Â§cOff");
 	}
 
 	public static String getToggleGameModeEnabled() {
-		return getMessage("toggle.gamemode.enabled", "§a%player§6 can now change his gamemode!");
+		return getMessage("toggle.gamemode.enabled", "Â§a%playerÂ§6 can now change his gamemode!");
 	}
 
 	public static String getToggleGameModeDisabled() {
-		return getMessage("toggle.gamemode.disabled", "§c%player§6 can no longer change his gamemode!");
+		return getMessage("toggle.gamemode.disabled", "Â§c%playerÂ§6 can no longer change his gamemode!");
 	}
 
 	public static String getToggleTeleportEnabled() {
-		return getMessage("toggle.teleport.enabled", "§a%player§6 can now teleport!");
+		return getMessage("toggle.teleport.enabled", "Â§a%playerÂ§6 can now teleport!");
 	}
 
 	public static String getToggleTeleportDisabled() {
-		return getMessage("toggle.teleport.disabled", "§c%player§6 can no longer teleport!");
+		return getMessage("toggle.teleport.disabled", "Â§c%playerÂ§6 can no longer teleport!");
 	}
 
 	public static String getToggleBuildEnabled() {
-		return getMessage("toggle.build.enabled", "§a%player§6 can now build!");
+		return getMessage("toggle.build.enabled", "Â§a%playerÂ§6 can now build!");
 	}
 
 	public static String getToggleBuildDisabled() {
-		return getMessage("toggle.build.disabled", "§c%player§6 can no longer build!");
+		return getMessage("toggle.build.disabled", "Â§c%playerÂ§6 can no longer build!");
 	}
 
 	public static String getToggleFireEnabled() {
-		return getMessage("toggle.fire.enabled", "§aYou activated fire!");
+		return getMessage("toggle.fire.enabled", "Â§aYou activated fire!");
 	}
 
 	public static String getToggleFireDisabled() {
-		return getMessage("toggle.fire.disabled", "§cYou deactivated fire!");
+		return getMessage("toggle.fire.disabled", "Â§cYou deactivated fire!");
 	}
 
 	public static String getToggleTntEnabled() {
-		return getMessage("toggle.tnt.enabled", "§aYou activated TNT-Damage!");
+		return getMessage("toggle.tnt.enabled", "Â§aYou activated TNT-Damage!");
 	}
 
 	public static String getToggleTntDisabled() {
-		return getMessage("toggle.tnt.disabled", "§cYou deactivated TNT-Damage!");
+		return getMessage("toggle.tnt.disabled", "Â§cYou deactivated TNT-Damage!");
 	}
 
 	public static String getDeleteCommandHelp() {
-		return getMessage("command_help.delete_command", "/ws delete §8- §7Will delete a World");
+		return getMessage("command_help.delete_command", "/ws delete Â§8- Â§7Will delete a World");
 	}
 
 	public static List<String> getCommandHelp() {

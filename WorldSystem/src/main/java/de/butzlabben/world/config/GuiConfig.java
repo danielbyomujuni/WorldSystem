@@ -49,6 +49,7 @@ public class GuiConfig {
 		OrcItem.disabled = getDisabled();
 		OrcItem.coming_soon = getComingSoon();
 		OrcItem.back = getBack();
+		OrcItem.fill = getFill();
 	}
 
 	public static YamlConfiguration getConfig() {
@@ -136,6 +137,14 @@ public class GuiConfig {
 	
 	private static OrcItem getBack() {
 		return getItem("options.back");
+	}
+	
+	private static OrcItem getFill() {
+		return getItem("options.fill");
+	}
+	
+	public static boolean isFill(String path) {
+		return getConfig().getBoolean(path + ".fill");
 	}
 
 	public static Material getSkullItem() {

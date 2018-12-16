@@ -20,7 +20,10 @@ import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.event.WorldResetEvent;
+import de.butzlabben.world.gui.WorldChooseGUI;
 import de.butzlabben.world.wrapper.SystemWorld;
+import de.butzlabben.world.wrapper.WorldTemplate;
+import de.butzlabben.world.wrapper.WorldTemplateProvider;
 
 public class WSResetCommand implements CommandExecutor {
 
@@ -61,51 +64,26 @@ public class WSResetCommand implements CommandExecutor {
 				}
 				File f = new File(PluginConfig.getWorlddir() + "/" + worldname);
 
-				File[] files = f.listFiles();
-				for (File file : files) {
-					if (file.getName().equals("worldconfig.yml"))
-						continue;
-					FileUtils.deleteQuietly(file);
-				}
-				File exampleworld = new File(
-						"plugins//WorldSystem//worldsources//" + PluginConfig.getExampleWorldName());
-				try {
-					FileUtils.copyDirectory(exampleworld, f);
-					toConfirm.remove(p);
-
-					FileUtils.moveDirectoryToDirectory(f, Bukkit.getWorldContainer(), false);
-					
-					WorldConfig config = WorldConfig.getWorldConfig(worldname);
-					config.setHome(null);
-					config.save();
-
-					p.sendMessage(MessageConfig.getWorldReseted());
-
-					// For fast worldcreating after reset
-					WorldCreator creator = new WorldCreator(worldname);
-					long seed = PluginConfig.getSeed();
-					Environment env = PluginConfig.getEnvironment();
-					WorldType type = PluginConfig.getWorldType();
-					if (seed != 0)
-						creator.seed(seed);
-					creator.type(type);
-					creator.environment(env);
-					String generator = PluginConfig.getGenerator();
-					if (!generator.trim().isEmpty())
-						creator.generator(generator);
-
-					sw.setCreating(true);
-					// For #16
-					WorldSystem.getInstance().getAdapter().create(creator, sw, () -> {
-						if (p != null && p.isOnline())
-							p.sendMessage(MessageConfig.getWorldCreated());
+				if (!PluginConfig.isMultiChoose()) {
+					WorldTemplate template = WorldTemplateProvider.getInstace()
+							.getTemplate(PluginConfig.getDefaultWorldTemplate());
+					if (template != null)
+						createWorld(p, worldname, f, new File(template.getPath()), sw);
+					else {
+						p.sendMessage(PluginConfig.getPrefix() + "§cError in config at \"worldtemplates.default\"");
+						p.sendMessage(PluginConfig.getPrefix() + "§cPlease contact an administrator");
+					}
+				} else {
+					WorldChooseGUI.letChoose(p, (template) -> {
+						if (template != null)
+							createWorld(p, worldname, f, new File(template.getPath()), sw);
+						else {
+							p.sendMessage(PluginConfig.getPrefix() + "§cError in config at \"worldtemplates.default\"");
+							p.sendMessage(PluginConfig.getPrefix() + "§cPlease contact an administrator");
+						}
 					});
-
-				} catch (IOException e) {
-					e.printStackTrace();
-					p.sendMessage(MessageConfig.getUnknownError());
-					System.err.println("Couldn't reset world of " + p.getName());
 				}
+
 			} else {
 				p.sendMessage(MessageConfig.getInvalidInput().replaceAll("input", args[0]));
 				return true;
@@ -131,5 +109,54 @@ public class WSResetCommand implements CommandExecutor {
 			}, time * 20L);
 		}
 		return true;
+	}
+
+	private void createWorld(Player p, String worldname, File f, File exampleworld, SystemWorld sw) {
+
+		File[] files = f.listFiles();
+		for (File file : files) {
+			if (file.getName().equals("worldconfig.yml"))
+				continue;
+			FileUtils.deleteQuietly(file);
+		}
+
+		try {
+			if (exampleworld.isDirectory())
+				FileUtils.copyDirectory(exampleworld, f);
+			toConfirm.remove(p);
+
+			FileUtils.moveDirectoryToDirectory(f, Bukkit.getWorldContainer(), false);
+
+			WorldConfig config = WorldConfig.getWorldConfig(worldname);
+			config.setHome(null);
+			config.save();
+
+			p.sendMessage(MessageConfig.getWorldReseted());
+
+			// For fast worldcreating after reset
+			WorldCreator creator = new WorldCreator(worldname);
+			long seed = PluginConfig.getSeed();
+			Environment env = PluginConfig.getEnvironment();
+			WorldType type = PluginConfig.getWorldType();
+			if (seed != 0)
+				creator.seed(seed);
+			creator.type(type);
+			creator.environment(env);
+			String generator = PluginConfig.getGenerator();
+			if (!generator.trim().isEmpty())
+				creator.generator(generator);
+
+			sw.setCreating(true);
+			// For #16
+			WorldSystem.getInstance().getAdapter().create(creator, sw, () -> {
+				if (p != null && p.isOnline())
+					p.sendMessage(MessageConfig.getWorldCreated());
+			});
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			p.sendMessage(MessageConfig.getUnknownError());
+			System.err.println("Couldn't reset world of " + p.getName());
+		}
 	}
 }

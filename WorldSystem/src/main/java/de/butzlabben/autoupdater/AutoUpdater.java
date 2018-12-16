@@ -44,7 +44,7 @@ public class AutoUpdater implements Listener {
 		confirmNeed = PluginConfig.confirmNeed();
 		UpdateInformations ui = UpdateInformations.getInformations();
 		if (ui == null) {
-			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§cCouldn't contact autoupdate server");
+			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Â§cCouldn't contact autoupdate server");
 			return;
 		}
 		Plugin plugin = Bukkit.getPluginManager().getPlugin(ui.getPlugin());
@@ -83,18 +83,18 @@ public class AutoUpdater implements Listener {
 				Runtime.getRuntime().addShutdownHook(new Thread(au));
 				if (!ui.isSilent())
 					Bukkit.getConsoleSender().sendMessage(
-							PluginConfig.getPrefix() + "§aAutoupdate confirmed, §crestart §ato apply changes");
+							PluginConfig.getPrefix() + "Â§aAutoupdate confirmed, Â§crestart Â§ato apply changes");
 				confirmed = true;
 			} else {
 				Bukkit.getPluginManager().registerEvents(this, plugin);
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					p.sendMessage(
-							PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
-					p.sendMessage(PluginConfig.getPrefix() + "§aRead changelogs: https://www.spigotmc.org/resources/49756/updates");
+							PluginConfig.getPrefix() + "Â§aFound new update. Confirm autoupdate with Â§c/ws confirm");
+					p.sendMessage(PluginConfig.getPrefix() + "Â§aRead changelogs: https://www.spigotmc.org/resources/49756/updates");
 				}
 				Bukkit.getConsoleSender().sendMessage(
-						PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
-				Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§aRead changelogs: https://www.spigotmc.org/resources/49756/updates");
+						PluginConfig.getPrefix() + "Â§aFound new update. Confirm autoupdate with Â§c/ws confirm");
+				Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Â§aRead changelogs: https://www.spigotmc.org/resources/49756/updates");
 			}
 		} else {
 			confirmNeed = false;
@@ -105,8 +105,8 @@ public class AutoUpdater implements Listener {
 	public void on(PlayerJoinEvent e) {
 		if (e.getPlayer().hasPermission("ws.confirm")) {
 			e.getPlayer().sendMessage(
-					PluginConfig.getPrefix() + "§aFound new update. Confirm autoupdate with §c/ws confirm");
-			e.getPlayer().sendMessage(PluginConfig.getPrefix() + "§aRead changelogs: https://www.spigotmc.org/resources/49756/updates");
+					PluginConfig.getPrefix() + "Â§aFound new update. Confirm autoupdate with Â§c/ws confirm");
+			e.getPlayer().sendMessage(PluginConfig.getPrefix() + "Â§aRead changelogs: https://www.spigotmc.org/resources/49756/updates");
 		}
 	}
 

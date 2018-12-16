@@ -36,12 +36,13 @@ public class PluginConfig {
 		file = f;
 		if (file.exists()) {
 			YamlConfiguration cfg = getConfig();
-			if (false == (cfg.isString("worldfolder") && cfg.isString("worldsource") && cfg.isInt("unloadingtime")
+			if (false == (cfg.isString("worldfolder") && cfg.isInt("unloadingtime")
 					&& cfg.isBoolean("survival") && cfg.isString("language") && cfg.isString("prefix")
 					&& cfg.isInt("request_expires") && cfg.isBoolean("need_confirm")
-					&& cfg.isBoolean("contact_authserver") && cfg.isBoolean("spawn_teleportation") 
-					&& cfg.isInt("delete_after") &&
-
+					&& cfg.isBoolean("contact_authserver") && cfg.isBoolean("spawn_teleportation")
+					&& cfg.isInt("delete_after") && cfg.isBoolean("worldtemplates.multi_choose")  
+					&& cfg.isString("worldtemplates.default") &&
+					
 					cfg.isInt("lagsystem.period_in_seconds") && cfg.isInt("lagsystem.entities_per_world")
 					&& cfg.isBoolean("lagsystem.garbagecollector.use")
 					&& cfg.isInt("lagsystem.garbagecollector.period_in_minutes") &&
@@ -91,9 +92,10 @@ public class PluginConfig {
 		}
 	}
 
-	private static YamlConfiguration getConfig() {
+	public static YamlConfiguration getConfig() {
 		try {
-			return YamlConfiguration.loadConfiguration(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
+			return YamlConfiguration
+					.loadConfiguration(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -139,8 +141,12 @@ public class PluginConfig {
 		return getConfig().getString("worldfolder", "plugins/WorldSystem/Worlds") + "/";
 	}
 
-	public static String getExampleWorldName() {
-		return getConfig().getString("worldsource", "");
+	public static boolean isMultiChoose() {
+		return getConfig().getBoolean("worldtemplates.multi_choose", false);
+	}
+	
+	public static String getDefaultWorldTemplate() {
+		return getConfig().getString("worldtemplates.default", "");
 	}
 
 	public static String getLanguage() {
@@ -209,19 +215,19 @@ public class PluginConfig {
 	public static boolean contactAuth() {
 		return getConfig().getBoolean("contact_authserver", true);
 	}
-	
+
 	public static boolean spawnTeleportation() {
 		return getConfig().getBoolean("spawn_teleportation", true);
 	}
-	
+
 	public static boolean shouldDelete() {
 		return getConfig().getInt("delete_after") != -1;
 	}
-	
+
 	public static long deleteAfter() {
 		return getConfig().getLong("delete_after");
 	}
-	
+
 	public static WorldCreator getWorldCreator(String worldname) {
 		WorldCreator creator = new WorldCreator(worldname);
 		long seed = PluginConfig.getSeed();

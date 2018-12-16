@@ -31,8 +31,8 @@ public class WSLeaveCommand implements CommandExecutor {
 		if (wp.isOnSystemWorld()) {
 			// Extra safety for #2
 			if (PluginConfig.getSpawn().getWorld() == null) {
-				Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§cThe spawn is not properly set");
-				cs.sendMessage(PluginConfig.getPrefix() + "§cThe spawn is not properly set");
+				Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Â§cThe spawn is not properly set");
+				cs.sendMessage(PluginConfig.getPrefix() + "Â§cThe spawn is not properly set");
 				return true;
 			}
 			
