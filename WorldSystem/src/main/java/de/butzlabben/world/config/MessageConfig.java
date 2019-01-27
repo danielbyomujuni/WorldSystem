@@ -245,6 +245,15 @@ public class MessageConfig {
 		return getMessage("toggle.build.disabled", "§c%player§6 can no longer build!");
 	}
 
+	public static String getToggleWorldeditEnabled() {
+		return getMessage("toggle.worldedit.enabled", "§a%player§6 can now use WorldEdit!");
+	}
+
+	public static String getToggleWorldeditDisabled() {
+		return getMessage("toggle.worldedit.disabled", "§c%player§6 can no longer use WorldEdit!");
+	}
+
+
 	public static String getToggleFireEnabled() {
 		return getMessage("toggle.fire.enabled", "§aYou activated fire!");
 	}

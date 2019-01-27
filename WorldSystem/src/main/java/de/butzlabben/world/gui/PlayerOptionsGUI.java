@@ -2,6 +2,7 @@ package de.butzlabben.world.gui;
 
 import java.util.UUID;
 
+import de.butzlabben.world.gui.playeroption.WorldEditStatus;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -26,6 +27,7 @@ public class PlayerOptionsGUI extends OrcInventory {
 		loadItem("build", "/ws togglebuild " + otherPlayer, new BuildStatus(wp));
 		loadItem("gamemode", "/ws togglegm " + otherPlayer, new GamemodeStatus(wp));
 		loadItem("teleport", "/ws toggletp " + otherPlayer, new TeleportStatus(wp));
+		loadItem("worldedit", "/ws togglewe " + otherPlayer, new WorldEditStatus(wp));
 		loadItem("time");
 		loadItem("addmember");
 		loadItem("delmember");

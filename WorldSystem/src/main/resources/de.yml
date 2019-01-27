@@ -13,7 +13,7 @@ world:
   delete:
     own: "&cDeine Welt wurde entfernt!"
     other: "Die Welt von &c%player&6 wurde entfernt!"
-  does_not_exists: 
+  does_not_exists:
     own: "&cDu besitzt keine Welt!"
     other: "&cDieser Spieler besitzt keine Welt!"
   setting_up: "&aBereite Welt vor..."
@@ -48,6 +48,9 @@ toggle:
   build:
     enabled: "&a%player&6 kann nun bauen!"
     disabled: "&c%player&6 kann nicht mehr bauen!"
+  worldedit:
+    enabled: "&a%player&6 can now use WorldEdit!"
+    disabled: "&c%player&6 can no longer use WorldEdit!"
   fire:
     enabled: "&aFeuer aktiviert!"
     disabled: "&cFeuer deaktiviert!"
@@ -63,7 +66,7 @@ info:
   fire: "Feuer: %data"
   enabled: "&aAn"
   disabled: "&cAus"
-  
+
 command_help:
   list:
     - "/ws get &8- &7Gibt dir eine Welt"
@@ -78,6 +81,7 @@ command_help:
     - "/ws togglegm &8- &7Erlaubt/Verbietet einem Spieler den Spielmodus zu wechseln"
     - "/ws togglebuild &8- &7Erlaubt/Verbietet einem Spieler zu bauen"
     - "/ws toggletp &8- &7Erlaubt/Verbietet einem Spieler sich zu teleportieren"
+    - "/ws togglewe §8- §7Erlaubt/Verbietet einem Spieler WorldEdit zu nutzen"
     - "/ws info &8- &7Zeigt Informationen \u00fcber die Welt"
     - "/ws reset &8- &7Setzt deine Welt zur\u00fcck"
   delete_command: "/ws delete &8- &7L\u00f6scht eine Welt"

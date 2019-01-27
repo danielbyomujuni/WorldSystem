@@ -8,50 +8,50 @@ options:
   enabled:
     # Material name in the Material enum
     material: INK_SACK
-     # Data, how it should look like eg. blue, red, green
+    # Data, how it should look like eg. blue, red, green
     data: 10
     # Displayname
     display: '&aEnabled'
-    
+
   # How the disabled item should look like
   disabled:
     material: INK_SACK
     data: 1
     display: '&cDisabled'
-    
+
   # How the comming-soon item should look like
   coming_soon:
     material: INK_SACK
     data: 14
     display: '&6Coming soon...'
-  
+
   # How the back item should look like
-  back: 
+  back:
     material: BARRIER
     display: '&cBack'
-    
+
   # When filling of an inventory is true, how the item should look like
   fill:
     material: STAINED_GLASS_PANE
     data: 7
     display: ''
-    
+
   # WorldoptionsGUI
   world:
     fill: false
     # What the title of the Inv should be
     title: 'World Options'
-    
+
     # Rows
     rows: 3
-    
+
     # Where the back item should be
     back:
       enabled: true
       slot:
         row: 3
         col: 5
-        
+
     # Reset button
     reset:
       # If feature should be enabled or not
@@ -62,7 +62,7 @@ options:
       material: DIAMOND_HOE
       data: 0
       display: '&eReset World'
-      
+
     # Fire button
     fire:
       enabled: true
@@ -75,7 +75,7 @@ options:
         col: 2
       material: FLINT_AND_STEEL
       display: '&eToggle Fire'
-      
+
     # TNT button
     tnt:
       enabled: true
@@ -87,18 +87,18 @@ options:
         col: 5
       material: TNT
       display: '&eToggle TNT-Explosion'
-      
+
   players:
     title: 'Players added to this world'
-  
+
     back:
       enabled: true
       slot:
         row: 6
-        col: 6 
-  
+        col: 6
+
     rows: 6
-    
+
     nextpage:
       enabled: true
       slot:
@@ -124,20 +124,20 @@ options:
     playerhead:
       material: SKULL_ITEM
       display: '&e%player'
-      
+
   # PlayerGUI for managing one player on a world
   player:
     fill: false
     title: 'Player options for %player'
-    
-    back: 
+
+    back:
       enabled: true
       slot:
         row: 3
         col: 5
-  
+
     rows: 3
-    
+
     build:
       enabled: true
       slot:
@@ -149,8 +149,8 @@ options:
       material: GOLD_AXE
       display: '&eToggle Build-Permission'
       lore:
-      - '&7Toggles the permission for a player'
-      - '&7To build on this world'
+        - '&7Toggles the permission for a player'
+        - '&7To build on this world'
     gamemode:
       enabled: true
       slot:
@@ -162,8 +162,8 @@ options:
       material: END_CRYSTAL
       display: '&eToggle GameMode-Permission'
       lore:
-      - '&7Toggles the permission for a player'
-      - '&7To change the GameMode on this world'
+        - '&7Toggles the permission for a player'
+        - '&7To change the GameMode on this world'
     teleport:
       enabled: true
       slot:
@@ -175,21 +175,21 @@ options:
       material: COMPASS
       display: '&eToggle Teleport-Permission'
       lore:
-      - '&7Toggles the permission for a player'
-      - '&7To teleport on this world'
-    time:
-      enabled: false
+        - '&7Toggles the permission for a player'
+        - '&7To teleport on this world'
+    worldedit:
+      enabled: true
       slot:
         row: 1
         col: 4
       state:
         row: 2
         col: 4
-      material: 347
-      display: '&eToggle Time-Permission'
+      material: WOOD_AXE
+      display: '&eToggle WorldEdit-Permission'
       lore:
-      - '&7Toggles the permission for a player'
-      - '&7To change the time on this world'
+        - '&7Toggles the permission for a player'
+        - '&7To use WorldEdit on this world'
     addmember:
       enabled: false
       slot:
@@ -201,8 +201,8 @@ options:
       material: 399
       display: '&eToggle Addmember-Permission'
       lore:
-      - '&7Toggles the permission for a player'
-      - '&7To add a member to this world'
+        - '&7Toggles the permission for a player'
+        - '&7To add a member to this world'
     delmember:
       enabled: false
       slot:
@@ -214,8 +214,8 @@ options:
       material: 286
       display: '&eToggle Delmember-Permission'
       lore:
-      - '&7Toggles the permission for a player'
-      - '&7To remove a member from this world'
+        - '&7Toggles the permission for a player'
+        - '&7To remove a member from this world'
     setpermissions:
       enabled: false
       slot:
@@ -227,8 +227,8 @@ options:
       material: 331
       display: '&eToggle Setpermissions-Permission'
       lore:
-      - '&7Toggles the permission for a player'
-      - '&7To set permissions for a member of this world'
+        - '&7Toggles the permission for a player'
+        - '&7To set permissions for a member of this world'
     administrateworld:
       enabled: false
       slot:
@@ -240,22 +240,22 @@ options:
       material: 421
       display: '&eToggle Addmember-Permission'
       lore:
-      - '&7Toggles the permission for a player'
-      - '&7To adminstrate this world'
-      
+        - '&7Toggles the permission for a player'
+        - '&7To adminstrate this world'
+
 # WorldsystemGUI
 worldsystem:
   fill: false
   title: 'WorldSystem'
 
   rows: 1
-  
+
   back:
     enabled: true
     slot:
       row: 1
       col: 5
-      
+
   playeroptions:
     enabled: true
     slot:
@@ -270,33 +270,33 @@ worldsystem:
       col: 9
     material: GRASS
     display: '&eWorld Options'
-    
+
 # GUI for choosing world template
 worldchoose:
   fill: false
   title: 'Choose world template'
-  
+
   back:
     enabled: true
     slot:
       row: 4
-      col: 5 
+      col: 5
 
   rows: 4
-  
+
   # The key must be named exactly as in the config.yml
   template_default:
     enabled: true
     slot:
       row: 2
-      col: 3 
+      col: 3
     material: GRASS
     display: '&aDefault template'
-    
+
   another_template:
     enabled: true
     slot:
       row: 2
-      col: 7 
+      col: 7
     material: STONE
     display: '&aAnother template'

@@ -1,8 +1,14 @@
 package de.butzlabben.world;
 
-import java.io.File;
-import java.io.IOException;
-
+import de.butzlabben.autoupdater.AutoUpdater;
+import de.butzlabben.world.command.*;
+import de.butzlabben.world.config.*;
+import de.butzlabben.world.gui.GuiCommand;
+import de.butzlabben.world.listener.*;
+import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
+import de.butzlabben.world.wrapper.CreatorAdapter;
+import de.butzlabben.world.wrapper.SystemWorld;
+import net.myplayplanet.commandframework.CommandFramework;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -10,212 +16,171 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import de.butzlabben.autoupdater.AutoUpdater;
-import de.butzlabben.world.command.WSAddmemberCommand;
-import de.butzlabben.world.command.WSCommand;
-import de.butzlabben.world.command.WSConfirmCommand;
-import de.butzlabben.world.command.WSDeleteCommand;
-import de.butzlabben.world.command.WSDelmemberCommand;
-import de.butzlabben.world.command.WSFireCommand;
-import de.butzlabben.world.command.WSGetCommand;
-import de.butzlabben.world.command.WSHomeCommand;
-import de.butzlabben.world.command.WSInfoCommand;
-import de.butzlabben.world.command.WSLeaveCommand;
-import de.butzlabben.world.command.WSResetCommand;
-import de.butzlabben.world.command.WSSethomeCommand;
-import de.butzlabben.world.command.WSTPCommand;
-import de.butzlabben.world.command.WSTnTCommand;
-import de.butzlabben.world.command.WSToggleBuildCommand;
-import de.butzlabben.world.command.WSToggleGMCommand;
-import de.butzlabben.world.command.WSToggleTPCommand;
-import de.butzlabben.world.config.DependenceConfig;
-import de.butzlabben.world.config.GuiConfig;
-import de.butzlabben.world.config.MessageConfig;
-import de.butzlabben.world.config.PluginConfig;
-import de.butzlabben.world.config.SettingsConfig;
-import de.butzlabben.world.gui.GuiCommand;
-import de.butzlabben.world.listener.BlockListener;
-import de.butzlabben.world.listener.CommandListener;
-import de.butzlabben.world.listener.PlayerDeathListener;
-import de.butzlabben.world.listener.PlayerListener;
-import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
-import de.butzlabben.world.wrapper.CreatorAdapter;
-import de.butzlabben.world.wrapper.SystemWorld;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author Butzlabben
  * @author Jubeki
- * @since 10.07.2017
  * @version 2.2.0.1
+ * @since 10.07.2017
  */
 public class WorldSystem extends JavaPlugin {
 
-	final private String version = this.getDescription().getVersion();
+    final private String version = this.getDescription().getVersion();
 
-	private CreatorAdapter creator;
-	
-	private static boolean is1_13 = false;
+    private CreatorAdapter creator;
+    private CommandFramework framework;
 
-	@Override
-	public void onEnable() {
-		//Set right version
-		if(Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1_13") )
-			is1_13 = true;
-		
-		createConfigs();
+    private static boolean is1_13 = false;
 
-		PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new PlayerListener(), this);
-		pm.registerEvents(new BlockListener(), this);
-		pm.registerEvents(new PlayerDeathListener(), this);
-		pm.registerEvents(new CommandListener(), this);
+    @Override
+    public void onEnable() {
+        //Set right version
+        if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1_13"))
+            is1_13 = true;
 
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new WorldCheckerRunnable(), 20 * 5,
-				20 * PluginConfig.getLagCheckPeriod());
+        createConfigs();
 
-		if (PluginConfig.useGC()) {
-			Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new GCRunnable(), 20 * 5,
-					20 * PluginConfig.getGCPeriod());
-		}
+        PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new PlayerListener(), this);
+        pm.registerEvents(new BlockListener(), this);
+        pm.registerEvents(new PlayerDeathListener(), this);
+        pm.registerEvents(new CommandListener(), this);
+        if (pm.getPlugin("WorldEdit") != null)
+            pm.registerEvents(new WorldEditListener(), this);
 
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
-			for (World w : Bukkit.getWorlds()) {
-				SystemWorld sw = SystemWorld.getSystemWorld(w.getName());
-				if (sw != null && sw.isLoaded())
-					SettingsConfig.editWorld(w);
-					
-			}
-		}, 20, 20 * 10);
 
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-			@Override
-			public void run() {
-				for (World w : Bukkit.getWorlds()) {
-					SystemWorld.tryUnloadLater(w);
-				}
-			}
-		}, 20 * 60 * 2, 20 * 60 * 2);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new WorldCheckerRunnable(), 20 * 5,
+                20 * PluginConfig.getLagCheckPeriod());
 
-		// COMMANDS
-		getCommand("ws").setExecutor(new WSCommand());
-		getCommand("ws get").setExecutor(new WSGetCommand());
-		getCommand("ws addmember").setExecutor(new WSAddmemberCommand());
-		getCommand("ws delmember").setExecutor(new WSDelmemberCommand());
-		getCommand("ws home").setExecutor(new WSHomeCommand());
-		// Here we go for #20 and #22
-		getCommand("ws sethome").setExecutor(new WSSethomeCommand());
-		getCommand("ws leave").setExecutor(new WSLeaveCommand());
-		getCommand("ws fire").setExecutor(new WSFireCommand());
-		getCommand("ws info").setExecutor(new WSInfoCommand());
-		getCommand("ws tnt").setExecutor(new WSTnTCommand());
-		getCommand("ws tp").setExecutor(new WSTPCommand());
-		getCommand("ws reset").setExecutor(new WSResetCommand());
-		getCommand("ws toggletp").setExecutor(new WSToggleTPCommand());
-		getCommand("ws togglegm").setExecutor(new WSToggleGMCommand());
-		getCommand("ws togglebuild").setExecutor(new WSToggleBuildCommand());
-		getCommand("ws delete").setExecutor(new WSDeleteCommand());
+        if (PluginConfig.useGC()) {
+            Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new GCRunnable(), 20 * 5,
+                    20 * PluginConfig.getGCPeriod());
+        }
 
-		getCommand("ws confirm").setExecutor(new WSConfirmCommand());
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+            for (World w : Bukkit.getWorlds()) {
+                SystemWorld sw = SystemWorld.getSystemWorld(w.getName());
+                if (sw != null && sw.isLoaded())
+                    SettingsConfig.editWorld(w);
 
-		getCommand("ws gui").setExecutor(new GuiCommand());
-		
-		System.setProperty("bstats.relocatecheck", "false");
-		Metrics m = new Metrics(this);
-		m.addCustomChart(new Metrics.SingleLineChart("worlds", DependenceConfig::getHighestID));
+            }
+        }, 20, 20 * 10);
 
-		AutoUpdater.startAsync();
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+            @Override
+            public void run() {
+                for (World w : Bukkit.getWorlds()) {
+                    SystemWorld.tryUnloadLater(w);
+                }
+            }
+        }, 20 * 60 * 2, 20 * 60 * 2);
 
-		// Choose right creatoradapter for #16
-		if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null
-				&& Bukkit.getPluginManager().getPlugin("WorldEdit") != null) {
-			creator = new AsyncCreatorAdapter();
-			Bukkit.getConsoleSender()
-					.sendMessage(PluginConfig.getPrefix() + "Found FAWE! Try now to create worlds async");
-		} else {
-			creator = (c, sw, r) -> {
-				Bukkit.getWorlds().add(c.createWorld());
-				if (sw != null)
-					sw.setCreating(false);
-				r.run();
-			};
-		}
+        //COMMANDS
+        framework = new CommandFramework(this);
+        framework.registerCommands(new WSCommand());
+        framework.registerCommands(new WorldSettingsCommands());
+        framework.registerCommands(new WorldAdministrateCommand());
 
-		// Starting for #28
-		if (PluginConfig.shouldDelete()) {
-			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix()
-					+ "Searching for old worlds to delete if not loaded for " + PluginConfig.deleteAfter() + " days");
-			DependenceConfig.checkWorlds();
-		}
 
-		Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Succesfully enabled WorldSystem v" + version);
-	}
+        System.setProperty("bstats.relocatecheck", "false");
+        Metrics m = new Metrics(this);
+        m.addCustomChart(new Metrics.SingleLineChart("worlds", DependenceConfig::getHighestID));
 
-	@Override
-	public void onDisable() {
-		for (World w : Bukkit.getWorlds()) {
-			SystemWorld sw = SystemWorld.getSystemWorld(w.getName());
-			if (sw != null && sw.isLoaded()) {
-				sw.directUnload(w);
-			}
-		}
+        AutoUpdater.startAsync();
 
-		Bukkit.getConsoleSender()
-				.sendMessage(PluginConfig.getPrefix() + "Succesfully disabled WorldSystem v" + version);
-	}
+        // Choose right creatoradapter for #16
+        if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null
+                && Bukkit.getPluginManager().getPlugin("WorldEdit") != null) {
+            creator = new AsyncCreatorAdapter();
+            Bukkit.getConsoleSender()
+                    .sendMessage(PluginConfig.getPrefix() + "Found FAWE! Try now to create worlds async");
+        } else {
+            creator = (c, sw, r) -> {
+                Bukkit.getWorlds().add(c.createWorld());
+                if (sw != null)
+                    sw.setCreating(false);
+                r.run();
+            };
+        }
 
-	public static void createConfigs() {
-		File dir = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder() + "/worldsources");
-		File config = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "config.yml");
-		File dconfig = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "dependence.yml");
-		File languages = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder() + "/languages");
-		File gui = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "gui.yml");
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
-		if (languages.exists() == false)
-			languages.mkdirs();
-		PluginConfig.checkConfig(config);
-		// Done with #6
-		MessageConfig.checkConfig(new File(languages, "en.yml"));
+        // Starting for #28
+        if (PluginConfig.shouldDelete()) {
+            Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix()
+                    + "Searching for old worlds to delete if not loaded for " + PluginConfig.deleteAfter() + " days");
+            DependenceConfig.checkWorlds();
+        }
 
-		MessageConfig.checkConfig(new File(languages, "de.yml"));
-		MessageConfig.checkConfig(new File(languages, "hu.yml"));
-		MessageConfig.checkConfig(new File(languages, "nl.yml"));
-		MessageConfig.checkConfig(new File(languages, "pl.yml"));
-		MessageConfig.checkConfig(new File(languages, "es.yml"));
-		MessageConfig.checkConfig(new File(languages, "ru.yml"));
-		MessageConfig.checkConfig(new File(languages, "fi.yml"));
-		// Here we are for #5
-		MessageConfig.checkConfig(new File(languages, "zh.yml"));
-		MessageConfig.checkConfig(new File(languages, "fr.yml"));
-		MessageConfig.checkConfig(new File(languages, PluginConfig.getLanguage() + ".yml"));
-		if (!dconfig.exists()) {
-			try {
-				dconfig.createNewFile();
-			} catch (IOException e) {
-				System.err.println("Wasn't able to create DependenceConfig");
-				e.printStackTrace();
-			}
-			new DependenceConfig();
-		}
-		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(config);
-		SettingsConfig.checkConfig();
-		File worlddir = new File(cfg.getString("worldfolder"));
-		if (!worlddir.exists()) {
-			worlddir.mkdirs();
-		}
-		GuiConfig.checkConfig(gui);
-	}
+        Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Succesfully enabled WorldSystem v" + version);
+    }
 
-	public static WorldSystem getInstance() {
-		return JavaPlugin.getPlugin(WorldSystem.class);
-	}
-	
-	public CreatorAdapter getAdapter() {
-		return creator;
-	}
+    @Override
+    public void onDisable() {
+        for (World w : Bukkit.getWorlds()) {
+            SystemWorld sw = SystemWorld.getSystemWorld(w.getName());
+            if (sw != null && sw.isLoaded()) {
+                sw.directUnload(w);
+            }
+        }
 
-	public static boolean is1_13() {
-		return is1_13;
-	}
+        Bukkit.getConsoleSender()
+                .sendMessage(PluginConfig.getPrefix() + "Succesfully disabled WorldSystem v" + version);
+    }
+
+    public static void createConfigs() {
+        File dir = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder() + "/worldsources");
+        File config = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "config.yml");
+        File dconfig = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "dependence.yml");
+        File languages = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder() + "/languages");
+        File gui = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "gui.yml");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        if (languages.exists() == false)
+            languages.mkdirs();
+        PluginConfig.checkConfig(config);
+        // Done with #6
+        MessageConfig.checkConfig(new File(languages, "en.yml"));
+
+        MessageConfig.checkConfig(new File(languages, "de.yml"));
+        MessageConfig.checkConfig(new File(languages, "hu.yml"));
+        MessageConfig.checkConfig(new File(languages, "nl.yml"));
+        MessageConfig.checkConfig(new File(languages, "pl.yml"));
+        MessageConfig.checkConfig(new File(languages, "es.yml"));
+        MessageConfig.checkConfig(new File(languages, "ru.yml"));
+        MessageConfig.checkConfig(new File(languages, "fi.yml"));
+        // Here we are for #5
+        MessageConfig.checkConfig(new File(languages, "zh.yml"));
+        MessageConfig.checkConfig(new File(languages, "fr.yml"));
+        MessageConfig.checkConfig(new File(languages, PluginConfig.getLanguage() + ".yml"));
+        if (!dconfig.exists()) {
+            try {
+                dconfig.createNewFile();
+            } catch (IOException e) {
+                System.err.println("Wasn't able to create DependenceConfig");
+                e.printStackTrace();
+            }
+            new DependenceConfig();
+        }
+        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(config);
+        SettingsConfig.checkConfig();
+        File worlddir = new File(cfg.getString("worldfolder"));
+        if (!worlddir.exists()) {
+            worlddir.mkdirs();
+        }
+        GuiConfig.checkConfig(gui);
+    }
+
+    public static WorldSystem getInstance() {
+        return JavaPlugin.getPlugin(WorldSystem.class);
+    }
+
+    public CreatorAdapter getAdapter() {
+        return creator;
+    }
+
+    public static boolean is1_13() {
+        return is1_13;
+    }
 }

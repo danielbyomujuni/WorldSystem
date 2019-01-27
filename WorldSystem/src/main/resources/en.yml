@@ -13,7 +13,7 @@ world:
   delete:
     own: "&cYour world was deleted!"
     other: "You deleted the world of &c%player&6!"
-  does_not_exists: 
+  does_not_exists:
     own: "&cYou don't have a world!"
     other: "&cThis player doesn't has a world!"
   setting_up: "&aLoading world..."
@@ -48,6 +48,9 @@ toggle:
   build:
     enabled: "&a%player&6 can now build!"
     disabled: "&c%player&6 can no longer build!"
+  worldedit:
+    enabled: "&a%player&6 can now use WorldEdit!"
+    disabled: "&c%player&6 can no longer use WorldEdit!"
   fire:
     enabled: "&aYou activated fire!"
     disabled: "&cYou deactivated fire!"
@@ -63,7 +66,7 @@ info:
   fire: "Fire: %data"
   enabled: "&aOn"
   disabled: "&cOff"
-  
+
 command_help:
   list:
     - "/ws get &8- &7Will give you a world"
@@ -79,6 +82,7 @@ command_help:
     - "/ws togglegm &8- &7Allows/Denies a player changing gamemode"
     - "/ws togglebuild &8- &7Allows/Denies a player building on your world"
     - "/ws toggletp &8- &7Allows/Denies a player teleporting on your world"
+    - "/ws togglewe ยง8- ยง7Allows/Denys a player using WorldEdit"
     - "/ws info &8- &7Shows information about the world"
     - "/ws reset &8- &7Will reset your world"
   delete_command: "/ws delete &8- &7Will delete a world"

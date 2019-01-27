@@ -1,34 +1,34 @@
-nopermission: "&cVous n'avez pas la permission de le faire!"
+nopermission: "&cVous n'avez pas la permission!"
 unknown_error: "&cQuelque chose s'est mal passé ..."
-lagdetection: "Décalage Détection dans le monde: &c%world"
+lagdetection: "Lag détecté sur le monde: &c%world"
 wrong_usage: "&c%usage"
 not_registered: "&cCe joueur n'a pas encore rejoint!!"
 
 world:
-  reseted: "Vous auriez été réinitialisé!"
+  reseted: "Votre monde a été réinitialisé!"
   still_loaded: "&cVotre monde est toujours chargé!"
   not_on: "&cVous n'êtes pas sur un monde!"
   created: "Votre monde est maintenant prêt. Allez-y avec &a/ws home"
   already_exists: "&cVous avez déjà un monde!"
   delete:
     own: "&cVotre monde a été supprimé!"
-    other: "Vous avez supprimé le monde du &c%player&6!"
-  does_not_exists: 
-    own: "&cTu n'as pas de monde!"
+    other: "Vous avez supprimé le monde de &c%player&6!"
+  does_not_exists:
+    own: "&cVous n'avez pas de monde!"
     other: "&cCe joueur n'a pas de monde!"
-  setting_up: "&aChargement du monde ..."
+  setting_up: "&aChargement du monde..."
   playerlist: "Joueurs dans ce monde: %players"
-  still_creating: "&cWorld is still creating"
-  set_home: "You set the home"
+  still_creating: "&cLe monde est encore en train de se créer"
+  set_home: "Vous avez placé le home"
 
 member:
-  removed: "Vous avez supprimé &c%player&6 de votre monde!"
-  added: "Vous avez ajouté un &c%player&6 à votre monde!"
+  removed: "Vous avez retiré &c%player&6 de votre monde!"
+  added: "Vous avez ajouté &c%player&6 à votre monde!"
   already_added: "&cCe joueur est déjà membre!"
   not_added:
     own: "&cCe joueur n'est pas membre!"
     other: "&cVous n'avez pas été ajouté à ce monde!"
-  no_one_added: "&cThere are no members added"
+  no_one_added: "&cIl n'y a aucun membre d'ajouté"
 
 request:
   expired: "&cVotre demande a expiré!"
@@ -40,20 +40,23 @@ request:
 
 toggle:
   gamemode:
-    enabled: "&a%player&6 peut maintenant changer leur mode de jeu!"
-    disabled: "&c%player&6 ne peut maintenant changer leur mode de jeu!"
+    enabled: "&a%player&6 peut désormais changer son mode de jeu!"
+    disabled: "&c%player&6 ne peut désormais plus changer son mode de jeu!"
   teleport:
-    enabled: "&a%player&6 peut maintenant téléporter!"
-    disabled: "&c%player&6 ne peut maintenant téléporter!"
+    enabled: "&a%player&6 peut désormais se téléporter!"
+    disabled: "&c%player&6 ne peut désormais plus se téléporter!"
   build:
-    enabled: "&a%player&6 peut maintenant construire!"
-    disabled: "&c%player&6 ne peut maintenant construire!"
+    enabled: "&a%player&6 peut désormais construire!"
+    disabled: "&c%player&6 ne peut désormais plus construire!"
+  worldedit:
+    enabled: "&a%player&6 peut désormais utiliser WorldEdit!"
+    disabled: "&c%player&6 ne peut désormais plus utiliser WorldEdit!"
   fire:
     enabled: "&aVous avez activé le feu!"
     disabled: "&cVous avez désactivé le feu!"
   tnt:
-    enabled: "&aVous avez activé les TNT dégâts!"
-    disabled: "&cVous avez désactivé les TNT dégâts!"
+    enabled: "&aVous avez activé la TNT!"
+    disabled: "&cVous avez désactivé la TNT!"
 
 info:
   owner: "Propriétaire: %data"
@@ -61,24 +64,25 @@ info:
   member: "Membre: %data"
   tnt: "TNT: %data"
   fire: "Feu: %data"
-  enabled: "&aAllumer"
-  disabled: "&cÉteindre"
-  
+  enabled: "&aActivé"
+  disabled: "&cDésactivé"
+
 command_help:
   list:
-    - "/ws get &8- &7Je vais vous donner un monde"
+    - "/ws get &8- &7Vous donne un monde"
     - "/ws home &8- &7Vous téléporte sur votre monde"
-    - "/ws sethome &8- &7Sets a specific home"
-    - "/ws gui &8- &7Ouvre le menu de l'interface graphique si vous êtes le propriétaire mondial"
+    - "/ws sethome &8- &7Définit un home spécifique"
+    - "/ws gui &8- &7Ouvre le menu de votre monde"
     - "/ws tp &8- &7Vous téléporte sur un monde spécifique"
-    - "/ws addmember &8- &7Ajoute un joueur à ton monde"
-    - "/ws delmember &8- &7Supprime un joueur de votre monde"
-    - "/ws leave &8- &7Laissez un monde"
-    - "/ws tnt &8- &7Permet / Refuse TNT sur votre monde"
-    - "/ws fire &8- &7Permet / Refuse le feu sur votre monde"
-    - "/ws togglegm &8- &7Permet / Refuse à un joueur de changer de mode de jeu"
-    - "/ws togglebuild &8- &7Permet / Refuse à un joueur de construire sur votre monde"
-    - "/ws toggletp &8- &7Permet / Refuse à un joueur de se téléporter sur votre monde"
-    - "/ws info &8- &7Affiche des informations sur le monde"
-    - "/ws reset &8- &7Réinitialisera votre monde"
-  delete_command: "/ws delete &8- &7Va supprimer un monde"
+    - "/ws addmember &8- &7Ajoute un joueur à votre monde"
+    - "/ws delmember &8- &7Retire un joueur de votre monde"
+    - "/ws leave &8- &7Quitter un monde"
+    - "/ws tnt &8- &7Active / Désactive la TNT sur votre monde"
+    - "/ws fire &8- &7Active / Désactive le feu sur votre monde"
+    - "/ws togglegm &8- &7Autorise / Interdit à un joueur de changer de mode de jeu"
+    - "/ws togglebuild &8- &7Autorise / Interdit à un joueur de construire sur votre monde"
+    - "/ws toggletp &8- &7Autorise / Interdit à un joueur de se téléporter sur votre monde"
+    - "/ws togglewe &8- &7Autorise / Interdit à un joueur d'utiliser WorldEdit"
+    - "/ws info &8- &7Affiche les informations relatives à un monde"
+    - "/ws reset &8- &7Réinitialiser votre monde"
+  delete_command: "/ws delete &8- &7Supprimer votre monde"

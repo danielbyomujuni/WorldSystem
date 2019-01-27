@@ -7,51 +7,6 @@ api-version: 1.13
 
 loadbefore: [FastAsyncWorldEdit, WorldEdit]
 
-commands:
-  ws:
-    description: Commands for WorldSystem
-    usage: /ws
-  ws get:
-    usage: /ws get
-    permission: ws.get
-  ws help:
-    usage: /ws help
-  ws home:
-    usage: /ws home
-  ws sethome:
-    usage: /ws sethome
-    permission: ws.sethome
-  ws addmember:
-    usage: /ws addmember <player>
-  ws delmember:
-    usage: /ws delmember <player>
-  ws leave:
-    usage: /ws leave
-  ws tp:
-    usage: /ws tp <target>
-  ws tnt:
-    usage: /ws tnt
-  ws fire:
-    usage: /ws fire
-  ws info:
-    usage: /ws info
-  ws togglebuild:
-    usage: /ws togglebuild <player>
-  ws togglegm:
-    usage: /ws togglegm <player>
-  ws toggletp:
-    usage: /ws toggletp <player>
-  ws reset:
-    usage: /ws reset
-  ws gui:
-    usage: /ws gui
-  ws delete:
-    usage: /ws delete <player>
-    permission: ws.delete
-  ws confirm:
-    usage: /ws confirm
-    permission: ws.confirm
-
 permissions:
   ws.*:
     default: op
