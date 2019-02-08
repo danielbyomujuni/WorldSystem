@@ -81,7 +81,7 @@ command_help:
     - "/ws togglegm &8- &7Erlaubt/Verbietet einem Spieler den Spielmodus zu wechseln"
     - "/ws togglebuild &8- &7Erlaubt/Verbietet einem Spieler zu bauen"
     - "/ws toggletp &8- &7Erlaubt/Verbietet einem Spieler sich zu teleportieren"
-    - "/ws togglewe §8- §7Erlaubt/Verbietet einem Spieler WorldEdit zu nutzen"
+    - "/ws togglewe &8- &7Erlaubt/Verbietet einem Spieler WorldEdit zu nutzen"
     - "/ws info &8- &7Zeigt Informationen \u00fcber die Welt"
     - "/ws reset &8- &7Setzt deine Welt zur\u00fcck"
   delete_command: "/ws delete &8- &7L\u00f6scht eine Welt"

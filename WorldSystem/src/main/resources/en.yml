@@ -82,7 +82,7 @@ command_help:
     - "/ws togglegm &8- &7Allows/Denies a player changing gamemode"
     - "/ws togglebuild &8- &7Allows/Denies a player building on your world"
     - "/ws toggletp &8- &7Allows/Denies a player teleporting on your world"
-    - "/ws togglewe ยง8- ยง7Allows/Denys a player using WorldEdit"
+    - "/ws togglewe &8- &7Allows/Denys a player using WorldEdit"
     - "/ws info &8- &7Shows information about the world"
     - "/ws reset &8- &7Will reset your world"
   delete_command: "/ws delete &8- &7Will delete a world"
