@@ -59,6 +59,11 @@
 			<id>we-repo</id>
 			<url>>http://maven.sk89q.com/repo/</url>
 		</repository>
+		<!--Repo for CommandFramework-->
+		<repository>
+			<id>pp-public</id>
+			<url>http://nexus.myplayplanet.net/repository/public/</url>
+		</repository>
 		
 		<!-- Mojang repo for GameProfileBuilder -->
         <repository>
