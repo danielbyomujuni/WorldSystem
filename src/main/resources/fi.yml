@@ -1,0 +1,84 @@
+nopermission: "&cSinulla ei ole lupaa tuohon komentoon!"
+unknown_error: "&cJotain meni pieleen..."
+lagdetection: "Lagia havaittu maailmassa: &c%world"
+wrong_usage: "&c%usage"
+not_registered: "&cTämä pelaaja ei ole liittynyt vielä!"
+
+world:
+  reseted: "Maailmasi nollautui!"
+  still_loaded: "&cMailmasi on vieläkin ladattu!"
+  not_on: "&cEt ole maailmassa!"
+  created: "Maailmasi on nyt valmis. Pääset sinne komennolla &a/ws home"
+  already_exists: "&cSinulla on jo maailma!"
+  delete:
+    own: "&cMaailmasi poistettiin!"
+    other: "Poistit pelaajan &c%player&6 maailman&6!"
+  does_not_exists:
+    own: "&cSinulla ei ole maailmaa!"
+    other: "&cKyseisellä pelaajalla ei ole maailmaa!"
+  setting_up: "&aAlustetaan maailmaa..."
+  playerlist: "Pelaajat tässä maailmassa: %players"
+  still_creating: "&cWorld is still creating"
+  set_home: "You set the home"
+
+member:
+  removed: "Poistit pelaajan &c%player&6 maailmastasi!"
+  added: "Lisäsit pelaajan &c%player&6 maailmaasi!"
+  already_added: "&cKyseinen pelaaja on jo jäsen!"
+  not_added:
+    own: "&cKyseinen pelaaja ei ole jäsen!"
+    other: "&cSinua ei ole lisätty tähän maailmaan"
+  no_one_added: "&cThere are no members added"
+
+request:
+  expired: "&cPyyntösi on vanhentunut!"
+  confirm: "&cVahvista maailmasi nollaaminen: %command"
+  until_expire: "&cPyyntösi vanhentuu %time seconds sekunnin kuluttua!"
+  already_sent: "&cLähetit jo pyynnön!"
+  not_sent: "&cEt lähettänyt pyyntöä!"
+  invalid_input: "&cSyöte ei ole kelvollinen!"
+
+toggle:
+  gamemode:
+    enabled: "&a%player&6 voi nyt vaihtaa pelimuotonsa!"
+    disabled: "&c%player&6 ei voi enää vaihtaa pelimuotoansa!"
+  teleport:
+    enabled: "&a%player&6 voi nyt teleportata!"
+    disabled: "&c%player&6 ei voi enään teleportata!"
+  build:
+    enabled: "&a%player&6 voi nyt rakentaa!"
+    disabled: "&c%player&6 ei voi enään rakentaa!"
+  fire:
+    enabled: "&aSinä aktivoit tulen!"
+    disabled: "&cSinä deaktivoit tulen!"
+  tnt:
+    enabled: "&aSinä aktivoit TNT-Damagen!"
+    disabled: "&cSinä deaktivoit TNT-Damagen!"
+
+info:
+  owner: "Omistaja: %data"
+  id: "ID: %data"
+  member: "Jäsen: %data"
+  tnt: "TNT: %data"
+  fire: "Tuli: %data"
+  enabled: "&aOn"
+  disabled: "&cOff"
+ 
+command_help:
+  list:
+    - "/ws get &8- &7Luo sinulle maailman"
+    - "/ws home &8- &7Teleporttaa sinut maailmaasi"
+    - "/ws sethome &8- &7Sets a specific home"
+    - "/ws gui &8- &7Avaa sinulle valikon jos omistat tämän maailman"
+    - "/ws tp &8- &7Teleporttaa sinut tiettyyn maailmaan"
+    - "/ws addmember &8- &7Lisää pelaajan sinun maailmaasi"
+    - "/ws delmember &8- &7Poistaa pelaajan sinun maailmastasi"
+    - "/ws leave &8- &7Lähtee maailmasta"
+    - "/ws tnt &8- &7Sallii/Kieltää TNT sinun maailmastasi"
+    - "/ws fire &8- &7Sallii/Kieltää Tulen sinun maailmastasi"
+    - "/ws togglegm &8- &7Sallii/Kieltää pelaajan vaihtamasta pelimuotoansa"
+    - "/ws togglebuild &8- &7Sallii/Kieltää pelaajan rakentamasta"
+    - "/ws toggletp &8- &7Sallii/Kieltää pelaajan treleporttaamasta"
+    - "/ws info &8- &7Näyttää tietoa aktiivisesta maailmasta"
+    - "/ws reset &8- &7Nollaa sinun maailmasi"
+  delete_command: "/ws delete &8- &7Poistaa maailman"

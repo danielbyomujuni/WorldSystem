@@ -1,0 +1,105 @@
+##########################################################################
+### __              __         __    _______          __               ###
+### \ \            / /        / /   / / ___/         / /               ###
+###  \ \    __    / /___  ___/ /___/ / /____  ______/ /______________  ###
+###   \ \  /  \  / / __ \/ _/ / __  /__  / / / / __/ __/ ___/ _  _  /  ###
+###    \ \/ /\ \/ / /_/ / // / /_/ /__/ / /_/ /_  / /_/ ___/ // // /   ###
+###     \__/  \__/\____/_//_/\__,_/____/\__, /___/\__/\___/_//_//_/    ###
+###                                    ___/ /                          ###
+###                                    \___/                           ###
+##########################################################################
+
+# Path where the worlds will be saved
+worldfolder: 'plugins/WorldSystem/Worlds'
+
+worldtemplates:
+  # Wheter players can decide on different templates
+  multi_choose: false
+  # If multi_choose is disabled, which template should be choosen
+  default: 'template_default'
+  templates:
+    # The "1" can be any key
+    1: 
+      # Name of directory in plugins/WorldSystem/worldsources
+      # e.g. this would be plugins/WorldSystem/worldsources/template_default
+      name: 'template_default'
+    2:
+      name: 'another_template'
+
+# If a confirm is needed before auto-update
+need_confirm: true
+
+# When nobody is on a world time until it get unloaded
+unloadingtime: 20
+
+# If true nobody can teleport or change their gamemode a WorldSystem world
+# Except for players with the permissions: ws.gamemode | ws.tp.*
+survival: false
+
+# If true players will teleported to the spawn on join
+spawn_teleportation: true
+
+# Time in seconds until a request expires
+request_expires: 20
+
+# Name of the languagefile in plugins/WorldSystem/messages/
+language: en
+
+# Prefix which will be shown before each message
+prefix: '&8[&3WorldSystem&8] &6'
+
+# Time in days after a not used world will be deleted
+# Set to -1 to disable
+delete_after: -1
+
+# Whether WorldSystem should contact the Mojang authserver
+# If not, some unknown playernames will not be displayed
+# eg. in the gui or in /ws info
+contact_authserver: true
+
+# Options for the LagSystem:
+# period_in_seconds - how often will be checked for entities in seconds
+# entities_per_world - maximal allowed entities per world
+# garbagecollector - how often will be unused ram be cleared
+lagsystem:
+  period_in_seconds: 10
+  entities_per_world: 350
+  garbagecollector:
+    use: false
+    period_in_minutes: 5
+    
+# Options for random world generation
+worldgeneration:
+  # A seed for worldgeneration
+  # Set it to 0 for no seed-useage
+  seed: 0
+  # Environment for the world
+  # Valid inputs are 'NORMAL', 'NETHER' and 'THE_END'
+  environment: NORMAL
+  # Type of the world eg. flat, amplified, ...
+  # Valid types are 'NORMAL', 'VERSION_1_1', 'FLAT', 'AMPLIFIED', 'CUSTOMIZED' or 'LARGE_BIOMES'
+  type: NORMAL
+  # Put in here the name of a generator
+  # If you have one from one plugin
+  generator: ''
+
+# Location where you will be teleported when you leave you world
+spawn:
+  gamemode: 2
+  spawnpoint:
+    world: world
+    x: 0
+    y: 20
+    z: 0
+    yaw: 0
+    pitch: 0
+
+# Location where you spawn when you join a world
+worldspawn:
+  use: false
+  spawnpoint:
+    x: 0
+    y: 20
+    z: 0
+    yaw: 0
+    pitch: 0
