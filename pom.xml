@@ -107,7 +107,7 @@
          	<artifactId>FastAsnycWorldEdit</artifactId>
          	<scope>system</scope>
          	<version>1.0</version>
-         	<systemPath>C:/FastAsyncWorldEdit.jar</systemPath>
+         	<systemPath>${pom.basedir}/lib/FastAsyncWorldEdit.jar</systemPath>
     	</dependency>
 		
         <dependency>
