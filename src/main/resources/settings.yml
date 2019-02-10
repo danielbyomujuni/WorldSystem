@@ -1,0 +1,60 @@
+# Center will be at the spawn or the worldspawn
+worldborder: 
+  # If WorldSystem should change the worldborder
+  should_change: true
+  # Default size
+  normal: 500
+  # Here you can define your own ranks, as many as you want
+  # The permission node will be the key and the value the size
+  ranks:
+    # For example, with the permission ws.big you will get a worldborder with the size 1000
+    ws.big: 1000
+    ws.bigger: 1500
+  
+  # Set a specialized center which is not the spawn
+  center:
+    as_spawn: true
+    # Should the worldborder move with the home set by the owner
+    as_home: false
+    x: 0
+    y: 20
+    z: 0
+
+
+# Commands that should be executed on /ws get when it is ready
+# Placeholders: %player: Name of player, %world: Name of world, %uuid: UUID of player
+commands_on_get:
+#- tell %player You have got a world
+#- tell %player You are now on %world
+
+
+# All Gamerules in 1.12
+# Not supported gamerules will be ignored
+#
+# If you need help, look at
+# https://minecraft.gamepedia.com/Commands/gamerule
+
+announceAdvancements: true
+commandBlockOutput: false
+disableElytraMovementCheck: false
+doDaylightCycle: false
+doEntityDrops: true
+doFireTick: true
+doLimitedCrafting: false
+doMobLoot: true
+doMobSpawning: true
+doTileDrops: false
+doWeatherCycle: false
+gameLoopFunction: false
+keepInventory: true
+logAdminCommands: true
+maxCommandChainLength: 65536
+maxEntityCramming: 24
+mobGriefing: true
+naturalRegeneration: true
+randomTickSpeed: 3
+reducedDebugInfo: false
+sendCommandFeedback: true
+showDeathMessages: true
+spawnRadius: 10
+spectatorsGenerateChunks: true

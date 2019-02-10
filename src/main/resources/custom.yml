@@ -1,0 +1,82 @@
+nopermission: ""
+unknown_error: ""
+lagdetection: "%world"
+wrong_usage: ""
+not_registered: ""
+
+world:
+  reseted: ""
+  still_loaded: ""
+  not_on: ""
+  created: ""
+  already_exists: ""
+  delete:
+    own: ""
+    other: "%player"
+  does_not_exists: 
+    own: ""
+    other: ""
+  setting_up: ""
+  playerlist: "%players"
+  still_creating: ""
+  set_home: ""
+
+member:
+  removed: "%player"
+  added: "%player"
+  already_added: "
+  not_added:
+    own: ""
+    other: ""
+  no_one_added
+
+request:
+  expired: ""
+  confirm: "%command"
+  until_expire: "%time"
+  already_sent: ""
+  not_sent: ""
+  invalid_input: "%input"
+
+toggle:
+  gamemode:
+    enabled: ""
+    disabled: ""
+  teleport:
+    enabled: ""
+    disabled: ""
+  build:
+    enabled: ""
+    disabled: ""
+  fire:
+    enabled: ""
+    disabled: ""
+  tnt:
+    enabled: ""
+    disabled: ""
+
+info:
+  owner: "%data"
+  id: "%data"
+  member: "%data"
+  tnt: "%data"
+  fire: "%data"
+  enabled: ""
+  disabled: ""
+  
+command_help:
+  list:
+    - ""
+    - ""
+    - ""
+    - ""
+    - ""
+    - ""
+    - ""
+    - ""
+    - ""
+    - ""
+    - ""
+    - ""
+    - ""
+  delete_command: ""
