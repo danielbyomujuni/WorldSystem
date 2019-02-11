@@ -76,6 +76,11 @@ public class WSCommand {
             return;
         }
 
+        if(!p.hasPermission("ws.get")) {
+            p.sendMessage(MessageConfig.getNoPermission());
+            return;
+        }
+
         if (PluginConfig.isMultiChoose()) {
             if (args.length() > 0) {
                 String key = args.getArgument(0);

@@ -120,6 +120,12 @@ public class WorldSettingsCommands {
             p.sendMessage(MessageConfig.getNoPermission());
             return;
         }
+
+        if(!p.hasPermission("ws.sethome")) {
+            p.sendMessage(MessageConfig.getNoPermission());
+            return;
+        }
+
         WorldConfig config = WorldConfig.getWorldConfig(p.getWorld().getName());
         config.setHome(p.getLocation());
         try {

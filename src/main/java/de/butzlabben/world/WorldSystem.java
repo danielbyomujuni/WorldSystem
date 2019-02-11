@@ -79,6 +79,8 @@ public class WorldSystem extends JavaPlugin {
 
         //COMMANDS
         framework = new CommandFramework(this);
+        framework.setNoPermissionMessage(MessageConfig.getNoPermission());
+
         framework.registerCommands(new WSCommand());
         framework.registerCommands(new WorldSettingsCommands());
         framework.registerCommands(new WorldAdministrateCommand());
