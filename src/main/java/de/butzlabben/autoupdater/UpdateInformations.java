@@ -21,7 +21,6 @@ public class UpdateInformations {
 
     public static synchronized UpdateInformations getInformations() {
         String json = callURL("https://zendilu.net/butzlabben/worldsystem/info.php?version=" + WorldSystem.getInstance().getDescription().getVersion());
-        System.out.println("JSON: " + json);
         Gson gson = new GsonBuilder().create();
         UpdateInformations ui = gson.fromJson(json, UpdateInformations.class);
         return ui;
