@@ -1,7 +1,7 @@
 # WorldSystem
 A spigot plugin to give every use his own world
 
-# about
+# About
 WorldSystem is a plugin where every player can get a world. There they can build, play and do anything they want without creating stress in a single world. The world owner can also add other players and manage their permissions on his world like is he allowed to build, teleport or changing his gamemode.
 
 When a player creates a new world you can also set a template which will then be cloned.
