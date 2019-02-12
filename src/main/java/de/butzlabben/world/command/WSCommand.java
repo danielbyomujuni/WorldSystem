@@ -38,7 +38,7 @@ public class WSCommand {
             cs.sendMessage(MessageConfig.getDeleteCommandHelp());
     }
 
-    @Command(name ="ws.gui", inGameOnly = true)
+    @Command(name = "ws.gui", inGameOnly = true)
     public void guiCommand(CommandArgs args) {
         Player p = args.getSender(Player.class);
 
@@ -76,7 +76,7 @@ public class WSCommand {
             return;
         }
 
-        if(!p.hasPermission("ws.get")) {
+        if (!p.hasPermission("ws.get")) {
             p.sendMessage(MessageConfig.getNoPermission());
             return;
         }
@@ -86,6 +86,10 @@ public class WSCommand {
                 String key = args.getArgument(0);
                 WorldTemplate template = WorldTemplateProvider.getInstace().getTemplate(key);
                 if (template != null) {
+                    if (template.getPermission() != null && !p.hasPermission(template.getPermission())) {
+                        p.sendMessage(MessageConfig.getNoPermission());
+                        return;
+                    }
                     create(p, template);
                     return;
                 }
@@ -118,7 +122,7 @@ public class WSCommand {
             SystemWorld.tryUnloadLater(Bukkit.getWorld(worldname));
         }
         SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname());
-        if(sw == null) {
+        if (sw == null) {
             p.sendMessage(MessageConfig.getNoWorldOwn());
             return;
         }
@@ -155,7 +159,7 @@ public class WSCommand {
         Iterator<String> it = wc.getMembersWithNames().values().iterator();
         while (it.hasNext()) {
             sb.append(it.next());
-            if(it.hasNext())
+            if (it.hasNext())
                 sb.append(" ");
         }
         p.sendMessage(MessageConfig.getInfoMember().replaceAll("%data", sb.toString().trim()));
@@ -194,7 +198,7 @@ public class WSCommand {
             return;
         }
 
-        if(args.getArgument(0).equalsIgnoreCase(p.getName()) || args.getArgument(0).equalsIgnoreCase(p.getUniqueId().toString())) {
+        if (args.getArgument(0).equalsIgnoreCase(p.getName()) || args.getArgument(0).equalsIgnoreCase(p.getUniqueId().toString())) {
             p.chat("/ws home");
             return;
         }
