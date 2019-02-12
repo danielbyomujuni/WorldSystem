@@ -3,7 +3,6 @@ package de.butzlabben.world;
 import de.butzlabben.autoupdater.AutoUpdater;
 import de.butzlabben.world.command.*;
 import de.butzlabben.world.config.*;
-import de.butzlabben.world.gui.GuiCommand;
 import de.butzlabben.world.listener.*;
 import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
 import de.butzlabben.world.wrapper.CreatorAdapter;

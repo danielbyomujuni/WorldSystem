@@ -40,15 +40,15 @@ public class GameProfileBuilder {
 			.registerTypeAdapter(PropertyMap.class, new PropertyMap.Serializer()).create();
 	private static HashMap<UUID, CachedProfile> cache = new HashMap<>();
 	private static long cacheTime = -1L;
-	private static Object sync = new Object();
+	private static final Object sync = new Object();
 
 	public static GameProfile fetch(UUID uuid) throws IOException {
 		return fetch(uuid, false);
 	}
 
 	public static GameProfile fetch(UUID uuid, boolean forceNew) throws IOException {
-		if ((!forceNew) && (cache.containsKey(uuid)) && (((CachedProfile) cache.get(uuid)).isValid())) {
-			return ((CachedProfile) cache.get(uuid)).profile;
+		if ((!forceNew) && (cache.containsKey(uuid)) && (cache.get(uuid).isValid())) {
+			return cache.get(uuid).profile;
 		}
 		
 		HttpURLConnection connection;
@@ -61,12 +61,12 @@ public class GameProfileBuilder {
 		if (connection.getResponseCode() == 200) {
 			String json = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
 
-			GameProfile result = (GameProfile) gson.fromJson(json, GameProfile.class);
+			GameProfile result = gson.fromJson(json, GameProfile.class);
 			cache.put(uuid, new CachedProfile(result));
 			return result;
 		}
 		if ((!forceNew) && (cache.containsKey(uuid))) {
-			return ((CachedProfile) cache.get(uuid)).profile;
+			return cache.get(uuid).profile;
 		}
 		throw new IOException("Could not connect to mojang servers for unknown player: " + uuid.toString());
 	}
@@ -92,7 +92,7 @@ public class GameProfileBuilder {
 						Base64Coder.encodeString(String.format(
 								cape ? "{\"timestamp\":%d,\"profileId\":\"%s\",\"profileName\":\"%s\",\"isPublic\":true,\"textures\":{\"SKIN\":{\"url\":\"%s\"},\"CAPE\":{\"url\":\"%s\"}}}"
 										: "{\"timestamp\":%d,\"profileId\":\"%s\",\"profileName\":\"%s\",\"isPublic\":true,\"textures\":{\"SKIN\":{\"url\":\"%s\"}}}",
-								args.toArray(new Object[args.size()])))));
+								args.toArray(new Object[0])))));
 		return profile;
 	}
 
@@ -111,7 +111,7 @@ public class GameProfileBuilder {
 			if (object.has("properties")) {
 				for (Map.Entry<String, Property> prop : ((PropertyMap) context.deserialize(object.get("properties"),
 						PropertyMap.class)).entries()) {
-					profile.getProperties().put((String) prop.getKey(), (Property) prop.getValue());
+					profile.getProperties().put(prop.getKey(), prop.getValue());
 				}
 			}
 			return profile;

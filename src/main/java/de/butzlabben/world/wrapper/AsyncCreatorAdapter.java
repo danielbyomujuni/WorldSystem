@@ -39,7 +39,6 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
 				r.run();
 			}
 		});
-		return;
-	}
+    }
 
 }

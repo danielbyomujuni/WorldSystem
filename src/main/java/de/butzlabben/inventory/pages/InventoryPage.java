@@ -2,8 +2,6 @@ package de.butzlabben.inventory.pages;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
 import de.butzlabben.inventory.OrcInventory;
@@ -59,16 +57,5 @@ public class InventoryPage extends OrcInventory {
 		}
 		addItem(i, item);
 		i++;
-	}
-
-	@EventHandler
-	public void on(InventoryClickEvent e) {
-		if (e.getClickedInventory() != null && e.getClickedInventory().getTitle() != null
-				&& e.getClickedInventory().getTitle().equals(title)) {
-			e.setCancelled(true);
-			OrcItem item = items.get(e.getSlot());
-			if (item != null)
-				item.onClick((Player) e.getWhoClicked(), this);
-		}
 	}
 }

@@ -28,19 +28,19 @@ public class WorldCheckerRunnable implements Runnable {
 				String ownerofWorld = null;
 				for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 					if (p.getUniqueId().toString()
-							.equals(worldname.substring(worldname.length() - 36, worldname.length())))
+							.equals(worldname.substring(worldname.length() - 36)))
 						ownerofWorld = p.getName();
 				}
-				String members = "";
+				StringBuilder members = new StringBuilder();
 				for (Player p : world.getPlayers()) {
-					members += p.getName() + " ";
+					members.append(p.getName()).append(" ");
 				}
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (!p.hasPermission("ws.lag"))
 						continue;
 					p.sendMessage(MessageConfig.getLagDetection().replaceAll("%world",
 							ownerofWorld + " ( ID: " + world.getName().substring(2, worldname.length() - 37) + " )"));
-					p.sendMessage(MessageConfig.getPlayerList().replaceAll("%players", members));
+					p.sendMessage(MessageConfig.getPlayerList().replaceAll("%players", members.toString()));
 
 				}
 			}

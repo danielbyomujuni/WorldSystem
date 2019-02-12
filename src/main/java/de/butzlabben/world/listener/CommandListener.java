@@ -81,8 +81,7 @@ public class CommandListener implements Listener {
 			if (!wp.canChangeGamemode() && !wp.isOwnerofWorld()) {
 				p.sendMessage(MessageConfig.getNoPermission());
 				e.setCancelled(true);
-				return;
-			}
+            }
 		} else if (cmd.startsWith("/tp") || cmd.startsWith("/teleport")) {
 			String[] args = e.getMessage().split(" ");
 			if (args.length == 2) {
@@ -106,8 +105,7 @@ public class CommandListener implements Listener {
 				if (!wp.canTeleport()) {
 					p.sendMessage(MessageConfig.getNoPermission());
 					e.setCancelled(true);
-					return;
-				}
+                }
 			} else if (args.length == 3) {
 				if (!p.hasPermission("ws.tp.other")) {
 					p.sendMessage(MessageConfig.getNoPermission());
@@ -127,8 +125,7 @@ public class CommandListener implements Listener {
 				if (!wp.canTeleport()) {
 					p.sendMessage(MessageConfig.getNoPermission());
 					e.setCancelled(true);
-					return;
-				}
+                }
 			}
 		}
 	}

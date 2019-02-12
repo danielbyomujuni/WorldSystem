@@ -23,7 +23,7 @@ public class PageGUICreator<T> {
 		if (items == null || items.size() == 0)
 			return;
 
-		int pages = (int) (Math.ceil((double) (items.size() / (double) elementsPerPage) < 1 ? 1 : Math.ceil((double) items.size() / (double) elementsPerPage)));
+		int pages = (int) (Math.ceil((items.size() / (double) elementsPerPage) < 1 ? 1 : Math.ceil((double) items.size() / (double) elementsPerPage)));
 
 		invpages = new ArrayList<>(pages);
 

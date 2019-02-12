@@ -83,7 +83,6 @@ public class WorldSettingsCommands {
 
             } else {
                 p.sendMessage(MessageConfig.getInvalidInput().replaceAll("input", args.getArgument(0)));
-                return;
             }
         } else {
             if (sw.isLoaded())

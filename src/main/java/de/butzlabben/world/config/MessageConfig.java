@@ -24,7 +24,8 @@ public class MessageConfig {
 	}
 
 	private static List<String> defaultCmdHelp = new ArrayList<>(20);
-	{
+
+	static {
 		defaultCmdHelp.add("/ws get §8- §7Will give you a World");
 		defaultCmdHelp.add("/ws home §8- §7Teleports you on your World");
 		defaultCmdHelp.add("/ws sethome §8- §7Sets a specific home");
