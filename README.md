@@ -1,4 +1,4 @@
-# worldsystem
+# WorldSystem
 A spigot plugin to give every use his own world
 
 # about
