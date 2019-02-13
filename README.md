@@ -6,6 +6,13 @@ WorldSystem is a plugin where every player can get a world. There they can build
 
 When a player creates a new world you can also set a template which will then be cloned.
 
+# How to help making this resource better
+- Contributing code
+- Creating useful issues
+- Helping other users
+- Leaving a good review
+- 
+
 # Useful links
 - Download Resource: https://www.spigotmc.org/resources/49756/
 - Contact author on spigot (rather consider to create an issue here): https://www.spigotmc.org/conversations/add?to=Butzlabben
