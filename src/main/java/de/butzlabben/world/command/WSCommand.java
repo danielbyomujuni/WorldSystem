@@ -69,6 +69,13 @@ public class WSCommand {
     @Command(name = "ws.get", inGameOnly = true)
     public void getCommand(CommandArgs args) {
         Player p = args.getSender(Player.class);
+
+        // Check if use can create a world
+        if (!p.hasPermission("ws.get")) {
+            p.sendMessage(MessageConfig.getNoPermission());
+            return;
+        }
+
         // create New Entry
         DependenceConfig dc = new DependenceConfig(p);
         if (dc.hasWorld()) {
@@ -76,16 +83,13 @@ public class WSCommand {
             return;
         }
 
-        if (!p.hasPermission("ws.get")) {
-            p.sendMessage(MessageConfig.getNoPermission());
-            return;
-        }
 
         if (PluginConfig.isMultiChoose()) {
             if (args.length() > 0) {
                 String key = args.getArgument(0);
                 WorldTemplate template = WorldTemplateProvider.getInstace().getTemplate(key);
                 if (template != null) {
+                    // Permission for this specific template
                     if (template.getPermission() != null && !p.hasPermission(template.getPermission())) {
                         p.sendMessage(MessageConfig.getNoPermission());
                         return;
@@ -94,7 +98,7 @@ public class WSCommand {
                     return;
                 }
             }
-            p.openInventory(new WorldChooseGUI().getInventory(p));
+            WorldChooseGUI.letChoose(p);
         } else {
             WorldTemplate template = WorldTemplateProvider.getInstace()
                     .getTemplate(PluginConfig.getDefaultWorldTemplate());

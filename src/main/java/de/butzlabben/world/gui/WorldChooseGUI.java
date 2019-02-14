@@ -22,6 +22,10 @@ public class WorldChooseGUI extends OrcInventory {
         this(null, null);
     }
 
+    public WorldChooseGUI(Player player) {
+        this(null, player);
+    }
+
     public WorldChooseGUI(Consumer<WorldTemplate> onClick, Player player) {
         super(GuiConfig.getTitle(GuiConfig.getConfig(), "worldchoose"), GuiConfig.getRows("worldchoose"),
                 GuiConfig.isFill("worldchoose"));
@@ -52,6 +56,10 @@ public class WorldChooseGUI extends OrcInventory {
 
     public static void letChoose(Player player, Consumer<WorldTemplate> template) {
         player.openInventory(new WorldChooseGUI(template, player).getInventory(player));
+    }
+
+    public static void letChoose(Player player) {
+        player.openInventory(new WorldChooseGUI(player).getInventory(player));
     }
 
     public void loadItem(String subpath, OrcClickListener listener) {

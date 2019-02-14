@@ -293,7 +293,7 @@ worldchoose:
     slot:
       row: 2
       col: 7
-    material: STONE_BLOCK
+    material: STONE
     display: '&aAnother template'
     
   
