@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Difficulty;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -68,6 +69,15 @@ public class SettingsConfig {
 				if (config.getHome() != null)
 					w.getWorldBorder().setCenter(config.getHome());
 			}
+		}
+
+		// Fix for #17
+		String diff = cfg.getString("difficulty");
+		try {
+			Difficulty difficulty = Difficulty.valueOf(diff.toUpperCase());
+			w.setDifficulty(difficulty);
+		} catch (IllegalArgumentException e) {
+			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§cUnknown difficulty \"" + diff + "\" in settings.yml");
 		}
 
 		if (w.isGameRule("announceAdvancements"))
