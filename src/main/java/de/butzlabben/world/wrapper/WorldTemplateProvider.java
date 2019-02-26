@@ -27,7 +27,13 @@ public class WorldTemplateProvider {
             String permission = null;
             if (section.isString(key + ".permission"))
                  permission = section.getString(key + ".permission");
-            templates.put(name, new WorldTemplate(name, permission));
+
+            int cost = -1;
+            // Get money for #15 if needed
+            if (section.isInt(key + ".cost"))
+                cost = section.getInt(key + ".cost");
+
+            templates.put(name, new WorldTemplate(name, permission, cost));
         }
     }
 

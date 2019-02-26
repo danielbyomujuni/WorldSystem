@@ -181,6 +181,7 @@ public class SettingsConfig {
 				borderSizes.put(s, cfg.getLong("worldborder.ranks." + s));
 		}
 	}
+
 	/**
 	 * @return the commands specified in settings.yml on /ws get
 	 */

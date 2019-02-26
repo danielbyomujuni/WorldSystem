@@ -8,6 +8,7 @@ import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.gui.WorldChooseGUI;
 import de.butzlabben.world.gui.WorldSystemGUI;
+import de.butzlabben.world.util.MoneyUtil;
 import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import de.butzlabben.world.wrapper.WorldTemplate;
@@ -93,6 +94,15 @@ public class WSCommand {
                     if (template.getPermission() != null && !p.hasPermission(template.getPermission())) {
                         p.sendMessage(MessageConfig.getNoPermission());
                         return;
+                    }
+
+                    // Implementation check for #15
+                    if (template.getCost() > 0) {
+                        if (!MoneyUtil.hasMoney(p.getUniqueId(), template.getCost())) {
+                            // TODO send not enough money message
+                            return;
+                        }
+                        MoneyUtil.removeMoney(p.getUniqueId(), template.getCost());
                     }
                     create(p, template);
                     return;

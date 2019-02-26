@@ -13,10 +13,12 @@ public class WorldTemplate {
     private final String permission;
     private final OrcItem icon;
     private final int slot;
+    private final int cost;
 
-    public WorldTemplate(String name, String permission) {
+    public WorldTemplate(String name, String permission, int cost) {
         this.name = name;
         this.permission = permission;
+        this.cost = cost;
 
         this.icon = GuiConfig.getItem("worldchoose." + name);
         this.slot = GuiConfig.getSlot("worldchoose." + name);
@@ -29,6 +31,10 @@ public class WorldTemplate {
 
     public int getSlot() {
         return slot;
+    }
+
+    public int getCost() {
+        return cost;
     }
 
     public OrcItem getIcon() {

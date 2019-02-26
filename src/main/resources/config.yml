@@ -29,6 +29,9 @@ worldtemplates:
       # Only players with this exact permission can use and see this template
       # ws.* will not work with this
       permission: ws.template.another_template
+      # If this config option is given, 100 is needed to create a world
+      # This amount will then with withdrawn from the player
+      cost: 100
 
 # If a confirm is needed before auto-update
 need_confirm: true
