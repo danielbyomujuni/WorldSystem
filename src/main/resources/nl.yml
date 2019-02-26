@@ -20,6 +20,7 @@ world:
   playerlist: "speler is in wereld: %players"
   still_creating: "&cWorld is still creating"
   set_home: "You set the home"
+  not_enough_money: "You do not have enough money"
 
 member:
   removed: "Jij hebt &c%player&6 verwijderd van jouw wereld!"

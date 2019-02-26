@@ -20,6 +20,8 @@ world:
   playerlist: "%players"
   still_creating: ""
   set_home: ""
+  not_enough_money: ""
+
 
 member:
   removed: "%player"

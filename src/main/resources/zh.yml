@@ -20,6 +20,7 @@ world:
   playerlist: "玩家: %players 在这个世界上"
   still_creating: "&cWorld is still creating"
   set_home: "You set the home"
+  not_enough_money: "You do not have enough money"
 
 member:
   removed: "玩家 &c%player&6 从你的世界移除!"

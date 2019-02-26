@@ -20,6 +20,7 @@ world:
   playerlist: "Pelaajat tässä maailmassa: %players"
   still_creating: "&cWorld is still creating"
   set_home: "You set the home"
+  not_enough_money: "You do not have enough money"
 
 member:
   removed: "Poistit pelaajan &c%player&6 maailmastasi!"

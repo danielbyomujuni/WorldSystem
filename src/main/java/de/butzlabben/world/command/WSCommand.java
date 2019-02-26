@@ -99,7 +99,7 @@ public class WSCommand {
                     // Implementation check for #15
                     if (template.getCost() > 0) {
                         if (!MoneyUtil.hasMoney(p.getUniqueId(), template.getCost())) {
-                            // TODO send not enough money message
+                            p.sendMessage(MessageConfig.getNotEnoughMoney());
                             return;
                         }
                         MoneyUtil.removeMoney(p.getUniqueId(), template.getCost());

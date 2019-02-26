@@ -20,6 +20,7 @@ world:
   playerlist: "Spieler in der Welt: %players"
   still_creating: "&cWelt wird noch erstellt..."
   set_home: "Du hast das Home gesetzt"
+  not_enough_money: "Du hast nicht genug Geld"
 
 member:
   removed: "Du hast &c%player&6 von deiner Welt entfernt!"
