@@ -1,7 +1,7 @@
 # WorldSystem
 A spigot plugin to give every use his own world
 
-[![](https://jitpack.io/v/Butzlabben/worldsystem.svg)](https://jitpack.io/#Butzlabben/worldsystem)
+[![Build Status](https://travis-ci.org/Butzlabben/worldsystem.svg?branch=master)](https://travis-ci.org/Butzlabben/worldsystem) [![](https://jitpack.io/v/Butzlabben/worldsystem.svg)](https://jitpack.io/#Butzlabben/worldsystem)
 
 
 ## About
