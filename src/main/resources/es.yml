@@ -18,9 +18,9 @@ world:
     other: "&cEse jugador no tiene un mundo."
   setting_up: "&aConfigurando el mundo..."
   playerlist: "Jugadores en este mundo: %players"
-  still_creating: "&cWorld is still creating"
-  set_home: "You set the home"
-  not_enough_money: "You do not have enough money"
+  still_creating: "&cEl mundo aun no esta listo."
+  set_home: "Has establecido el hogar."
+  not_enough_money: "No tienes suficiente dinero."
 
 member:
   removed: "Has eliminado a &c%player&6 de tu mundo."
@@ -29,7 +29,7 @@ member:
   not_added:
     own: "&cEse jugador no es miembro de tu mundo."
     other: "&cNo estas agregado a este mundo."
-  no_one_added: "&cThere are no members added"
+  no_one_added: "&cNo hay jugadores agregados."
 
 request:
   expired: "&cTu solicitud ha expirado."
@@ -37,7 +37,7 @@ request:
   until_expire: "&cTu solicitud expira en %time segundos."
   already_sent: "&cYa has enviado una solicitud."
   not_sent: "&cNo has enviado una solicitud."
-  invalid_input: "&c%input no es una entrada valida."
+  invalid_input: "&c%input no es una solicitud valida."
 
 toggle:
   gamemode:
@@ -49,6 +49,9 @@ toggle:
   build:
     enabled: "&a%player&6 ahora puede construir."
     disabled: "&c%player&6 ya no puede construir"
+  worldedit:
+    enabled: "&a%player&6 ahora puede usar WorldEdit."
+    disabled: "&c%player&6 ya no puede usar WorldEdit."
   fire:
     enabled: "&aHas activado el fuego."
     disabled: "&cHas desactivado el fuego."
@@ -62,9 +65,8 @@ info:
   member: "Miembros: %data"
   tnt: "TNT: %data"
   fire: "Fuego: %data"
-  enabled: "&aSi"
-  disabled: "&cNo"
- 
+  enabled: "&aActivado"
+  disabled: "&cDesactivado"
 command_help:
   list:
     - "/ws get &8- &7Obten tu mundo"
@@ -80,6 +82,7 @@ command_help:
     - "/ws togglegm &8- &7Activa/Desactiva el cambio de modo"
     - "/ws togglebuild &8- &7Activa/Desactiva la construccion"
     - "/ws toggletp &8- &7Activa/Desactiva la teletransportacion"
+    - "/ws togglewe &8- &7Activa/Desactiva el uso de WorldEdit."
     - "/ws info &8- &7Muestra informacion del mundo"
     - "/ws reset &8- &7Reinicia tu mundo"
   delete_command: "/ws delete &8- &7Elimina tu mundo"

@@ -104,6 +104,7 @@ public class WSCommand {
                         }
                         MoneyUtil.removeMoney(p.getUniqueId(), template.getCost());
                     }
+
                     create(p, template);
                     return;
                 }
