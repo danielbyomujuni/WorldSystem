@@ -11,7 +11,7 @@ public class ComingSoonClickListener implements OrcClickListener {
 	@Override
 	public void onClick(Player p, OrcInventory inv, OrcItem item) {
 		p.closeInventory();
-		p.sendMessage("§cComing soon...");
+		p.sendMessage("Â§cComing soon...");
 	}
 
 }

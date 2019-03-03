@@ -36,13 +36,13 @@ public class PluginConfig {
 		file = f;
 		if (file.exists()) {
 			YamlConfiguration cfg = getConfig();
-			if (false == (cfg.isString("worldfolder") && cfg.isInt("unloadingtime")
+			if (!(cfg.isString("worldfolder") && cfg.isInt("unloadingtime")
 					&& cfg.isBoolean("survival") && cfg.isString("language") && cfg.isString("prefix")
 					&& cfg.isInt("request_expires") && cfg.isBoolean("need_confirm")
 					&& cfg.isBoolean("contact_authserver") && cfg.isBoolean("spawn_teleportation")
-					&& cfg.isInt("delete_after") && cfg.isBoolean("worldtemplates.multi_choose")  
+					&& cfg.isInt("delete_after") && cfg.isBoolean("worldtemplates.multi_choose")
 					&& cfg.isString("worldtemplates.default") &&
-					
+
 					cfg.isInt("lagsystem.period_in_seconds") && cfg.isInt("lagsystem.entities_per_world")
 					&& cfg.isBoolean("lagsystem.garbagecollector.use")
 					&& cfg.isInt("lagsystem.garbagecollector.period_in_minutes") &&
@@ -88,7 +88,7 @@ public class PluginConfig {
 
 		// Should fix #2
 		if (getSpawn().getWorld() == null) {
-			Bukkit.getConsoleSender().sendMessage(getPrefix() + "§cWorld is null in spawn.world!");
+			Bukkit.getConsoleSender().sendMessage(getPrefix() + "Â§cWorld is null in spawn.world!");
 		}
 	}
 
@@ -154,7 +154,7 @@ public class PluginConfig {
 	}
 
 	public static String getPrefix() {
-		return ChatColor.translateAlternateColorCodes('&', getConfig().getString("prefix", "§8[§3WorldSystem§8] §6"));
+		return ChatColor.translateAlternateColorCodes('&', getConfig().getString("prefix", "Â§8[Â§3WorldSystemÂ§8] Â§6"));
 	}
 
 	public static Location getWorldSpawn(World w) {

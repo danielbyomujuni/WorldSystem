@@ -105,7 +105,7 @@ public class GuiConfig {
 		try {
 			return Material.valueOf(cfg.getString(path + ".material").toUpperCase());
 		} catch (IllegalArgumentException ex) {
-			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§cUnknown material: " + path);
+			Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Â§cUnknown material: " + path);
 			return null;
 		}
 	}
@@ -120,7 +120,7 @@ public class GuiConfig {
 			return new OrcItem(getMaterial(cfg, path), getDisplay(cfg, path), getLore(cfg, path));
 		} catch (Exception e) {
 		}
-		return OrcItem.error.clone().setDisplay("§c" + path);
+		return OrcItem.error.clone().setDisplay("Â§c" + path);
 	}
 
 	public static OrcItem getEnabled() {

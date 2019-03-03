@@ -1,134 +1,142 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.butzlabben.world</groupId>
-	<artifactId>WorldSystem</artifactId>
-	<version>2.4.4.1</version>
-   <properties>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.butzlabben.world</groupId>
+    <artifactId>WorldSystem</artifactId>
+    <version>2.4.4.1</version>
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.number>-</project.build.number>
         <project.build.version>${project.version}
-            Build:${project.build.number}</project.build.version>
-  	</properties>
+            Build:${project.build.number}
+        </project.build.version>
+    </properties>
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.0.1</version>
-			</plugin>
-		</plugins>
-	</reporting>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
-	<build>
-		<defaultGoal>package</defaultGoal>
-    	<sourceDirectory>src/main/java</sourceDirectory>
-    	<resources>
-      		<resource>
-        		<directory>src/main/resources</directory>
-        		<filtering>true</filtering>
-        		<excludes><exclude>LICENSE.txt</exclude></excludes>
-      		</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.0.1</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <defaultGoal>package</defaultGoal>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>LICENSE.txt</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
-	<repositories>
-		<repository>
-			<id>spigot-repo</id>
-			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-		</repository>
-		<repository>
-    		<id>fawe-repo</id>
-    		<url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
-		</repository>
-		<repository>
-			<id>we-repo</id>
-			<url>>http://maven.sk89q.com/repo/</url>
-		</repository>
-		<!--Repo for CommandFramework-->
-		<repository>
-			<id>pp-public</id>
-			<url>http://nexus.myplayplanet.net/repository/public/</url>
-		</repository>
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>fawe-repo</id>
+            <url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
+        </repository>
+        <repository>
+            <id>we-repo</id>
+            <url>>http://maven.sk89q.com/repo/</url>
+        </repository>
+        <!--Repo for CommandFramework-->
+        <repository>
+            <id>pp-public</id>
+            <url>http://nexus.myplayplanet.net/repository/public/</url>
+        </repository>
 
-		<!-- Repo for Vault support-->
-		<repository>
-			<id>vault-repo</id>
-			<url>http://nexus.hc.to/content/repositories/pub_releases</url>
-		</repository>
-		
-		<!-- Mojang repo for GameProfileBuilder -->
+        <!-- Repo for Vault support-->
+        <repository>
+            <id>vault-repo</id>
+            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
+        </repository>
+
+        <!-- Mojang repo for GameProfileBuilder -->
         <repository>
             <id>mojang</id>
             <name>Mojang's Repository</name>
             <url>https://libraries.minecraft.net/</url>
         </repository>
 
-	</repositories>
+    </repositories>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.spigotmc</groupId>
-			<artifactId>spigot-api</artifactId>
-			<version>1.13-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.13-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>com.mojang</groupId>
             <artifactId>authlib</artifactId>
             <version>1.5.21</version>
-			<scope>provided</scope>
+            <scope>provided</scope>
         </dependency>
-        
-		<!--  
-		AsyncWorld is not in the api so I have to use a local file
-		Issue: https://github.com/boy0001/FastAsyncWorldedit/issues/1060
-		<dependency>
-			<groupId>com.boydti</groupId>
-			<artifactId>fawe-api</artifactId>
-			<scope>provided</scope>
-			<version>latest</version>
-		</dependency>
-		-->
-		
-		<dependency>
-         	<groupId>com.sk98q.worldedit</groupId>
-         	<artifactId>FastAsnycWorldEdit</artifactId>
-         	<scope>system</scope>
-         	<version>1.0</version>
-         	<systemPath>${pom.basedir}/lib/FastAsyncWorldEdit.jar</systemPath>
-    	</dependency>
-		
+
+        <!--
+        AsyncWorld is not in the api so I have to use a local file
+        Issue: https://github.com/boy0001/FastAsyncWorldedit/issues/1060
+        <dependency>
+            <groupId>com.boydti</groupId>
+            <artifactId>fawe-api</artifactId>
+            <scope>provided</scope>
+            <version>latest</version>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>com.sk98q.worldedit</groupId>
+            <artifactId>FastAsnycWorldEdit</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${pom.basedir}/lib/FastAsyncWorldEdit.jar</systemPath>
+        </dependency>
+
         <dependency>
             <groupId>com.sk89q</groupId>
             <artifactId>worldedit</artifactId>
@@ -136,18 +144,18 @@
             <scope>provided</scope>
         </dependency>
 
-		<dependency>
-			<groupId>net.myplayplanet</groupId>
-			<artifactId>CommandFramework</artifactId>
-			<version>2.0.0-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
+        <dependency>
+            <groupId>net.myplayplanet</groupId>
+            <artifactId>CommandFramework</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>net.milkbowl.vault</groupId>
-			<artifactId>VaultAPI</artifactId>
-			<version>1.6</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>net.milkbowl.vault</groupId>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.6</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

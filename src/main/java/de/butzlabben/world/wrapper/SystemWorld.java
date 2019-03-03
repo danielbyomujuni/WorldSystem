@@ -207,7 +207,7 @@ public class SystemWorld {
                 // FileUtils.deleteDirectory(new
                 // File(Bukkit.getWorldContainer(), worldname));
                 // } catch (IOException e) {
-                // p.sendMessage(PluginConfig.getPrefix() + "§cError");
+                // p.sendMessage(PluginConfig.getPrefix() + "Â§cError");
                 // e.printStackTrace();
                 // }
             }
@@ -215,7 +215,7 @@ public class SystemWorld {
                 FileUtils.moveDirectoryToDirectory(world, Bukkit.getWorldContainer(), false);
             } catch (IOException e) {
                 System.err.println("Couldn't load world of " + p.getName());
-                p.sendMessage(PluginConfig.getPrefix() + "§cError: " + e.getMessage());
+                p.sendMessage(PluginConfig.getPrefix() + "Â§cError: " + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -302,7 +302,7 @@ public class SystemWorld {
             try {
                 FileUtils.moveDirectoryToDirectory(world, Bukkit.getWorldContainer(), false);
             } catch (IOException e) {
-                p.sendMessage(PluginConfig.getPrefix() + "§cError: " + e.getMessage());
+                p.sendMessage(PluginConfig.getPrefix() + "Â§cError: " + e.getMessage());
                 System.err.println("Couldn't load world of " + p.getName());
                 e.printStackTrace();
                 return false;
