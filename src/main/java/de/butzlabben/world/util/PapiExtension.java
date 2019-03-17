@@ -7,13 +7,12 @@ import de.butzlabben.world.wrapper.WorldPlayer;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
 
 import java.util.Objects;
 
 public class PapiExtension extends PlaceholderExpansion {
 
-    WorldSystem worldSystem = WorldSystem.getInstance();
+    private WorldSystem worldSystem = WorldSystem.getInstance();
 
     @Override
     public String getIdentifier() {
@@ -37,21 +36,21 @@ public class PapiExtension extends PlaceholderExpansion {
             case "has_world":
                 return new DependenceConfig(p).hasWorld() + "";
             case "is_creator":
-               WorldPlayer player = new WorldPlayer(Objects.requireNonNull(Bukkit.getPlayer(p.getUniqueId())));
-               if(!player.isOnSystemWorld())
-                   return "false";
-               return player.isOwnerofWorld() + "";
+                WorldPlayer player = new WorldPlayer(Objects.requireNonNull(Bukkit.getPlayer(p.getUniqueId())));
+                if (!player.isOnSystemWorld())
+                    return "false";
+                return player.isOwnerofWorld() + "";
             case "world_name_of_player":
-                if(!config.hasWorld())
+                if (!config.hasWorld())
                     return "none";
                 else
                     return config.getWorldname();
             case "world_of_player_loaded":
-                if(!config.hasWorld())
+                if (!config.hasWorld())
                     return "none";
                 return SystemWorld.getSystemWorld(config.getWorldname()).isLoaded() + "";
-
+            default:
+                throw new IllegalArgumentException("No placeholder named\"" + getIdentifier() + "_" + params + "\" is known");
         }
-        return super.onRequest(p, params);
     }
 }
