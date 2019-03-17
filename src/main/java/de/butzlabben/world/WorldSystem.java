@@ -4,6 +4,7 @@ import de.butzlabben.autoupdater.AutoUpdater;
 import de.butzlabben.world.command.*;
 import de.butzlabben.world.config.*;
 import de.butzlabben.world.listener.*;
+import de.butzlabben.world.util.PapiExtension;
 import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
 import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
@@ -112,6 +113,9 @@ public class WorldSystem extends JavaPlugin {
                     + "Searching for old worlds to delete if not loaded for " + PluginConfig.deleteAfter() + " days");
             DependenceConfig.checkWorlds();
         }
+
+        if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))
+            new PapiExtension().register();
 
         Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Succesfully enabled WorldSystem v" + version);
     }
