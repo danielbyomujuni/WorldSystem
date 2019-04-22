@@ -6,6 +6,7 @@ import de.butzlabben.world.config.*;
 import de.butzlabben.world.event.WorldCreateEvent;
 import de.butzlabben.world.event.WorldLoadEvent;
 import de.butzlabben.world.event.WorldUnloadEvent;
+import de.butzlabben.world.util.PlayerPositions;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -370,6 +371,7 @@ public class SystemWorld {
     public void teleportToWorldSpawn(Player p) {
         Preconditions.checkNotNull(p, "player must not be null");
         Preconditions.checkArgument(p.isOnline(), "player must be online");
+        PlayerPositions positions = PlayerPositions.getInstance();
 
         if (creating) {
             p.sendMessage(MessageConfig.getWorldStillCreating());
@@ -383,12 +385,12 @@ public class SystemWorld {
 
         WorldConfig config = WorldConfig.getWorldConfig(worldname);
         if (config.getHome() != null) {
-            p.teleport(config.getHome());
+            p.teleport(positions.injectLocation(p, config, config.getHome()));
         } else {
             if (PluginConfig.useWorldSpawn()) {
-                p.teleport(PluginConfig.getWorldSpawn(w));
+                p.teleport(positions.injectLocation(p, config, PluginConfig.getWorldSpawn(w)));
             } else {
-                p.teleport(w.getSpawnLocation());
+                p.teleport(positions.injectLocation(p, config, w.getSpawnLocation()));
             }
         }
         if (PluginConfig.isSurvival()) {

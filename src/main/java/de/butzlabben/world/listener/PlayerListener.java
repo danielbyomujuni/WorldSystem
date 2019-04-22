@@ -1,5 +1,8 @@
 package de.butzlabben.world.listener;
 
+import de.butzlabben.world.config.WorldConfig;
+import de.butzlabben.world.util.PlayerPositions;
+import de.butzlabben.world.wrapper.WorldPlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,6 +36,12 @@ public class PlayerListener implements Listener {
 	public void onLeave(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
 		World w = p.getWorld();
+		WorldPlayer player = new WorldPlayer(p);
+		// Save last location for #23
+		if (player.isOnSystemWorld()) {
+			WorldConfig config = WorldConfig.getWorldConfig(player.getWorldname());
+			PlayerPositions.getInstance().savePlayerLocation(p, config);
+		}
 		SystemWorld.tryUnloadLater(w);
 	}
 }

@@ -3,6 +3,7 @@ package de.butzlabben.world.listener;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
+import de.butzlabben.world.util.PlayerPositions;
 import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import org.bukkit.Bukkit;
@@ -60,6 +61,11 @@ public class CommandListener implements Listener {
 
         // Fix for #18
         if (from != to || WorldConfig.exists(from.getName())) {
+            // Save location for #23
+            if(WorldConfig.exists(from.getName())) {
+                WorldConfig config = WorldConfig.getWorldConfig(from.getName());
+                PlayerPositions.getInstance().savePlayerLocation(p, config);
+            }
             GameMode gameMode = PluginConfig.getSpawnGamemode();
             if (WorldConfig.exists(to.getName())) {
                 if (PluginConfig.isSurvival()) {

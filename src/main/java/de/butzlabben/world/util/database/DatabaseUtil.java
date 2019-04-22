@@ -1,4 +1,4 @@
-package de.butzlabben.world.util;
+package de.butzlabben.world.util.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

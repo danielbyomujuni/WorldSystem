@@ -64,7 +64,7 @@ public class PluginConfig {
 					&& (cfg.isDouble("spawn.spawnpoint.yaw") || cfg.isInt("spawn.spawnpoint.yaw"))
 					&& (cfg.isDouble("spawn.spawnpoint.pitch") || cfg.isInt("spawn.spawnpoint.pitch")) &&
 
-					cfg.isBoolean("worldspawn.use")
+					cfg.isBoolean("worldspawn.use") && cfg.isBoolean("worldspawn.use_last_location")
 					&& (cfg.isDouble("worldspawn.spawnpoint.x") || cfg.isInt("worldspawn.spawnpoint.x"))
 					&& (cfg.isDouble("worldspawn.spawnpoint.y") || cfg.isInt("worldspawn.spawnpoint.y"))
 					&& (cfg.isDouble("worldspawn.spawnpoint.z") || cfg.isInt("worldspawn.spawnpoint.z"))
@@ -249,7 +249,11 @@ public class PluginConfig {
 		return creator;
 	}
 
-	public static String getTablename() {
+	public static boolean useLastLocation() {
+	    return getConfig().getBoolean("worldspawn.use_last_location");
+    }
+
+	public static String getTableName() {
 		return getConfig().getString("database.table_name");
 	}
 

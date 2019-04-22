@@ -1,4 +1,4 @@
-package de.butzlabben.world.util;
+package de.butzlabben.world.util.database;
 
 import de.butzlabben.world.config.PluginConfig;
 import lombok.Getter;

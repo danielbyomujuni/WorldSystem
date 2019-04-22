@@ -122,6 +122,7 @@ spawn:
 
 # Location where you spawn when you join a world
 worldspawn:
+  use_last_location: true
   use: false
   spawnpoint:
     x: 0

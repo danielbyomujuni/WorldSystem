@@ -1,6 +1,4 @@
-package de.butzlabben.world.util;
-
-import de.butzlabben.world.config.PluginConfig;
+package de.butzlabben.world.util.database;
 
 import java.sql.*;
 

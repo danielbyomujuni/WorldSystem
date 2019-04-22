@@ -5,6 +5,7 @@ import de.butzlabben.world.command.*;
 import de.butzlabben.world.config.*;
 import de.butzlabben.world.listener.*;
 import de.butzlabben.world.util.PapiExtension;
+import de.butzlabben.world.util.database.DatabaseRepository;
 import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
 import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
@@ -83,6 +84,9 @@ public class WorldSystem extends JavaPlugin {
         framework.registerCommands(new WorldAdministrateCommand());
 
 
+        // Establish database connection
+        DatabaseRepository.getInstance().getUtil().connect();
+
         System.setProperty("bstats.relocatecheck", "false");
         Metrics m = new Metrics(this);
         m.addCustomChart(new Metrics.SingleLineChart("worlds", DependenceConfig::getHighestID));
@@ -125,6 +129,9 @@ public class WorldSystem extends JavaPlugin {
                 sw.directUnload(w);
             }
         }
+
+        // Close database connection
+        DatabaseRepository.getInstance().getUtil().close();
 
         Bukkit.getConsoleSender()
                 .sendMessage(PluginConfig.getPrefix() + "Succesfully disabled WorldSystem v" + version);
