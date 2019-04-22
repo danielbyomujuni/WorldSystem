@@ -62,9 +62,12 @@ public class CommandListener implements Listener {
         // Fix for #18
         if (from != to || WorldConfig.exists(from.getName())) {
             // Save location for #23
-            if(WorldConfig.exists(from.getName())) {
+            if (WorldConfig.exists(from.getName())) {
                 WorldConfig config = WorldConfig.getWorldConfig(from.getName());
-                PlayerPositions.getInstance().savePlayerLocation(p, config);
+                PlayerPositions.getInstance().saveWorldsPlayerLocation(p, config);
+            } else {
+                if (WorldConfig.exists(to.getName()))
+                    PlayerPositions.getInstance().savePlayerLocation(p);
             }
             GameMode gameMode = PluginConfig.getSpawnGamemode();
             if (WorldConfig.exists(to.getName())) {

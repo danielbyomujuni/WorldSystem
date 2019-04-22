@@ -6,7 +6,9 @@ import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.util.database.DatabaseRepository;
 import de.butzlabben.world.util.database.DatabaseUtil;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.sql.PreparedStatement;
@@ -17,7 +19,6 @@ import java.util.UUID;
 /*
 Class for implementing #23
  */
-@Getter
 public class PlayerPositions {
 
     @Getter
@@ -25,8 +26,9 @@ public class PlayerPositions {
 
     private DatabaseUtil util = DatabaseRepository.getInstance().getUtil();
 
-    public Location injectLocation(Player player, WorldConfig config, Location location) {
-        if (!PluginConfig.useLastLocation())
+
+    public Location injectWorldsLocation(Player player, WorldConfig config, Location location) {
+        if (!PluginConfig.useWorldSpawnLastLocation())
             return location;
 
         Preconditions.checkNotNull(player);
@@ -35,7 +37,7 @@ public class PlayerPositions {
         UUID uuid = player.getUniqueId();
         int id = config.getId();
         UUID owner = config.getOwner();
-        String tableName = PluginConfig.getTableName();
+        String tableName = PluginConfig.getWorldsTableName();
 
         try {
             PreparedStatement ps = util.prepareStatement("SELECT * FROM " + tableName + " WHERE player=? AND id=? AND owner=?");
@@ -60,8 +62,74 @@ public class PlayerPositions {
         return location;
     }
 
-    public void savePlayerLocation(Player player, WorldConfig config) {
-        if (!PluginConfig.useLastLocation())
+    public Location injectPlayersLocation(Player player, Location location) {
+        if (!PluginConfig.useSpawnLastLocation())
+            return location;
+        if(player == null)
+            return location;
+        Preconditions.checkNotNull(location);
+        UUID uuid = player.getUniqueId();
+
+        String tableName = PluginConfig.getPlayersTableName();
+
+        try {
+            PreparedStatement ps = util.prepareStatement("SELECT * FROM " + tableName + " WHERE player=?");
+
+            ps.setString(1, uuid.toString());
+            ResultSet rs = util.executeQuery(ps);
+            if (!rs.next())
+                return location;
+
+            double x = rs.getDouble("x");
+            double y = rs.getDouble("y");
+            double z = rs.getDouble("z");
+
+            location.setX(x);
+            location.setY(y);
+            location.setZ(z);
+
+            String locWorldName = location.getWorld().getName();
+            if (!locWorldName.equals(rs.getString("world"))) {
+                World world = Bukkit.getWorld(rs.getString("world"));
+                if (world != null) {
+                    location.setWorld(world);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return location;
+    }
+
+    public void savePlayerLocation(Player player) {
+        if (!PluginConfig.useSpawnLastLocation())
+            return;
+
+        Preconditions.checkNotNull(player);
+
+        String playersTableName = PluginConfig.getPlayersTableName();
+
+        UUID uuid = player.getUniqueId();
+        Location location = player.getLocation();
+        try {
+            PreparedStatement ps = util.prepareStatement("REPLACE INTO " + playersTableName +
+                    " (player, world,  x, y, z) VALUES (?, ?, ?, ?, ?)");
+
+            ps.setString(1, uuid.toString());
+            ps.setString(2, location.getWorld().getName());
+
+            ps.setDouble(3, location.getX());
+            ps.setDouble(4, location.getY());
+            ps.setDouble(5, location.getZ());
+
+            util.executeUpdate(ps);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveWorldsPlayerLocation(Player player, WorldConfig config) {
+        if (!PluginConfig.useWorldSpawnLastLocation())
             return;
 
         Preconditions.checkNotNull(player);
@@ -70,7 +138,7 @@ public class PlayerPositions {
         int id = config.getId();
         UUID owner = config.getOwner();
         Location location = player.getLocation();
-        String tableName = PluginConfig.getTableName();
+        String tableName = PluginConfig.getWorldsTableName();
         try {
             PreparedStatement ps = util.prepareStatement("REPLACE INTO " + tableName +
                     " (player, id, owner, x, y, z) VALUES (?, ?, ?, ?, ?, ?)");
@@ -90,7 +158,7 @@ public class PlayerPositions {
 
     public void deletePositions(WorldConfig config) {
         Preconditions.checkNotNull(config);
-        String tableName = PluginConfig.getTableName();
+        String tableName = PluginConfig.getWorldsTableName();
 
         int id = config.getId();
         UUID owner = config.getOwner();
@@ -108,11 +176,22 @@ public class PlayerPositions {
     }
 
     private void checkTables() {
-        String tableName = PluginConfig.getTableName();
+        String worldsTableName = PluginConfig.getWorldsTableName();
         try {
-            PreparedStatement ps = util.prepareStatement("CREATE TABLE IF NOT EXISTS " + tableName +
+            PreparedStatement ps = util.prepareStatement("CREATE TABLE IF NOT EXISTS " + worldsTableName +
                     " ( `player` VARCHAR(36) NOT NULL , `id` INT NOT NULL , `owner` VARCHAR(36) NOT NULL , " +
                     "`x` DOUBLE NOT NULL , `y` DOUBLE NOT NULL , `z` DOUBLE NOT NULL , PRIMARY KEY (`player`, `id`, `owner`))");
+
+            util.executeUpdate(ps);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String playersTableName = PluginConfig.getPlayersTableName();
+        try {
+            PreparedStatement ps = util.prepareStatement("CREATE TABLE IF NOT EXISTS " + playersTableName +
+                    "( `player` VARCHAR(36) NOT NULL , `world` TEXT NOT NULL , " +
+                    "`x` DOUBLE NOT NULL , `y` DOUBLE NOT NULL , `z` DOUBLE NOT NULL , PRIMARY KEY (`player`))");
 
             util.executeUpdate(ps);
         } catch (SQLException e) {

@@ -189,13 +189,13 @@ public class WSCommand {
 
         if (wp.isOnSystemWorld()) {
             // Extra safety for #2
-            if (PluginConfig.getSpawn().getWorld() == null) {
+            if (PluginConfig.getSpawn(null).getWorld() == null) {
                 Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "§cThe spawn is not properly set");
                 p.sendMessage(PluginConfig.getPrefix() + "§cThe spawn is not properly set");
                 return;
             }
 
-            p.teleport(PluginConfig.getSpawn());
+            p.teleport(PluginConfig.getSpawn(p));
             p.setGameMode(PluginConfig.getSpawnGamemode());
             World w = Bukkit.getWorld(p.getWorld().getName());
             SystemWorld.tryUnloadLater(w);

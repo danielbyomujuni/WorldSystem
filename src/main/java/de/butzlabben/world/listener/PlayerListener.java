@@ -26,7 +26,7 @@ public class PlayerListener implements Listener {
 			if (dc.hasWorld()) {
 				SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname());
 				if (sw != null && !sw.isLoaded()) {
-					e.getPlayer().teleport(PluginConfig.getSpawn());
+					e.getPlayer().teleport(PluginConfig.getSpawn(e.getPlayer()));
 				}
 			}
 		}
@@ -40,7 +40,7 @@ public class PlayerListener implements Listener {
 		// Save last location for #23
 		if (player.isOnSystemWorld()) {
 			WorldConfig config = WorldConfig.getWorldConfig(player.getWorldname());
-			PlayerPositions.getInstance().savePlayerLocation(p, config);
+			PlayerPositions.getInstance().saveWorldsPlayerLocation(p, config);
 		}
 		SystemWorld.tryUnloadLater(w);
 	}

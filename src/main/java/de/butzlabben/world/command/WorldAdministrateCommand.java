@@ -59,7 +59,7 @@ public class WorldAdministrateCommand {
         if (a.isOnline()) {
             Player t = (Player) a;
             if (t.getWorld().getName().equals(new DependenceConfig(p).getWorldname())) {
-                t.teleport(PluginConfig.getSpawn());
+                t.teleport(PluginConfig.getSpawn(t));
                 t.setGameMode(PluginConfig.getSpawnGamemode());
             }
         }

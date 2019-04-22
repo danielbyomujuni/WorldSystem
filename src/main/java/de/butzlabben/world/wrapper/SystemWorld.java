@@ -96,8 +96,8 @@ public class SystemWorld {
 
         WorldConfig config = WorldConfig.getWorldConfig(worldname);
         for (Player a : w.getPlayers()) {
-            PlayerPositions.getInstance().savePlayerLocation(a, config);
-            a.teleport(PluginConfig.getSpawn());
+            PlayerPositions.getInstance().saveWorldsPlayerLocation(a, config);
+            a.teleport(PluginConfig.getSpawn(a));
             a.setGameMode(PluginConfig.getSpawnGamemode());
         }
         if (unloading) {
@@ -142,7 +142,7 @@ public class SystemWorld {
             c.unload();
         }
         for (Player a : w.getPlayers()) {
-            a.teleport(PluginConfig.getSpawn());
+            a.teleport(PluginConfig.getSpawn(a));
             a.setGameMode(PluginConfig.getSpawnGamemode());
         }
 
@@ -388,12 +388,12 @@ public class SystemWorld {
 
         WorldConfig config = WorldConfig.getWorldConfig(worldname);
         if (config.getHome() != null) {
-            p.teleport(positions.injectLocation(p, config, config.getHome()));
+            p.teleport(positions.injectWorldsLocation(p, config, config.getHome()));
         } else {
             if (PluginConfig.useWorldSpawn()) {
-                p.teleport(positions.injectLocation(p, config, PluginConfig.getWorldSpawn(w)));
+                p.teleport(positions.injectWorldsLocation(p, config, PluginConfig.getWorldSpawn(w)));
             } else {
-                p.teleport(positions.injectLocation(p, config, w.getSpawnLocation()));
+                p.teleport(positions.injectWorldsLocation(p, config, w.getSpawnLocation()));
             }
         }
         if (PluginConfig.isSurvival()) {

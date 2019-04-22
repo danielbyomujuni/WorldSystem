@@ -12,6 +12,7 @@ import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import de.butzlabben.world.util.PlayerPositions;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -20,6 +21,7 @@ import org.bukkit.WorldCreator;
 import org.bukkit.World.Environment;
 import org.bukkit.WorldType;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.butzlabben.world.WorldSystem;
@@ -44,7 +46,7 @@ public class PluginConfig {
 					&& cfg.isString("worldtemplates.default") &&
 
 					// Database stuff
-					cfg.isString("database.type") && cfg.isString("database.table_name")
+					cfg.isString("database.type") && cfg.isString("database.worlds_table_name") && cfg.isString("database.players_table_name")
 					&& cfg.isString("database.mysql_settings.host") && cfg.isInt("database.mysql_settings.port")
 					&& cfg.isString("database.mysql_settings.username") &&  cfg.isString("database.mysql_settings.password")
 					&& cfg.isString("database.mysql_settings.database") && cfg.isString("database.sqlite_settings.file") &&
@@ -58,6 +60,7 @@ public class PluginConfig {
 					&& (cfg.isLong("worldgeneration.seed") || cfg.isInt("worldgeneration.seed")) &&
 
 					cfg.isString("spawn.spawnpoint.world") && cfg.isInt("spawn.gamemode")
+					&& cfg.isBoolean("spawn.spawnpoint.use_last_location")
 					&& (cfg.isDouble("spawn.spawnpoint.x") || cfg.isInt("spawn.spawnpoint.x"))
 					&& (cfg.isDouble("spawn.spawnpoint.y") || cfg.isInt("spawn.spawnpoint.y"))
 					&& (cfg.isDouble("spawn.spawnpoint.z") || cfg.isInt("spawn.spawnpoint.z"))
@@ -93,7 +96,7 @@ public class PluginConfig {
 		}
 
 		// Should fix #2
-		if (getSpawn().getWorld() == null) {
+		if (getSpawn(null).getWorld() == null) {
 			Bukkit.getConsoleSender().sendMessage(getPrefix() + "§cWorld is null in spawn.world!");
 		}
 	}
@@ -167,9 +170,10 @@ public class PluginConfig {
 		return getLocation(getConfig(), "worldspawn.spawnpoint", w);
 	}
 
-	public static Location getSpawn() {
+	public static Location getSpawn(Player player) {
 		YamlConfiguration cfg = getConfig();
-		return getLocation(cfg, "spawn.spawnpoint", Bukkit.getWorld(cfg.getString("spawn.spawnpoint.world", "world")));
+		Location location = getLocation(cfg, "spawn.spawnpoint", Bukkit.getWorld(cfg.getString("spawn.spawnpoint.world", "world")));
+		return PlayerPositions.getInstance().injectPlayersLocation(player, location);
 	}
 
 	public static long getSeed() {
@@ -249,12 +253,20 @@ public class PluginConfig {
 		return creator;
 	}
 
-	public static boolean useLastLocation() {
+	public static boolean useWorldSpawnLastLocation() {
 	    return getConfig().getBoolean("worldspawn.use_last_location");
     }
 
-	public static String getTableName() {
-		return getConfig().getString("database.table_name");
+	public static boolean useSpawnLastLocation() {
+		return getConfig().getBoolean("spawn.spawnpoint.use_last_location");
+	}
+
+	public static String getWorldsTableName() {
+		return getConfig().getString("database.worlds_table_name");
+	}
+
+	public static String getPlayersTableName() {
+		return getConfig().getString("database.players_table_name");
 	}
 
 	public static String getDatabaseType() {

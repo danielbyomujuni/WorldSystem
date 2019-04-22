@@ -49,8 +49,10 @@ database:
   # 'mysql' or 'sqlite'
   # You need a working mysql database in order to use this option
   type: sqlite
-  # How the table with the saved player positions should be named
-  table_name: player_positions
+  # How the table with the saved player positions on the playerworlds should be named
+  worlds_table_name: worlds_positions
+  # How the table with the saved player positions on the normal worlds should be named
+  players_table_name : player_positions
   # Configure here your mysql connection
   mysql_settings:
     host: 127.0.0.1
@@ -113,6 +115,7 @@ worldgeneration:
 spawn:
   gamemode: 2
   spawnpoint:
+    use_last_location: true
     world: world
     x: 0
     y: 20
