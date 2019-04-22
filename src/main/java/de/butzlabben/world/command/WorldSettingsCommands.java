@@ -9,6 +9,7 @@ import de.butzlabben.world.event.WorldResetEvent;
 import de.butzlabben.world.event.WorldToggleFireEvent;
 import de.butzlabben.world.event.WorldToggleTntEvent;
 import de.butzlabben.world.gui.WorldChooseGUI;
+import de.butzlabben.world.util.PlayerPositions;
 import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import de.butzlabben.world.wrapper.WorldTemplate;
@@ -59,6 +60,11 @@ public class WorldSettingsCommands {
                     p.sendMessage(MessageConfig.getWorldStillLoaded());
                     return;
                 }
+
+                WorldConfig config = WorldConfig.getWorldConfig(worldname);
+                // Delete positions to prevent suffocating and such stuff
+                PlayerPositions.getInstance().deletePositions(config);
+
                 File f = new File(PluginConfig.getWorlddir() + "/" + worldname);
 
                 if (!PluginConfig.isMultiChoose()) {

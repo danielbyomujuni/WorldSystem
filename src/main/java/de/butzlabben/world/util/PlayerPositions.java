@@ -88,6 +88,25 @@ public class PlayerPositions {
         }
     }
 
+    public void deletePositions(WorldConfig config) {
+        Preconditions.checkNotNull(config);
+        String tableName = PluginConfig.getTableName();
+
+        int id = config.getId();
+        UUID owner = config.getOwner();
+        try {
+            PreparedStatement ps = util.prepareStatement("DELETE FROM " + tableName +
+                    " WHERE id=? AND owner=?");
+
+            ps.setInt(1, id);
+            ps.setString(2, owner.toString());
+
+            util.executeUpdate(ps);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void checkTables() {
         String tableName = PluginConfig.getTableName();
         try {

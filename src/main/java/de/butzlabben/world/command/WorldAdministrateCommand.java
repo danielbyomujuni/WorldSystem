@@ -8,6 +8,7 @@ import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.event.WorldAddmemberEvent;
 import de.butzlabben.world.event.WorldDeleteEvent;
 import de.butzlabben.world.event.WorldRemovememberEvent;
+import de.butzlabben.world.util.PlayerPositions;
 import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import net.myplayplanet.commandframework.CommandArgs;
@@ -95,12 +96,17 @@ public class WorldAdministrateCommand {
 
         if (sw != null && sw.isLoaded())
             sw.directUnload(Bukkit.getWorld(worldname));
+
+        WorldConfig config = WorldConfig.getWorldConfig(worldname);
+        // Delete unnecessary positions
+        PlayerPositions.getInstance().deletePositions(config);
+
         Bukkit.getScheduler().runTaskLater(WorldSystem.getInstance(), () -> {
             OfflinePlayer op = dc.getOwner();
 
             String uuid = op.getUniqueId().toString();
             File dir = new File(PluginConfig.getWorlddir() + "/" + worldname);
-            if(!dir.exists())
+            if (!dir.exists())
                 dir = new File(Bukkit.getWorldContainer(), worldname);
             if (dir.exists())
                 try {

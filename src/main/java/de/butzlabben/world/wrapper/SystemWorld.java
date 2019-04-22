@@ -93,7 +93,10 @@ public class SystemWorld {
             Chunk c = arrayOfChunk[i];
             c.unload();
         }
+
+        WorldConfig config = WorldConfig.getWorldConfig(worldname);
         for (Player a : w.getPlayers()) {
+            PlayerPositions.getInstance().savePlayerLocation(a, config);
             a.teleport(PluginConfig.getSpawn());
             a.setGameMode(PluginConfig.getSpawnGamemode());
         }
