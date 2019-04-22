@@ -43,6 +43,25 @@ unloadingtime: 20
 # Except for players with the permissions: ws.gamemode | ws.tp.*
 survival: false
 
+# Options for the database saving player positions
+database:
+  # Which type should be choosen:
+  # 'mysql' or 'sqlite'
+  # You need a working mysql database in order to use this option
+  type: sqlite
+  # How the table with the saved player positions should be named
+  table_name: player_positions
+  # Configure here your mysql connection
+  mysql_settings:
+    host: 127.0.0.1
+    port: 3306
+    username: root
+    password: YOUR_PASSWORD_HERE
+    database: database
+  sqlite_settings:
+    # Where the database file should be located
+    file: 'plugins/WorldSystem/repository.db'
+
 # If true players will teleported to the spawn on join
 spawn_teleportation: true
 

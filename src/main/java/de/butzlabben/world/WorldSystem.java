@@ -68,12 +68,9 @@ public class WorldSystem extends JavaPlugin {
             }
         }, 20, 20 * 10);
 
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-            @Override
-            public void run() {
-                for (World w : Bukkit.getWorlds()) {
-                    SystemWorld.tryUnloadLater(w);
-                }
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+            for (World w : Bukkit.getWorlds()) {
+                SystemWorld.tryUnloadLater(w);
             }
         }, 20 * 60 * 2, 20 * 60 * 2);
 

@@ -43,6 +43,12 @@ public class PluginConfig {
 					&& cfg.isInt("delete_after") && cfg.isBoolean("worldtemplates.multi_choose")
 					&& cfg.isString("worldtemplates.default") &&
 
+					// Database stuff
+					cfg.isString("database.type") && cfg.isString("database.table_name")
+					&& cfg.isString("database.mysql_settings.host") && cfg.isInt("database.mysql_settings.port")
+					&& cfg.isString("database.mysql_settings.username") &&  cfg.isString("database.mysql_settings.password")
+					&& cfg.isString("database.mysql_settings.database") && cfg.isString("database.sqlite_settings.file") &&
+
 					cfg.isInt("lagsystem.period_in_seconds") && cfg.isInt("lagsystem.entities_per_world")
 					&& cfg.isBoolean("lagsystem.garbagecollector.use")
 					&& cfg.isInt("lagsystem.garbagecollector.period_in_minutes") &&
@@ -99,7 +105,7 @@ public class PluginConfig {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return null;
+		throw new IllegalStateException("Cannot access config file");
 	}
 
 	public static int getGCPeriod() {
@@ -130,11 +136,11 @@ public class PluginConfig {
 		return getConfig().getInt("unloadingtime", 20);
 	}
 
-	private final static GameMode[] gamemodes = new GameMode[] { GameMode.SURVIVAL, GameMode.CREATIVE,
+	private final static GameMode[] gameModes = new GameMode[] { GameMode.SURVIVAL, GameMode.CREATIVE,
 			GameMode.ADVENTURE, GameMode.SPECTATOR };
 
 	public static GameMode getSpawnGamemode() {
-		return gamemodes[getConfig().getInt("spawn.gamemode", 2)];
+		return gameModes[getConfig().getInt("spawn.gamemode", 2)];
 	}
 
 	public static String getWorlddir() {
@@ -241,5 +247,37 @@ public class PluginConfig {
 		if (!generator.trim().isEmpty())
 			creator.generator(generator);
 		return creator;
+	}
+
+	public static String getTablename() {
+		return getConfig().getString("database.table_name");
+	}
+
+	public static String getDatabaseType() {
+		return getConfig().getString("database.type");
+	}
+
+	public static String getSqliteFile() {
+		return getConfig().getString("database.sqlite_settings.file");
+	}
+
+	public static String getMysqlHost() {
+		return getConfig().getString("database.mysql_settings.host");
+	}
+
+	public static int getMysqlPort() {
+		return getConfig().getInt("database.mysql_settings.port");
+	}
+
+	public static String getMysqlUser() {
+		return getConfig().getString("database.mysql_settings.user");
+	}
+
+	public static String getMysqlPassword() {
+		return getConfig().getString("database.mysql_settings.password");
+	}
+
+	public static String getMysqlDatabaseName() {
+		return getConfig().getString("database.mysql_settings.host");
 	}
 }

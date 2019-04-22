@@ -22,8 +22,8 @@ public class WorldEditListener implements Listener {
         Player p = event.getPlayer();
         String worldname = p.getWorld().getName();
         WorldPlayer wp = new WorldPlayer(p, worldname);
-        if ((wp.isOnSystemWorld()) &&
-                (!wp.isOwnerofWorld()) && (!p.hasPermission(WorldPerm.WORLDEDIT.getOpPerm()))) {
+        if (wp.isOnSystemWorld() &&
+                !wp.isOwnerofWorld() && !p.hasPermission(WorldPerm.WORLDEDIT.getOpPerm())) {
             WorldConfig wc = WorldConfig.getWorldConfig(p.getWorld().getName());
             if (!wc.hasPermission(p.getUniqueId(), WorldPerm.WORLDEDIT)) {
                 p.sendMessage(MessageConfig.getNoPermission());
