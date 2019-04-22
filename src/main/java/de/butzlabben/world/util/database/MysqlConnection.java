@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class MysqlConnection extends DatabaseConnection {
 
-    public void connect(String host, String database, String port, String user, String password) {
+    private void connect(String host, String database, String port, String user, String password) {
         synchronized (lock) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");

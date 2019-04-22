@@ -88,7 +88,7 @@ public class PlayerPositions {
         }
     }
 
-    public void checkTables() {
+    private void checkTables() {
         String tableName = PluginConfig.getTableName();
         try {
             PreparedStatement ps = util.prepareStatement("CREATE TABLE IF NOT EXISTS " + tableName +

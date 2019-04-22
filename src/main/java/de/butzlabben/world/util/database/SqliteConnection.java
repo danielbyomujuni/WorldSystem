@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class SqliteConnection extends DatabaseConnection {
 
-    public void connect(String file) {
+    private void connect(String file) {
         synchronized (lock) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");

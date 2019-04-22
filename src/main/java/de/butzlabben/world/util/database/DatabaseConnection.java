@@ -3,8 +3,8 @@ package de.butzlabben.world.util.database;
 import java.sql.*;
 
 public abstract class DatabaseConnection implements DatabaseUtil {
-    protected Connection connection;
-    protected Object lock = new Object();
+    Connection connection;
+    final Object lock = new Object();
 
     public void close() {
         synchronized (lock) {
@@ -42,14 +42,6 @@ public abstract class DatabaseConnection implements DatabaseUtil {
             if (connection == null || connection.isClosed())
                 connect();
             return ps.executeUpdate();
-        }
-    }
-
-    public Connection getConnection() throws SQLException {
-        synchronized (lock) {
-            if (connection == null || connection.isClosed())
-                connect();
-            return connection;
         }
     }
 }
