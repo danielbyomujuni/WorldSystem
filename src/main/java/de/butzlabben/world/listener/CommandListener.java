@@ -24,13 +24,15 @@ public class CommandListener implements Listener {
         Player p = e.getPlayer();
         World from = e.getFrom().getWorld();
         World to = e.getTo().getWorld();
+        boolean fromIsSystemWorld = WorldConfig.exists(from.getName());
+        boolean toIsSystemWorld = WorldConfig.exists(to.getName());
         WorldPlayer wp = new WorldPlayer(p);
 
         if (from != to)
             SystemWorld.tryUnloadLater(from);
 
         if (e.getCause() == TeleportCause.SPECTATE) {
-            if (from != to && WorldConfig.exists(to.getName())) {
+            if (from != to && toIsSystemWorld) {
                 if (!p.hasPermission("ws.tp.toother")) {
                     e.setCancelled(true);
                     p.sendMessage(MessageConfig.getNoPermission());
@@ -44,7 +46,7 @@ public class CommandListener implements Listener {
             e.setCancelled(true);
             p.sendMessage(MessageConfig.getNoPermission());
         } else if (e.getCause() == TeleportCause.COMMAND) {
-            if (from != to && WorldConfig.exists(to.getName())) {
+            if (from != to && toIsSystemWorld) {
                 if (!p.hasPermission("ws.tp.toother")) {
                     e.setCancelled(true);
                     p.sendMessage(MessageConfig.getNoPermission());
@@ -60,17 +62,17 @@ public class CommandListener implements Listener {
         }
 
         // Fix for #18
-        if (from != to || WorldConfig.exists(from.getName())) {
+        if (from != to || fromIsSystemWorld) {
             // Save location for #23
-            if (WorldConfig.exists(from.getName())) {
+            if (fromIsSystemWorld) {
                 WorldConfig config = WorldConfig.getWorldConfig(from.getName());
                 PlayerPositions.getInstance().saveWorldsPlayerLocation(p, config);
             } else {
-                if (WorldConfig.exists(to.getName()))
+                if (toIsSystemWorld)
                     PlayerPositions.getInstance().savePlayerLocation(p);
             }
             GameMode gameMode = PluginConfig.getSpawnGamemode();
-            if (WorldConfig.exists(to.getName())) {
+            if (toIsSystemWorld) {
                 if (PluginConfig.isSurvival()) {
                     gameMode = GameMode.SURVIVAL;
                 } else {
