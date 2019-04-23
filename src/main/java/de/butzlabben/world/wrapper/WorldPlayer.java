@@ -181,10 +181,7 @@ public class WorldPlayer {
         }
         if (worldconfig.exists()) {
             YamlConfiguration cfg = YamlConfiguration.loadConfiguration(worldconfig);
-            if (cfg.getString("Informations.Owner.PlayerUUID") == null) {
-                return false;
-            }
-            return true;
+            return cfg.getString("Informations.Owner.PlayerUUID") != null;
         }
         return false;
     }

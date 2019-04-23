@@ -79,9 +79,7 @@ public class SystemWorld {
      */
     public void directUnload(World w) {
         if (!Bukkit.isPrimaryThread()) {
-            Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> {
-                directUnload(w);
-            });
+            Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> directUnload(w));
             return;
         }
         Preconditions.checkNotNull(w, "world must not be null");
@@ -120,7 +118,7 @@ public class SystemWorld {
      * @param w the associated world
      * @throws NullPointerException w == null
      */
-    public void unloadLater(World w) {
+    private void unloadLater(World w) {
         if (!Bukkit.isPrimaryThread()) {
             Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> unloadLater(w));
             return;
@@ -172,9 +170,7 @@ public class SystemWorld {
      */
     public void load(Player p) {
         if (!Bukkit.isPrimaryThread()) {
-            Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> {
-                load(p);
-            });
+            Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> load(p));
             return;
         }
         Preconditions.checkNotNull(p, "player must not be null");
@@ -354,10 +350,7 @@ public class SystemWorld {
             return true;
         }
         worldAsDir = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");
-        if (worldAsDir.exists()) {
-            return true;
-        }
-        return false;
+        return worldAsDir.exists();
     }
 
     /**

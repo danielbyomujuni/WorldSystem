@@ -37,7 +37,7 @@ public class WorldConfig {
      * Returns wether a worldconfig exists for this worldname
      *
      * @param worldname name of the world
-     * @return Wether this world has a worldconfig
+     * @return Whether this world has a worldconfig
      */
     public static boolean exists(String worldname) {
         return getWorldFile(worldname).exists();
@@ -69,7 +69,7 @@ public class WorldConfig {
     private Location home = null;
 
     private WorldConfig(String worldname) {
-        if (exists(worldname) == false)
+        if (!exists(worldname))
             throw new IllegalArgumentException("WorldConfig doesn't exist");
         owner = UUID.fromString(worldname.substring(worldname.length() - 36));
         id = Integer.parseInt(worldname.split("-")[0].substring(2));
@@ -111,11 +111,7 @@ public class WorldConfig {
     public boolean addPermission(UUID player, WorldPerm perm) {
         if (owner.equals(player))
             throw new IllegalArgumentException("Permissions of the owner cannot change");
-        HashSet<WorldPerm> perms = permissions.get(player);
-        if (perms == null) {
-            perms = new HashSet<>();
-            permissions.put(player, perms);
-        }
+        HashSet<WorldPerm> perms = permissions.computeIfAbsent(player, k -> new HashSet<>());
         return perms.add(perm);
     }
 
@@ -159,11 +155,7 @@ public class WorldConfig {
     public boolean addAllPermissions(UUID player) {
         if (owner.equals(player))
             throw new IllegalArgumentException("Permissions of the owner cannot change");
-        HashSet<WorldPerm> perms = permissions.get(player);
-        if (perms == null) {
-            perms = new HashSet<>();
-            permissions.put(player, perms);
-        }
+        HashSet<WorldPerm> perms = permissions.computeIfAbsent(player, k -> new HashSet<>());
         return perms.addAll(Sets.newHashSet(WorldPerm.values()));
     }
 
@@ -297,7 +289,7 @@ public class WorldConfig {
      * @return if the player has the permissions
      */
     public boolean setBuild(UUID player, UUID target, boolean allowed) {
-        if (isAllowedToAdministrateMember(player, target) == false)
+        if (!isAllowedToAdministrateMember(player, target))
             return false;
         setBuild(target, allowed);
         return true;
@@ -333,7 +325,7 @@ public class WorldConfig {
     }
 
     public boolean setGamemode(UUID player, UUID target, boolean allowed) {
-        if (isAllowedToAdministrateMember(player, target) == false)
+        if (!isAllowedToAdministrateMember(player, target))
             return false;
         setGamemode(target, allowed);
         return true;
@@ -358,7 +350,7 @@ public class WorldConfig {
     }
 
     public boolean setTeleport(UUID player, UUID target, boolean allowed) {
-        if (isAllowedToAdministrateMember(player, target) == false)
+        if (!isAllowedToAdministrateMember(player, target))
             return false;
         setTeleport(target, allowed);
         return true;
@@ -523,7 +515,7 @@ public class WorldConfig {
      * @return if the player has the permissions to change the value
      */
     public boolean setFire(UUID player, boolean fire) {
-        if (hasPermission(player, WorldPerm.ADMINISTRATEWORLD) == false)
+        if (!hasPermission(player, WorldPerm.ADMINISTRATEWORLD))
             return false;
         setFire(fire);
         return true;
@@ -545,7 +537,7 @@ public class WorldConfig {
      * @return if the player has the permissions to change the value
      */
     public boolean setTnt(UUID player, boolean tnt) {
-        if (hasPermission(player, WorldPerm.ADMINISTRATEWORLD) == false)
+        if (!hasPermission(player, WorldPerm.ADMINISTRATEWORLD))
             return false;
         setTnt(tnt);
         return true;
