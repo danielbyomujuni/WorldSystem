@@ -45,7 +45,7 @@ doFireTick: true
 doLimitedCrafting: false
 doMobLoot: true
 doMobSpawning: true
-doTileDrops: false
+doTileDrops: true
 doWeatherCycle: false
 gameLoopFunction: false
 keepInventory: true
