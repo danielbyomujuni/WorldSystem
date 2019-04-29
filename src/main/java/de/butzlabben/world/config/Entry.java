@@ -35,7 +35,7 @@ public class Entry {
 	}
 
 	protected boolean hasWorld() {
-        return !worldname.equals("n");
+        return !"n".equals(worldname);
     }
 	
 	protected Entry(OfflinePlayer op) {
