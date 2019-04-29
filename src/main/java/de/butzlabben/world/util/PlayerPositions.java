@@ -24,7 +24,7 @@ public class PlayerPositions {
     @Getter
     private static PlayerPositions instance = new PlayerPositions();
 
-    private DatabaseUtil util = DatabaseRepository.getInstance().getUtil();
+    private final DatabaseUtil util = DatabaseRepository.getInstance().getUtil();
 
 
     public Location injectWorldsLocation(Player player, WorldConfig config, Location location) {

@@ -45,7 +45,7 @@ public class PlayerOptionsGUI extends OrcInventory {
 	}
 
 	public void loadItem(String subpath, String message, DependListener depend) {
-		if (GuiConfig.isEnabled(path + subpath) == false)
+		if (!GuiConfig.isEnabled(path + subpath))
 			return;
 		OrcItem item = GuiConfig.getItem(path + subpath);
 		if (item != null) {

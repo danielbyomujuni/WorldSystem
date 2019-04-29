@@ -37,7 +37,7 @@ public class WorldDeleteEvent extends WorldEvent {
 	
 	public final static HandlerList handlers = new HandlerList();
 	
-	public final static HandlerList getHandlerList() {
+	public static HandlerList getHandlerList() {
 		return handlers;
 	}
 	

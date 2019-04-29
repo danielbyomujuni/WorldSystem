@@ -25,7 +25,7 @@ import de.butzlabben.world.wrapper.SystemWorld;
 
 public class SettingsConfig {
 
-	private static HashMap<String, Long> borderSizes = new HashMap<>();
+	private static final HashMap<String, Long> borderSizes = new HashMap<>();
 
 	private static File file;
 

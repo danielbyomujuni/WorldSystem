@@ -145,7 +145,7 @@ public class WorldSystem extends JavaPlugin {
         if (!dir.exists()) {
             dir.mkdirs();
         }
-        if (languages.exists() == false)
+        if (!languages.exists())
             languages.mkdirs();
         PluginConfig.checkConfig(config);
 

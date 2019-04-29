@@ -8,6 +8,8 @@ import org.bukkit.block.Block;
 import com.boydti.fawe.bukkit.wrapper.AsyncWorld;
 import com.boydti.fawe.util.TaskManager;
 
+import java.util.Objects;
+
 /**
  * @author Butzlabben
  * @since 08.06.2018
@@ -24,7 +26,7 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
 				if (Bukkit.getWorld(creator.name()) == null)
 					world = AsyncWorld.create(creator);
 				else
-					world = AsyncWorld.wrap(Bukkit.getWorld(creator.name()));
+					world = AsyncWorld.wrap(Objects.requireNonNull(Bukkit.getWorld(creator.name())));
 
 				Block block = world.getBlockAt(0, 0, 0);
 				block.setType(Material.BEDROCK);

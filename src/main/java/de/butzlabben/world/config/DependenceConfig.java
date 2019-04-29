@@ -98,7 +98,7 @@ public class DependenceConfig {
 	}
 
 	public String getWorldNamebyOfflinePlayer() {
-		String name = "";
+		String name;
 		String uuid = op.getUniqueId().toString();
 		File dconfig = new File("plugins//WorldSystem//dependence.yml");
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);

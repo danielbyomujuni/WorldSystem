@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class WorldSettingsCommands {
 
-    private ArrayList<Player> toConfirm = new ArrayList<>();
+    private final ArrayList<Player> toConfirm = new ArrayList<>();
 
     @Command(name="ws.reset", inGameOnly = true, usage = "/ws reset [confirm]")
     public void resetCommand(CommandArgs args) {

@@ -30,7 +30,7 @@ public class GuiConfig {
 
 	public static void checkConfig(File f) {
 		file = f;
-		if (file.exists() == false) {
+		if (!file.exists()) {
 			try {
 				String guiFileResource;
 				if (WorldSystem.is1_13()) {

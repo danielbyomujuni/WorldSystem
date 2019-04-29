@@ -12,7 +12,7 @@ public class GuiCommand implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		if (sender instanceof Player == false) {
+		if (!(sender instanceof Player)) {
 			sender.sendMessage("You are not a player");
 			return true;
 		}

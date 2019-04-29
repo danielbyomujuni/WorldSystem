@@ -28,7 +28,7 @@ public class WorldOptionsGUI extends OrcInventory {
 		loadItem("fire", "/ws fire", true, new FireStatus());
 		loadItem("tnt", "/ws tnt", true, new TntStatus());
 
-		if (GuiConfig.isEnabled(path + "reset") == false)
+		if (!GuiConfig.isEnabled(path + "reset"))
 			return;
 
 		OrcItem item = GuiConfig.getItem(path + "reset");
@@ -51,7 +51,7 @@ public class WorldOptionsGUI extends OrcInventory {
 	}
 
 	public void loadItem(String subpath, String message, boolean state, DependListener depend) {
-		if (GuiConfig.isEnabled(path + subpath) == false)
+		if (!GuiConfig.isEnabled(path + subpath))
 			return;
 		OrcItem item = GuiConfig.getItem(path + subpath);
 		if (item != null) {

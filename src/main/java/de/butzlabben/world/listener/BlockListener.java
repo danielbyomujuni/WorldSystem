@@ -1,6 +1,7 @@
 package de.butzlabben.world.listener;
 
 import java.io.File;
+import java.util.Objects;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +19,7 @@ public class BlockListener implements Listener {
 	
 	@EventHandler
 	public void onExplode(EntityExplodeEvent e) {
-		File file = WorldConfig.getWorldFile(e.getLocation().getWorld().getName());
+		File file = WorldConfig.getWorldFile(Objects.requireNonNull(e.getLocation().getWorld()).getName());
 		if(!file.exists())
 			return;
 		WorldConfig wc = WorldConfig.getWorldConfig(e.getLocation().getWorld().getName());

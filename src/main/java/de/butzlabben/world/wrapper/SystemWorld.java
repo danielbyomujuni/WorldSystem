@@ -29,7 +29,7 @@ public class SystemWorld {
     private boolean unloading = false;
     private boolean creating = false;
 
-    private static HashMap<String, SystemWorld> cached = new HashMap<>();
+    private static final HashMap<String, SystemWorld> cached = new HashMap<>();
 
     /**
      * This method is the online way to get a system world instance

@@ -12,13 +12,13 @@ import java.util.HashMap;
  */
 public class WorldTemplateProvider {
 
-    private static WorldTemplateProvider instance = new WorldTemplateProvider();
+    private static final WorldTemplateProvider instance = new WorldTemplateProvider();
 
     public static WorldTemplateProvider getInstace() {
         return instance;
     }
 
-    private HashMap<String, WorldTemplate> templates = new HashMap<>();
+    private final HashMap<String, WorldTemplate> templates = new HashMap<>();
 
     private WorldTemplateProvider() {
         ConfigurationSection section = PluginConfig.getConfig().getConfigurationSection("worldtemplates.templates");

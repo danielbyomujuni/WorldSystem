@@ -58,7 +58,7 @@ public class AutoUpdater implements Listener {
 						+ ", Available: " + ui.getVersion());
 			}
 			// Get jar file
-			Method getFileMethod = null;
+			Method getFileMethod;
 			try {
 				getFileMethod = JavaPlugin.class.getDeclaredMethod("getFile");
 			} catch (NoSuchMethodException | SecurityException e1) {
@@ -66,7 +66,7 @@ public class AutoUpdater implements Listener {
 				return;
 			}
 			getFileMethod.setAccessible(true);
-			File file = null;
+			File file;
 
 			try {
 				file = (File) getFileMethod.invoke(plugin);

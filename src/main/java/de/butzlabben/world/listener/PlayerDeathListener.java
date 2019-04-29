@@ -16,7 +16,7 @@ import de.butzlabben.world.wrapper.WorldPlayer;
 
 public class PlayerDeathListener implements Listener {
 
-	private HashMap<UUID, World> deathLocations = new HashMap<>();
+	private final HashMap<UUID, World> deathLocations = new HashMap<>();
 
 	@EventHandler
 	public void onDie(PlayerDeathEvent e) {

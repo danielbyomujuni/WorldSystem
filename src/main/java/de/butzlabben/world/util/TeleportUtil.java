@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
  */
 public class TeleportUtil {
 	
-	private static HashMap<UUID, Location> oldLocs = new HashMap<>();
+	private static final HashMap<UUID, Location> oldLocs = new HashMap<>();
 	
 	public static void teleportPlayer(Player p, Location loc) {
 		// Save old player location.

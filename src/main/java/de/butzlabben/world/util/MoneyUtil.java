@@ -15,7 +15,7 @@ import java.util.UUID;
  * Used for #15
  */
 public class MoneyUtil {
-    private static Object economy = null;
+    private static final Object economy = null;
 
     static {
         if (Bukkit.getPluginManager().getPlugin("Vault") != null) {

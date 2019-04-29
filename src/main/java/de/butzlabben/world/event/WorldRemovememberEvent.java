@@ -13,7 +13,7 @@ public class WorldRemovememberEvent extends WorldEvent {
 
 	private final String worldname;
 	private final UUID uuid;
-	private Player remover;
+	private final Player remover;
 	
 	public WorldRemovememberEvent(UUID uuid, String worldname, Player remover) {
 		this.uuid = uuid;

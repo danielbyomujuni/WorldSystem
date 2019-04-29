@@ -15,7 +15,12 @@ import de.butzlabben.world.wrapper.WorldPlayer;
 
 public class OrcItem {
 
-	public static OrcItem enabled, disabled, coming_soon, back, fill, error = new OrcItem(Material.BARRIER, null,
+	public static OrcItem enabled;
+	public static OrcItem disabled;
+	public static OrcItem coming_soon;
+	public static OrcItem back;
+	public static OrcItem fill;
+	public static final OrcItem error = new OrcItem(Material.BARRIER, null,
 			"§cERROR: Item is wrong configured!", "§cPath in config: see Displayname");
 
 	private ItemStack is;

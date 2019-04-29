@@ -21,8 +21,8 @@ import java.io.IOException;
  */
 public class WorldPlayer {
 
-    private OfflinePlayer p;
-    private String worldname;
+    private final OfflinePlayer p;
+    private final String worldname;
 
     /**
      * @return the worldname, where the worldplayer object was created for

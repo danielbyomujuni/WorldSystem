@@ -8,9 +8,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Entry {
 
-	private OfflinePlayer op;
+	private final OfflinePlayer op;
 	private int id;
-	private String worldname;
+	private final String worldname;
 	
 	public static int entrys() {
 		int entrys = 0;

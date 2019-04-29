@@ -15,7 +15,7 @@ public class WorldAddmemberEvent extends WorldEvent {
 
 	private final String worldname;
 	private final UUID uuid;
-	private Player adder;
+	private final Player adder;
 	
 	public WorldAddmemberEvent(UUID uuid, String worldname, Player adder) {
 		this.uuid = uuid;

@@ -34,11 +34,11 @@ import com.mojang.util.UUIDTypeAdapter;
  */
 public class GameProfileBuilder {
 
-	private static Gson gson = new GsonBuilder().disableHtmlEscaping()
+	private static final Gson gson = new GsonBuilder().disableHtmlEscaping()
 			.registerTypeAdapter(UUID.class, new UUIDTypeAdapter())
 			.registerTypeAdapter(GameProfile.class, new GameProfileSerializer())
 			.registerTypeAdapter(PropertyMap.class, new PropertyMap.Serializer()).create();
-	private static HashMap<UUID, CachedProfile> cache = new HashMap<>();
+	private static final HashMap<UUID, CachedProfile> cache = new HashMap<>();
 	private static long cacheTime = -1L;
 	private static final Object sync = new Object();
 
@@ -133,7 +133,7 @@ public class GameProfileBuilder {
 	}
 
 	private static class CachedProfile {
-		private GameProfile profile;
+		private final GameProfile profile;
 
 		public CachedProfile(GameProfile profile) {
 			this.profile = profile;

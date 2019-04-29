@@ -17,7 +17,7 @@ public class MessageConfig {
     private MessageConfig() {
     }
 
-    private static List<String> defaultCmdHelp = new ArrayList<>(20);
+    private static final List<String> defaultCmdHelp = new ArrayList<>(20);
 
     static {
         defaultCmdHelp.add("/ws get §8- §7Will give you a World");
@@ -40,7 +40,7 @@ public class MessageConfig {
 
     public static void checkConfig(File f) {
         file = f;
-        if (file.exists() == false) {
+        if (!file.exists()) {
             try {
                 InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource(f.getName());
 

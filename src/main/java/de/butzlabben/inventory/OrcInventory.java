@@ -15,7 +15,7 @@ public abstract class OrcInventory {
 	private int rows;
 	private InventoryType type;
 
-    protected HashMap<Integer, OrcItem> items = new HashMap<>();
+    protected final HashMap<Integer, OrcItem> items = new HashMap<>();
 
 	public OrcInventory(String title) {
 		Objects.requireNonNull(title, "title cannot be null");

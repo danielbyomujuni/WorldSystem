@@ -27,7 +27,7 @@ public class UpdateInformations {
 
     public static String callURL(String URL) {
         StringBuilder sb = new StringBuilder();
-        URLConnection urlConn = null;
+        URLConnection urlConn;
         InputStreamReader in = null;
         try {
             URL url = new URL(URL);

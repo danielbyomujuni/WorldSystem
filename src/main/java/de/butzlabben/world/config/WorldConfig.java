@@ -20,6 +20,7 @@ import java.util.*;
  *
  * @since 01.05.2018
  */
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class WorldConfig {
 
     public static File getWorldFile(String worldname) {
@@ -43,7 +44,7 @@ public class WorldConfig {
         return getWorldFile(worldname).exists();
     }
 
-    private static HashMap<String, WorldConfig> instances = new HashMap<>();
+    private static final HashMap<String, WorldConfig> instances = new HashMap<>();
 
     /**
      * Gets the worldconfig for a specific worldname or creates a new one of no
@@ -249,7 +250,7 @@ public class WorldConfig {
      * @return if the player was a member of this world
      */
     public boolean removeMember(UUID player, UUID target) {
-        if (hasPermission(player, WorldPerm.EDITMEMBERS) && hasPermission(player, WorldPerm.EDITMEMBERS) == false) {
+        if (hasPermission(player, WorldPerm.EDITMEMBERS) && !hasPermission(player, WorldPerm.EDITMEMBERS)) {
             return removeMember(target);
         }
         return false;

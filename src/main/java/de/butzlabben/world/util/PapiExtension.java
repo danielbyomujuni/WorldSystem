@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class PapiExtension extends PlaceholderExpansion {
 
-    private WorldSystem worldSystem = WorldSystem.getInstance();
+    private final WorldSystem worldSystem = WorldSystem.getInstance();
 
     @Override
     public String getIdentifier() {

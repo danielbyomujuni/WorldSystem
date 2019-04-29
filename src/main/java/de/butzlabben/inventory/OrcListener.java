@@ -20,7 +20,7 @@ public class OrcListener implements Listener {
 
 	private static OrcListener instance;
 	
-	private HashMap<UUID, OrcInventory> invs = new HashMap<>();
+	private final HashMap<UUID, OrcInventory> invs = new HashMap<>();
 
 	public static synchronized OrcListener getInstance() {
 		if (instance == null)

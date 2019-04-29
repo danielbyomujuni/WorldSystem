@@ -13,8 +13,8 @@ import java.nio.channels.ReadableByteChannel;
  */
 public class AutoUpdate implements Runnable {
 
-	private UpdateInformations ui;
-	private String jar;
+	private final UpdateInformations ui;
+	private final String jar;
 
 	protected AutoUpdate(UpdateInformations ui, String jar) {
 		this.ui = ui;
