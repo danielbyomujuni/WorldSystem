@@ -17,8 +17,7 @@ public class CommandExecutorClickListener implements OrcClickListener {
 	@Override
 	public void onClick(Player p, OrcInventory inv, OrcItem item) {
 		p.closeInventory();
-		String msg = message;
-		p.chat(msg);
+        p.chat(message);
 		// Fix for #9
 		inv.redraw(p);
 	}

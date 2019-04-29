@@ -22,7 +22,7 @@ public class DependenceConfig {
 		OfflinePlayer op = null;
 		try {
 			op = Bukkit.getOfflinePlayer(UUID.fromString(s));
-		} catch (Exception e) {
+		} catch (Exception ignored) {
 		}
 		if (op == null) {
 			op = Bukkit.getOfflinePlayer(s);
@@ -86,18 +86,15 @@ public class DependenceConfig {
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
 		String uuid = op.getUniqueId().toString();
 		//Fix for #40
-		if (cfg.isInt("Dependences." + uuid + ".ID")) 
-			return true;
-		return false;
-	}
+        return cfg.isInt("Dependences." + uuid + ".ID");
+    }
 
 	public String getWorldname() {
 		File dconfig = new File("plugins//WorldSystem//dependence.yml");
 		YamlConfiguration dcfg = YamlConfiguration.loadConfiguration(dconfig);
 		String uuid = op.getUniqueId().toString();
 		int id = dcfg.getInt("Dependences." + uuid + ".ID");
-		String worldname = "ID" + id + "-" + uuid;
-		return worldname;
+		return "ID" + id + "-" + uuid;
 	}
 
 	public String getWorldNamebyOfflinePlayer() {

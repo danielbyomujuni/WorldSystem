@@ -339,9 +339,7 @@ public class SystemWorld {
     public boolean isLoaded() {
         File worldAsDir = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
         World w = Bukkit.getWorld(worldname);
-        if (worldAsDir.exists() && w != null)
-            return true;
-        return false;
+        return worldAsDir.exists() && w != null;
     }
 
     private boolean exists() {

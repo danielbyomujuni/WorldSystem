@@ -31,7 +31,6 @@ public class WorldSystem extends JavaPlugin {
     final private String version = this.getDescription().getVersion();
 
     private CreatorAdapter creator;
-    private CommandFramework framework;
 
     private static boolean is1_13 = false;
 
@@ -76,7 +75,7 @@ public class WorldSystem extends JavaPlugin {
         }, 20 * 60 * 2, 20 * 60 * 2);
 
         //COMMANDS
-        framework = new CommandFramework(this);
+        CommandFramework framework = new CommandFramework(this);
         framework.setNoPermissionMessage(MessageConfig.getNoPermission());
 
         framework.registerCommands(new WSCommand());

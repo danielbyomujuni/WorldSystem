@@ -19,11 +19,10 @@ public class UpdateInformations {
     private final String version, url, plugin;
     private final boolean silent;
 
-    public static synchronized UpdateInformations getInformations() {
+    protected static synchronized UpdateInformations getInformations() {
         String json = callURL("https://zendilu.net/butzlabben/worldsystem/info.php?version=" + WorldSystem.getInstance().getDescription().getVersion());
         Gson gson = new GsonBuilder().create();
-        UpdateInformations ui = gson.fromJson(json, UpdateInformations.class);
-        return ui;
+        return gson.fromJson(json, UpdateInformations.class);
     }
 
     public static String callURL(String URL) {

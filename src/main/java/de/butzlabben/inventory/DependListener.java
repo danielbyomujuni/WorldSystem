@@ -7,6 +7,6 @@ import de.butzlabben.world.wrapper.WorldPlayer;
 
 public interface DependListener {
 	
-	public ItemStack getItemStack(Player p, WorldPlayer wp);
+	ItemStack getItemStack(Player p, WorldPlayer wp);
 
 }

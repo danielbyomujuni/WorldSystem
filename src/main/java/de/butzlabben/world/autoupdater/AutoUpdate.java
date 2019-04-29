@@ -16,7 +16,7 @@ public class AutoUpdate implements Runnable {
 	private UpdateInformations ui;
 	private String jar;
 
-	public AutoUpdate(UpdateInformations ui, String jar) {
+	protected AutoUpdate(UpdateInformations ui, String jar) {
 		this.ui = ui;
 		this.jar = jar;
 	}

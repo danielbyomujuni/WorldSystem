@@ -55,7 +55,7 @@ public class GameProfileBuilder {
 		synchronized (sync) {
 			connection = (HttpURLConnection) new URL(
 					String.format("https://sessionserver.mojang.com/session/minecraft/profile/%s?unsigned=false",
-							new Object[] { UUIDTypeAdapter.fromUUID(uuid) })).openConnection();
+							UUIDTypeAdapter.fromUUID(uuid))).openConnection();
 			connection.setReadTimeout(5000);
 		}
 		if (connection.getResponseCode() == 200) {

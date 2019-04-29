@@ -23,7 +23,7 @@ public class MoneyUtil {
                 RegisteredServiceProvider<Economy> service = Bukkit.getServicesManager().getRegistration(Economy.class);
                 if (service != null)
                     economy = service.getProvider();
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
 
         }

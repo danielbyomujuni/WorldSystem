@@ -14,9 +14,8 @@ public abstract class OrcInventory {
 	protected String title;
 	private int rows;
 	private InventoryType type;
-	private boolean fill = false;
 
-	protected HashMap<Integer, OrcItem> items = new HashMap<>();
+    protected HashMap<Integer, OrcItem> items = new HashMap<>();
 
 	public OrcInventory(String title) {
 		Objects.requireNonNull(title, "title cannot be null");
@@ -32,8 +31,7 @@ public abstract class OrcInventory {
 	
 	public OrcInventory(String title, int rows, boolean fill) {
 		this(title, rows);
-		this.fill = fill;
-		if(this.fill) {
+        if(fill) {
 			for (int i = 0; i < rows * 9; i++) {
 				items.put(i, OrcItem.fill);
 			}

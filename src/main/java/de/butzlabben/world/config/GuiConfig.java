@@ -114,11 +114,11 @@ public class GuiConfig {
 		YamlConfiguration cfg = getConfig();
 		try {
 			return new OrcItem(getMaterial(cfg, path), getData(cfg, path), getDisplay(cfg, path), getLore(cfg, path));
-		} catch (Exception e) {
+		} catch (Exception ignored) {
 		}
 		try {
 			return new OrcItem(getMaterial(cfg, path), getDisplay(cfg, path), getLore(cfg, path));
-		} catch (Exception e) {
+		} catch (Exception ignored) {
 		}
 		return OrcItem.error.clone().setDisplay("§c" + path);
 	}

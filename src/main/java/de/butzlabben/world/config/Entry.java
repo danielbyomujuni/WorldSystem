@@ -9,7 +9,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class Entry {
 
 	private OfflinePlayer op;
-	private String uuid;
 	private int id;
 	private String worldname;
 	
@@ -36,13 +35,11 @@ public class Entry {
 	}
 
 	protected boolean hasWorld() {
-		if(worldname.equals("n"))
-			return false;
-		return true;
-	}
+        return !worldname.equals("n");
+    }
 	
 	protected Entry(OfflinePlayer op) {
-		uuid = op.getUniqueId().toString();
+		String uuid = op.getUniqueId().toString();
 		this.op = op;
 		File dconfig = new File("plugins//WorldSystem//dependence.yml");
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
