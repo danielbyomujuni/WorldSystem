@@ -23,6 +23,8 @@ import java.util.*;
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class WorldConfig {
 
+    private static final HashMap<String, WorldConfig> instances = new HashMap<>();
+
     public static File getWorldFile(String worldname) {
         File worldconfig = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
         if (!worldconfig.exists()) {
@@ -43,8 +45,6 @@ public class WorldConfig {
     public static boolean exists(String worldname) {
         return getWorldFile(worldname).exists();
     }
-
-    private static final HashMap<String, WorldConfig> instances = new HashMap<>();
 
     /**
      * Gets the worldconfig for a specific worldname or creates a new one of no
