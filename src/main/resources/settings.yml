@@ -39,7 +39,7 @@ commands_on_get:
 announceAdvancements: true
 commandBlockOutput: false
 disableElytraMovementCheck: false
-doDaylightCycle: false
+doDaylightCycle: true
 doEntityDrops: true
 doFireTick: true
 doLimitedCrafting: false
