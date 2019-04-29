@@ -1,4 +1,4 @@
-package de.butzlabben.autoupdater;
+package de.butzlabben.world.autoupdater;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

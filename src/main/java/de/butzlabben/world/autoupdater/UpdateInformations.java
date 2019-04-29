@@ -1,4 +1,4 @@
-package de.butzlabben.autoupdater;
+package de.butzlabben.world.autoupdater;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
