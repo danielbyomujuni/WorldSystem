@@ -1,6 +1,7 @@
 # WorldSystem
 A spigot plugin to give every use his own world
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ff2b6f5f2254dcdb4bdb5b45445465c)](https://app.codacy.com/app/Butzlabben/worldsystem?utm_source=github.com&utm_medium=referral&utm_content=Butzlabben/worldsystem&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/Butzlabben/worldsystem.svg?branch=master)](https://travis-ci.org/Butzlabben/worldsystem) [![](https://jitpack.io/v/Butzlabben/worldsystem.svg)](https://jitpack.io/#Butzlabben/worldsystem)
 
 
