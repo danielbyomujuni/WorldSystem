@@ -5,6 +5,7 @@ import de.butzlabben.world.command.*;
 import de.butzlabben.world.config.*;
 import de.butzlabben.world.listener.*;
 import de.butzlabben.world.util.PapiExtension;
+import de.butzlabben.world.util.VersionUtil;
 import de.butzlabben.world.util.database.DatabaseRepository;
 import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
 import de.butzlabben.world.wrapper.CreatorAdapter;
@@ -32,13 +33,13 @@ public class WorldSystem extends JavaPlugin {
 
     private CreatorAdapter creator;
 
-    private static boolean is1_13 = false;
+    private static boolean is1_13Plus = false;
 
     @Override
     public void onEnable() {
         //Set right version
-        if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1_13"))
-            is1_13 = true;
+        if (VersionUtil.getVersion() >= 13)
+            is1_13Plus = true;
 
         createConfigs();
 
@@ -190,6 +191,6 @@ public class WorldSystem extends JavaPlugin {
     }
 
     public static boolean is1_13() {
-        return is1_13;
+        return is1_13Plus;
     }
 }
