@@ -33,6 +33,22 @@ worldtemplates:
       # This amount will then with withdrawn from the player
       cost: 100
 
+      # Options for random world generation
+      # Here you can configure the world generator of a template
+      generator:
+        # A seed for worldgeneration
+        # Set it to 0 for no seed-useage
+        seed: 0
+        # Environment for the world
+        # Valid inputs are 'NORMAL', 'NETHER' and 'THE_END'
+        environment: NORMAL
+        # Type of the world eg. flat, amplified, ...
+        # Valid types are 'NORMAL', 'VERSION_1_1', 'FLAT', 'AMPLIFIED', 'CUSTOMIZED' or 'LARGE_BIOMES'
+        type: NORMAL
+        # Put in here the name of a generator
+        # If you have one from one plugin
+        generator: ''
+
 # If a confirm is needed before auto-update
 need_confirm: true
 
@@ -95,21 +111,6 @@ lagsystem:
   garbagecollector:
     use: false
     period_in_minutes: 5
-    
-# Options for random world generation
-worldgeneration:
-  # A seed for worldgeneration
-  # Set it to 0 for no seed-useage
-  seed: 0
-  # Environment for the world
-  # Valid inputs are 'NORMAL', 'NETHER' and 'THE_END'
-  environment: NORMAL
-  # Type of the world eg. flat, amplified, ...
-  # Valid types are 'NORMAL', 'VERSION_1_1', 'FLAT', 'AMPLIFIED', 'CUSTOMIZED' or 'LARGE_BIOMES'
-  type: NORMAL
-  # Put in here the name of a generator
-  # If you have one from one plugin
-  generator: ''
 
 # Location where you will be teleported when you leave you world
 spawn:

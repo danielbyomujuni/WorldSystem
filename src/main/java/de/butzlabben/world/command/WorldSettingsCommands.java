@@ -220,16 +220,6 @@ public class WorldSettingsCommands {
 
             // For fast worldcreating after reset
             WorldCreator creator = new WorldCreator(worldname);
-            long seed = PluginConfig.getSeed();
-            World.Environment env = PluginConfig.getEnvironment();
-            WorldType type = PluginConfig.getWorldType();
-            if (seed != 0)
-                creator.seed(seed);
-            creator.type(type);
-            creator.environment(env);
-            String generator = PluginConfig.getGenerator();
-            if (!generator.trim().isEmpty())
-                creator.generator(generator);
 
             sw.setCreating(true);
             // For #16

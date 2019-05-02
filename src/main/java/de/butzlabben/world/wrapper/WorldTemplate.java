@@ -14,11 +14,13 @@ public class WorldTemplate {
     private final OrcItem icon;
     private final int slot;
     private final int cost;
+    private final GeneratorSettings generatorSettings;
 
-    public WorldTemplate(String name, String permission, int cost) {
+    public WorldTemplate(String name, String permission, int cost, GeneratorSettings generatorSettings) {
         this.name = name;
         this.permission = permission;
         this.cost = cost;
+        this.generatorSettings = generatorSettings;
 
         this.icon = GuiConfig.getItem("worldchoose." + name);
         this.slot = GuiConfig.getSlot("worldchoose." + name);

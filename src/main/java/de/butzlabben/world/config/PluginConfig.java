@@ -176,38 +176,6 @@ public class PluginConfig {
 		return PlayerPositions.getInstance().injectPlayersLocation(player, location);
 	}
 
-	public static long getSeed() {
-		return getConfig().getLong("worldgeneration.seed");
-	}
-
-	public static Environment getEnvironment() {
-		YamlConfiguration cfg = getConfig();
-		String t = cfg.getString("worldgeneration.environment");
-		Environment e = Environment.NORMAL;
-		try {
-			e = Environment.valueOf(t.toUpperCase());
-		} catch (Exception ex) {
-			System.out.println("'" + t + "' is not a valid environment");
-		}
-		return e;
-	}
-
-	public static String getGenerator() {
-		return getConfig().getString("worldgeneration.generator");
-	}
-
-	public static WorldType getWorldType() {
-		YamlConfiguration cfg = getConfig();
-		String t = cfg.getString("worldgeneration.type");
-		WorldType wt = WorldType.NORMAL;
-		try {
-			wt = WorldType.valueOf(t.toUpperCase());
-		} catch (Exception e) {
-			System.err.println("'" + t + "' is not a valid worldtype");
-		}
-		return wt;
-	}
-
 	public static int getRequestExpire() {
 		return getConfig().getInt("request_expires", 20);
 	}
@@ -236,21 +204,6 @@ public class PluginConfig {
 
 	public static long deleteAfter() {
 		return getConfig().getLong("delete_after");
-	}
-
-	public static WorldCreator getWorldCreator(String worldname) {
-		WorldCreator creator = new WorldCreator(worldname);
-		long seed = PluginConfig.getSeed();
-		Environment env = PluginConfig.getEnvironment();
-		WorldType type = PluginConfig.getWorldType();
-		if (seed != 0)
-			creator.seed(seed);
-		creator.type(type);
-		creator.environment(env);
-		String generator = PluginConfig.getGenerator();
-		if (!generator.trim().isEmpty())
-			creator.generator(generator);
-		return creator;
 	}
 
 	public static boolean useWorldSpawnLastLocation() {
