@@ -71,7 +71,7 @@ public class WorldSettingsCommands {
                     WorldTemplate template = WorldTemplateProvider.getInstace()
                             .getTemplate(PluginConfig.getDefaultWorldTemplate());
                     if (template != null)
-                        createWorld(p, worldname, f, new File(template.getPath()), sw);
+                        createWorld(p, worldname, f, template, sw);
                     else {
                         p.sendMessage(PluginConfig.getPrefix() + "§cError in config at \"worldtemplates.default\"");
                         p.sendMessage(PluginConfig.getPrefix() + "§cPlease contact an administrator");
@@ -79,7 +79,7 @@ public class WorldSettingsCommands {
                 } else {
                     WorldChooseGUI.letChoose(p, (template) -> {
                         if (template != null)
-                            createWorld(p, worldname, f, new File(template.getPath()), sw);
+                            createWorld(p, worldname, f, template, sw);
                         else {
                             p.sendMessage(PluginConfig.getPrefix() + "§cError in config at \"worldtemplates.default\"");
                             p.sendMessage(PluginConfig.getPrefix() + "§cPlease contact an administrator");
@@ -196,7 +196,7 @@ public class WorldSettingsCommands {
         }
     }
 
-    private void createWorld(Player p, String worldname, File f, File exampleworld, SystemWorld sw) {
+    private void createWorld(Player p, String worldname, File f, WorldTemplate template, SystemWorld sw) {
 
         File[] files = f.listFiles();
         for (File file : files) {
@@ -206,8 +206,9 @@ public class WorldSettingsCommands {
         }
 
         try {
-            if (exampleworld.isDirectory())
-                FileUtils.copyDirectory(exampleworld, f);
+            File templateDirectory = new File(template.getPath());
+            if (templateDirectory.isDirectory())
+                FileUtils.copyDirectory(templateDirectory, f);
             toConfirm.remove(p);
 
             FileUtils.moveDirectoryToDirectory(f, Bukkit.getWorldContainer(), false);
@@ -219,7 +220,7 @@ public class WorldSettingsCommands {
             p.sendMessage(MessageConfig.getWorldReseted());
 
             // For fast worldcreating after reset
-            WorldCreator creator = new WorldCreator(worldname);
+            WorldCreator creator = template.getGeneratorSettings().asWorldCreator(worldname);
 
             sw.setCreating(true);
             // For #16

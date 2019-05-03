@@ -2,11 +2,13 @@ package de.butzlabben.world.wrapper;
 
 import de.butzlabben.inventory.OrcItem;
 import de.butzlabben.world.config.GuiConfig;
+import lombok.Getter;
 
 /**
  * @author Butzlabben
  * @since 15.12.2018
  */
+@Getter
 public class WorldTemplate {
 
     private final String name;

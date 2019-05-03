@@ -253,7 +253,7 @@ public class SystemWorld {
         int id = DependenceConfig.getHighestID() + 1;
         String worldname = "ID" + id + "-" + uuid;
 
-        WorldCreator creator = PluginConfig.getWorldCreator(worldname);
+        WorldCreator creator = template.getGeneratorSettings().asWorldCreator(worldname);
 
         WorldCreateEvent event = new WorldCreateEvent(p, creator);
         Bukkit.getPluginManager().callEvent(event);
