@@ -3,6 +3,7 @@ package de.butzlabben.world.config;
 import com.google.common.collect.Sets;
 import com.mojang.authlib.GameProfile;
 import de.butzlabben.world.GameProfileBuilder;
+import de.butzlabben.world.wrapper.WorldTemplate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
@@ -65,6 +66,7 @@ public class WorldConfig {
     private final HashMap<UUID, HashSet<WorldPerm>> permissions = new HashMap<>();
 
     private String ownerName;
+    private String templateKey;
     private boolean fire, tnt;
 
     private Location home = null;
@@ -76,7 +78,7 @@ public class WorldConfig {
         id = Integer.parseInt(worldname.split("-")[0].substring(2));
     }
 
-    public static void create(Player p) {
+    public static void create(Player p, WorldTemplate template) {
         DependenceConfig dc = new DependenceConfig(p);
         String worldname = dc.getWorldname();
         File file = new File(PluginConfig.getWorlddir() + worldname + "/worldconfig.yml");
@@ -90,6 +92,7 @@ public class WorldConfig {
         cfg.set("Informations.ID", dc.getID());
         cfg.set("Informations.Owner.PlayerUUID", p.getUniqueId().toString());
         cfg.set("Informations.Owner.Actualname", p.getName());
+        cfg.set("Informations.template_key", template.getName());
         cfg.set("Settings.TNTDamage", false);
         cfg.set("Settings.Fire", false);
         cfg.set("Members", null);
@@ -387,6 +390,7 @@ public class WorldConfig {
         cfg.set("Informations.ID", id);
         cfg.set("Informations.Owner.Actualname", ownerName);
         cfg.set("Informations.Owner.PlayerUUID", owner.toString());
+        cfg.set("Informations.template_key", templateKey);
         cfg.set("Settings.TNTDamage", tnt);
         cfg.set("Settings.Fire", fire);
 
@@ -424,6 +428,7 @@ public class WorldConfig {
 
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
         ownerName = cfg.getString("Informations.Owner.Actualname", "Unknown Playername");
+        templateKey = cfg.getString("Informations.template_key");
         tnt = cfg.getBoolean("Settings.TNTDamage", true);
         fire = cfg.getBoolean("Settings.Fire", true);
 
@@ -572,5 +577,13 @@ public class WorldConfig {
 
     public boolean canWorldEdit(UUID player) {
         return hasPermission(player, WorldPerm.WORLDEDIT);
+    }
+
+    public String getTemplateKey() {
+        return templateKey;
+    }
+
+    public void setTemplateKey(String templateKey) {
+        this.templateKey = templateKey;
     }
 }

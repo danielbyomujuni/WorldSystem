@@ -215,6 +215,7 @@ public class WorldSettingsCommands {
 
             WorldConfig config = WorldConfig.getWorldConfig(worldname);
             config.setHome(null);
+            config.setTemplateKey(template.getName());
             config.save();
 
             p.sendMessage(MessageConfig.getWorldReseted());
