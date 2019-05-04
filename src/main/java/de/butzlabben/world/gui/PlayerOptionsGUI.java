@@ -1,11 +1,5 @@
 package de.butzlabben.world.gui;
 
-import java.util.UUID;
-
-import de.butzlabben.world.gui.playeroption.WorldEditStatus;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
 import de.butzlabben.inventory.DependListener;
 import de.butzlabben.inventory.OrcInventory;
 import de.butzlabben.inventory.OrcItem;
@@ -15,7 +9,12 @@ import de.butzlabben.world.gui.clicklistener.CommandExecutorClickListener;
 import de.butzlabben.world.gui.playeroption.BuildStatus;
 import de.butzlabben.world.gui.playeroption.GamemodeStatus;
 import de.butzlabben.world.gui.playeroption.TeleportStatus;
+import de.butzlabben.world.gui.playeroption.WorldEditStatus;
 import de.butzlabben.world.wrapper.WorldPlayer;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class PlayerOptionsGUI extends OrcInventory {
 

@@ -1,8 +1,7 @@
 package de.butzlabben.world.listener;
 
-import java.io.File;
-import java.util.Objects;
-
+import de.butzlabben.world.config.WorldConfig;
+import de.butzlabben.world.wrapper.WorldPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,8 +11,8 @@ import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 
-import de.butzlabben.world.config.WorldConfig;
-import de.butzlabben.world.wrapper.WorldPlayer;
+import java.io.File;
+import java.util.Objects;
 
 public class BlockListener implements Listener {
 	

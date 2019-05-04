@@ -2,11 +2,13 @@ package de.butzlabben.world.wrapper;
 
 import de.butzlabben.inventory.OrcItem;
 import de.butzlabben.world.config.GuiConfig;
+import lombok.Getter;
 
 /**
  * @author Butzlabben
  * @since 15.12.2018
  */
+@Getter
 public class WorldTemplate {
 
     private final String name;
@@ -14,11 +16,13 @@ public class WorldTemplate {
     private final OrcItem icon;
     private final int slot;
     private final int cost;
+    private final GeneratorSettings generatorSettings;
 
-    public WorldTemplate(String name, String permission, int cost) {
+    public WorldTemplate(String name, String permission, int cost, GeneratorSettings generatorSettings) {
         this.name = name;
         this.permission = permission;
         this.cost = cost;
+        this.generatorSettings = generatorSettings;
 
         this.icon = GuiConfig.getItem("worldchoose." + name);
         this.slot = GuiConfig.getSlot("worldchoose." + name);

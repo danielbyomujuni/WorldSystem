@@ -1,9 +1,8 @@
 package de.butzlabben.inventory;
 
+import de.butzlabben.world.wrapper.WorldPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import de.butzlabben.world.wrapper.WorldPlayer;
 
 public interface DependListener {
 	

@@ -2,7 +2,8 @@ package de.butzlabben.world.util.database;
 
 import de.butzlabben.world.config.PluginConfig;
 
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class SqliteConnection extends DatabaseConnection {
 

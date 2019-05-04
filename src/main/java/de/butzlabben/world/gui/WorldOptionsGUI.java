@@ -1,11 +1,5 @@
 package de.butzlabben.world.gui;
 
-import java.util.HashMap;
-import java.util.UUID;
-
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-
 import de.butzlabben.inventory.DependListener;
 import de.butzlabben.inventory.OrcInventory;
 import de.butzlabben.inventory.OrcItem;
@@ -15,6 +9,11 @@ import de.butzlabben.world.gui.clicklistener.CommandExecutorClickListener;
 import de.butzlabben.world.gui.worldoption.FireStatus;
 import de.butzlabben.world.gui.worldoption.TntStatus;
 import de.butzlabben.world.wrapper.WorldPlayer;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 public class WorldOptionsGUI extends OrcInventory {
 

@@ -223,7 +223,16 @@ public class SystemWorld {
             worldname = myName.toString();
         }
 
-        WorldCreator creator = PluginConfig.getWorldCreator(worldname);
+        WorldCreator creator = new WorldCreator(worldname);
+
+        String templateKey = WorldConfig.getWorldConfig(worldname).getTemplateKey();
+        WorldTemplate template = WorldTemplateProvider.getInstace().getTemplate(templateKey);
+        if (template == null)
+            template = WorldTemplateProvider.getInstace().getTemplate(PluginConfig.getDefaultWorldTemplate());
+
+        if (template != null)
+            creator = template.getGeneratorSettings().asWorldCreator(worldname);
+
 
         World w = Bukkit.getWorld(worldname);
         if (w == null)
@@ -253,7 +262,7 @@ public class SystemWorld {
         int id = DependenceConfig.getHighestID() + 1;
         String worldname = "ID" + id + "-" + uuid;
 
-        WorldCreator creator = PluginConfig.getWorldCreator(worldname);
+        WorldCreator creator = template.getGeneratorSettings().asWorldCreator(worldname);
 
         WorldCreateEvent event = new WorldCreateEvent(p, creator);
         Bukkit.getPluginManager().callEvent(event);
@@ -280,7 +289,7 @@ public class SystemWorld {
         else
             newworld.mkdirs();
 
-        WorldConfig.create(p);
+        WorldConfig.create(p, template);
 
         // Move World into Server dir
         File world = new File(worlddir + "/" + worldname);

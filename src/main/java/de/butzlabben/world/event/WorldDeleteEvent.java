@@ -1,9 +1,8 @@
 package de.butzlabben.world.event;
 
+import de.butzlabben.world.wrapper.SystemWorld;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.HandlerList;
-
-import de.butzlabben.world.wrapper.SystemWorld;
 
 /**
  * Event if a systemworld gets deleted

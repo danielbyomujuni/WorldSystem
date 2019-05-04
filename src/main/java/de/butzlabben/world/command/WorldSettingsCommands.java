@@ -18,9 +18,7 @@ import net.myplayplanet.commandframework.CommandArgs;
 import net.myplayplanet.commandframework.api.Command;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.WorldCreator;
-import org.bukkit.WorldType;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -71,7 +69,7 @@ public class WorldSettingsCommands {
                     WorldTemplate template = WorldTemplateProvider.getInstace()
                             .getTemplate(PluginConfig.getDefaultWorldTemplate());
                     if (template != null)
-                        createWorld(p, worldname, f, new File(template.getPath()), sw);
+                        createWorld(p, worldname, f, template, sw);
                     else {
                         p.sendMessage(PluginConfig.getPrefix() + "§cError in config at \"worldtemplates.default\"");
                         p.sendMessage(PluginConfig.getPrefix() + "§cPlease contact an administrator");
@@ -79,7 +77,7 @@ public class WorldSettingsCommands {
                 } else {
                     WorldChooseGUI.letChoose(p, (template) -> {
                         if (template != null)
-                            createWorld(p, worldname, f, new File(template.getPath()), sw);
+                            createWorld(p, worldname, f, template, sw);
                         else {
                             p.sendMessage(PluginConfig.getPrefix() + "§cError in config at \"worldtemplates.default\"");
                             p.sendMessage(PluginConfig.getPrefix() + "§cPlease contact an administrator");
@@ -196,7 +194,7 @@ public class WorldSettingsCommands {
         }
     }
 
-    private void createWorld(Player p, String worldname, File f, File exampleworld, SystemWorld sw) {
+    private void createWorld(Player p, String worldname, File f, WorldTemplate template, SystemWorld sw) {
 
         File[] files = f.listFiles();
         for (File file : files) {
@@ -206,30 +204,22 @@ public class WorldSettingsCommands {
         }
 
         try {
-            if (exampleworld.isDirectory())
-                FileUtils.copyDirectory(exampleworld, f);
+            File templateDirectory = new File(template.getPath());
+            if (templateDirectory.isDirectory())
+                FileUtils.copyDirectory(templateDirectory, f);
             toConfirm.remove(p);
 
             FileUtils.moveDirectoryToDirectory(f, Bukkit.getWorldContainer(), false);
 
             WorldConfig config = WorldConfig.getWorldConfig(worldname);
             config.setHome(null);
+            config.setTemplateKey(template.getName());
             config.save();
 
             p.sendMessage(MessageConfig.getWorldReseted());
 
             // For fast worldcreating after reset
-            WorldCreator creator = new WorldCreator(worldname);
-            long seed = PluginConfig.getSeed();
-            World.Environment env = PluginConfig.getEnvironment();
-            WorldType type = PluginConfig.getWorldType();
-            if (seed != 0)
-                creator.seed(seed);
-            creator.type(type);
-            creator.environment(env);
-            String generator = PluginConfig.getGenerator();
-            if (!generator.trim().isEmpty())
-                creator.generator(generator);
+            WorldCreator creator = template.getGeneratorSettings().asWorldCreator(worldname);
 
             sw.setCreating(true);
             // For #16

@@ -1,7 +1,7 @@
 package de.butzlabben.world.command;
 
-import de.butzlabben.world.autoupdater.AutoUpdater;
 import de.butzlabben.world.WorldSystem;
+import de.butzlabben.world.autoupdater.AutoUpdater;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;

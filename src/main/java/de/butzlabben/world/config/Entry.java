@@ -1,10 +1,10 @@
 package de.butzlabben.world.config;
 
-import java.io.File;
-
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
 
 public class Entry {
 

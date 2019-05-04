@@ -1,8 +1,8 @@
 package de.butzlabben.world.listener;
 
-import java.util.HashMap;
-import java.util.UUID;
-
+import de.butzlabben.world.config.PluginConfig;
+import de.butzlabben.world.config.WorldConfig;
+import de.butzlabben.world.wrapper.WorldPlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,9 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import de.butzlabben.world.config.PluginConfig;
-import de.butzlabben.world.config.WorldConfig;
-import de.butzlabben.world.wrapper.WorldPlayer;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class PlayerDeathListener implements Listener {
 

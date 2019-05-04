@@ -1,16 +1,15 @@
 package de.butzlabben.world.gui.worldoption;
 
-import java.io.File;
-
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
 import de.butzlabben.inventory.DependListener;
 import de.butzlabben.inventory.OrcItem;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.wrapper.WorldPlayer;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.io.File;
 
 public class FireStatus implements DependListener {
 
