@@ -7,10 +7,10 @@ import org.bukkit.WorldType;
 
 @AllArgsConstructor
 public class GeneratorSettings {
-    final long seed;
-    final World.Environment environment;
-    final WorldType type;
-    final String generator;
+    final private long seed;
+    final private World.Environment environment;
+    final private WorldType type;
+    final private String generator;
 
     public WorldCreator asWorldCreator(String name) {
         WorldCreator creator = new WorldCreator(name);

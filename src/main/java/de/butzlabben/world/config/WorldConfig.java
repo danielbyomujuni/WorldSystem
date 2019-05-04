@@ -26,6 +26,17 @@ public class WorldConfig {
 
     private static final HashMap<String, WorldConfig> instances = new HashMap<>();
 
+    private final UUID owner;
+    private final int id;
+
+    private final HashMap<UUID, HashSet<WorldPerm>> permissions = new HashMap<>();
+
+    private String ownerName;
+    private String templateKey;
+    private boolean fire, tnt;
+
+    private Location home = null;
+
     public static File getWorldFile(String worldname) {
         File worldconfig = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
         if (!worldconfig.exists()) {
@@ -59,17 +70,6 @@ public class WorldConfig {
             instances.put(worldname, new WorldConfig(worldname));
         return instances.get(worldname).load();
     }
-
-    private final UUID owner;
-    private final int id;
-
-    private final HashMap<UUID, HashSet<WorldPerm>> permissions = new HashMap<>();
-
-    private String ownerName;
-    private String templateKey;
-    private boolean fire, tnt;
-
-    private Location home = null;
 
     private WorldConfig(String worldname) {
         if (!exists(worldname))
