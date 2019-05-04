@@ -1,8 +1,7 @@
 package de.butzlabben.world.event;
 
-import org.bukkit.event.HandlerList;
-
 import de.butzlabben.world.wrapper.SystemWorld;
+import org.bukkit.event.HandlerList;
 
 /**
  * @author Butzlabben

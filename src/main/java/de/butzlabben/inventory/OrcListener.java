@@ -1,8 +1,6 @@
 package de.butzlabben.inventory;
 
-import java.util.HashMap;
-import java.util.UUID;
-
+import de.butzlabben.world.WorldSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,7 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 
-import de.butzlabben.world.WorldSystem;
+import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * @author Butzlabben

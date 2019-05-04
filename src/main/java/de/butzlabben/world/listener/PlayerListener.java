@@ -1,7 +1,10 @@
 package de.butzlabben.world.listener;
 
+import de.butzlabben.world.config.DependenceConfig;
+import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.util.PlayerPositions;
+import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -10,10 +13,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import de.butzlabben.world.config.DependenceConfig;
-import de.butzlabben.world.config.PluginConfig;
-import de.butzlabben.world.wrapper.SystemWorld;
 
 public class PlayerListener implements Listener {
 

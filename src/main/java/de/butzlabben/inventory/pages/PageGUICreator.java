@@ -1,13 +1,12 @@
 package de.butzlabben.inventory.pages;
 
+import de.butzlabben.inventory.OrcItem;
+import org.bukkit.entity.Player;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.bukkit.entity.Player;
-
-import de.butzlabben.inventory.OrcItem;
 
 /**
  * @author Butzlabben

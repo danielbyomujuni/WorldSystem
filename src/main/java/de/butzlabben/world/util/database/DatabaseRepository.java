@@ -3,11 +3,11 @@ package de.butzlabben.world.util.database;
 import de.butzlabben.world.config.PluginConfig;
 import lombok.Getter;
 
-@Getter
 public class DatabaseRepository {
     @Getter
     private static DatabaseRepository instance = new DatabaseRepository();
 
+    @Getter
     private final DatabaseUtil util;
 
     private DatabaseRepository() {

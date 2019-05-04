@@ -1,14 +1,13 @@
 package de.butzlabben.world;
 
+import de.butzlabben.world.config.MessageConfig;
+import de.butzlabben.world.config.PluginConfig;
+import de.butzlabben.world.wrapper.SystemWorld;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-
-import de.butzlabben.world.config.MessageConfig;
-import de.butzlabben.world.config.PluginConfig;
-import de.butzlabben.world.wrapper.SystemWorld;
 
 public class WorldCheckerRunnable implements Runnable {
 

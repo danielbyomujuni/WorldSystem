@@ -1,7 +1,9 @@
 package de.butzlabben.world;
 
 import de.butzlabben.world.autoupdater.AutoUpdater;
-import de.butzlabben.world.command.*;
+import de.butzlabben.world.command.WSCommand;
+import de.butzlabben.world.command.WorldAdministrateCommand;
+import de.butzlabben.world.command.WorldSettingsCommands;
 import de.butzlabben.world.config.*;
 import de.butzlabben.world.listener.*;
 import de.butzlabben.world.util.PapiExtension;

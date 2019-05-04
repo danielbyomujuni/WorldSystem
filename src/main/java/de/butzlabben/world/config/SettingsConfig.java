@@ -1,17 +1,7 @@
 package de.butzlabben.world.config;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-
+import de.butzlabben.world.WorldSystem;
+import de.butzlabben.world.wrapper.SystemWorld;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.Location;
@@ -20,8 +10,12 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import de.butzlabben.world.WorldSystem;
-import de.butzlabben.world.wrapper.SystemWorld;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 public class SettingsConfig {
 

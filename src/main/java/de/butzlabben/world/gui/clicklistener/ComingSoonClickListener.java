@@ -1,10 +1,9 @@
 package de.butzlabben.world.gui.clicklistener;
 
-import org.bukkit.entity.Player;
-
 import de.butzlabben.inventory.OrcClickListener;
 import de.butzlabben.inventory.OrcInventory;
 import de.butzlabben.inventory.OrcItem;
+import org.bukkit.entity.Player;
 
 public class ComingSoonClickListener implements OrcClickListener {
 

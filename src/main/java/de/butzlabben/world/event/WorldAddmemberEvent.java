@@ -1,9 +1,9 @@
 package de.butzlabben.world.event;
 
-import java.util.UUID;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+
+import java.util.UUID;
 
 /**
  * Event for adding somebody to a world

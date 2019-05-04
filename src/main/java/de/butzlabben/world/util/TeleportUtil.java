@@ -1,10 +1,10 @@
 package de.butzlabben.world.util;
 
-import java.util.HashMap;
-import java.util.UUID;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * @author Butzlabben

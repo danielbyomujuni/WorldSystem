@@ -1,12 +1,11 @@
 package de.butzlabben.world.gui.clicklistener;
 
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-
 import de.butzlabben.inventory.OrcClickListener;
 import de.butzlabben.inventory.OrcInventory;
 import de.butzlabben.inventory.OrcItem;
 import de.butzlabben.world.config.MessageConfig;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 public class InventoryOpenClickListener implements OrcClickListener {
 

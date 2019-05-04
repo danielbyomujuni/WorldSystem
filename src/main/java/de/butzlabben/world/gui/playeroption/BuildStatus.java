@@ -1,11 +1,10 @@
 package de.butzlabben.world.gui.playeroption;
 
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
 import de.butzlabben.inventory.DependListener;
 import de.butzlabben.inventory.OrcItem;
 import de.butzlabben.world.wrapper.WorldPlayer;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class BuildStatus implements DependListener {
 	
