@@ -193,20 +193,21 @@ public class SystemWorld {
         // Move World into Server dir
         String worlddir = PluginConfig.getWorlddir();
         File world = new File(worlddir + "/" + worldname);
-        if (!world.exists()) {
-            world = new File(Bukkit.getWorldContainer(), worldname);
-        } else {
-            if (new File(Bukkit.getWorldContainer(), worldname).exists()
-                    && new File(PluginConfig.getWorlddir() + "/" + worldname).exists()) {
-                System.err.println("World " + worldname + " exists twice!");
-                // try {
-                // FileUtils.deleteDirectory(new
-                // File(Bukkit.getWorldContainer(), worldname));
-                // } catch (IOException e) {
-                // p.sendMessage(PluginConfig.getPrefix() + "§cError");
-                // e.printStackTrace();
-                // }
+
+        if (world.exists()) {
+            // Check for duplicated worlds
+            File propablyExistingWorld = new File(Bukkit.getWorldContainer(), worldname);
+            if (propablyExistingWorld.exists()) {
+                System.err.println("World " + worldname + " existed twice!");
+                try {
+                    FileUtils.deleteDirectory(propablyExistingWorld);
+                } catch (IOException e) {
+                    p.sendMessage(MessageConfig.getUnknownError());
+                    e.printStackTrace();
+                }
             }
+
+            //Move world if exists
             try {
                 FileUtils.moveDirectoryToDirectory(world, Bukkit.getWorldContainer(), false);
             } catch (IOException e) {
@@ -216,12 +217,14 @@ public class SystemWorld {
             }
         }
 
+        // Check for old named worlds
         if (worldname.charAt(worldname.length() - 37) == ' ') {
             StringBuilder myName = new StringBuilder(worldname);
             myName.setCharAt(worldname.length() - 37, '-');
             world.renameTo(new File(Bukkit.getWorldContainer(), myName.toString()));
             worldname = myName.toString();
         }
+
 
         WorldCreator creator = new WorldCreator(worldname);
 
