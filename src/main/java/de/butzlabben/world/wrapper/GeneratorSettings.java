@@ -12,6 +12,14 @@ public class GeneratorSettings {
     final private WorldType type;
     final private String generator;
 
+    // Default generatorsettings
+    public GeneratorSettings() {
+        type = null;
+        environment = null;
+        seed = 0;
+        generator = null;
+    }
+
     public WorldCreator asWorldCreator(String name) {
         WorldCreator creator = new WorldCreator(name);
 

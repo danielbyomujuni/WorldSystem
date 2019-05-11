@@ -4,6 +4,7 @@ import de.butzlabben.world.config.PluginConfig;
 import org.bukkit.World;
 import org.bukkit.WorldType;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Panda;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -35,7 +36,7 @@ public class WorldTemplateProvider {
             if (section.isInt(key + ".cost"))
                 cost = section.getInt(key + ".cost");
 
-            GeneratorSettings settings = null;
+            GeneratorSettings settings = new GeneratorSettings();
             if (section.contains(key + ".generator")) {
                 ConfigurationSection gSection = section.getConfigurationSection(key + ".generator");
                 long seed = gSection.getLong("seed", 0);
