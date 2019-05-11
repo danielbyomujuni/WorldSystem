@@ -4,7 +4,6 @@ import de.butzlabben.world.config.PluginConfig;
 import org.bukkit.World;
 import org.bukkit.WorldType;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Panda;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,7 +16,7 @@ public class WorldTemplateProvider {
 
     private static final WorldTemplateProvider instance = new WorldTemplateProvider();
 
-    public static WorldTemplateProvider getInstace() {
+    public static WorldTemplateProvider getInstance() {
         return instance;
     }
 

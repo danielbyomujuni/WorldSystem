@@ -229,9 +229,9 @@ public class SystemWorld {
         WorldCreator creator = new WorldCreator(worldname);
 
         String templateKey = WorldConfig.getWorldConfig(worldname).getTemplateKey();
-        WorldTemplate template = WorldTemplateProvider.getInstace().getTemplate(templateKey);
+        WorldTemplate template = WorldTemplateProvider.getInstance().getTemplate(templateKey);
         if (template == null)
-            template = WorldTemplateProvider.getInstace().getTemplate(PluginConfig.getDefaultWorldTemplate());
+            template = WorldTemplateProvider.getInstance().getTemplate(PluginConfig.getDefaultWorldTemplate());
 
         if (template != null)
             creator = template.getGeneratorSettings().asWorldCreator(worldname);

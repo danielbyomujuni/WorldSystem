@@ -30,7 +30,7 @@ public class WorldChooseGUI extends OrcInventory {
         super(GuiConfig.getTitle(GuiConfig.getConfig(), "worldchoose"), GuiConfig.getRows("worldchoose"),
                 GuiConfig.isFill("worldchoose"));
 
-        for (WorldTemplate template : WorldTemplateProvider.getInstace().getTemplates()) {
+        for (WorldTemplate template : WorldTemplateProvider.getInstance().getTemplates()) {
             // Check if player has permission to see template
             if (template.getPermission() != null && !player.hasPermission(template.getPermission()))
                 continue;

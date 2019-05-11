@@ -88,7 +88,7 @@ public class WSCommand {
         if (PluginConfig.isMultiChoose()) {
             if (args.length() > 0) {
                 String key = args.getArgument(0);
-                WorldTemplate template = WorldTemplateProvider.getInstace().getTemplate(key);
+                WorldTemplate template = WorldTemplateProvider.getInstance().getTemplate(key);
                 if (template != null) {
                     // Permission for this specific template
                     if (template.getPermission() != null && !p.hasPermission(template.getPermission())) {
@@ -111,7 +111,7 @@ public class WSCommand {
             }
             WorldChooseGUI.letChoose(p);
         } else {
-            WorldTemplate template = WorldTemplateProvider.getInstace()
+            WorldTemplate template = WorldTemplateProvider.getInstance()
                     .getTemplate(PluginConfig.getDefaultWorldTemplate());
             if (template != null)
                 create(p, template);

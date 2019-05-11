@@ -66,7 +66,7 @@ public class WorldSettingsCommands {
                 File f = new File(PluginConfig.getWorlddir() + "/" + worldname);
 
                 if (!PluginConfig.isMultiChoose()) {
-                    WorldTemplate template = WorldTemplateProvider.getInstace()
+                    WorldTemplate template = WorldTemplateProvider.getInstance()
                             .getTemplate(PluginConfig.getDefaultWorldTemplate());
                     if (template != null)
                         createWorld(p, worldname, f, template, sw);
