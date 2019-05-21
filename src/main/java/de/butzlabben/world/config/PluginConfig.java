@@ -49,10 +49,6 @@ public class PluginConfig {
                     && cfg.isBoolean("lagsystem.garbagecollector.use")
                     && cfg.isInt("lagsystem.garbagecollector.period_in_minutes") &&
 
-                    cfg.isString("worldgeneration.type") && cfg.isString("worldgeneration.environment")
-                    && cfg.isString("worldgeneration.generator")
-                    && (cfg.isLong("worldgeneration.seed") || cfg.isInt("worldgeneration.seed")) &&
-
                     cfg.isString("spawn.spawnpoint.world") && cfg.isInt("spawn.gamemode")
                     && cfg.isBoolean("spawn.spawnpoint.use_last_location")
                     && (cfg.isDouble("spawn.spawnpoint.x") || cfg.isInt("spawn.spawnpoint.x"))
