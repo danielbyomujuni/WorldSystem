@@ -3,7 +3,7 @@ package de.butzlabben.world.wrapper;
 import org.bukkit.WorldCreator;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 public class GeneratorSettingsTest {
 
@@ -11,5 +11,6 @@ public class GeneratorSettingsTest {
     public void asWorldCreator() {
         GeneratorSettings settings = new GeneratorSettings();
         WorldCreator creator = settings.asWorldCreator("test");
+        assertNotNull(creator);
     }
 }
