@@ -7,6 +7,7 @@ import de.butzlabben.world.wrapper.WorldPlayer;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 import java.util.Objects;
 
@@ -50,8 +51,12 @@ public class PapiExtension extends PlaceholderExpansion {
                     return "none";
                 return SystemWorld.getSystemWorld(config.getWorldname()).isLoaded() + "";
             case "pretty_world_name":
-                if (!config.hasWorld())
+                if (!config.hasWorld()) {
+                    Player p1 = p.getPlayer();
+                    if (p1 != null && p1.isOnline())
+                        return p1.getLocation().getWorld().getName();
                     return "none";
+                }
                 return config.getOwner().getName();
             default:
                 throw new IllegalArgumentException("No placeholder named\"" + getIdentifier() + "_" + params + "\" is known");
