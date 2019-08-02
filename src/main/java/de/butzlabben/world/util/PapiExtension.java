@@ -49,6 +49,10 @@ public class PapiExtension extends PlaceholderExpansion {
                 if (!config.hasWorld())
                     return "none";
                 return SystemWorld.getSystemWorld(config.getWorldname()).isLoaded() + "";
+            case "pretty_world_name":
+                if (!config.hasWorld())
+                    return "none";
+                return config.getOwner().getName();
             default:
                 throw new IllegalArgumentException("No placeholder named\"" + getIdentifier() + "_" + params + "\" is known");
         }
