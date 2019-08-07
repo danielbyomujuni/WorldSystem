@@ -226,7 +226,7 @@ public class PluginConfig {
     }
 
     public static String getMysqlUser() {
-        return getConfig().getString("database.mysql_settings.user");
+        return getConfig().getString("database.mysql_settings.username");
     }
 
     public static String getMysqlPassword() {
@@ -234,6 +234,6 @@ public class PluginConfig {
     }
 
     public static String getMysqlDatabaseName() {
-        return getConfig().getString("database.mysql_settings.host");
+        return getConfig().getString("database.mysql_settings.database");
     }
 }
