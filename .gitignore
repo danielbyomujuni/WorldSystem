@@ -19,6 +19,7 @@ bin/
 out/
 .idea/
 *.iml
+.idea/vcs.xml
 
 # Misc
 .DS_Store
