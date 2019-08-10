@@ -27,8 +27,6 @@ public class TntStatus implements DependListener {
             return OrcItem.enabled.getItemStack(p);
 
         return null;
-        // TODO wenn enabled, dann return OrcItem.enabled.getItemStack(p, wp);
-        // sonst return null
     }
 
 }
