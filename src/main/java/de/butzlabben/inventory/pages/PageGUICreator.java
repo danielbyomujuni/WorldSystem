@@ -14,51 +14,51 @@ import java.util.stream.Collectors;
  */
 public class PageGUICreator<T> {
 
-	private final int elementsPerPage;
-	private List<InventoryPage> invpages;
+    private final int elementsPerPage;
+    private List<InventoryPage> invpages;
 
-	public void create(String title, Collection<T> elements, ItemConverter<T> converter) {
-		List<OrcItem> items = elements.stream().map(r -> converter.convert(r)).collect(Collectors.toList());
-		if (items == null || items.size() == 0)
-			return;
+    public PageGUICreator() {
+        this(4 * 9);
+    }
 
-		int pages = (int) (Math.ceil((items.size() / (double) elementsPerPage) < 1 ? 1 : Math.ceil((double) items.size() / (double) elementsPerPage)));
+    public PageGUICreator(int elementsPerPage) {
+        this.elementsPerPage = elementsPerPage;
+    }
 
-		invpages = new ArrayList<>(pages);
+    public void create(String title, Collection<T> elements, ItemConverter<T> converter) {
+        List<OrcItem> items = elements.stream().map(r -> converter.convert(r)).collect(Collectors.toList());
+        if (items == null || items.size() == 0)
+            return;
 
-		for (int i = 1; i < pages + 1; i++) {
-			int start = i == 1 ? 0 : elementsPerPage * (i - 1);
-			int end = items.size() < elementsPerPage * i ? items.size() : elementsPerPage * i;
-			List<OrcItem> page = items.subList(start, end);
+        int pages = (int) (Math.ceil((items.size() / (double) elementsPerPage) < 1 ? 1 : Math.ceil((double) items.size() / (double) elementsPerPage)));
 
-			InventoryPage invpage = new InventoryPage(title, i, pages);
-			page.forEach(invpage::addItem);
-			invpages.add(invpage);
-		}
+        invpages = new ArrayList<>(pages);
 
-		for (int i = 0; i < invpages.size(); i++) {
+        for (int i = 1; i < pages + 1; i++) {
+            int start = i == 1 ? 0 : elementsPerPage * (i - 1);
+            int end = items.size() < elementsPerPage * i ? items.size() : elementsPerPage * i;
+            List<OrcItem> page = items.subList(start, end);
 
-			int beforeIndex = i == 0 ? invpages.size() - 1 : i - 1;
-			int nextIndex = i == invpages.size() - 1 ? 0 : i + 1;
-			
-			invpages.get(i).before = invpages.get(beforeIndex);
-			invpages.get(i).next = invpages.get(nextIndex);
-		}
-	}
+            InventoryPage invpage = new InventoryPage(title, i, pages);
+            page.forEach(invpage::addItem);
+            invpages.add(invpage);
+        }
 
-	public void show(Player p) {
-		p.openInventory(invpages.get(0).getInventory(p));
-	}
+        for (int i = 0; i < invpages.size(); i++) {
 
-	public PageGUICreator() {
-		this(4 * 9);
-	}
-	
-	public List<InventoryPage> getInvPages() {
-		return invpages;
-	}
+            int beforeIndex = i == 0 ? invpages.size() - 1 : i - 1;
+            int nextIndex = i == invpages.size() - 1 ? 0 : i + 1;
 
-	public PageGUICreator(int elementsPerPage) {
-		this.elementsPerPage = elementsPerPage;
-	}
+            invpages.get(i).before = invpages.get(beforeIndex);
+            invpages.get(i).next = invpages.get(nextIndex);
+        }
+    }
+
+    public void show(Player p) {
+        p.openInventory(invpages.get(0).getInventory(p));
+    }
+
+    public List<InventoryPage> getInvPages() {
+        return invpages;
+    }
 }

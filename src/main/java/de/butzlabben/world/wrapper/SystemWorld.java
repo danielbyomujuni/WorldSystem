@@ -24,12 +24,16 @@ import java.util.HashMap;
  */
 public class SystemWorld {
 
+    private static final HashMap<String, SystemWorld> cached = new HashMap<>();
     private World w;
     private String worldname;
     private boolean unloading = false;
     private boolean creating = false;
 
-    private static final HashMap<String, SystemWorld> cached = new HashMap<>();
+    private SystemWorld(String worldname) {
+        this.worldname = worldname;
+        w = Bukkit.getWorld(worldname);
+    }
 
     /**
      * This method is the online way to get a system world instance
@@ -66,9 +70,99 @@ public class SystemWorld {
             }, 20);
     }
 
-    private SystemWorld(String worldname) {
-        this.worldname = worldname;
-        w = Bukkit.getWorld(worldname);
+    /**
+     * Trys to create a new systemworld with all entries etc. finally loads the
+     * world
+     *
+     * @param p Player to create the world for
+     * @return whether it succesfull or not
+     */
+    public static boolean create(Player p, WorldTemplate template) {
+
+        DependenceConfig dc = new DependenceConfig(p);
+
+        String uuid = p.getUniqueId().toString();
+        int id = DependenceConfig.getHighestID() + 1;
+        String worldname = "ID" + id + "-" + uuid;
+
+        WorldCreator creator = template.getGeneratorSettings().asWorldCreator(worldname);
+
+        WorldCreateEvent event = new WorldCreateEvent(p, creator);
+        Bukkit.getPluginManager().callEvent(event);
+        if (event.isCancelled())
+            return false;
+
+        dc.createNewEntry();
+
+        String worlddir = PluginConfig.getWorlddir();
+        File exampleworld = new File(template.getPath());
+        if (new File(template.getPath() + "/uid.dat").exists()) {
+            new File(template.getPath() + "/uid.dat").delete();
+        }
+
+        File newworld = new File(worlddir + "/" + worldname);
+
+        if (exampleworld.isDirectory())
+            try {
+                FileUtils.copyDirectory(exampleworld, newworld);
+            } catch (IOException e) {
+                System.err.println("Couldn't create world for " + p.getName());
+                e.printStackTrace();
+            }
+        else
+            newworld.mkdirs();
+
+        WorldConfig.create(p, template);
+
+        // Move World into Server dir
+        File world = new File(worlddir + "/" + worldname);
+        if (!world.exists()) {
+            world = new File(Bukkit.getWorldContainer(), worldname);
+        } else {
+            if (new File(Bukkit.getWorldContainer(), worldname).exists()
+                    && new File(PluginConfig.getWorlddir() + "/" + worldname).exists()) {
+                try {
+                    FileUtils.deleteDirectory(new File(Bukkit.getWorldContainer(), worldname));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                FileUtils.moveDirectoryToDirectory(world, Bukkit.getWorldContainer(), false);
+            } catch (IOException e) {
+                p.sendMessage(PluginConfig.getPrefix() + "§cError: " + e.getMessage());
+                System.err.println("Couldn't load world of " + p.getName());
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        SystemWorld sw = SystemWorld.getSystemWorld(worldname);
+        sw.setCreating(true);
+
+        // Run in scheduler so method returns without delay
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                WorldSystem.getInstance().getAdapter().create(event.getWorldCreator(), sw, () -> {
+                    // Fix for #16
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            if (p != null && p.isOnline()) {
+                                p.sendMessage(MessageConfig.getWorldCreated());
+                                SettingsConfig.getCommandsonGet().stream()
+                                        .map(s -> s.replace("%player", p.getName()).replace("%world", sw.getName())
+                                                .replace("%uuid", p.getUniqueId().toString()))
+                                        .forEach(s -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s));
+                            }
+                        }
+                    }.runTask(WorldSystem.getInstance());
+                });
+            }
+        }.runTaskLater(WorldSystem.getInstance(), 1);
+
+        return true;
     }
 
     /**
@@ -251,101 +345,6 @@ public class SystemWorld {
     }
 
     /**
-     * Trys to create a new systemworld with all entries etc. finally loads the
-     * world
-     *
-     * @param p Player to create the world for
-     * @return whether it succesfull or not
-     */
-    public static boolean create(Player p, WorldTemplate template) {
-
-        DependenceConfig dc = new DependenceConfig(p);
-
-        String uuid = p.getUniqueId().toString();
-        int id = DependenceConfig.getHighestID() + 1;
-        String worldname = "ID" + id + "-" + uuid;
-
-        WorldCreator creator = template.getGeneratorSettings().asWorldCreator(worldname);
-
-        WorldCreateEvent event = new WorldCreateEvent(p, creator);
-        Bukkit.getPluginManager().callEvent(event);
-        if (event.isCancelled())
-            return false;
-
-        dc.createNewEntry();
-
-        String worlddir = PluginConfig.getWorlddir();
-        File exampleworld = new File(template.getPath());
-        if (new File(template.getPath() + "/uid.dat").exists()) {
-            new File(template.getPath() + "/uid.dat").delete();
-        }
-
-        File newworld = new File(worlddir + "/" + worldname);
-
-        if (exampleworld.isDirectory())
-            try {
-                FileUtils.copyDirectory(exampleworld, newworld);
-            } catch (IOException e) {
-                System.err.println("Couldn't create world for " + p.getName());
-                e.printStackTrace();
-            }
-        else
-            newworld.mkdirs();
-
-        WorldConfig.create(p, template);
-
-        // Move World into Server dir
-        File world = new File(worlddir + "/" + worldname);
-        if (!world.exists()) {
-            world = new File(Bukkit.getWorldContainer(), worldname);
-        } else {
-            if (new File(Bukkit.getWorldContainer(), worldname).exists()
-                    && new File(PluginConfig.getWorlddir() + "/" + worldname).exists()) {
-                try {
-                    FileUtils.deleteDirectory(new File(Bukkit.getWorldContainer(), worldname));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            try {
-                FileUtils.moveDirectoryToDirectory(world, Bukkit.getWorldContainer(), false);
-            } catch (IOException e) {
-                p.sendMessage(PluginConfig.getPrefix() + "§cError: " + e.getMessage());
-                System.err.println("Couldn't load world of " + p.getName());
-                e.printStackTrace();
-                return false;
-            }
-        }
-
-        SystemWorld sw = SystemWorld.getSystemWorld(worldname);
-        sw.setCreating(true);
-
-        // Run in scheduler so method returns without delay
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                WorldSystem.getInstance().getAdapter().create(event.getWorldCreator(), sw, () -> {
-                    // Fix for #16
-                    new BukkitRunnable() {
-                        @Override
-                        public void run() {
-                            if (p != null && p.isOnline()) {
-                                p.sendMessage(MessageConfig.getWorldCreated());
-                                SettingsConfig.getCommandsonGet().stream()
-                                        .map(s -> s.replace("%player", p.getName()).replace("%world", sw.getName())
-                                                .replace("%uuid", p.getUniqueId().toString()))
-                                        .forEach(s -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s));
-                            }
-                        }
-                    }.runTask(WorldSystem.getInstance());
-                });
-            }
-        }.runTaskLater(WorldSystem.getInstance(), 1);
-
-        return true;
-    }
-
-    /**
      * @return if the world is loaded
      */
     public boolean isLoaded() {
@@ -413,12 +412,12 @@ public class SystemWorld {
         return w;
     }
 
-    public void setCreating(boolean creating) {
-        this.creating = creating;
-    }
-
     public boolean isCreating() {
         return creating;
+    }
+
+    public void setCreating(boolean creating) {
+        this.creating = creating;
     }
 
     /**

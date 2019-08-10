@@ -19,6 +19,13 @@ public class UpdateInformations {
     private final String version, url, plugin;
     private final boolean silent;
 
+    public UpdateInformations(String version, String url, String plugin, boolean silent) {
+        this.version = version;
+        this.url = url;
+        this.plugin = plugin;
+        this.silent = silent;
+    }
+
     protected static synchronized UpdateInformations getInformations() {
         String json = callURL("https://zendilu.net/butzlabben/worldsystem/info.php?version=" + WorldSystem.getInstance().getDescription().getVersion());
         Gson gson = new GsonBuilder().create();
@@ -72,12 +79,5 @@ public class UpdateInformations {
 
     public boolean isSilent() {
         return silent;
-    }
-
-    public UpdateInformations(String version, String url, String plugin, boolean silent) {
-        this.version = version;
-        this.url = url;
-        this.plugin = plugin;
-        this.silent = silent;
     }
 }

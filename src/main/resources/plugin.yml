@@ -60,7 +60,7 @@ permissions:
     default: op
     description: You can see lag messages
   ws.big:
-    default: op      
+    default: op
     description: Gives you a bigger world (if set)
   ws.large:
     default: op
@@ -70,5 +70,5 @@ permissions:
   ws.confirm:
     default: op
     description: You can confirm (if needed) an auto-update
-    
+
 default-permission: admin

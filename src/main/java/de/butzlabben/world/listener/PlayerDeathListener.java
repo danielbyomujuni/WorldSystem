@@ -15,36 +15,36 @@ import java.util.UUID;
 
 public class PlayerDeathListener implements Listener {
 
-	private final HashMap<UUID, World> deathLocations = new HashMap<>();
+    private final HashMap<UUID, World> deathLocations = new HashMap<>();
 
-	@EventHandler
-	public void onDie(PlayerDeathEvent e) {
-		Player p = e.getEntity();
-		WorldPlayer wp = new WorldPlayer(p, p.getWorld().getName());
-		if (wp.isOnSystemWorld()) {
-			deathLocations.put(p.getUniqueId(), p.getLocation().getWorld());
-		} else {
-			p.setGameMode(PluginConfig.getSpawnGamemode());
-		}
-	}
+    @EventHandler
+    public void onDie(PlayerDeathEvent e) {
+        Player p = e.getEntity();
+        WorldPlayer wp = new WorldPlayer(p, p.getWorld().getName());
+        if (wp.isOnSystemWorld()) {
+            deathLocations.put(p.getUniqueId(), p.getLocation().getWorld());
+        } else {
+            p.setGameMode(PluginConfig.getSpawnGamemode());
+        }
+    }
 
-	@EventHandler
-	public void onRespawn(PlayerRespawnEvent e) {
-		Player p = e.getPlayer();
-		if (deathLocations.containsKey(p.getUniqueId())) {
-			World world = deathLocations.remove(p.getUniqueId());
+    @EventHandler
+    public void onRespawn(PlayerRespawnEvent e) {
+        Player p = e.getPlayer();
+        if (deathLocations.containsKey(p.getUniqueId())) {
+            World world = deathLocations.remove(p.getUniqueId());
 
-			WorldConfig config = WorldConfig.getWorldConfig(world.getName());
-			
-			if (config.getHome() != null) {
-				e.setRespawnLocation(config.getHome());
-			} else {
-				if (PluginConfig.useWorldSpawn()) {
-					e.setRespawnLocation(PluginConfig.getWorldSpawn(world));
-				} else {
-					e.setRespawnLocation(world.getSpawnLocation());
-				}
-			}			
-		}
-	}
+            WorldConfig config = WorldConfig.getWorldConfig(world.getName());
+
+            if (config.getHome() != null) {
+                e.setRespawnLocation(config.getHome());
+            } else {
+                if (PluginConfig.useWorldSpawn()) {
+                    e.setRespawnLocation(PluginConfig.getWorldSpawn(world));
+                } else {
+                    e.setRespawnLocation(world.getSpawnLocation());
+                }
+            }
+        }
+    }
 }

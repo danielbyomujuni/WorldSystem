@@ -13,41 +13,41 @@ import java.nio.channels.ReadableByteChannel;
  */
 public class AutoUpdate implements Runnable {
 
-	private final UpdateInformations ui;
-	private final String jar;
+    private final UpdateInformations ui;
+    private final String jar;
 
-	protected AutoUpdate(UpdateInformations ui, String jar) {
-		this.ui = ui;
-		this.jar = jar;
-	}
+    protected AutoUpdate(UpdateInformations ui, String jar) {
+        this.ui = ui;
+        this.jar = jar;
+    }
 
-	@Override
-	public void run() {
-		FileChannel out = null;
-		FileOutputStream outStream = null;
-		try {
-			
-			ReadableByteChannel in = Channels
-					.newChannel(new URL(ui.getURL()).openStream());
-			outStream = new FileOutputStream(jar);
-			out = outStream.getChannel();
-			out.transferFrom(in, 0, Long.MAX_VALUE);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (out != null)
-				try {
-					out.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			if (outStream != null) {
-				try {
-					outStream.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+    @Override
+    public void run() {
+        FileChannel out = null;
+        FileOutputStream outStream = null;
+        try {
+
+            ReadableByteChannel in = Channels
+                    .newChannel(new URL(ui.getURL()).openStream());
+            outStream = new FileOutputStream(jar);
+            out = outStream.getChannel();
+            out.transferFrom(in, 0, Long.MAX_VALUE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (out != null)
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            if (outStream != null) {
+                try {
+                    outStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

@@ -5,23 +5,23 @@ import org.bukkit.event.Event;
 
 public abstract class WorldEvent extends Event implements Cancellable {
 
-	private boolean cancelled;
+    private boolean cancelled;
 
-	public WorldEvent() {
-	}
+    public WorldEvent() {
+    }
 
-	public WorldEvent(boolean cancel) {
-		setCancelled(cancel);
-	}
+    public WorldEvent(boolean cancel) {
+        setCancelled(cancel);
+    }
 
-	@Override
-	public boolean isCancelled() {
-		return cancelled;
-	}
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
 
-	@Override
-	public void setCancelled(boolean cancel) {
-		cancelled = cancel;
-	}
+    @Override
+    public void setCancelled(boolean cancel) {
+        cancelled = cancel;
+    }
 
 }

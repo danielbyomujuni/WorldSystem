@@ -24,6 +24,15 @@ public class WorldPlayer {
     private final OfflinePlayer p;
     private final String worldname;
 
+    public WorldPlayer(OfflinePlayer p, String worldname) {
+        this.p = p;
+        this.worldname = worldname;
+    }
+
+    public WorldPlayer(Player p) {
+        this(p, p.getWorld().getName());
+    }
+
     /**
      * @return the worldname, where the worldplayer object was created for
      */
@@ -86,7 +95,6 @@ public class WorldPlayer {
         WorldConfig wc = WorldConfig.getWorldConfig(this.worldname);
         return wc.canWorldEdit(this.p.getUniqueId());
     }
-
 
     /**
      * toggles teleporting for this player
@@ -160,15 +168,6 @@ public class WorldPlayer {
 
         WorldConfig wc = WorldConfig.getWorldConfig(worldname);
         return wc.isMember(p.getUniqueId());
-    }
-
-    public WorldPlayer(OfflinePlayer p, String worldname) {
-        this.p = p;
-        this.worldname = worldname;
-    }
-
-    public WorldPlayer(Player p) {
-        this(p, p.getWorld().getName());
     }
 
     /**

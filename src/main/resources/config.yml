@@ -19,7 +19,7 @@ worldtemplates:
   default: 'template_default'
   templates:
     # The "1" can be any key
-    1: 
+    1:
       # Name of directory in plugins/WorldSystem/worldsources
       # e.g. this would be plugins/WorldSystem/worldsources/template_default
       name: 'template_default'
@@ -68,7 +68,7 @@ database:
   # How the table with the saved player positions on the playerworlds should be named
   worlds_table_name: worlds_positions
   # How the table with the saved player positions on the normal worlds should be named
-  players_table_name : player_positions
+  players_table_name: player_positions
   # Configure here your mysql connection
   mysql_settings:
     host: 127.0.0.1

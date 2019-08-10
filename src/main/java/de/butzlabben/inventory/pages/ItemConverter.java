@@ -8,6 +8,6 @@ import de.butzlabben.inventory.OrcItem;
  */
 public interface ItemConverter<T> {
 
-	OrcItem convert(T element);
-	
+    OrcItem convert(T element);
+
 }

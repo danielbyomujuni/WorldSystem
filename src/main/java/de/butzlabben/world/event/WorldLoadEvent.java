@@ -6,43 +6,42 @@ import org.bukkit.event.HandlerList;
 
 /**
  * Event for loading a world
- * 
+ *
  * @author Butzlabben
  * @since 09.05.2018
  */
 public class WorldLoadEvent extends WorldEvent {
 
-	private final Player owner;
-	private final SystemWorld world;
+    public final static HandlerList handlers = new HandlerList();
+    private final Player owner;
+    private final SystemWorld world;
 
-	public WorldLoadEvent(Player owner, SystemWorld systemWorld) {
-		this.owner = owner;
-		this.world = systemWorld;
-	}
+    public WorldLoadEvent(Player owner, SystemWorld systemWorld) {
+        this.owner = owner;
+        this.world = systemWorld;
+    }
 
-	/**
-	 * @return get the world which will be loaded
-	 */
-	public SystemWorld getWorld() {
-		return world;
-	}
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 
-	/**
-	 * @return get person which intiziated the loading
-	 */
-	public Player getOwner() {
-		return owner;
-	}
+    /**
+     * @return get the world which will be loaded
+     */
+    public SystemWorld getWorld() {
+        return world;
+    }
 
-	public final static HandlerList handlers = new HandlerList();
+    /**
+     * @return get person which intiziated the loading
+     */
+    public Player getOwner() {
+        return owner;
+    }
 
-	public static HandlerList getHandlerList() {
-		return handlers;
-	}
-
-	@Override
-	public final HandlerList getHandlers() {
-		return handlers;
-	}
+    @Override
+    public final HandlerList getHandlers() {
+        return handlers;
+    }
 
 }

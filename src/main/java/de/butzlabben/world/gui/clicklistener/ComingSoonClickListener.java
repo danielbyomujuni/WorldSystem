@@ -7,10 +7,10 @@ import org.bukkit.entity.Player;
 
 public class ComingSoonClickListener implements OrcClickListener {
 
-	@Override
-	public void onClick(Player p, OrcInventory inv, OrcItem item) {
-		p.closeInventory();
-		p.sendMessage("§cComing soon...");
-	}
+    @Override
+    public void onClick(Player p, OrcInventory inv, OrcItem item) {
+        p.closeInventory();
+        p.sendMessage("§cComing soon...");
+    }
 
 }

@@ -20,13 +20,12 @@ import java.util.Date;
 
 public class PluginConfig {
 
-    private PluginConfig() {
-    }
-
-    private static File file;
-
     private final static GameMode[] gameModes = new GameMode[]{GameMode.SURVIVAL, GameMode.CREATIVE,
             GameMode.ADVENTURE, GameMode.SPECTATOR};
+    private static File file;
+
+    private PluginConfig() {
+    }
 
     public static void checkConfig(File f) {
         file = f;

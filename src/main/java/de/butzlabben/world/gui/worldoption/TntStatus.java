@@ -13,22 +13,22 @@ import java.io.File;
 
 public class TntStatus implements DependListener {
 
-	@Override
-	public ItemStack getItemStack(Player p, WorldPlayer wp) {
-		String worldname = new DependenceConfig(p).getWorldname();
-		File file = new File(worldname + "/worldconfig.yml");
-		if (!file.exists())
-			file = new File(PluginConfig.getWorlddir() + "/worldconfig.yml");
-		if (!file.exists())
-			return null;
-		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
-		boolean b = cfg.getBoolean("Settings.TNTDamage");
-		if (b)
-			return OrcItem.enabled.getItemStack(p);
+    @Override
+    public ItemStack getItemStack(Player p, WorldPlayer wp) {
+        String worldname = new DependenceConfig(p).getWorldname();
+        File file = new File(worldname + "/worldconfig.yml");
+        if (!file.exists())
+            file = new File(PluginConfig.getWorlddir() + "/worldconfig.yml");
+        if (!file.exists())
+            return null;
+        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+        boolean b = cfg.getBoolean("Settings.TNTDamage");
+        if (b)
+            return OrcItem.enabled.getItemStack(p);
 
-		return null;
-		// TODO wenn enabled, dann return OrcItem.enabled.getItemStack(p, wp);
-		// sonst return null
-	}
+        return null;
+        // TODO wenn enabled, dann return OrcItem.enabled.getItemStack(p, wp);
+        // sonst return null
+    }
 
 }

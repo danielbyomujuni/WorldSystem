@@ -9,28 +9,27 @@ import org.bukkit.event.HandlerList;
  */
 public class WorldUnloadEvent extends WorldEvent {
 
-	private final SystemWorld world;
-	
-	public WorldUnloadEvent(SystemWorld world) {
-		this.world = world;
-	}
-	
-	/**
-	 * @return world which gets unloaded
-	 */
-	public SystemWorld getWorld() {
-		return world;
-	}
-	
-	public final static HandlerList handlers = new HandlerList();
-	
-	public static HandlerList getHandlerList() {
-		return handlers;
-	}
-	
-	@Override
-	public final HandlerList getHandlers() {
-		return handlers;
-	}
+    public final static HandlerList handlers = new HandlerList();
+    private final SystemWorld world;
+
+    public WorldUnloadEvent(SystemWorld world) {
+        this.world = world;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
+
+    /**
+     * @return world which gets unloaded
+     */
+    public SystemWorld getWorld() {
+        return world;
+    }
+
+    @Override
+    public final HandlerList getHandlers() {
+        return handlers;
+    }
 
 }

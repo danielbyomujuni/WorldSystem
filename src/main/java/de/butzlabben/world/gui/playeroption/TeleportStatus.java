@@ -8,14 +8,14 @@ import org.bukkit.inventory.ItemStack;
 
 public class TeleportStatus implements DependListener {
 
-	private final WorldPlayer wp;
+    private final WorldPlayer wp;
 
-	public TeleportStatus(WorldPlayer wp) {
-		this.wp = wp;
-	}
+    public TeleportStatus(WorldPlayer wp) {
+        this.wp = wp;
+    }
 
-	@Override
-	public ItemStack getItemStack(Player p, WorldPlayer player) {
-		return wp.canTeleport() ? OrcItem.enabled.getItemStack(p, wp) : OrcItem.disabled.getItemStack(p, wp);
-	}
+    @Override
+    public ItemStack getItemStack(Player p, WorldPlayer player) {
+        return wp.canTeleport() ? OrcItem.enabled.getItemStack(p, wp) : OrcItem.disabled.getItemStack(p, wp);
+    }
 }

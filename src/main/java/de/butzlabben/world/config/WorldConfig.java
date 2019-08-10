@@ -37,6 +37,13 @@ public class WorldConfig {
 
     private Location home = null;
 
+    private WorldConfig(String worldname) {
+        if (!exists(worldname))
+            throw new IllegalArgumentException("WorldConfig doesn't exist");
+        owner = UUID.fromString(worldname.substring(worldname.length() - 36));
+        id = Integer.parseInt(worldname.split("-")[0].substring(2));
+    }
+
     public static File getWorldFile(String worldname) {
         File worldconfig = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
         if (!worldconfig.exists()) {
@@ -69,13 +76,6 @@ public class WorldConfig {
         if (!instances.containsKey(worldname))
             instances.put(worldname, new WorldConfig(worldname));
         return instances.get(worldname).load();
-    }
-
-    private WorldConfig(String worldname) {
-        if (!exists(worldname))
-            throw new IllegalArgumentException("WorldConfig doesn't exist");
-        owner = UUID.fromString(worldname.substring(worldname.length() - 36));
-        id = Integer.parseInt(worldname.split("-")[0].substring(2));
     }
 
     public static void create(Player p, WorldTemplate template) {
@@ -481,13 +481,6 @@ public class WorldConfig {
     }
 
     /**
-     * @param loc the new home of the world
-     */
-    public void setHome(Location loc) {
-        home = loc;
-    }
-
-    /**
      * @return the home of the world. If not set returns null
      */
     public Location getHome() {
@@ -495,6 +488,13 @@ public class WorldConfig {
             return null;
         return new Location(Bukkit.getWorld(getWorldName()), home.getX(), home.getY(), home.getZ(), home.getYaw(),
                 home.getPitch());
+    }
+
+    /**
+     * @param loc the new home of the world
+     */
+    public void setHome(Location loc) {
+        home = loc;
     }
 
     public String getOwnerName() {

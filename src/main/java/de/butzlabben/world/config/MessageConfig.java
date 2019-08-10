@@ -14,10 +14,8 @@ import java.util.stream.Collectors;
 
 public class MessageConfig {
 
-    private MessageConfig() {
-    }
-
     private static final List<String> defaultCmdHelp = new ArrayList<>(20);
+    private static File file;
 
     static {
         defaultCmdHelp.add("/ws get §8- §7Will give you a World");
@@ -35,7 +33,8 @@ public class MessageConfig {
         defaultCmdHelp.add("/ws reset §8- §7Will reset your World");
     }
 
-    private static File file;
+    private MessageConfig() {
+    }
     // private static HashMap<String, File> languages = new HashMap<>();
 
     public static void checkConfig(File f) {

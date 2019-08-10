@@ -10,6 +10,9 @@ public class VersionUtil {
 
     private static int version;
 
+    private VersionUtil() {
+    }
+
     public static int getVersion() {
         if (version == 0) {
             // Detect version
@@ -45,8 +48,5 @@ public class VersionUtil {
             version = 12;
         }
         return version;
-    }
-
-    private VersionUtil() {
     }
 }

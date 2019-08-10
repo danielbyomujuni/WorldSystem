@@ -6,11 +6,11 @@ package de.butzlabben.inventory;
  */
 public class CostumInv extends OrcInventory {
 
-	public CostumInv(String title, int rows) {
-		super(title, rows);
-	}
-	
-	public CostumInv(String title, int rows, boolean fill) {
-		super(title, rows, fill);
-	}
+    public CostumInv(String title, int rows) {
+        super(title, rows);
+    }
+
+    public CostumInv(String title, int rows, boolean fill) {
+        super(title, rows, fill);
+    }
 }

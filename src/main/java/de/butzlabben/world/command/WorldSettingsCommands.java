@@ -29,7 +29,7 @@ public class WorldSettingsCommands {
 
     private final ArrayList<Player> toConfirm = new ArrayList<>();
 
-    @Command(name="ws.reset", inGameOnly = true, usage = "/ws reset [confirm]")
+    @Command(name = "ws.reset", inGameOnly = true, usage = "/ws reset [confirm]")
     public void resetCommand(CommandArgs args) {
         Player p = args.getSender(Player.class);
 
@@ -124,7 +124,7 @@ public class WorldSettingsCommands {
             return;
         }
 
-        if(!p.hasPermission("ws.sethome")) {
+        if (!p.hasPermission("ws.sethome")) {
             p.sendMessage(MessageConfig.getNoPermission());
             return;
         }
@@ -196,11 +196,15 @@ public class WorldSettingsCommands {
 
     private void createWorld(Player p, String worldname, File f, WorldTemplate template, SystemWorld sw) {
 
-        File[] files = f.listFiles();
-        for (File file : files) {
-            if (file.getName().equals("worldconfig.yml"))
-                continue;
-            FileUtils.deleteQuietly(file);
+        if (f != null) {
+            File[] files = f.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.getName().equals("worldconfig.yml"))
+                        continue;
+                    FileUtils.deleteQuietly(file);
+                }
+            }
         }
 
         try {

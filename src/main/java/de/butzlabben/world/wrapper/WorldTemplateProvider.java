@@ -15,11 +15,6 @@ import java.util.HashMap;
 public class WorldTemplateProvider {
 
     private static final WorldTemplateProvider instance = new WorldTemplateProvider();
-
-    public static WorldTemplateProvider getInstance() {
-        return instance;
-    }
-
     private final HashMap<String, WorldTemplate> templates = new HashMap<>();
 
     private WorldTemplateProvider() {
@@ -49,6 +44,10 @@ public class WorldTemplateProvider {
         }
     }
 
+    public static WorldTemplateProvider getInstance() {
+        return instance;
+    }
+
     public WorldTemplate getTemplate(String key) {
         return templates.get(key);
     }
@@ -62,7 +61,8 @@ public class WorldTemplateProvider {
             return null;
         try {
             return World.Environment.valueOf(env);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         return null;
     }
 
@@ -71,7 +71,8 @@ public class WorldTemplateProvider {
             return null;
         try {
             return WorldType.valueOf(type);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         return null;
     }
 }

@@ -15,28 +15,28 @@ import java.util.Objects;
  */
 public class AsyncCreatorAdapter implements CreatorAdapter {
 
-	// Create worlds async to close #16
-	@Override
-	public void create(WorldCreator creator, SystemWorld sw, Runnable r) {
-		TaskManager.IMP.async(() -> {
-			AsyncWorld world;
-			if (Bukkit.getWorld(creator.name()) == null)
-				world = AsyncWorld.create(creator);
-			else
-				world = AsyncWorld.wrap(Objects.requireNonNull(Bukkit.getWorld(creator.name())));
+    // Create worlds async to close #16
+    @Override
+    public void create(WorldCreator creator, SystemWorld sw, Runnable r) {
+        TaskManager.IMP.async(() -> {
+            AsyncWorld world;
+            if (Bukkit.getWorld(creator.name()) == null)
+                world = AsyncWorld.create(creator);
+            else
+                world = AsyncWorld.wrap(Objects.requireNonNull(Bukkit.getWorld(creator.name())));
 
-			Block block = world.getBlockAt(0, 0, 0);
-			block.setType(Material.BEDROCK);
+            Block block = world.getBlockAt(0, 0, 0);
+            block.setType(Material.BEDROCK);
 
-			// When you are done
-			world.commit();
-			Bukkit.getWorlds().add(world);
-			if (sw != null)
-				sw.setCreating(false);
+            // When you are done
+            world.commit();
+            Bukkit.getWorlds().add(world);
+            if (sw != null)
+                sw.setCreating(false);
 
-			// Send the message
-			r.run();
-		});
+            // Send the message
+            r.run();
+        });
     }
 
 }

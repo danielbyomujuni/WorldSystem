@@ -3,8 +3,8 @@ package de.butzlabben.world.util.database;
 import java.sql.*;
 
 public abstract class DatabaseConnection implements DatabaseUtil {
-    Connection connection;
     final Object lock = new Object();
+    Connection connection;
 
     public void close() {
         synchronized (lock) {

@@ -32,6 +32,9 @@ public class MoneyUtil {
             Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Couldn't find a Vault Economy extension");
     }
 
+    private MoneyUtil() {
+    }
+
     public static void removeMoney(UUID uuid, int money) {
         Preconditions.checkNotNull(uuid);
         Preconditions.checkNotNull(economy);
@@ -52,8 +55,5 @@ public class MoneyUtil {
         OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
         Economy economy = (Economy) MoneyUtil.economy;
         return economy.getBalance(op) >= money;
-    }
-
-    private MoneyUtil() {
     }
 }

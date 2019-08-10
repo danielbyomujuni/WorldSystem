@@ -31,11 +31,62 @@ import java.io.IOException;
  */
 public class WorldSystem extends JavaPlugin {
 
+    private static boolean is1_13Plus = false;
     final private String version = this.getDescription().getVersion();
-
     private CreatorAdapter creator;
 
-    private static boolean is1_13Plus = false;
+    public static void createConfigs() {
+        File dir = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder() + "/worldsources");
+        File config = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "config.yml");
+        File dconfig = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "dependence.yml");
+        File languages = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder() + "/languages");
+        File gui = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "gui.yml");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        if (!languages.exists())
+            languages.mkdirs();
+        PluginConfig.checkConfig(config);
+
+        // Done with #6
+        MessageConfig.checkConfig(new File(languages, "en.yml"));
+
+        MessageConfig.checkConfig(new File(languages, "de.yml"));
+        MessageConfig.checkConfig(new File(languages, "hu.yml"));
+        MessageConfig.checkConfig(new File(languages, "nl.yml"));
+        MessageConfig.checkConfig(new File(languages, "pl.yml"));
+        MessageConfig.checkConfig(new File(languages, "es.yml"));
+        MessageConfig.checkConfig(new File(languages, "ru.yml"));
+        MessageConfig.checkConfig(new File(languages, "fi.yml"));
+        // Here we are for #5
+        MessageConfig.checkConfig(new File(languages, "zh.yml"));
+        MessageConfig.checkConfig(new File(languages, "fr.yml"));
+        MessageConfig.checkConfig(new File(languages, PluginConfig.getLanguage() + ".yml"));
+        if (!dconfig.exists()) {
+            try {
+                dconfig.createNewFile();
+            } catch (IOException e) {
+                System.err.println("Wasn't able to create DependenceConfig");
+                e.printStackTrace();
+            }
+            new DependenceConfig();
+        }
+        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(config);
+        SettingsConfig.checkConfig();
+        File worlddir = new File(cfg.getString("worldfolder"));
+        if (!worlddir.exists()) {
+            worlddir.mkdirs();
+        }
+        GuiConfig.checkConfig(gui);
+    }
+
+    public static WorldSystem getInstance() {
+        return JavaPlugin.getPlugin(WorldSystem.class);
+    }
+
+    public static boolean is1_13() {
+        return is1_13Plus;
+    }
 
     @Override
     public void onEnable() {
@@ -117,7 +168,7 @@ public class WorldSystem extends JavaPlugin {
             DependenceConfig.checkWorlds();
         }
 
-        if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))
             new PapiExtension().register();
 
         Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Succesfully enabled WorldSystem v" + version);
@@ -139,60 +190,7 @@ public class WorldSystem extends JavaPlugin {
                 .sendMessage(PluginConfig.getPrefix() + "Succesfully disabled WorldSystem v" + version);
     }
 
-    public static void createConfigs() {
-        File dir = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder() + "/worldsources");
-        File config = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "config.yml");
-        File dconfig = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "dependence.yml");
-        File languages = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder() + "/languages");
-        File gui = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "gui.yml");
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-        if (!languages.exists())
-            languages.mkdirs();
-        PluginConfig.checkConfig(config);
-
-        // Done with #6
-        MessageConfig.checkConfig(new File(languages, "en.yml"));
-
-        MessageConfig.checkConfig(new File(languages, "de.yml"));
-        MessageConfig.checkConfig(new File(languages, "hu.yml"));
-        MessageConfig.checkConfig(new File(languages, "nl.yml"));
-        MessageConfig.checkConfig(new File(languages, "pl.yml"));
-        MessageConfig.checkConfig(new File(languages, "es.yml"));
-        MessageConfig.checkConfig(new File(languages, "ru.yml"));
-        MessageConfig.checkConfig(new File(languages, "fi.yml"));
-        // Here we are for #5
-        MessageConfig.checkConfig(new File(languages, "zh.yml"));
-        MessageConfig.checkConfig(new File(languages, "fr.yml"));
-        MessageConfig.checkConfig(new File(languages, PluginConfig.getLanguage() + ".yml"));
-        if (!dconfig.exists()) {
-            try {
-                dconfig.createNewFile();
-            } catch (IOException e) {
-                System.err.println("Wasn't able to create DependenceConfig");
-                e.printStackTrace();
-            }
-            new DependenceConfig();
-        }
-        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(config);
-        SettingsConfig.checkConfig();
-        File worlddir = new File(cfg.getString("worldfolder"));
-        if (!worlddir.exists()) {
-            worlddir.mkdirs();
-        }
-        GuiConfig.checkConfig(gui);
-    }
-
-    public static WorldSystem getInstance() {
-        return JavaPlugin.getPlugin(WorldSystem.class);
-    }
-
     public CreatorAdapter getAdapter() {
         return creator;
-    }
-
-    public static boolean is1_13() {
-        return is1_13Plus;
     }
 }

@@ -13,7 +13,7 @@ world:
   delete:
     own: "&cA világot törölve!"
     other: "Törölte a világot &c%player&6 játékostól!"
-  does_not_exists: 
+  does_not_exists:
     own: "&cNincs világod!"
     other: "&cEz a játékos nem rendelkezik világgal!"
   setting_up: "&aA világ megteremtése..."
@@ -65,7 +65,7 @@ info:
   fire: "Tûz: %data"
   enabled: "&aBe"
   disabled: "&cKi"
-  
+
 command_help:
   list:
     - "/ws get &8- &7Will give you a world"

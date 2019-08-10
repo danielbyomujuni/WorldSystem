@@ -1,13 +1,11 @@
 package de.butzlabben.world.listener;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.extension.platform.CommandManager;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.config.WorldPerm;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -37,7 +35,7 @@ public class WorldEditListener implements Listener {
     private boolean isWorldEditCommand(String command) {
         WorldEditPlugin plugin = (WorldEditPlugin) Bukkit.getPluginManager().getPlugin("WorldEdit");
         // WorldEdit plugin not foung
-        if(plugin == null)
+        if (plugin == null)
             return false;
         if (command.startsWith("/")) {
             command = command.replaceFirst("/", "");

@@ -27,6 +27,10 @@ public class PlayerPositions {
     private final DatabaseUtil util = DatabaseRepository.getInstance().getUtil();
 
 
+    private PlayerPositions() {
+        checkTables();
+    }
+
     public Location injectWorldsLocation(Player player, WorldConfig config, Location location) {
         if (!PluginConfig.useWorldSpawnLastLocation())
             return location;
@@ -65,7 +69,7 @@ public class PlayerPositions {
     public Location injectPlayersLocation(Player player, Location location) {
         if (!PluginConfig.useSpawnLastLocation())
             return location;
-        if(player == null)
+        if (player == null)
             return location;
         Preconditions.checkNotNull(location);
         UUID uuid = player.getUniqueId();
@@ -197,9 +201,5 @@ public class PlayerPositions {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private PlayerPositions() {
-        checkTables();
     }
 }

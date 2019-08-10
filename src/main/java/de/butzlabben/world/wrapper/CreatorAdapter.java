@@ -8,5 +8,5 @@ import org.bukkit.WorldCreator;
  */
 public interface CreatorAdapter {
 
-	void create(WorldCreator creator, SystemWorld world, Runnable sendPlayerMessageCallback);
+    void create(WorldCreator creator, SystemWorld world, Runnable sendPlayerMessageCallback);
 }
