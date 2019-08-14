@@ -2,11 +2,13 @@ package de.butzlabben.world.util;
 
 import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
+import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
@@ -51,13 +53,20 @@ public class PapiExtension extends PlaceholderExpansion {
                     return "none";
                 return SystemWorld.getSystemWorld(config.getWorldname()).isLoaded() + "";
             case "pretty_world_name":
-                if (!config.hasWorld()) {
-                    Player p1 = p.getPlayer();
-                    if (p1 != null && p1.isOnline())
-                        return p1.getLocation().getWorld().getName();
-                    return "none";
+                if (!p.isOnline()) {
+                    if (!config.hasWorld()) {
+                        Player p1 = p.getPlayer();
+                        if (p1 != null && p1.isOnline())
+                            return p1.getLocation().getWorld().getName();
+                        return "none";
+                    }
+                    return config.getOwner().getName();
+                } else {
+                    World world = ((Player) p).getWorld();
+                    if (WorldConfig.exists(world.getName()))
+                        return WorldConfig.getWorldConfig(world.getName()).getOwnerName();
+                    return world.getName();
                 }
-                return config.getOwner().getName();
             default:
                 throw new IllegalArgumentException("No placeholder named\"" + getIdentifier() + "_" + params + "\" is known");
         }
