@@ -1,21 +1,25 @@
 package de.butzlabben.world.util.database;
 
+import lombok.Getter;
+
 import java.sql.*;
 
 public abstract class DatabaseConnection implements DatabaseUtil {
+
     final Object lock = new Object();
+    @Getter
     Connection connection;
 
     public void close() {
         synchronized (lock) {
             try {
                 if (connection == null || connection.isClosed()) {
-                    System.err.println("[WorldSystem|DB] Connection does not exist or was already closed");
+                    System.err.println("[WorldSystem | DB] Connection does not exist or was already closed");
                     return;
                 }
                 connection.close();
             } catch (SQLException e) {
-                System.out.println("[WorldSystem|DB] Connection could not be closed");
+                System.out.println("[WorldSystem | DB] Connection could not be closed");
                 e.printStackTrace();
             }
         }
@@ -43,5 +47,10 @@ public abstract class DatabaseConnection implements DatabaseUtil {
                 connect();
             return ps.executeUpdate();
         }
+    }
+
+    @Override
+    public boolean isConnectionAvailable() {
+        return connection != null;
     }
 }

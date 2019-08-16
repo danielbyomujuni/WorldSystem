@@ -15,4 +15,6 @@ public interface DatabaseUtil {
     void close();
 
     void connect();
+
+    boolean isConnectionAvailable();
 }

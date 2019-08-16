@@ -12,14 +12,14 @@ public class MysqlConnection extends DatabaseConnection {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e) {
-                System.out.println("[WorldSystem|MySQL] Drivers are not working properly");
+                System.out.println("[WorldSystem | MySQL] Drivers are not working properly");
                 return;
             }
             try {
                 connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?user="
                         + user + "&password=" + password);
             } catch (SQLException e) {
-                System.out.println("[WorldSystem|MySQL] Failed to connect with given server:");
+                System.out.println("[WorldSystem | MySQL] Failed to connect with given server:");
                 e.printStackTrace();
             }
         }

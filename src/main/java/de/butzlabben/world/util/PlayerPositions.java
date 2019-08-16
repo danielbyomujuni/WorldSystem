@@ -34,6 +34,8 @@ public class PlayerPositions {
     public Location injectWorldsLocation(Player player, WorldConfig config, Location location) {
         if (!PluginConfig.useWorldSpawnLastLocation())
             return location;
+        if (!util.isConnectionAvailable())
+            return location;
 
         Preconditions.checkNotNull(player);
         Preconditions.checkNotNull(config);
@@ -68,6 +70,8 @@ public class PlayerPositions {
 
     public Location injectPlayersLocation(Player player, Location location) {
         if (!PluginConfig.useSpawnLastLocation())
+            return location;
+        if (!util.isConnectionAvailable())
             return location;
         if (player == null)
             return location;
@@ -108,6 +112,8 @@ public class PlayerPositions {
     public void savePlayerLocation(Player player) {
         if (!PluginConfig.useSpawnLastLocation())
             return;
+        if (!util.isConnectionAvailable())
+            return;
 
         Preconditions.checkNotNull(player);
 
@@ -134,6 +140,8 @@ public class PlayerPositions {
 
     public void saveWorldsPlayerLocation(Player player, WorldConfig config) {
         if (!PluginConfig.useWorldSpawnLastLocation())
+            return;
+        if (!util.isConnectionAvailable())
             return;
 
         Preconditions.checkNotNull(player);
@@ -162,6 +170,9 @@ public class PlayerPositions {
 
     public void deletePositions(WorldConfig config) {
         Preconditions.checkNotNull(config);
+        if (!util.isConnectionAvailable())
+            return;
+
         String tableName = PluginConfig.getWorldsTableName();
 
         int id = config.getId();
@@ -180,6 +191,9 @@ public class PlayerPositions {
     }
 
     private void checkTables() {
+        if (!util.isConnectionAvailable())
+            return;
+
         String worldsTableName = PluginConfig.getWorldsTableName();
         try {
             PreparedStatement ps = util.prepareStatement("CREATE TABLE IF NOT EXISTS " + worldsTableName +
