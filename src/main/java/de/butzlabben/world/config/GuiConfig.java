@@ -10,7 +10,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class GuiConfig {
     public static YamlConfiguration getConfig() {
         try {
             return YamlConfiguration
-                    .loadConfiguration(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
+                    .loadConfiguration(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

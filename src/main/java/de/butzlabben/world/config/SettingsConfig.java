@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
@@ -153,7 +153,7 @@ public class SettingsConfig {
     private static YamlConfiguration getConfig() {
         try {
             return YamlConfiguration
-                    .loadConfiguration(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
+                    .loadConfiguration(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

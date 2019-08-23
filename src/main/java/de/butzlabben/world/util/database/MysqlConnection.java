@@ -14,7 +14,7 @@ public class MysqlConnection extends DatabaseConnection {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e) {
-                Bukkit.getLogger().log(Level.SEVERE,"[WorldSystem | MySQL] Drivers are not working properly");
+                Bukkit.getLogger().log(Level.SEVERE, "[WorldSystem | MySQL] Drivers are not working properly");
                 return;
             }
             try {
@@ -22,7 +22,7 @@ public class MysqlConnection extends DatabaseConnection {
                         + user + "&password=" + password);
                 Bukkit.getLogger().log(Level.INFO, "[WorldSystem | MySQL] Connected to remote MySQL database");
             } catch (SQLException e) {
-                Bukkit.getLogger().log(Level.SEVERE,"[WorldSystem | MySQL] Failed to connect with given server:");
+                Bukkit.getLogger().log(Level.SEVERE, "[WorldSystem | MySQL] Failed to connect with given server:");
                 e.printStackTrace();
             }
         }

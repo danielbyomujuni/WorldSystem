@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
@@ -93,7 +93,7 @@ public class PluginConfig {
     public static YamlConfiguration getConfig() {
         try {
             return YamlConfiguration
-                    .loadConfiguration(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
+                    .loadConfiguration(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
