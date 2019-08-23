@@ -37,16 +37,20 @@ public class WorldSystem extends JavaPlugin {
     private CreatorAdapter creator;
 
     public static void createConfigs() {
-        File dir = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder() + "/worldsources");
-        File config = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "config.yml");
-        File dconfig = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "dependence.yml");
-        File languages = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder() + "/languages");
-        File gui = new File(JavaPlugin.getPlugin(WorldSystem.class).getDataFolder(), "gui.yml");
+        File folder = getInstance().getDataFolder();
+        File dir = new File(folder + "/worldsources");
+        File config = new File(folder, "config.yml");
+        File dconfig = new File(folder, "dependence.yml");
+        File languages = new File(folder + "/languages");
+        File gui = new File(folder, "gui.yml");
+
         if (!dir.exists()) {
             dir.mkdirs();
         }
+
         if (!languages.exists())
             languages.mkdirs();
+
         PluginConfig.checkConfig(config);
 
         // Done with #6
@@ -62,7 +66,10 @@ public class WorldSystem extends JavaPlugin {
         // Here we are for #5
         MessageConfig.checkConfig(new File(languages, "zh.yml"));
         MessageConfig.checkConfig(new File(languages, "fr.yml"));
+
+		// If has custom language
         MessageConfig.checkConfig(new File(languages, PluginConfig.getLanguage() + ".yml"));
+
         if (!dconfig.exists()) {
             try {
                 dconfig.createNewFile();
@@ -72,12 +79,15 @@ public class WorldSystem extends JavaPlugin {
             }
             new DependenceConfig();
         }
+
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(config);
         SettingsConfig.checkConfig();
+
         File worlddir = new File(cfg.getString("worldfolder"));
         if (!worlddir.exists()) {
             worlddir.mkdirs();
         }
+
         GuiConfig.checkConfig(gui);
     }
 
