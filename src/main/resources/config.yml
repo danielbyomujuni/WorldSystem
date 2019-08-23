@@ -86,7 +86,7 @@ spawn_teleportation: true
 # Time in seconds until a request expires
 request_expires: 20
 
-# Name of the languagefile in plugins/WorldSystem/messages/
+# Name of the languagefile in plugins/WorldSystem/languages/
 language: en
 
 # Prefix which will be shown before each message

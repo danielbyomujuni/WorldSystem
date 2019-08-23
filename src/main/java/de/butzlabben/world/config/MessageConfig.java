@@ -45,10 +45,10 @@ public class MessageConfig {
 
                 if (in == null) {
                     in = JavaPlugin.getPlugin(WorldSystem.class).getResource("custom.yml");
+                    Files.copy(in, file.toPath());
                 }
-                Files.copy(in, file.toPath());
             } catch (IOException e) {
-                System.err.println("Wasn't able to create Config");
+                System.err.println("Wasn't able to create Message file");
                 e.printStackTrace();
             }
         }
