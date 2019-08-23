@@ -3,7 +3,7 @@ package de.butzlabben.world.util;
 import com.google.common.base.Preconditions;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
-import de.butzlabben.world.util.database.DatabaseRepository;
+import de.butzlabben.world.util.database.DatabaseProvider;
 import de.butzlabben.world.util.database.DatabaseUtil;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -24,7 +24,7 @@ public class PlayerPositions {
     @Getter
     private static PlayerPositions instance = new PlayerPositions();
 
-    private final DatabaseUtil util = DatabaseRepository.getInstance().getUtil();
+    private final DatabaseUtil util = DatabaseProvider.getInstance().getUtil();
 
 
     private PlayerPositions() {
@@ -190,7 +190,7 @@ public class PlayerPositions {
         }
     }
 
-    private void checkTables() {
+    public void checkTables() {
         if (!util.isConnectionAvailable())
             return;
 

@@ -1,9 +1,11 @@
 package de.butzlabben.world.util.database;
 
 import de.butzlabben.world.config.PluginConfig;
+import org.bukkit.Bukkit;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 public class MysqlConnection extends DatabaseConnection {
 
@@ -12,14 +14,15 @@ public class MysqlConnection extends DatabaseConnection {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e) {
-                System.out.println("[WorldSystem | MySQL] Drivers are not working properly");
+                Bukkit.getLogger().log(Level.SEVERE,"[WorldSystem | MySQL] Drivers are not working properly");
                 return;
             }
             try {
                 connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?user="
                         + user + "&password=" + password);
+                Bukkit.getLogger().log(Level.INFO, "[WorldSystem | MySQL] Connected to remote MySQL database");
             } catch (SQLException e) {
-                System.out.println("[WorldSystem | MySQL] Failed to connect with given server:");
+                Bukkit.getLogger().log(Level.SEVERE,"[WorldSystem | MySQL] Failed to connect with given server:");
                 e.printStackTrace();
             }
         }

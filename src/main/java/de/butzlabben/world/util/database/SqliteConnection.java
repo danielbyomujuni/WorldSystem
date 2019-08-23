@@ -29,6 +29,7 @@ public class SqliteConnection extends DatabaseConnection {
             }
             try {
                 connection = DriverManager.getConnection("jdbc:sqlite:" + file);
+                Bukkit.getLogger().log(Level.INFO, "[WorldSystem | SQLite] Connected to local file database");
             } catch (SQLException e) {
                 Bukkit.getLogger().log(Level.SEVERE, "[WorldSystem | SQLite] Failed to connect with given server:");
                 e.printStackTrace();

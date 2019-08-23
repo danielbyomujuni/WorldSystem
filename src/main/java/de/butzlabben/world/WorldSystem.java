@@ -7,8 +7,9 @@ import de.butzlabben.world.command.WorldSettingsCommands;
 import de.butzlabben.world.config.*;
 import de.butzlabben.world.listener.*;
 import de.butzlabben.world.util.PapiExtension;
+import de.butzlabben.world.util.PlayerPositions;
 import de.butzlabben.world.util.VersionUtil;
-import de.butzlabben.world.util.database.DatabaseRepository;
+import de.butzlabben.world.util.database.DatabaseProvider;
 import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
 import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
@@ -90,11 +91,18 @@ public class WorldSystem extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        //Set right version
+        // Set right version
         if (VersionUtil.getVersion() >= 13)
             is1_13Plus = true;
 
         createConfigs();
+
+        // Establish database connection
+        DatabaseProvider.getInstance().getUtil().connect();
+
+        // Fix for  #34
+        // Check if tables exist and create them if necessary.
+        PlayerPositions.getInstance().checkTables();
 
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new PlayerListener(), this);
@@ -136,9 +144,6 @@ public class WorldSystem extends JavaPlugin {
         framework.registerCommands(new WorldSettingsCommands());
         framework.registerCommands(new WorldAdministrateCommand());
 
-
-        // Establish database connection
-        DatabaseRepository.getInstance().getUtil().connect();
 
         System.setProperty("bstats.relocatecheck", "false");
         Metrics m = new Metrics(this);
@@ -184,7 +189,7 @@ public class WorldSystem extends JavaPlugin {
         }
 
         // Close database connection
-        DatabaseRepository.getInstance().getUtil().close();
+        DatabaseProvider.getInstance().getUtil().close();
 
         Bukkit.getConsoleSender()
                 .sendMessage(PluginConfig.getPrefix() + "Succesfully disabled WorldSystem v" + version);

@@ -3,14 +3,14 @@ package de.butzlabben.world.util.database;
 import de.butzlabben.world.config.PluginConfig;
 import lombok.Getter;
 
-public class DatabaseRepository {
+public class DatabaseProvider {
     @Getter
-    private static DatabaseRepository instance = new DatabaseRepository();
+    private static DatabaseProvider instance = new DatabaseProvider();
 
     @Getter
     private final DatabaseUtil util;
 
-    private DatabaseRepository() {
+    private DatabaseProvider() {
         String dbType = PluginConfig.getDatabaseType();
         if (dbType.equalsIgnoreCase("sqlite"))
             util = new SqliteConnection();
