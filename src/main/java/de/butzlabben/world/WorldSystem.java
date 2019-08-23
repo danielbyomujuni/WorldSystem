@@ -37,7 +37,7 @@ public class WorldSystem extends JavaPlugin {
     private CreatorAdapter creator;
 
     public static void createConfigs() {
-        File folder = JavaPlugin.getPlugin(WorldSystem.class).getDataFolder();
+        File folder = getInstance().getDataFolder();
         File dir = new File(folder + "/worldsources");
         File config = new File(folder, "config.yml");
         File dconfig = new File(folder, "dependence.yml");
