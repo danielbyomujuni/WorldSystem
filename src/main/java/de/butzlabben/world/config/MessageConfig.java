@@ -35,13 +35,12 @@ public class MessageConfig {
 
     private MessageConfig() {
     }
-    // private static HashMap<String, File> languages = new HashMap<>();
 
     public static void checkConfig(File f) {
         file = f;
         if (!file.exists()) {
             try {
-                InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource(f.getName());
+                InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource("languages/" + f.getName());
 
                 if (in == null) {
                     in = JavaPlugin.getPlugin(WorldSystem.class).getResource("custom.yml");

@@ -32,7 +32,7 @@ public class WSCommand {
         String prefix = PluginConfig.getPrefix();
         cs.sendMessage(
                 prefix + "WorldSystem by Butzlabben v" + WorldSystem.getInstance().getDescription().getVersion());
-        cs.sendMessage(prefix + "Contributor: Jubeki");
+        cs.sendMessage(prefix + "Contributors: Jubeki, montlikadani");
         List<String> cmdHelp = MessageConfig.getCommandHelp();
         cmdHelp.forEach(s -> cs.sendMessage(prefix + s));
         if (cs.hasPermission("ws.delete"))
