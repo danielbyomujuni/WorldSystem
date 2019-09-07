@@ -5,7 +5,7 @@ main: de.butzlabben.world.WorldSystem
 
 api-version: 1.13
 
-loadbefore: [FastAsyncWorldEdit, WorldEdit]
+loadbefore: [FastAsyncWorldEdit, WorldEdit, BuildersUtilities]
 
 permissions:
   ws.*:
