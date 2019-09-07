@@ -337,7 +337,11 @@ public class SystemWorld {
 
         this.w = w;
 
-        teleportToWorldSpawn(p);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(WorldSystem.getInstance(), new Runnable() {
+            public void run() {
+                teleportToWorldSpawn(p);
+            }
+        }, 10L);
 
         OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
         DependenceConfig dc = new DependenceConfig(owner);
