@@ -39,32 +39,36 @@ public class SettingsConfig {
                 String worldname = w.getName();
                 UUID uuid = UUID.fromString(worldname.substring(worldname.length() - 36));
                 Player p = Bukkit.getPlayer(uuid);
+
+                // Only edit worldborder size if owner is online
                 if (p != null && p.isOnline()) {
+
+                    // Check permissions
                     for (String string : borderSizes.keySet()) {
                         if (p.hasPermission(string) && size < borderSizes.get(string)) {
                             size = borderSizes.get(string);
                         }
                     }
+
+                    w.getWorldBorder().setSize(size);
                 }
-            }
 
-            w.getWorldBorder().setSize(size);
-
-            if (cfg.getBoolean("worldborder.center.as_spawn", true)) {
-                if (PluginConfig.useWorldSpawn()) {
-                    w.getWorldBorder().setCenter(PluginConfig.getWorldSpawn(w));
+                if (cfg.getBoolean("worldborder.center.as_spawn", true)) {
+                    if (PluginConfig.useWorldSpawn()) {
+                        w.getWorldBorder().setCenter(PluginConfig.getWorldSpawn(w));
+                    } else {
+                        w.getWorldBorder().setCenter(w.getSpawnLocation());
+                    }
                 } else {
-                    w.getWorldBorder().setCenter(w.getSpawnLocation());
+                    Location loc = new Location(w, cfg.getDouble("worldborder.center.x", 0),
+                            cfg.getDouble("worldborder.center.y", 20), cfg.getDouble("worldborder.center.z", 0));
+                    w.getWorldBorder().setCenter(loc);
                 }
-            } else {
-                Location loc = new Location(w, cfg.getDouble("worldborder.center.x", 0),
-                        cfg.getDouble("worldborder.center.y", 20), cfg.getDouble("worldborder.center.z", 0));
-                w.getWorldBorder().setCenter(loc);
-            }
-            if (cfg.getBoolean("worldborder.center.as_home")) {
-                WorldConfig config = WorldConfig.getWorldConfig(w.getName());
-                if (config.getHome() != null)
-                    w.getWorldBorder().setCenter(config.getHome());
+                if (cfg.getBoolean("worldborder.center.as_home")) {
+                    WorldConfig config = WorldConfig.getWorldConfig(w.getName());
+                    if (config.getHome() != null)
+                        w.getWorldBorder().setCenter(config.getHome());
+                }
             }
         }
 
