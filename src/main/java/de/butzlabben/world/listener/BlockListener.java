@@ -10,6 +10,7 @@ import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
 
 import java.io.File;
 import java.util.Objects;
@@ -27,6 +28,22 @@ public class BlockListener implements Listener {
 
     @EventHandler
     public void onPlace(BlockPlaceEvent e) {
+        Player p = e.getPlayer();
+        if (p.hasPermission("ws.build"))
+            return;
+        String worldname = p.getWorld().getName();
+        WorldPlayer wp = new WorldPlayer(p, worldname);
+        if (!wp.isOnSystemWorld())
+            return;
+        if (!wp.isMember())
+            e.setCancelled(true);
+        if (!wp.isOwnerofWorld()) {
+            e.setCancelled(!wp.canBuild());
+        }
+    }
+
+    @EventHandler
+    public void onPlaceLiquid(PlayerBucketEmptyEvent e) {
         Player p = e.getPlayer();
         if (p.hasPermission("ws.build"))
             return;
