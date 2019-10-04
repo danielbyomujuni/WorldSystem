@@ -11,6 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class SystemWorld {
     private String worldname;
     private boolean unloading = false;
     private boolean creating = false;
+
+    private BukkitTask unloadLaterTask;
 
     private SystemWorld(String worldname) {
         this.worldname = worldname;
@@ -177,7 +180,7 @@ public class SystemWorld {
             return;
         }
         Preconditions.checkNotNull(w, "world must not be null");
-        unloading = true;
+        setUnloading(true);
         w.save();
         Chunk[] arrayOfChunk;
         int j = (arrayOfChunk = w.getLoadedChunks()).length;
@@ -217,7 +220,7 @@ public class SystemWorld {
             Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> unloadLater(w));
             return;
         }
-        
+
         // Do not start another unload task
         if (unloading) {
             return;
@@ -229,7 +232,7 @@ public class SystemWorld {
         if (event.isCancelled())
             return;
         // Set unloading to true
-        unloading = true;
+        setUnloading(true);
         w.save();
         Chunk[] arrayOfChunk;
         int j = (arrayOfChunk = w.getLoadedChunks()).length;
@@ -242,7 +245,7 @@ public class SystemWorld {
             a.setGameMode(PluginConfig.getSpawnGamemode());
         }
 
-        Bukkit.getScheduler().runTaskLater(WorldSystem.getInstance(), () -> {
+        unloadLaterTask = Bukkit.getScheduler().runTaskLater(WorldSystem.getInstance(), () -> {
             // Still in world unloading process?
             if (unloading && w.getPlayers().size() == 0) {
                 if (Bukkit.unloadWorld(w, true)) {
@@ -251,7 +254,7 @@ public class SystemWorld {
                     try {
                         FileUtils.moveDirectoryToDirectory(worldinserver, worlddir, false);
                         Bukkit.getWorlds().remove(w);
-                        unloading = false;
+                        setUnloading(false);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -285,7 +288,7 @@ public class SystemWorld {
         if (event.isCancelled())
             return;
 
-        unloading = false;
+        setUnloading(false);
 
         p.sendMessage(MessageConfig.getSettingUpWorld());
 
@@ -388,7 +391,7 @@ public class SystemWorld {
             return;
         }
 
-        unloading = false;
+        setUnloading(false);
         w = Bukkit.getWorld(worldname);
         if (w == null)
             return;
@@ -427,6 +430,15 @@ public class SystemWorld {
 
     public void setCreating(boolean creating) {
         this.creating = creating;
+    }
+
+    public void setUnloading(boolean unloading) {
+        this.unloading = unloading;
+
+        // Cancel unload task if unloading is set to false
+        if (!unloading && unloadLaterTask != null && !unloadLaterTask.isCancelled()) {
+            unloadLaterTask.cancel();
+        }
     }
 
     /**
