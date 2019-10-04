@@ -217,6 +217,11 @@ public class SystemWorld {
             Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> unloadLater(w));
             return;
         }
+        
+        // Do not start another unload task
+        if (unloading) {
+            return;
+        }
 
         Preconditions.checkNotNull(w, "world must not be null");
         WorldUnloadEvent event = new WorldUnloadEvent(this);
