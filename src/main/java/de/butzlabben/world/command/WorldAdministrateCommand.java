@@ -55,7 +55,6 @@ public class WorldAdministrateCommand {
         if (event.isCancelled())
             return;
 
-        wc.removeMember(a.getUniqueId());
         if (a.isOnline()) {
             Player t = (Player) a;
             if (t.getWorld().getName().equals(new DependenceConfig(p).getWorldname())) {
@@ -63,6 +62,8 @@ public class WorldAdministrateCommand {
                 t.setGameMode(PluginConfig.getSpawnGamemode());
             }
         }
+
+        wc.removeMember(a.getUniqueId());
         try {
             wc.save();
         } catch (IOException e) {
