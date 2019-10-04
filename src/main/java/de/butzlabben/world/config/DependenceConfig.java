@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class DependenceConfig {
 
-    private OfflinePlayer op;
+    private UUID uuid;
 
     public DependenceConfig() {
         setConfig();
@@ -27,17 +27,21 @@ public class DependenceConfig {
         if (op == null) {
             op = Bukkit.getOfflinePlayer(s);
         }
-        this.op = op;
+        uuid = op.getUniqueId();
     }
 
     public DependenceConfig(Player p) {
-        this.op = p;
+        uuid = p.getUniqueId();
         refreshName();
     }
 
     public DependenceConfig(OfflinePlayer p) {
-        this.op = p;
+        uuid = p.getUniqueId();
         refreshName();
+    }
+
+    public DependenceConfig(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public static int getHighestID() {
@@ -80,8 +84,8 @@ public class DependenceConfig {
         if (hasWorld()) {
             File dconfig = new File("plugins//WorldSystem//dependence.yml");
             YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
-            String uuid = this.op.getUniqueId().toString();
-            cfg.set("Dependences." + uuid + ".ActualName", op.getName());
+            String uuid = this.uuid.toString();
+            cfg.set("Dependences." + uuid + ".ActualName", Bukkit.getOfflinePlayer(this.uuid).getName());
             try {
                 cfg.save(dconfig);
             } catch (IOException e) {
@@ -93,12 +97,12 @@ public class DependenceConfig {
     public void createNewEntry() {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
-        String uuid = this.op.getUniqueId().toString();
+        String uuid = this.uuid.toString();
         int id = cfg.getInt("HighestID");
         id++;
         cfg.set("HighestID", id);
         cfg.set("Dependences." + uuid + ".ID", id);
-        cfg.set("Dependences." + uuid + ".ActualName", op.getName());
+        cfg.set("Dependences." + uuid + ".ActualName", Bukkit.getOfflinePlayer(this.uuid).getName());
         try {
             cfg.save(dconfig);
         } catch (IOException e) {
@@ -109,7 +113,7 @@ public class DependenceConfig {
     public boolean hasWorld() {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
-        String uuid = op.getUniqueId().toString();
+        String uuid = this.uuid.toString();
         //Fix for #40
         return cfg.isInt("Dependences." + uuid + ".ID");
     }
@@ -117,14 +121,14 @@ public class DependenceConfig {
     public String getWorldname() {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration dcfg = YamlConfiguration.loadConfiguration(dconfig);
-        String uuid = op.getUniqueId().toString();
+        String uuid = this.uuid.toString();
         int id = dcfg.getInt("Dependences." + uuid + ".ID");
         return "ID" + id + "-" + uuid;
     }
 
-    public String getWorldNamebyOfflinePlayer() {
+    public String getWorldNameByOfflinePlayer() {
         String name;
-        String uuid = op.getUniqueId().toString();
+        String uuid = this.uuid.toString();
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
         if (cfg.getString("Dependences." + uuid + ".ActualName") == null) {
@@ -138,7 +142,7 @@ public class DependenceConfig {
     public void setLastLoaded() {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
-        String uuid = op.getUniqueId().toString();
+        String uuid = this.uuid.toString();
         cfg.set("Dependences." + uuid + ".last_loaded", System.currentTimeMillis());
         try {
             cfg.save(dconfig);
@@ -150,10 +154,10 @@ public class DependenceConfig {
     public int getID() {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration dcfg = YamlConfiguration.loadConfiguration(dconfig);
-        return dcfg.getInt("Dependences." + op.getUniqueId().toString() + ".ID");
+        return dcfg.getInt("Dependences." + this.uuid.toString() + ".ID");
     }
 
     public OfflinePlayer getOwner() {
-        return op;
+        return Bukkit.getOfflinePlayer(uuid);
     }
 }

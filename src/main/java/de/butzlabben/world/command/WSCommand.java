@@ -220,7 +220,7 @@ public class WSCommand {
 
 
         DependenceConfig dc = new DependenceConfig(args.getArgument(0));
-        String worldname = dc.getWorldNamebyOfflinePlayer();
+        String worldname = dc.getWorldNameByOfflinePlayer();
         if (!dc.hasWorld()) {
             p.sendMessage(MessageConfig.getNoWorldOther());
             return;

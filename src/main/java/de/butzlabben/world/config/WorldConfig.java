@@ -9,7 +9,6 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,20 +77,20 @@ public class WorldConfig {
         return instances.get(worldname).load();
     }
 
-    public static void create(Player p, WorldTemplate template) {
-        DependenceConfig dc = new DependenceConfig(p);
+    public static void create(UUID uuid, WorldTemplate template) {
+        DependenceConfig dc = new DependenceConfig(uuid);
         String worldname = dc.getWorldname();
         File file = new File(PluginConfig.getWorlddir() + worldname + "/worldconfig.yml");
         try {
             file.createNewFile();
         } catch (IOException e1) {
             e1.printStackTrace();
-            System.err.println("Error while creating worldconfig for " + p.getUniqueId().toString());
+            System.err.println("Error while creating worldconfig for " + uuid.toString());
         }
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
         cfg.set("Informations.ID", dc.getID());
-        cfg.set("Informations.Owner.PlayerUUID", p.getUniqueId().toString());
-        cfg.set("Informations.Owner.Actualname", p.getName());
+        cfg.set("Informations.Owner.PlayerUUID", uuid.toString());
+        cfg.set("Informations.Owner.Actualname", Objects.requireNonNull(Bukkit.getOfflinePlayer(uuid)).getName());
         cfg.set("Informations.template_key", template.getName());
         cfg.set("Settings.TNTDamage", false);
         cfg.set("Settings.Fire", false);
@@ -100,7 +99,7 @@ public class WorldConfig {
             cfg.save(file);
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Error while saving worldconfig for " + p.getUniqueId().toString());
+            System.err.println("Error while saving worldconfig for " + uuid.toString());
         }
     }
 

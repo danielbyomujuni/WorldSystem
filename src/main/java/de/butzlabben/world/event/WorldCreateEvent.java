@@ -1,8 +1,9 @@
 package de.butzlabben.world.event;
 
 import org.bukkit.WorldCreator;
-import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+
+import java.util.UUID;
 
 /**
  * Event if a SystemWorld gets created.
@@ -14,10 +15,10 @@ import org.bukkit.event.HandlerList;
 public class WorldCreateEvent extends WorldEvent {
 
     public final static HandlerList handlers = new HandlerList();
-    private final Player owner;
+    private final UUID owner;
     private WorldCreator worldCreator;
 
-    public WorldCreateEvent(Player owner, WorldCreator creator) {
+    public WorldCreateEvent(UUID owner, WorldCreator creator) {
         this.owner = owner;
         this.setWorldCreator(creator);
     }
@@ -29,7 +30,7 @@ public class WorldCreateEvent extends WorldEvent {
     /**
      * @return owner of world that gets created
      */
-    public Player getOwner() {
+    public UUID getOwner() {
         return owner;
     }
 
