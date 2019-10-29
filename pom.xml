@@ -96,7 +96,7 @@
         <!--Repo for CommandFramework-->
         <repository>
             <id>pp-public</id>
-            <url>http://nexus.myplayplanet.net/repository/public/</url>
+            <url>https://nexus.myplayplanet.net/repository/public/</url>
         </repository>
 
         <!-- Repo for Vault support-->
