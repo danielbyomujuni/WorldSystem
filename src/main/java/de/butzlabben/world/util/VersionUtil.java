@@ -1,6 +1,7 @@
 package de.butzlabben.world.util;
 
 import org.bukkit.Bukkit;
+import org.bukkit.scheduler.BukkitTask;
 
 /**
  * @author Butzlabben
@@ -48,5 +49,11 @@ public class VersionUtil {
             version = 12;
         }
         return version;
+    }
+
+    public static boolean isCancelled(BukkitTask task) {
+        if(getVersion() <= 12)
+            return false;
+        return task.isCancelled();
     }
 }

@@ -7,6 +7,7 @@ import de.butzlabben.world.event.WorldCreateEvent;
 import de.butzlabben.world.event.WorldLoadEvent;
 import de.butzlabben.world.event.WorldUnloadEvent;
 import de.butzlabben.world.util.PlayerPositions;
+import de.butzlabben.world.util.VersionUtil;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -444,7 +445,7 @@ public class SystemWorld {
         this.unloading = unloading;
 
         // Cancel unload task if unloading is set to false
-        if (!unloading && unloadLaterTask != null && !unloadLaterTask.isCancelled()) {
+        if (!unloading && unloadLaterTask != null && !VersionUtil.isCancelled(unloadLaterTask)) {
             unloadLaterTask.cancel();
         }
     }
