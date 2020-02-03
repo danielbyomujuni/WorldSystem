@@ -36,7 +36,7 @@ public class PluginConfig {
                     && cfg.isInt("request_expires") && cfg.isBoolean("need_confirm")
                     && cfg.isBoolean("contact_authserver") && cfg.isBoolean("spawn_teleportation")
                     && cfg.isInt("delete_after") && cfg.isBoolean("worldtemplates.multi_choose")
-                    && cfg.isString("worldtemplates.default") &&
+                    && cfg.isString("worldtemplates.default") && cfg.isBoolean("load_worlds_async") &&
 
                     // Database stuff
                     cfg.isString("database.type") && cfg.isString("database.worlds_table_name") && cfg.isString("database.players_table_name")
@@ -234,5 +234,9 @@ public class PluginConfig {
 
     public static String getMysqlDatabaseName() {
         return getConfig().getString("database.mysql_settings.database");
+    }
+
+    public static boolean loadWorldsASync() {
+        return getConfig().getBoolean("load_worlds_async");
     }
 }

@@ -59,6 +59,9 @@ unloadingtime: 20
 # Except for players with the permissions: ws.gamemode | ws.tp.*
 survival: false
 
+# If WorldSystem should load the worlds async if possible (FAWE installed)
+load_worlds_async: true
+
 # Options for the database saving player positions
 database:
   # Which type should be choosen:
