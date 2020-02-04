@@ -149,7 +149,7 @@
             <artifactId>FastAsnycWorldEdit</artifactId>
             <scope>system</scope>
             <version>1.0</version>
-            <systemPath>${pom.basedir}/lib/FastAsyncWorldEdit.jar</systemPath>
+            <systemPath>lib1/FastAsyncWorldEdit.jar</systemPath>
         </dependency>
 
         <dependency>
