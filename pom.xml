@@ -144,12 +144,12 @@
         AsyncWorld is not in the api so I have to use a local file
         Issue: https://github.com/boy0001/FastAsyncWorldedit/issues/1060
         -->
-        <!-- FAWE-Bukkit Dependency -->
         <dependency>
-            <groupId>com.boydti</groupId>
-            <artifactId>fawe-bukkit</artifactId>
-            <!-- https://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/com/boydti/fawe-bukkit/ -->
-            <version>19.11.13-5505943-1282-22.3.5</version>
+            <groupId>com.sk98q.worldedit</groupId>
+            <artifactId>FastAsnycWorldEdit</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${pom.basedir}/lib/FastAsyncWorldEdit.jar</systemPath>
         </dependency>
 
         <dependency>
