@@ -96,10 +96,6 @@ public class WorldSystem extends JavaPlugin {
         return JavaPlugin.getPlugin(WorldSystem.class);
     }
 
-    public static boolean is1_13() {
-        return is1_13Plus;
-    }
-
     @Override
     public void onEnable() {
         // Set right version

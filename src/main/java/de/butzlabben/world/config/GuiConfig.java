@@ -2,6 +2,7 @@ package de.butzlabben.world.config;
 
 import de.butzlabben.inventory.OrcItem;
 import de.butzlabben.world.WorldSystem;
+import de.butzlabben.world.util.VersionUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -27,7 +28,9 @@ public class GuiConfig {
         if (!file.exists()) {
             try {
                 String guiFileResource;
-                if (WorldSystem.is1_13()) {
+                if (VersionUtil.getVersion() >= 14) {
+                    guiFileResource = "1_14_gui.yml";
+                } else if (VersionUtil.getVersion() == 13) {
                     guiFileResource = "1_13_gui.yml";
                 } else {
                     guiFileResource = "old_gui.yml";
