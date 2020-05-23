@@ -4,15 +4,19 @@ import com.google.common.collect.Sets;
 import com.mojang.authlib.GameProfile;
 import de.butzlabben.world.GameProfileBuilder;
 import de.butzlabben.world.wrapper.WorldTemplate;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
 
 /**
  * This class represents a worldconfig.yml file Here you can edit and read all
@@ -55,7 +59,7 @@ public class WorldConfig {
     }
 
     /**
-     * Returns wether a worldconfig exists for this worldname
+     * Returns whether a worldconfig exists for this worldname
      *
      * @param worldname name of the world
      * @return Whether this world has a worldconfig

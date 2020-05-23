@@ -4,8 +4,15 @@ import de.butzlabben.world.autoupdater.AutoUpdater;
 import de.butzlabben.world.command.WSCommand;
 import de.butzlabben.world.command.WorldAdministrateCommand;
 import de.butzlabben.world.command.WorldSettingsCommands;
-import de.butzlabben.world.config.*;
-import de.butzlabben.world.listener.*;
+import de.butzlabben.world.config.DependenceConfig;
+import de.butzlabben.world.config.GuiConfig;
+import de.butzlabben.world.config.MessageConfig;
+import de.butzlabben.world.config.PluginConfig;
+import de.butzlabben.world.config.SettingsConfig;
+import de.butzlabben.world.listener.BlockListener;
+import de.butzlabben.world.listener.CommandListener;
+import de.butzlabben.world.listener.PlayerListener;
+import de.butzlabben.world.listener.WorldEditListener;
 import de.butzlabben.world.util.PapiExtension;
 import de.butzlabben.world.util.PlayerPositions;
 import de.butzlabben.world.util.VersionUtil;
@@ -13,6 +20,8 @@ import de.butzlabben.world.util.database.DatabaseProvider;
 import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
 import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
+import java.io.File;
+import java.io.IOException;
 import net.myplayplanet.commandframework.CommandFramework;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -20,9 +29,6 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @author Butzlabben
@@ -114,7 +120,6 @@ public class WorldSystem extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new PlayerListener(), this);
         pm.registerEvents(new BlockListener(), this);
-        pm.registerEvents(new PlayerDeathListener(), this);
         pm.registerEvents(new CommandListener(), this);
         if (pm.getPlugin("WorldEdit") != null)
             pm.registerEvents(new WorldEditListener(), this);

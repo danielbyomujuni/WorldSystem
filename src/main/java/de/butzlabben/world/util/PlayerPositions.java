@@ -5,16 +5,15 @@ import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.util.database.DatabaseProvider;
 import de.butzlabben.world.util.database.DatabaseUtil;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.UUID;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.UUID;
 
 /*
 Class for implementing #23
@@ -96,8 +95,8 @@ public class PlayerPositions {
             location.setY(y);
             location.setZ(z);
 
-            String locWorldName = location.getWorld().getName();
-            if (!locWorldName.equals(rs.getString("world"))) {
+            World locationWorld = location.getWorld();
+            if (locationWorld == null || !locationWorld.getName().equals(rs.getString("world"))) {
                 World world = Bukkit.getWorld(rs.getString("world"));
                 if (world != null) {
                     location.setWorld(world);
