@@ -166,7 +166,8 @@ public class WorldSystem extends JavaPlugin {
         // Choose right creatoradapter for #16
         if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null
                 && Bukkit.getPluginManager().getPlugin("WorldEdit") != null
-                && PluginConfig.loadWorldsASync()) {
+                && PluginConfig.loadWorldsASync()
+                && !is1_13Plus) {
             creator = new AsyncCreatorAdapter();
             Bukkit.getConsoleSender()
                     .sendMessage(PluginConfig.getPrefix() + "Found FAWE! Try now to create worlds async");
