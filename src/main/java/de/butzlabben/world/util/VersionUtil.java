@@ -18,7 +18,9 @@ public class VersionUtil {
         if (version == 0) {
             // Detect version
             String v = Bukkit.getVersion();
-            if (v.contains("1.15"))
+            if (v.contains("1.16"))
+                version = 16;
+            else if (v.contains("1.15"))
                 version = 15;
             else if (v.contains("1.14"))
                 version = 14;
@@ -54,7 +56,7 @@ public class VersionUtil {
     }
 
     public static boolean isCancelled(BukkitTask task) {
-        if(getVersion() <= 12)
+        if (getVersion() <= 12)
             return false;
         return task.isCancelled();
     }
