@@ -170,7 +170,7 @@ public class WorldSystem extends JavaPlugin {
                 && !is1_13Plus) {
             creator = new AsyncCreatorAdapter();
             Bukkit.getConsoleSender()
-                    .sendMessage(PluginConfig.getPrefix() + "Found FAWE! Try now to create worlds async");
+                    .sendMessage(PluginConfig.getPrefix() + "Found FAWE! Worlds now will be created asynchronously");
         } else {
             creator = (c, sw, r) -> {
                 Bukkit.getWorlds().add(c.createWorld());
