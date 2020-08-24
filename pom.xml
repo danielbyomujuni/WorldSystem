@@ -24,7 +24,7 @@
     </reporting>
 
     <build>
-        <finalName>WorldSystem.jar</finalName>
+        <finalName>WorldSystem</finalName>
         <defaultGoal>package</defaultGoal>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
