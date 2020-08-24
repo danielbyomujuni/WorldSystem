@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.butzlabben.world</groupId>
-    <artifactId>WorldSystem</artifactId>
+    <artifactId>worldsystem</artifactId>
     <version>2.4.9</version>
 
     <properties>
