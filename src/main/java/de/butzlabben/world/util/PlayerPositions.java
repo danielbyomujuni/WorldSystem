@@ -21,9 +21,9 @@ Class for implementing #23
 public class PlayerPositions {
 
     @Getter
-    private static PlayerPositions instance = new PlayerPositions();
+    public static PlayerPositions instance = new PlayerPositions();
 
-    private final DatabaseUtil util = DatabaseProvider.getInstance().getUtil();
+    private final DatabaseUtil util = DatabaseProvider.instance.util;
 
 
     private PlayerPositions() {

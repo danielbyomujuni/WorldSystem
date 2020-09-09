@@ -11,12 +11,12 @@ import lombok.Getter;
 @Getter
 public class WorldTemplate {
 
-    private final String name;
-    private final String permission;
-    private final OrcItem icon;
-    private final int slot;
-    private final int cost;
-    private final GeneratorSettings generatorSettings;
+    public final String name;
+    public final String permission;
+    public final OrcItem icon;
+    public final int slot;
+    public final int cost;
+    public final GeneratorSettings generatorSettings;
 
     public WorldTemplate(String name, String permission, int cost, GeneratorSettings generatorSettings) {
         this.name = name;

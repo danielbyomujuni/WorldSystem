@@ -1,9 +1,7 @@
 package de.butzlabben.world;
 
 import de.butzlabben.world.autoupdater.AutoUpdater;
-import de.butzlabben.world.command.WSCommand;
-import de.butzlabben.world.command.WorldAdministrateCommand;
-import de.butzlabben.world.command.WorldSettingsCommands;
+import de.butzlabben.world.command.CommandRegistry;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.GuiConfig;
 import de.butzlabben.world.config.MessageConfig;
@@ -22,7 +20,6 @@ import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
 import java.io.File;
 import java.io.IOException;
-import net.myplayplanet.commandframework.CommandFramework;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -37,11 +34,9 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @since 10.07.2017
  */
 public class WorldSystem extends JavaPlugin {
-
     private static boolean is1_13Plus = false;
     final private String version = this.getDescription().getVersion();
     private CreatorAdapter creator;
-
     public static void createConfigs() {
         File folder = getInstance().getDataFolder();
         File dir = new File(folder + "/worldsources");
@@ -104,6 +99,9 @@ public class WorldSystem extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        //////
+        getCommand("ws").setExecutor(new CommandRegistry());
+
         // Set right version
         if (VersionUtil.getVersion() >= 13)
             is1_13Plus = true;
@@ -111,11 +109,11 @@ public class WorldSystem extends JavaPlugin {
         createConfigs();
 
         // Establish database connection
-        DatabaseProvider.getInstance().getUtil().connect();
+        DatabaseProvider.instance.util.connect();
 
         // Fix for  #34
         // Check if tables exist and create them if necessary.
-        PlayerPositions.getInstance().checkTables();
+        PlayerPositions.instance.checkTables();
 
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new PlayerListener(), this);
@@ -149,12 +147,20 @@ public class WorldSystem extends JavaPlugin {
         }, 20 * 60 * 2, 20 * 60 * 2);
 
         //COMMANDS
-        CommandFramework framework = new CommandFramework(this);
-        framework.setNoPermissionMessage(MessageConfig.getNoPermission());
+        System.out.println("Registered");
 
-        framework.registerCommands(new WSCommand());
-        framework.registerCommands(new WorldSettingsCommands());
-        framework.registerCommands(new WorldAdministrateCommand());
+        //this.getCommand("ws").setExecutor(new WSCommandMain());
+        //this.getCommand("ws").setExecutor(new CommandMain());
+        //this.getCommand("ws get").setExecutor(new WSGet());
+        //this.getCommand("ws reset").setExecutor(new WorldReset());
+        //this.getCommand("ws home").setExecutor(new WorldHome());
+        //this.getCommand("ws tnt").setExecutor(new WorldTnt());
+        //this.getCommand("ws fire").setExecutor(new WorldFire());
+
+
+
+
+
 
 
         System.setProperty("bstats.relocatecheck", "false");
@@ -203,7 +209,7 @@ public class WorldSystem extends JavaPlugin {
         }
 
         // Close database connection
-        DatabaseProvider.getInstance().getUtil().close();
+        DatabaseProvider.instance.util.close();
 
         Bukkit.getConsoleSender()
                 .sendMessage(PluginConfig.getPrefix() + "Successfully disabled WorldSystem v" + version);
@@ -212,4 +218,5 @@ public class WorldSystem extends JavaPlugin {
     public CreatorAdapter getAdapter() {
         return creator;
     }
+
 }

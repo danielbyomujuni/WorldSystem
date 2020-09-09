@@ -1,19 +1,10 @@
-##########################################################################
-### __              __         __    _______          __               ###
-### \ \            / /        / /   / / ___/         / /               ###
-###  \ \    __    / /___  ___/ /___/ / /____  ______/ /______________  ###
-###   \ \  /  \  / / __ \/ _/ / __  /__  / / / / __/ __/ ___/ _  _  /  ###
-###    \ \/ /\ \/ / /_/ / // / /_/ /__/ / /_/ /_  / /_/ ___/ // // /   ###
-###     \__/  \__/\____/_//_/\__,_/____/\__, /___/\__/\___/_//_//_/    ###
-###                                    ___/ /                          ###
-###                                    \___/                           ###
-##########################################################################
+
 
 # Path where the worlds will be saved
 worldfolder: 'plugins/WorldSystem/Worlds'
 
 worldtemplates:
-  # Wheter players can decide on different templates
+  # Whether players can decide on different templates
   multi_choose: false
   # If multi_choose is disabled, which template should be choosen
   default: 'template_default'

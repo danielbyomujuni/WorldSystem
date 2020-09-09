@@ -96,7 +96,7 @@ public class SystemWorld {
         String worldname = "ID" + id + "-" + uuid;
         Player p = Bukkit.getPlayer(uniqueID);
 
-        WorldCreator creator = template.getGeneratorSettings().asWorldCreator(worldname);
+        WorldCreator creator = template.generatorSettings.asWorldCreator(worldname);
 
         WorldCreateEvent event = new WorldCreateEvent(uniqueID, creator);
         Bukkit.getPluginManager().callEvent(event);
@@ -200,7 +200,7 @@ public class SystemWorld {
 
         WorldConfig config = WorldConfig.getWorldConfig(worldname);
         for (Player a : w.getPlayers()) {
-            PlayerPositions.getInstance().saveWorldsPlayerLocation(a, config);
+            PlayerPositions.instance.saveWorldsPlayerLocation(a, config);
             a.teleport(PluginConfig.getSpawn(a));
             a.setGameMode(PluginConfig.getSpawnGamemode());
         }
@@ -345,7 +345,7 @@ public class SystemWorld {
             template = WorldTemplateProvider.getInstance().getTemplate(PluginConfig.getDefaultWorldTemplate());
 
         if (template != null)
-            creator = template.getGeneratorSettings().asWorldCreator(worldname);
+            creator = template.generatorSettings.asWorldCreator(worldname);
 
 
         World w = Bukkit.getWorld(worldname);
@@ -393,7 +393,7 @@ public class SystemWorld {
     public void teleportToWorldSpawn(Player p) {
         Preconditions.checkNotNull(p, "player must not be null");
         Preconditions.checkArgument(p.isOnline(), "player must be online");
-        PlayerPositions positions = PlayerPositions.getInstance();
+        PlayerPositions positions = PlayerPositions.instance;
 
         if (creating) {
             p.sendMessage(MessageConfig.getWorldStillCreating());
