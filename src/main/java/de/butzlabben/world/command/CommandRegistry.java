@@ -27,12 +27,7 @@ public class CommandRegistry implements CommandExecutor {
             switch (args[0]) {
                 //WSCommands
                 case "get":
-                    if (sender.hasPermission("ws.get")) {
                         return ws.getCommand(sender, command, label, args);
-                    }
-                    else {
-                        return false;
-                    }
                 case "gui":
                         return ws.guiCommand(sender, command, label, args);
                 case "confirm":
@@ -48,11 +43,7 @@ public class CommandRegistry implements CommandExecutor {
                 case "leave":
                     return ws.leaveCommand(sender, command, label, args);
                 case "tp":
-                    if (sender.hasPermission("ws.tp")) {
                         return ws.tpCommand(sender, command, label, args);
-                    } else {
-                        return false;
-                    }
                 //Admin Command
                 case "delmember":
                     return admin.delMemberCommand(sender, command, label, args);
@@ -76,11 +67,13 @@ public class CommandRegistry implements CommandExecutor {
                 case "reset":
                     return settings.resetCommand(sender, command, label, args);
                 case "sethome":
+                    sender.sendMessage("Disabled For Major Error and Rework");
+                            /*
                     if (sender.hasPermission("ws.sethome")) {
                         return settings.setHomeCommand(sender, command, label, args);
                     } else {
                         return false;
-                    }
+                    }*/
                 case "tnt":
                     return settings.tntCommand(sender, command, label, args);
                 case "fire":

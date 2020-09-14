@@ -1,6 +1,5 @@
 package de.butzlabben.world.command.commands;
 
-import com.boydti.fawe.configuration.file.YamlConfiguration;
 import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
@@ -17,6 +16,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.File;

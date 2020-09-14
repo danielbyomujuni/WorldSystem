@@ -16,6 +16,7 @@ import de.butzlabben.world.wrapper.WorldTemplate;
 import de.butzlabben.world.wrapper.WorldTemplateProvider;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -134,8 +135,15 @@ public class WorldSettingsCommands {
             }
 
             WorldConfig config = WorldConfig.getWorldConfig(p.getWorld().getName());
-            config.setHome(p.getLocation());
+            Location playerLocation = p.getLocation();
+            config.home = playerLocation;
+            System.out.println("installed");
             try {
+                if (config.home == playerLocation) {
+                    System.out.println("registered");
+                } else {
+                    System.out.println("registered incorrectly");
+                }
                 config.save();
                 p.sendMessage(MessageConfig.getHomeSet());
             } catch (IOException e) {
@@ -149,7 +157,7 @@ public class WorldSettingsCommands {
         }
     }
 
-        public boolean tntCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean tntCommand(CommandSender sender, Command command, String label, String[] args) {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
             DependenceConfig dc = new DependenceConfig(p);
@@ -243,7 +251,7 @@ public class WorldSettingsCommands {
             FileUtils.moveDirectoryToDirectory(f, Bukkit.getWorldContainer(), false);
 
             WorldConfig config = WorldConfig.getWorldConfig(worldname);
-            config.setHome(null);
+            config.home = null;
             config.setTemplateKey(template.getName());
             config.save();
 

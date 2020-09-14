@@ -152,6 +152,7 @@ repositories {
     maven {
         url = 'http://maven.sk89q.com/repo/'
     }
+    maven { url = "https://mvn.intellectualsites.com/content/repositories/releases/" }
     mavenCentral()
 }
 
@@ -162,7 +163,6 @@ dependencies {
     compileOnly spigot(mcVersion)
 
     //Add dependencies here
-
     //Test dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
     testImplementation "org.mockito:mockito-core:3.+"
@@ -177,8 +177,8 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.4'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.0.0-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.0.0-SNAPSHOT'
-    compile files('C:/Users/train/Desktop/World System/lib/commons-io-2.7.jar')
-    compile files('C:/Users/train/Desktop/World System/lib/FastAsyncWorldEdit.jar')
+    compile files('C:/Users/train/Desktop/Programing/Git/worldsystem/lib/commons-io-2.7.jar')
+    compile files('C:/Users/train/Desktop/Programing/Git/worldsystem/lib/FastAsyncWorldEdit.jar')
 }
 
 shadowJar {
