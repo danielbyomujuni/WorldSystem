@@ -34,7 +34,6 @@ spigot {
         "ws" {
             description = 'All WorldSystem Commands'
             permissionMessage = 'You do not have permission!'
-            usage = '/<command> [subCommand]'
         }
     }
     permissions {
