@@ -7,7 +7,7 @@
     "@semantic-release/release-notes-generator": "9.0.1",
     "commitlint": "9.1.2",
     "conventional-changelog-conventionalcommits": "4.4.0",
-    "gradle-semantic-release-plugin": "1.4.8",
+    "gradle-semantic-release-plugin": "1.4.9",
     "husky": "4.2.5",
     "lint-staged": "10.2.13",
     "prettier": "2.1.1",
