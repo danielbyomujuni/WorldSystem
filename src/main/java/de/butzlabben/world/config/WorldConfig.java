@@ -38,7 +38,7 @@ public class WorldConfig {
     private String templateKey;
     private boolean fire, tnt;
 
-    private Location home = null;
+    public Location home = null;
 
     private WorldConfig(String worldname) {
         if (!exists(worldname))
@@ -496,9 +496,9 @@ public class WorldConfig {
     /**
      * @param loc the new home of the world
      */
-    public void setHome(Location loc) {
+    /*public void setHome(Location loc) {
         home = loc;
-    }
+    }*/
 
     public String getOwnerName() {
         return ownerName;

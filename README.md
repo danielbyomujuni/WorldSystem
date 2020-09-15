@@ -20,6 +20,6 @@ When a player creates a new world you can also set a template which will then be
 
 ## Useful links
 - Download Resource: https://www.spigotmc.org/resources/49756/
-- Contact author on spigot (rather consider to create an issue here): https://www.spigotmc.org/conversations/add?to=Butzlabben
+- Contact author on spigot (rather consider to create an issue here): https://www.spigotmc.org/conversations/add?to=trainerlord
 - Discord server: https://discord.gg/WYz7Qck
-- Author on Discord: Butzlabben#5298
+- Author on Discord: Trainerlord#3534

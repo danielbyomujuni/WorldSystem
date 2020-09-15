@@ -5,10 +5,10 @@ import lombok.Getter;
 
 public class DatabaseProvider {
     @Getter
-    private static DatabaseProvider instance = new DatabaseProvider();
+    public static DatabaseProvider instance = new DatabaseProvider();
 
     @Getter
-    private final DatabaseUtil util;
+    public final DatabaseUtil util;
 
     private DatabaseProvider() {
         String dbType = PluginConfig.getDatabaseType();

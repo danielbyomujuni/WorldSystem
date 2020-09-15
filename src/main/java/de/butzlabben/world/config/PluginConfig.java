@@ -159,7 +159,7 @@ public class PluginConfig {
     public static Location getSpawn(Player player) {
         YamlConfiguration cfg = getConfig();
         Location location = getLocation(cfg, "spawn.spawnpoint", Bukkit.getWorld(cfg.getString("spawn.spawnpoint.world", "world")));
-        return PlayerPositions.getInstance().injectPlayersLocation(player, location);
+        return PlayerPositions.instance.injectPlayersLocation(player, location);
     }
 
     public static int getRequestExpire() {

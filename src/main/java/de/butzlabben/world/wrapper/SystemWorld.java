@@ -1,23 +1,24 @@
-package de.butzlabben.world.wrapper;
 
-import com.google.common.base.Preconditions;
-import de.butzlabben.world.WorldSystem;
-import de.butzlabben.world.config.*;
-import de.butzlabben.world.event.WorldCreateEvent;
-import de.butzlabben.world.event.WorldLoadEvent;
-import de.butzlabben.world.event.WorldUnloadEvent;
-import de.butzlabben.world.util.PlayerPositions;
-import de.butzlabben.world.util.VersionUtil;
-import org.apache.commons.io.FileUtils;
-import org.bukkit.*;
-import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
+        package de.butzlabben.world.wrapper;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.UUID;
+        import com.google.common.base.Preconditions;
+        import de.butzlabben.world.WorldSystem;
+        import de.butzlabben.world.config.*;
+        import de.butzlabben.world.event.WorldCreateEvent;
+        import de.butzlabben.world.event.WorldLoadEvent;
+        import de.butzlabben.world.event.WorldUnloadEvent;
+        import de.butzlabben.world.util.PlayerPositions;
+        import de.butzlabben.world.util.VersionUtil;
+        import org.apache.commons.io.FileUtils;
+        import org.bukkit.*;
+        import org.bukkit.entity.Player;
+        import org.bukkit.scheduler.BukkitRunnable;
+        import org.bukkit.scheduler.BukkitTask;
+
+        import java.io.File;
+        import java.io.IOException;
+        import java.util.HashMap;
+        import java.util.UUID;
 
 /**
  * This class represents a systemworld, loaded or not
@@ -80,13 +81,13 @@ public class SystemWorld {
     }
 
 
-        /**
-         * Trys to create a new systemworld with all entries etc. finally loads the
-         * world
-         *
-         * @param uniqueID UUID of the player to create the world for
-         * @return whether it succesfull or not
-         */
+    /**
+     * Trys to create a new systemworld with all entries etc. finally loads the
+     * world
+     *
+     * @param uniqueID UUID of the player to create the world for
+     * @return whether it succesfull or not
+     */
     public static boolean create(UUID uniqueID, WorldTemplate template) {
 
         DependenceConfig dc = new DependenceConfig(uniqueID);
@@ -96,7 +97,7 @@ public class SystemWorld {
         String worldname = "ID" + id + "-" + uuid;
         Player p = Bukkit.getPlayer(uniqueID);
 
-        WorldCreator creator = template.getGeneratorSettings().asWorldCreator(worldname);
+        WorldCreator creator = template.generatorSettings.asWorldCreator(worldname);
 
         WorldCreateEvent event = new WorldCreateEvent(uniqueID, creator);
         Bukkit.getPluginManager().callEvent(event);
@@ -200,7 +201,7 @@ public class SystemWorld {
 
         WorldConfig config = WorldConfig.getWorldConfig(worldname);
         for (Player a : w.getPlayers()) {
-            PlayerPositions.getInstance().saveWorldsPlayerLocation(a, config);
+            PlayerPositions.instance.saveWorldsPlayerLocation(a, config);
             a.teleport(PluginConfig.getSpawn(a));
             a.setGameMode(PluginConfig.getSpawnGamemode());
         }
@@ -345,7 +346,7 @@ public class SystemWorld {
             template = WorldTemplateProvider.getInstance().getTemplate(PluginConfig.getDefaultWorldTemplate());
 
         if (template != null)
-            creator = template.getGeneratorSettings().asWorldCreator(worldname);
+            creator = template.generatorSettings.asWorldCreator(worldname);
 
 
         World w = Bukkit.getWorld(worldname);
@@ -393,7 +394,7 @@ public class SystemWorld {
     public void teleportToWorldSpawn(Player p) {
         Preconditions.checkNotNull(p, "player must not be null");
         Preconditions.checkArgument(p.isOnline(), "player must be online");
-        PlayerPositions positions = PlayerPositions.getInstance();
+        PlayerPositions positions = PlayerPositions.instance;
 
         if (creating) {
             p.sendMessage(MessageConfig.getWorldStillCreating());
