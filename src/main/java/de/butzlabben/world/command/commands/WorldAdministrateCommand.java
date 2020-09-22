@@ -27,8 +27,10 @@ public class WorldAdministrateCommand {
     public boolean delMemberCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
+            int worldNumber;
+            worldNumber = Integer.parseInt(args[2]);
         if (args.length < 2) {
-            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws delmember <Player>"));
+            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws delmember <Player> (World Number)"));
             return false;
         }
 
@@ -40,7 +42,7 @@ public class WorldAdministrateCommand {
 
         @SuppressWarnings("deprecation")
         OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
-        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
         if (a == null) {
             p.sendMessage(MessageConfig.getNotRegistered().replaceAll("%player", args[1]));
             return false;
@@ -48,14 +50,14 @@ public class WorldAdministrateCommand {
             p.sendMessage(MessageConfig.getNoMemberOwn());
             return false;
         }
-        WorldRemovememberEvent event = new WorldRemovememberEvent(a.getUniqueId(), dc.getWorldname(), p);
+        WorldRemovememberEvent event = new WorldRemovememberEvent(a.getUniqueId(), dc.getWorldname(worldNumber), p);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
             return false;
 
         if (a.isOnline()) {
             Player t = (Player) a;
-            if (t.getWorld().getName().equals(new DependenceConfig(p).getWorldname())) {
+            if (t.getWorld().getName().equals(new DependenceConfig(p).getWorldname(worldNumber))) {
                 t.teleport(PluginConfig.getSpawn(t));
                 t.setGameMode(PluginConfig.getSpawnGamemode());
             }
@@ -79,6 +81,8 @@ public class WorldAdministrateCommand {
     public boolean deleteCommand(CommandSender sender, Command command, String label, String[] args) {
         CommandSender cs = sender;
 
+        int worldNumber;
+        worldNumber = Integer.parseInt(args[1]);
         if (args.length < 2) {
             cs.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws delete <Player>"));
             return false;
@@ -90,7 +94,7 @@ public class WorldAdministrateCommand {
             return false;
         }
 
-        String worldname = dc.getWorldname();
+        String worldname = dc.getWorldname(worldNumber);
         SystemWorld sw = SystemWorld.getSystemWorld(worldname);
         WorldDeleteEvent event = new WorldDeleteEvent(cs, sw);
         Bukkit.getPluginManager().callEvent(event);
@@ -141,8 +145,10 @@ public class WorldAdministrateCommand {
     public boolean addMemberCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
+            int worldNumber;
+            worldNumber = Integer.parseInt(args[2]);
         if (args.length < 2) {
-            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws addmember <Player>"));
+            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws addmember <Player> (World Number)"));
             return false;
         }
 
@@ -153,7 +159,7 @@ public class WorldAdministrateCommand {
         }
         @SuppressWarnings("deprecation")
         OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
-        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
         if (a == null) {
             p.sendMessage(MessageConfig.getNotRegistered().replaceAll("%player", args[1]));
             return false;
@@ -162,7 +168,7 @@ public class WorldAdministrateCommand {
             return false;
         }
 
-        WorldAddmemberEvent event = new WorldAddmemberEvent(a.getUniqueId(), dc.getWorldname(), p);
+        WorldAddmemberEvent event = new WorldAddmemberEvent(a.getUniqueId(), dc.getWorldname(worldNumber), p);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
             return false;
@@ -185,8 +191,10 @@ public class WorldAdministrateCommand {
     public boolean toggleTeleportCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
+            int worldNumber;
+            worldNumber = Integer.parseInt(args[2]);
             if (args.length < 2) {
-                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws toggletp <Player>"));
+                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws toggletp <Player> {World Number}"));
                 return false;
             }
 
@@ -197,12 +205,12 @@ public class WorldAdministrateCommand {
             }
             @SuppressWarnings("deprecation")
             OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
-            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
             if (!wc.isMember(a.getUniqueId())) {
                 p.sendMessage(MessageConfig.getNoMemberOwn());
                 return false;
             }
-            WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
+            WorldPlayer wp = new WorldPlayer(a, dc.getWorldname(worldNumber));
             if (wp.isOwnerofWorld()) {
                 p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
                 return false;
@@ -222,8 +230,10 @@ public class WorldAdministrateCommand {
     public boolean toggleGamemodeCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
+            int worldNumber;
+            worldNumber = Integer.parseInt(args[2]);
         if (args.length < 2) {
-            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglegm <Player>"));
+            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglegm <Player> {World Number}"));
             return false;
         }
 
@@ -234,12 +244,12 @@ public class WorldAdministrateCommand {
         }
         @SuppressWarnings("deprecation")
         OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
-        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
         if (!wc.isMember(a.getUniqueId())) {
             p.sendMessage(MessageConfig.getNoMemberOwn());
             return false;
         }
-        WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
+        WorldPlayer wp = new WorldPlayer(a, dc.getWorldname(worldNumber));
         if (wp.isOwnerofWorld()) {
             p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
             return false;
@@ -259,8 +269,10 @@ public class WorldAdministrateCommand {
     public boolean toggleWorldeditCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
+            int worldNumber;
+            worldNumber = Integer.parseInt(args[2]);
             if (args.length < 2) {
-                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglewe <Player>"));
+                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglewe <Player> {World Number}"));
                 return false;
             }
 
@@ -271,12 +283,12 @@ public class WorldAdministrateCommand {
             }
             @SuppressWarnings("deprecation")
             OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
-            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
             if (!wc.isMember(a.getUniqueId())) {
                 p.sendMessage(MessageConfig.getNoMemberOwn());
                 return false;
             }
-            WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
+            WorldPlayer wp = new WorldPlayer(a, dc.getWorldname(worldNumber));
             if (wp.isOwnerofWorld()) {
                 p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
                 return false;
@@ -296,8 +308,10 @@ public class WorldAdministrateCommand {
     public boolean toggleBuildCommand(CommandSender sender, Command command, String label, String[] args) {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
+                int worldNumber;
+                worldNumber = Integer.parseInt(args[2]);
             if (args.length < 2) {
-                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglebuild <Player>"));
+                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglebuild <Player> {World Number}"));
                 return false;
             }
 
@@ -308,12 +322,12 @@ public class WorldAdministrateCommand {
             }
             @SuppressWarnings("deprecation")
             OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
-            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
             if (!wc.isMember(a.getUniqueId())) {
                 p.sendMessage(MessageConfig.getNoMemberOwn());
                 return false;
             }
-            WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
+            WorldPlayer wp = new WorldPlayer(a, dc.getWorldname(worldNumber));
             if (wp.isOwnerofWorld()) {
                 p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
                 return false;

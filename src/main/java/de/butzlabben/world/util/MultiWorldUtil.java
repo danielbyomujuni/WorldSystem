@@ -10,7 +10,7 @@ import java.util.*;
 
 public class MultiWorldUtil {
     //Done
-    Dictionary playerWorldList = new Hashtable();
+    private Dictionary playerWorldList = new Hashtable();
 
     public static File getWorldList(String uuid) {
         File worldList = new File(PluginConfig.getWorlddir()+ "/" + uuid  + "/worldlist.yml");
@@ -26,7 +26,7 @@ public class MultiWorldUtil {
 
     public static void create(UUID uuid) {
         DependenceConfig dc = new DependenceConfig(uuid);
-        String worldname = dc.getWorldname();
+        String worldname = dc.getWorldname(); //TODO Figure it Out (add Parameter)
         File file = new File(PluginConfig.getWorlddir() + uuid + "/worldlist.yml");
         try {
             file.createNewFile();
@@ -72,7 +72,6 @@ public class MultiWorldUtil {
             }
         }
         cfg.set("WorldList", worlds);
-
         cfg.save(file);
         return this;
     }

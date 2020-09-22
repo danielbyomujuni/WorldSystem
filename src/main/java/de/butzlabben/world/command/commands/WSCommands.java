@@ -83,6 +83,8 @@ public class WSCommands {
 
             // create New Entry
             DependenceConfig dc = new DependenceConfig(p);
+
+            //TODO Change To Add Multi World Support
             if (dc.hasWorld()) {
                 p.sendMessage(MessageConfig.getWorldAlreadyExists());
                 return false;
@@ -131,11 +133,13 @@ public class WSCommands {
         }
 
     }
+    //TODO Add ARGs
     public boolean homeCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (sender instanceof Player) {
             Player p = (Player) sender;
-
+            int worldNumber;
+            worldNumber = Integer.parseInt(args[1]);
             String worldname = p.getWorld().getName();
             DependenceConfig dc = new DependenceConfig(p);
             if (!dc.hasWorld()) {
@@ -146,7 +150,7 @@ public class WSCommands {
             if (wp.isOnSystemWorld()) {
                 SystemWorld.tryUnloadLater(Bukkit.getWorld(worldname));
             }
-            SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname());
+            SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname(worldNumber));
             if (sw == null) {
                 p.sendMessage(MessageConfig.getNoWorldOwn());
                 return false;
@@ -227,15 +231,19 @@ public class WSCommands {
         }
     }
 
-
+    //TODO Add ARGs
     public boolean tpCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        int worldNumber;
         if (sender instanceof Player) {
             Player p = (Player) sender;
             if (args.length < 2) {
-                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws tp <World>"));
+                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws tp <World> (World Number)"));
                 return false;
             }
+            worldNumber = Integer.parseInt(args[2]);
+            /*if (worldNumber == null) {
+                worldNumber = 0;
+            }*/
 
             if (args[1].equalsIgnoreCase(p.getName()) || args[1].equalsIgnoreCase(p.getUniqueId().toString())) {
                 p.chat("/ws home");
@@ -244,7 +252,7 @@ public class WSCommands {
 
 
             DependenceConfig dc = new DependenceConfig(args[1]);
-            String worldname = dc.getWorldNameByOfflinePlayer();
+            String worldname = dc.getWorldNameByOfflinePlayer(worldNumber);
             if (!dc.hasWorld()) {
                 p.sendMessage(MessageConfig.getNoWorldOther());
                 return false;

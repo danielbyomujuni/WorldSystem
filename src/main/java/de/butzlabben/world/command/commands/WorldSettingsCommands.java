@@ -33,9 +33,10 @@ public class WorldSettingsCommands {
     public boolean resetCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-
+            int worldNumber;
+            worldNumber = Integer.parseInt(args[2]);
         DependenceConfig dc = new DependenceConfig(p);
-        String worldname = dc.getWorldname();
+        String worldname = dc.getWorldname(worldNumber);
         SystemWorld sw = SystemWorld.getSystemWorld(worldname);
         if (!dc.hasWorld()) {
             p.sendMessage(MessageConfig.getNoWorldOwn());
@@ -160,10 +161,12 @@ public class WorldSettingsCommands {
     public boolean tntCommand(CommandSender sender, Command command, String label, String[] args) {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
+                int worldNumber;
+                worldNumber = Integer.parseInt(args[1]);
             DependenceConfig dc = new DependenceConfig(p);
-            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
             boolean tnt = wc.isTnt();
-            WorldToggleTntEvent event = new WorldToggleTntEvent(p, SystemWorld.getSystemWorld(dc.getWorldname()), tnt);
+            WorldToggleTntEvent event = new WorldToggleTntEvent(p, SystemWorld.getSystemWorld(dc.getWorldname(worldNumber)), tnt);
             Bukkit.getPluginManager().callEvent(event);
             if (event.isCancelled())
                 return false;
@@ -191,10 +194,12 @@ public class WorldSettingsCommands {
     public boolean fireCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
+            int worldNumber;
+            worldNumber = Integer.parseInt(args[1]);
         DependenceConfig dc = new DependenceConfig(p);
-        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
         boolean fire = wc.isFire();
-        WorldToggleFireEvent event = new WorldToggleFireEvent(p, SystemWorld.getSystemWorld(dc.getWorldname()), fire);
+        WorldToggleFireEvent event = new WorldToggleFireEvent(p, SystemWorld.getSystemWorld(dc.getWorldname(worldNumber)), fire);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
             return false;

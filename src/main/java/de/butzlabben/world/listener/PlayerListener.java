@@ -29,7 +29,7 @@ public class PlayerListener implements Listener {
             Player p = e.getPlayer();
             DependenceConfig dc = new DependenceConfig(p);
             if (dc.hasWorld()) {
-                SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname());
+                SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname()); //TODO Figure it Out
                 if (sw != null && !sw.isLoaded()) {
                     e.getPlayer().teleport(PluginConfig.getSpawn(e.getPlayer()));
                 }
@@ -45,7 +45,7 @@ public class PlayerListener implements Listener {
         // Save last location for #23
         if (player.isOnSystemWorld()) {
             WorldConfig config = WorldConfig.getWorldConfig(player.getWorldname());
-            PlayerPositions.getInstance().saveWorldsPlayerLocation(p, config);
+            PlayerPositions.instance.saveWorldsPlayerLocation(p, config);
         }
         SystemWorld.tryUnloadLater(w);
     }

@@ -60,6 +60,10 @@ public class SystemWorld {
         }
         return null;
     }
+    @SuppressWarnings("unchecked")
+    public static UUID getOwnerUUID(String worldname) {
+       return WorldConfig.getWorldConfig(worldname).getOwner();
+    }
 
     /**
      * @param w a world in bukkit, no matter if systemworld or not Trys to unload a
@@ -91,7 +95,7 @@ public class SystemWorld {
     public static boolean create(UUID uniqueID, WorldTemplate template) {
         String worlddir = PluginConfig.getWorlddir();
         String uuid = uniqueID.toString();
-        File worldList = new File(worlddir + "/" + uuid + "/worlds.dat");
+        File worldList = new File(worlddir + uuid + "/worlds.dat");
         if (worldList.exists()) {
             //TODO Create worlds.dat
         }
@@ -129,12 +133,12 @@ public class SystemWorld {
         WorldConfig.create(uniqueID, template);
 
         // Move World into Server dir
-        File world = new File(worlddir + "/" + worldname); //TODO Update Path
+        File world = new File(worlddir + "/" + uuid + "/" + worldname); //TODO Update Path
         if (!world.exists()) {
             world = new File(Bukkit.getWorldContainer(), worldname);
         } else {
             if (new File(Bukkit.getWorldContainer(), worldname).exists()
-                    && new File(PluginConfig.getWorlddir() + "/" + worldname).exists()) {//TODO Update Path
+                    && new File(PluginConfig.getWorlddir() + uuid + "/" + worldname).exists()) {//TODO Update Path
                 try {
                     FileUtils.deleteDirectory(new File(Bukkit.getWorldContainer(), worldname));
                 } catch (IOException e) {
@@ -145,6 +149,7 @@ public class SystemWorld {
                 FileUtils.moveDirectoryToDirectory(world, Bukkit.getWorldContainer(), false);
             } catch (IOException e) {
                 if (p != null && p.isOnline())
+                    System.out.println(world);
                     p.sendMessage(PluginConfig.getPrefix() + "§cError: " + e.getMessage());
                 System.err.println("Couldn't load world of " + uuid);
                 e.printStackTrace();
@@ -210,7 +215,7 @@ public class SystemWorld {
         if (unloading) {
             if (Bukkit.unloadWorld(w, true)) {
                 File worldinserver = new File(Bukkit.getWorldContainer(), worldname);
-                File worlddir = new File(PluginConfig.getWorlddir());//TODO Update Path
+                File worlddir = new File(PluginConfig.getWorlddir() + getOwnerUUID(worldname));//TODO Update Path
                 try {
                     FileUtils.moveDirectoryToDirectory(worldinserver, worlddir, false);//TODO Update Path
                     Bukkit.getWorlds().remove(w);
@@ -262,7 +267,7 @@ public class SystemWorld {
             if (unloading && w.getPlayers().size() == 0) {
                 if (Bukkit.unloadWorld(w, true)) {
                     File worldinserver = new File(Bukkit.getWorldContainer(), worldname);
-                    File worlddir = new File(PluginConfig.getWorlddir());//TODO Update Path
+                    File worlddir = new File(PluginConfig.getWorlddir() + getOwnerUUID(worldname));//TODO Update Path
                     try {
                         FileUtils.moveDirectoryToDirectory(worldinserver, worlddir, false);//TODO Update Path
                         Bukkit.getWorlds().remove(w);
@@ -306,7 +311,7 @@ public class SystemWorld {
 
         // Move World into Server dir
         String worlddir = PluginConfig.getWorlddir();
-        File world = new File(worlddir + "/" + worldname); //TODO Update Path
+        File world = new File(worlddir + getOwnerUUID(worldname) + "/" + worldname); //TODO Update Path
 
         if (world.exists()) {
             // Check for duplicated worlds
@@ -365,7 +370,7 @@ public class SystemWorld {
 
         OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
         DependenceConfig dc = new DependenceConfig(owner);
-        dc.setLastLoaded();
+        dc.setLastLoaded(); //TODO Figure it out
     }
 
     /**
@@ -382,7 +387,7 @@ public class SystemWorld {
         if (worldAsDir.exists()) {
             return true;
         }
-        worldAsDir = new File(PluginConfig.getWorlddir() + "/" + worldname + "/worldconfig.yml");
+        worldAsDir = new File(PluginConfig.getWorlddir() + getOwnerUUID(worldname) + "/" + worldname + "/worldconfig.yml");
         return worldAsDir.exists();
     }
 
@@ -426,7 +431,7 @@ public class SystemWorld {
 
         OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
         DependenceConfig dc = new DependenceConfig(owner);
-        dc.setLastLoaded();
+        dc.setLastLoaded(); //TODO Figure it out
     }
 
     /**
