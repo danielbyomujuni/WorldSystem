@@ -83,15 +83,14 @@ public class WSCommands {
 
             // create New Entry
             DependenceConfig dc = new DependenceConfig(p);
-
-            //TODO Change To Add Multi World Support
-            if (dc.hasWorld()) {
+            /*if (dc.hasWorld()) {
                 p.sendMessage(MessageConfig.getWorldAlreadyExists());
                 return false;
-            }
+            }*/
 
-
+            int addWorld = dc.worldCount() + 1;
             if (PluginConfig.isMultiChoose()) {
+
                 if (args.length > 1) {
                     String key = args[1];
                     WorldTemplate template = WorldTemplateProvider.getInstance().getTemplate(key);
@@ -110,8 +109,9 @@ public class WSCommands {
                             }
                             MoneyUtil.removeMoney(p.getUniqueId(), template.getCost());
                         }
+                        //TODO MultiWorld Check
 
-                        this.create(p, template);
+                        this.create(p, template, addWorld);
                         return false;
                     }
                 }
@@ -120,7 +120,8 @@ public class WSCommands {
                 WorldTemplate template = WorldTemplateProvider.getInstance()
                         .getTemplate(PluginConfig.getDefaultWorldTemplate());
                 if (template != null)
-                    this.create(p, template);
+                    //TODO MultiWorld Check
+                    this.create(p, template, addWorld);
                 else {
                     p.sendMessage(PluginConfig.getPrefix() + "§cError in config at \"worldtemplates.default\"");
                     p.sendMessage(PluginConfig.getPrefix() + "§cPlease contact an administrator");
@@ -131,20 +132,34 @@ public class WSCommands {
             sender.sendMessage("No Console"); //TODO Add Config
             return false;
         }
-
     }
-    //TODO Add ARGs
     public boolean homeCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            int worldNumber;
-            worldNumber = Integer.parseInt(args[1]);
+
             String worldname = p.getWorld().getName();
             DependenceConfig dc = new DependenceConfig(p);
             if (!dc.hasWorld()) {
                 p.sendMessage(MessageConfig.getNoWorldOwn());
                 return false;
+            }
+            int worldNumber;
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
+            }
+
+            if (worldNumber >= dc.worldCount()) {
+                worldNumber = dc.worldCount();
             }
             WorldPlayer wp = new WorldPlayer(p, worldname);
             if (wp.isOnSystemWorld()) {
@@ -156,9 +171,9 @@ public class WSCommands {
                 return false;
             }
             if (sw.isLoaded()) {
-                sw.teleportToWorldSpawn(p);
+                sw.teleportToWorldSpawn(p, worldNumber);
             } else {
-                sw.load(p);
+                sw.load(p, worldNumber);
             }
             return true;
         } else {
@@ -231,23 +246,32 @@ public class WSCommands {
         }
     }
 
-    //TODO Add ARGs
+
     public boolean tpCommand(CommandSender sender, Command command, String label, String[] args) {
-        int worldNumber;
+
         if (sender instanceof Player) {
             Player p = (Player) sender;
             if (args.length < 2) {
-                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws tp <World> (World Number)"));
+                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws tp <World> {World Number}"));
                 return false;
             }
-            worldNumber = Integer.parseInt(args[2]);
-            /*if (worldNumber == null) {
-                worldNumber = 0;
-            }*/
 
             if (args[1].equalsIgnoreCase(p.getName()) || args[1].equalsIgnoreCase(p.getUniqueId().toString())) {
                 p.chat("/ws home");
                 return false;
+            }
+            int worldNumber;
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
             }
 
 
@@ -261,7 +285,7 @@ public class WSCommands {
             WorldPlayer wp1 = new WorldPlayer(p, p.getWorld().getName());
             WorldPlayer wp = new WorldPlayer(p, worldname);
             if (p.getWorld().getName().equals(worldname)) {
-                sw.teleportToWorldSpawn(p);
+                sw.teleportToWorldSpawn(p, worldNumber);
                 return false;
             }
             if (!p.hasPermission("ws.tp.world")) {
@@ -276,9 +300,9 @@ public class WSCommands {
             }
             if (sw != null) {
                 if (!sw.isLoaded()) {
-                    sw.load(p);
+                    sw.load(p, worldNumber);
                 } else {
-                    sw.teleportToWorldSpawn(p);
+                    sw.teleportToWorldSpawn(p, worldNumber);
                 }
             }
             return true;
@@ -289,9 +313,9 @@ public class WSCommands {
     }
 
 
-    private void create(Player p, WorldTemplate template) {
+    private void create(Player p, WorldTemplate template, int WorldNumber) {
         Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> {
-            if (SystemWorld.create(p, template))
+            if (SystemWorld.create(p, template, WorldNumber))
                 p.sendMessage(MessageConfig.getSettingUpWorld());
         });
     }

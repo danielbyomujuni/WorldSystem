@@ -47,11 +47,11 @@ public class PapiExtension extends PlaceholderExpansion {
                 if (!config.hasWorld())
                     return "none";
                 else
-                    return config.getWorldname();//TODO Figure it Out
+                    return config.getWorldname(0);//TODO MultiWorlds
             case "world_of_player_loaded":
                 if (!config.hasWorld())
                     return "none";
-                return SystemWorld.getSystemWorld(config.getWorldname()).isLoaded() + "";//TODO Figure it Out
+                return SystemWorld.getSystemWorld(config.getWorldname(0)).isLoaded() + ""; //TODO MultiWorlds
             case "pretty_world_name":
                 if (!p.isOnline()) {
                     if (!config.hasWorld()) {

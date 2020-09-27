@@ -43,8 +43,8 @@ public class WorldConfig {
     private WorldConfig(String worldname) {
         if (!exists(worldname))
             throw new IllegalArgumentException("WorldConfig doesn't exist");
-            owner = UUID.fromString(worldname.substring(worldname.length() - 36));
-            id = Integer.parseInt(worldname.split("-")[0].substring(2));
+        owner = UUID.fromString(worldname.substring(worldname.length() - 36));
+        id = Integer.parseInt(worldname.split("-")[0].substring(2));
     }
 
     public static File getWorldFile(String worldname) {
@@ -81,10 +81,10 @@ public class WorldConfig {
         return instances.get(worldname).load();
     }
 
-    public static void create(UUID uuid, WorldTemplate template, int Worldnumber) {
+    public static void create(UUID uuid, WorldTemplate template, int WorldNumber) {
         DependenceConfig dc = new DependenceConfig(uuid);
-        String worldname = dc.getWorldname(Worldnumber);
-        File file = new File(PluginConfig.getWorlddir() + uuid + "/" + worldname + "/worldconfig.yml");
+        String worldname = dc.getWorldname(WorldNumber);
+        File file = new File(PluginConfig.getWorlddir() + worldname + "/worldconfig.yml");
         try {
             file.createNewFile();
         } catch (IOException e1) {
@@ -92,7 +92,7 @@ public class WorldConfig {
             System.err.println("Error while creating worldconfig for " + uuid.toString());
         }
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
-        cfg.set("Informations.ID", dc.getID(Worldnumber));
+        cfg.set("Informations.ID", dc.getID(WorldNumber));
         cfg.set("Informations.Owner.PlayerUUID", uuid.toString());
         cfg.set("Informations.Owner.Actualname", Objects.requireNonNull(Bukkit.getOfflinePlayer(uuid)).getName());
         cfg.set("Informations.template_key", template.getName());
@@ -224,7 +224,6 @@ public class WorldConfig {
     /**
      * @return the owner of this world
      */
-
     public UUID getOwner() {
         return owner;
     }

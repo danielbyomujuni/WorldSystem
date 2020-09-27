@@ -14,8 +14,8 @@ import java.io.File;
 public class FireStatus implements DependListener {
 
     @Override
-    public ItemStack getItemStack(Player p, WorldPlayer wp) {//TODO Figure it Out
-        String worldname = new DependenceConfig(p).getWorldname();
+    public ItemStack getItemStack(Player p, WorldPlayer wp) {
+        String worldname = new DependenceConfig(p).getWorldname(0);//TODO MultiWorlds
         File file = new File(worldname + "/worldconfig.yml");
         if (!file.exists())
             file = new File(PluginConfig.getWorlddir() + "/worldconfig.yml");

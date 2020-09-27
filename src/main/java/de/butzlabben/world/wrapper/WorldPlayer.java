@@ -23,17 +23,15 @@ public class WorldPlayer {
 
     private final OfflinePlayer p;
     private final String worldname;
-    private final int worldNumber;
 
-    public WorldPlayer(OfflinePlayer p, String worldname, int WorldNumber) {
+    public WorldPlayer(OfflinePlayer p, String worldname) {
         this.p = p;
         this.worldname = worldname;
-        this.worldNumber = WorldNumber;
     }
 
     public WorldPlayer(Player p) {
         this(p, p.getWorld().getName());
-    }//TODO Figure it out
+    }
 
     /**
      * @return the worldname, where the worldplayer object was created for
@@ -42,9 +40,6 @@ public class WorldPlayer {
         return worldname;
     }
 
-    public int getWorldnumber() {
-        return worldNumber;
-    }
     /**
      * toggles building for this player
      *

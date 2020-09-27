@@ -7,7 +7,7 @@ buildscript {
 
 plugins {
     id 'com.github.johnrengelman.shadow' version '6.0.0'
-    id 'kr.entree.spigradle' version '2.1.2'
+    id 'kr.entree.spigradle' version '2.2.3'
     id 'java'
     id 'jacoco'
 }
@@ -173,7 +173,7 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:2.10.9'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
     compileOnly 'com.mojang:authlib:1.5.25'
-	compileOnly 'org.projectlombok:lombok:1.18.4'
+	compileOnly 'org.projectlombok:lombok:1.18.12'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.0.0-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.0.0-SNAPSHOT'
     compile files('C:/Users/train/Desktop/Programing/Git/worldsystem/lib/commons-io-2.7.jar')

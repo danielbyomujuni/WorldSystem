@@ -27,12 +27,23 @@ public class WorldAdministrateCommand {
     public boolean delMemberCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            int worldNumber;
-            worldNumber = Integer.parseInt(args[2]);
         if (args.length < 2) {
-            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws delmember <Player> (World Number)"));
+            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws delmember <Player> {World Number}"));
             return false;
         }
+            int worldNumber;
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
+            }
 
         DependenceConfig dc = new DependenceConfig(p);
         if (!dc.hasWorld()) {
@@ -81,11 +92,22 @@ public class WorldAdministrateCommand {
     public boolean deleteCommand(CommandSender sender, Command command, String label, String[] args) {
         CommandSender cs = sender;
 
-        int worldNumber;
-        worldNumber = Integer.parseInt(args[1]);
         if (args.length < 2) {
-            cs.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws delete <Player>"));
+            cs.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws delete <Player> {World Number}"));
             return false;
+        }
+        int worldNumber;
+        try
+        {
+            if (args.length > 1) {
+                worldNumber = Integer.parseInt(args[1]);
+            } else {
+                worldNumber = 1;
+            }
+        }
+        catch (NumberFormatException e)
+        {
+            worldNumber = 1;
         }
 
         DependenceConfig dc = new DependenceConfig(args[1]);
@@ -145,12 +167,23 @@ public class WorldAdministrateCommand {
     public boolean addMemberCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            int worldNumber;
-            worldNumber = Integer.parseInt(args[2]);
         if (args.length < 2) {
-            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws addmember <Player> (World Number)"));
+            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws addmember <Player> {World Number}"));
             return false;
         }
+            int worldNumber;
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
+            }
 
         DependenceConfig dc = new DependenceConfig(p);
         if (!dc.hasWorld()) {
@@ -191,11 +224,22 @@ public class WorldAdministrateCommand {
     public boolean toggleTeleportCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            int worldNumber;
-            worldNumber = Integer.parseInt(args[2]);
             if (args.length < 2) {
                 p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws toggletp <Player> {World Number}"));
                 return false;
+            }
+            int worldNumber;
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
             }
 
             DependenceConfig dc = new DependenceConfig(p);
@@ -230,12 +274,23 @@ public class WorldAdministrateCommand {
     public boolean toggleGamemodeCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            int worldNumber;
-            worldNumber = Integer.parseInt(args[2]);
         if (args.length < 2) {
             p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglegm <Player> {World Number}"));
             return false;
         }
+            int worldNumber;
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
+            }
 
         DependenceConfig dc = new DependenceConfig(p);
         if (!dc.hasWorld()) {
@@ -269,11 +324,22 @@ public class WorldAdministrateCommand {
     public boolean toggleWorldeditCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            int worldNumber;
-            worldNumber = Integer.parseInt(args[2]);
             if (args.length < 2) {
                 p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglewe <Player> {World Number}"));
                 return false;
+            }
+            int worldNumber;
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
             }
 
             DependenceConfig dc = new DependenceConfig(p);
@@ -308,12 +374,23 @@ public class WorldAdministrateCommand {
     public boolean toggleBuildCommand(CommandSender sender, Command command, String label, String[] args) {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
-                int worldNumber;
-                worldNumber = Integer.parseInt(args[2]);
             if (args.length < 2) {
                 p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglebuild <Player> {World Number}"));
                 return false;
             }
+                int worldNumber;
+                try
+                {
+                    if (args.length > 1) {
+                        worldNumber = Integer.parseInt(args[1]);
+                    } else {
+                        worldNumber = 1;
+                    }
+                }
+                catch (NumberFormatException e)
+                {
+                    worldNumber = 1;
+                }
 
             DependenceConfig dc = new DependenceConfig(p);
             if (!dc.hasWorld()) {

@@ -50,23 +50,25 @@ public class DependenceConfig {
         return dcfg.getInt("HighestID");
     }
 
-    public static void checkWorlds() {//TODO Bug Fix?
+    public static void checkWorlds() {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
 
         long deleteTime = 1000 * 60 * 60 * 24 * PluginConfig.deleteAfter();
         long now = System.currentTimeMillis();
         for (String s : cfg.getConfigurationSection("Dependences").getKeys(false)) {
-            for (String w : cfg.getConfigurationSection("Dependences." + s).getKeys(false)) {
-                if (!cfg.isLong("Dependences." + s + "." + w + ".last_loaded") && !cfg.isInt("Dependences." + s + ".last_loaded"))
+            for (String t : cfg.getConfigurationSection("Dependences." + s).getKeys(false)) {
+
+                if (!cfg.isLong("Dependences." + s + "." + t + ".last_loaded") && !cfg.isInt("Dependences." + s + ".last_loaded"))
                     continue;
-                long lastLoaded = cfg.getLong("Dependences." + s + ".last_loaded");
+                long lastLoaded = cfg.getLong("Dependences." + s + "." + t + ".last_loaded");
                 long diff = now - lastLoaded;
                 if (diff > deleteTime) {
                     Bukkit.getConsoleSender().sendMessage(
-                            PluginConfig.getPrefix() + "World " + w + " of " + s + " was not loaded for too long. Deleting!");
+                            PluginConfig.getPrefix() + "World " + t + " of " + s + " was not loaded for too long. Deleting!");
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ws delete " + s);
                 }
+
             }
         }
     }
@@ -82,14 +84,12 @@ public class DependenceConfig {
         }
     }
 
-    public void refreshName() {//TODO Bug Fix?
+    public void refreshName() {
         if (hasWorld()) {
             File dconfig = new File("plugins//WorldSystem//dependence.yml");
             YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
             String uuid = this.uuid.toString();
-            for (String w : cfg.getConfigurationSection("Dependences." + uuid).getKeys(false)) {
-                cfg.set("Dependences." + uuid + "." + w + ".ActualName", Bukkit.getOfflinePlayer(this.uuid).getName());
-            }
+            cfg.set("Dependences." + uuid + ".ActualName", Bukkit.getOfflinePlayer(this.uuid).getName());
             try {
                 cfg.save(dconfig);
             } catch (IOException e) {
@@ -98,15 +98,24 @@ public class DependenceConfig {
         }
     }
 
-    public void createNewEntry() {//TODO Bug Fix?
+    public void createNewEntry() {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
         String uuid = this.uuid.toString();
         int id = cfg.getInt("HighestID");
+        int worldId;
+        if (cfg.isInt("Dependences." + uuid + ".worlds")) {
+            worldId = cfg.getInt("Dependences." + uuid + ".worlds");
+            worldId++;
+        } else {
+            worldId = 1;
+        }
+        System.out.println(worldId);
         id++;
         cfg.set("HighestID", id);
-        cfg.set("Dependences." + uuid + ".world" + cfg.getConfigurationSection("Dependences." + uuid).getKeys(false).size() + ".ID", id);
-        cfg.set("Dependences." + uuid + ".world" + cfg.getConfigurationSection("Dependences." + uuid).getKeys(false).size() + ".ActualName", Bukkit.getOfflinePlayer(this.uuid).getName());
+        cfg.set("Dependences." + uuid + ".world" + worldId + ".ID", id);
+        cfg.set("Dependences." + uuid + ".ActualName", Bukkit.getOfflinePlayer(this.uuid).getName());
+        cfg.set("Dependences." + uuid + ".worlds", worldId);
         try {
             cfg.save(dconfig);
         } catch (IOException e) {
@@ -114,43 +123,47 @@ public class DependenceConfig {
         }
     }
 
-    public boolean hasWorld() {//TODO Bug Fix?
+    public boolean hasWorld() {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
         String uuid = this.uuid.toString();
         //Fix for #40
-        if (cfg.getConfigurationSection("Dependences." + uuid).getKeys(false).size() >= 0) {
-            return true;
-        }
-        return false;
+        return cfg.isInt("Dependences." + uuid + ".worlds");
+    }
+    public int worldCount() {
+        File dconfig = new File("plugins//WorldSystem//dependence.yml");
+        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
+        String uuid = this.uuid.toString();
+        //Fix for #40
+        return cfg.getInt("Dependences." + uuid + ".worlds");
     }
 
-    public String getWorldname(int WorldNumber) {//TODO Bug Fix?
+    public String getWorldname(int worldId) {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration dcfg = YamlConfiguration.loadConfiguration(dconfig);
         String uuid = this.uuid.toString();
-        int id = dcfg.getInt("Dependences." + uuid + ".world" + WorldNumber + ".ID");
+        int id = dcfg.getInt("Dependences." + uuid + ".world" + worldId + ".ID");
         return "ID" + id + "-" + uuid;
     }
 
-    public String getWorldNameByOfflinePlayer(int WorldNumber) {//TODO Bug Fix?
+    public String getWorldNameByOfflinePlayer(int worldId) {
         String name;
         String uuid = this.uuid.toString();
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
-        if (cfg.getString("Dependences." + uuid + ".world" + WorldNumber + ".ActualName") == null) {
+        if (cfg.getString("Dependences." + uuid + ".ActualName") == null) {
             name = "n";
         } else {
-            name = "ID" + cfg.getInt("Dependences." + uuid + ".world" + WorldNumber + ".ID") + "-" + uuid;
+            name = "ID" + cfg.getInt("Dependences." + uuid + ".world" + worldId + ".ID") + "-" + uuid;
         }
         return name;
     }
 
-    public void setLastLoaded(int WorldNumber) {//TODO Bug Fix?
+    public void setLastLoaded(int worldId) {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
         String uuid = this.uuid.toString();
-        cfg.set("Dependences." + uuid + ".world" + WorldNumber + ".last_loaded", System.currentTimeMillis());
+        cfg.set("Dependences." + uuid + ".world" + worldId + ".last_loaded", System.currentTimeMillis());
         try {
             cfg.save(dconfig);
         } catch (IOException e) {
@@ -158,10 +171,10 @@ public class DependenceConfig {
         }
     }
 
-    public int getID(int WorldNumber) {//TODO Bug Fix?top
+    public int getID(int worldId) {
         File dconfig = new File("plugins//WorldSystem//dependence.yml");
         YamlConfiguration dcfg = YamlConfiguration.loadConfiguration(dconfig);
-        return dcfg.getInt("Dependences." + this.uuid.toString() + ".world" + WorldNumber + ".ID");
+        return dcfg.getInt("Dependences." + this.uuid.toString() + ".world" + worldId + ".ID");
     }
 
     public OfflinePlayer getOwner() {

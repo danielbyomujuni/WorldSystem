@@ -33,9 +33,21 @@ public class WorldSettingsCommands {
     public boolean resetCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            int worldNumber;
-            worldNumber = Integer.parseInt(args[2]);
+
         DependenceConfig dc = new DependenceConfig(p);
+            int worldNumber;
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
+            }
         String worldname = dc.getWorldname(worldNumber);
         SystemWorld sw = SystemWorld.getSystemWorld(worldname);
         if (!dc.hasWorld()) {
@@ -162,7 +174,18 @@ public class WorldSettingsCommands {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
                 int worldNumber;
-                worldNumber = Integer.parseInt(args[1]);
+                try
+                {
+                    if (args.length > 1) {
+                        worldNumber = Integer.parseInt(args[1]);
+                    } else {
+                        worldNumber = 1;
+                    }
+                }
+                catch (NumberFormatException e)
+                {
+                    worldNumber = 1;
+                }
             DependenceConfig dc = new DependenceConfig(p);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
             boolean tnt = wc.isTnt();
@@ -195,7 +218,18 @@ public class WorldSettingsCommands {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             int worldNumber;
-            worldNumber = Integer.parseInt(args[1]);
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
+            }
         DependenceConfig dc = new DependenceConfig(p);
         WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
         boolean fire = wc.isFire();

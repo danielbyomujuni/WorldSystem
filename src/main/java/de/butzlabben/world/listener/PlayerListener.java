@@ -29,7 +29,7 @@ public class PlayerListener implements Listener {
             Player p = e.getPlayer();
             DependenceConfig dc = new DependenceConfig(p);
             if (dc.hasWorld()) {
-                SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname()); //TODO Figure it Out
+                SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname(0)); //TODO MultiWorlds
                 if (sw != null && !sw.isLoaded()) {
                     e.getPlayer().teleport(PluginConfig.getSpawn(e.getPlayer()));
                 }
