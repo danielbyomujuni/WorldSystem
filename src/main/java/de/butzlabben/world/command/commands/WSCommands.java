@@ -22,6 +22,8 @@ import org.bukkit.entity.Player;
 import java.util.Iterator;
 import java.util.List;
 
+import static de.butzlabben.world.config.SettingsConfig.worldLimit;
+
 public class WSCommands {
     public boolean mainCommand(CommandSender sender, Command command, String label, String[] args) {
         CommandSender cs = sender;
@@ -109,9 +111,13 @@ public class WSCommands {
                             }
                             MoneyUtil.removeMoney(p.getUniqueId(), template.getCost());
                         }
-                        //TODO MultiWorld Check
-
-                        this.create(p, template, addWorld);
+                        // MultiWorld Check
+                        for (String string : worldLimit.keySet()) {
+                            if (p.hasPermission(string) && dc.worldCount() < worldLimit.get(string)) {
+                                this.create(p, template, addWorld);
+                                return true;
+                            }
+                        }
                         return false;
                     }
                 }
@@ -120,8 +126,12 @@ public class WSCommands {
                 WorldTemplate template = WorldTemplateProvider.getInstance()
                         .getTemplate(PluginConfig.getDefaultWorldTemplate());
                 if (template != null)
-                    //TODO MultiWorld Check
-                    this.create(p, template, addWorld);
+                    for (String string : worldLimit.keySet()) {
+                        if (p.hasPermission(string) && dc.worldCount() < worldLimit.get(string)) {
+                            this.create(p, template, addWorld);
+                            return true;
+                        }
+                    }
                 else {
                     p.sendMessage(PluginConfig.getPrefix() + "§cError in config at \"worldtemplates.default\"");
                     p.sendMessage(PluginConfig.getPrefix() + "§cPlease contact an administrator");

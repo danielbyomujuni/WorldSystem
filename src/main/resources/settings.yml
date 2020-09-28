@@ -10,7 +10,13 @@ worldborder:
     # For example, with the permission ws.big you will get a worldborder with the size 1000
     ws.big: 1000
     ws.bigger: 1500
-
+    
+worldLimit:
+  ranks:
+    # Set the world Limit of users
+    ws.worldLimit.default: 1
+    ws.worldLimit.big: 5
+    ws.worldLimit.bigger: 10
   # Set a specialized center which is not the spawn
   center:
     as_spawn: true

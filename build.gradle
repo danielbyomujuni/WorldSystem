@@ -101,13 +101,26 @@ spigot {
             description = 'Gives you a bigger world (if set)'
             defaults = 'op'
         }
-        'ws.large' {
+        'ws.bigger' {
             defaults = 'op'
             children = ['ws.big':true]
         }
         'ws.confirm' {
             description = 'You can confirm (if needed) an auto-update'
             defaults = 'op'
+        }
+        'ws.worldLimit.default' {
+            description = 'Set your World Limit'
+            defaults = true
+        }
+        'ws.worldLimit.big' {
+            description = 'Sets your World Limit Higher'
+            defaults = 'op'
+            children = ['ws.worldLimit.default':true]
+        }
+        'ws.worldLimit.bigger' {
+            defaults = 'op'
+            children = ['ws.worldLimit.default':true,'ws.worldLimit.big':true]
         }
     }
     load = STARTUP

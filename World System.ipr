@@ -21,10 +21,10 @@
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
-        <option name="bungeeAnnotationResultPath" value="C:\Users\train\Desktop\World System\build\spigradle\bungee_main" />
-        <option name="nukkitAnnotationResultPath" value="C:\Users\train\Desktop\World System\build\spigradle\nukkit_main" />
-        <option name="pluginAnnotationResultPath" value="C:\Users\train\Desktop\World System\build\spigradle\plugin_main" />
-        <option name="spigotAnnotationResultPath" value="C:\Users\train\Desktop\World System\build\spigradle\spigot_main" />
+        <option name="bungeeAnnotationResultPath" value="C:\Users\train\Desktop\Programing\Git\worldsystem\build\spigradle\bungee_main" />
+        <option name="nukkitAnnotationResultPath" value="C:\Users\train\Desktop\Programing\Git\worldsystem\build\spigradle\nukkit_main" />
+        <option name="pluginAnnotationResultPath" value="C:\Users\train\Desktop\Programing\Git\worldsystem\build\spigradle\plugin_main" />
+        <option name="spigotAnnotationResultPath" value="C:\Users\train\Desktop\Programing\Git\worldsystem\build\spigradle\spigot_main" />
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/kr.entree/spigradle-annotations/2.1.1/140e14d5fb373843420f0719f6f83cacc07d8cd1/spigradle-annotations-2.1.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
@@ -41,6 +41,7 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -174,6 +175,9 @@
   </component>
   <component name="SvnBranchConfigurationManager">
     <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
   </component>
   <component name="libraryTable">
     <library name="Gradle: com.github.MilkBowl:VaultAPI:1.7">
