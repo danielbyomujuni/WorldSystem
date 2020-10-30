@@ -45,7 +45,7 @@ public class PlayerListener implements Listener {
         // Save last location for #23
         if (player.isOnSystemWorld()) {
             WorldConfig config = WorldConfig.getWorldConfig(player.getWorldname());
-            PlayerPositions.getInstance().saveWorldsPlayerLocation(p, config);
+            PlayerPositions.instance.saveWorldsPlayerLocation(p, config);
         }
         SystemWorld.tryUnloadLater(w);
     }

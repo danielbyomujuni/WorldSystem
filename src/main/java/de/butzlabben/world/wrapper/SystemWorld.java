@@ -80,6 +80,10 @@ public class SystemWorld {
         return create(p.getUniqueId(), template);
     }
 
+    public static boolean hasWorld(Player p) {
+        DependenceConfig dc = new DependenceConfig(p);
+        return dc.hasWorld();
+    }
 
     /**
      * Trys to create a new systemworld with all entries etc. finally loads the

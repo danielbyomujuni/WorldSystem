@@ -13,6 +13,8 @@ import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import de.butzlabben.world.wrapper.WorldTemplate;
 import de.butzlabben.world.wrapper.WorldTemplateProvider;
+import me.ebonjaeger.perworldinventory.PerWorldInventory;
+import me.ebonjaeger.perworldinventory.api.PerWorldInventoryAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -155,6 +157,12 @@ public class WSCommands {
                 sw.teleportToWorldSpawn(p);
             } else {
                 sw.load(p);
+            }
+            if (PluginConfig.isPerWorldInv()) {
+                PerWorldInventory pwi = (PerWorldInventory) Bukkit.getServer().getPluginManager().getPlugin("PerWorldInventory");
+                PerWorldInventoryAPI api = pwi.getApi();
+                api.getGroupFromWorld(sw.getWorld().getName());
+
             }
             return true;
         } else {

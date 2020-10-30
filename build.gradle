@@ -176,8 +176,9 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.14'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.0.0-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.0.0-SNAPSHOT'
-    compile files('C:/Users/train/Desktop/Programing/Git/worldsystem/lib/commons-io-2.7.jar')
-    compile files('C:/Users/train/Desktop/Programing/Git/worldsystem/lib/FastAsyncWorldEdit.jar')
+    compile files('/lib/commons-io-2.7.jar')
+    compile files('/lib/FastAsyncWorldEdit.jar')
+	compile files('/lib/perworldinventory-kt-2.3.2.jar')
 }
 
 shadowJar {

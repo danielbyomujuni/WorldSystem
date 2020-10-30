@@ -7,6 +7,7 @@ import de.butzlabben.world.config.GuiConfig;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.SettingsConfig;
+import de.butzlabben.world.event.ServerPlayerJoinEvent;
 import de.butzlabben.world.listener.BlockListener;
 import de.butzlabben.world.listener.CommandListener;
 import de.butzlabben.world.listener.PlayerListener;
@@ -120,6 +121,7 @@ public class WorldSystem extends JavaPlugin {
         pm.registerEvents(new PlayerListener(), this);
         pm.registerEvents(new BlockListener(), this);
         pm.registerEvents(new CommandListener(), this);
+        pm.registerEvents(new ServerPlayerJoinEvent(), this);
         if (pm.getPlugin("WorldEdit") != null)
             pm.registerEvents(new WorldEditListener(), this);
 

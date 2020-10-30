@@ -52,7 +52,10 @@ survival: false
 
 # If WorldSystem should load the worlds async if possible (FAWE installed)
 load_worlds_async: true
-
+# If WorldSystem should create a new player a world when they join the server
+create_world_on_join: false
+# If WorldSystem should give each world it's own inventory (PerWorldInv installed)
+PerWorldInventory: false
 # Options for the database saving player positions
 database:
   # Which type should be choosen:
