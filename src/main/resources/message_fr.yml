@@ -1,0 +1,61 @@
+# ===--- AddLight ------------------------------------------------------------------------------------------------=== #
+#                                                                                                                      
+#     Quickly add invisible light sources                                                                              
+#                                                                                                                      
+# ===------------------------------------------------------------------------------------------ © 2017 Hexosse ---=== #
+
+
+chat:
+  prefix: '&3[&bAddLight&3]&r'
+
+# List of Messages used in commands
+commands:
+  help:
+    cmd:
+      - Affiche l'aide de AddLight
+  reload:
+    cmd:
+      - Recharge AddLight
+  eanble:
+    cmd: Autorise la création de lumières!
+  disable:
+    cmd: Interdit la création de lumières!
+  light:
+    level:
+      cmd: L'intensité lumineuse doit êter comprise entre 1 et 15.
+  connectedblocks: Bascule le mode des blocks connectés
+
+# List of messages
+messages:
+  HelpNumber: Défini l'intensité lumineuse (1 - 15)
+  HelpReload: Recharge AddLight!
+  enable: est activé!
+  disable: est désactivé!
+  leftClick: clique gauche avec de la poudre de lumière pour ajouter une lumière!
+  rightClick: clique droit avec de la poudre de lumière pour supprimer une lumière!
+  LightsIntensity: Intensité lumineuse
+  LightsCreated: Lumière crée
+  LightsDeleted: Lumière supprimée
+  Connectedblocks: Blocks connectés
+
+# List of Messages used after a sucess command
+success:
+  relaod: AddLight à été rechragé
+  cost:
+    glowstone: '%s poudre de lumières on été suprimmé de votre inventaire pour la création de lumière.'
+    money: '%s %s on été retiré de votre compte pour la création de lumière.'
+
+# List of error messages
+errors:
+  AccesDenied: Vous n'avez pas la permission de faire ça !
+  UseConnected: Vous n'avez pas la permission d'utiliser les blocks connectés !
+  intensity:
+    number: L'intensité lumineuse doit être comprise entre 1 et 15
+  player: Cette commande peu seulement être executée par un joueur
+  cost:
+    glowstone: Vous n'avez pas assez de poudre lumineuse pour créer de lumières.
+    money: Vous n'avez pas assez d'argent pour créer de lumières.
+
+
+ 
+# ===--- Enjoy -------------------------------------------------------------------------------- © 2017 Hexosse ---=== #

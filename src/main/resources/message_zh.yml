@@ -1,0 +1,65 @@
+# ===--- AddLight ------------------------------------------------------------------------------------------------=== #
+#                                                                                                                      
+#     Quickly add invisible light sources                                                                              
+#                                                                                                                      
+# ===------------------------------------------------------------------------------------------ © 2017 Hexosse ---=== #
+#                                                                                                                      
+# Chineese traslation made by lulu456u
+#                                                                                                                      
+# ===------------------------------------------------------------------------------------------------------------=== #
+
+
+chat:
+  prefix: '&3[&b光源&3]&r'
+
+# List of Messages used in commands
+commands:
+  help:
+    cmd:
+      - 显示AddLight帮助
+  reload:
+    cmd:
+      - 重新加载 AddLight
+  eanble:
+    cmd: 允许创造光源。
+  disable:
+    cmd: 禁止创造光源。
+  light:
+    level:
+      cmd: 光线亮度必须在1~15之间，且为整数。
+  connectedblocks: 切换成连续方块加光模式。
+
+# List of messages
+messages:
+  HelpNumber: 指定光线的强度 (1 - 15)
+  HelpReload: 重载Addlight插件
+  enable: 允许创造光源
+  disable: 禁止创造光源
+  leftClick: 用萤石粉左键点击一个方块来添加光源
+  rightClick: 用萤石粉右键点击一个方块来移除光源
+  LightsIntensity: 灯光强度
+  LightsCreated: 创造光源成功
+  LightsDeleted: 光源已被移除
+  Connectedblocks: 连续的方块。
+
+# List of Messages used after a sucess command
+success:
+  relaod: AddLight 成功被重载！
+  cost:
+    glowstone: '%s 你创建了一个光源，萤石粉将被移除。'
+    money: '%s %s 创造光源将会花费你的钱。'
+
+# List of error messages
+errors:
+  AccesDenied: 你没有权限这么做!
+  UseConnected: 你没有权限使用连续方块加光模式!
+  intensity:
+    number: 光线的亮度必须在1~15之间且为整数。
+  player: 这个指令只能被玩家使用。
+  cost:
+    glowstone: 你没有足够的萤石粉来添加光源。
+    money: 你没有足够的钱来添加光源。
+
+
+ 
+# ===--- Enjoy -------------------------------------------------------------------------------- © 2017 Hexosse ---=== #

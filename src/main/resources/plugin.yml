@@ -1,0 +1,35 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+main: com.github.hexocraft.addlight.AddLightPlugin
+
+author: hexosse
+website: www.github.hexosse
+
+depend: []
+softdepend: [WorldEdit, Vault]
+
+permissions:
+  # All permissions
+  AddLight.admin: {description: Allows creation of light to admin users, default: false}
+  AddLight.user: {description: Allows creation of light to any users, default: false}
+  AddLight.use: {description: Allows a user to use this plugin, default: false}
+  AddLight.worldedit: {description: AddLight can apply to a WorldEditSelection, default: false}
+  AddLight.connected: {description: AddLight can apply to any connected blocks, default: false}
+  AddLight.intensity: {description: user can change the light intensity, default: false}
+  AddLight.bypass.cost: {description: user with this permission will not be charged, default: false}
+  AddLight.debug: {description: Display debug info, default: false}
+  # OP permissions
+  AddLight.admin:
+    default: op
+    children:
+      AddLight.use: true
+      AddLight.worldedit: true
+      AddLight.connected: true
+      AddLight.intensity: true
+      AddLight.bypass.cost: true
+  # Users permissions
+  AddLight.user:
+    default: false
+    children:
+      AddLight.use: true
