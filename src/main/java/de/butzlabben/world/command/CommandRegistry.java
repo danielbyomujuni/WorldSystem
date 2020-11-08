@@ -78,6 +78,8 @@ public class CommandRegistry implements CommandExecutor {
                     return settings.tntCommand(sender, command, label, args);
                 case "fire":
                     return settings.fireCommand(sender, command, label, args);
+                case "save-all":
+                    return admin.saveAll(sender, command, label,args);
                 default:
                     return false;
             }

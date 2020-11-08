@@ -328,19 +328,10 @@
         <SOURCES/>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/perworldinventory-kt-2.3.2.jar!/"/>
-        </CLASSES>
-        <JAVADOC/>
-        <SOURCES/>
-      </library>
-    </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.8.0-SNAPSHOT/1f76cdab4109f9d15c7f83a878f2c5e8b6b967b0/junit-jupiter-params-5.8.0-SNAPSHOT.jar!/"/>
+          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.8.0-SNAPSHOT/a2f26275ff43b8c803cd7891781e362d8be2b293/junit-jupiter-params-5.8.0-SNAPSHOT.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>
@@ -351,7 +342,7 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.0-SNAPSHOT/111a236bab56045958c35695b63618eb584dd37c/junit-jupiter-api-5.8.0-SNAPSHOT.jar!/"/>
+          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.0-SNAPSHOT/7f4b0daa5ca97e208bd0409ecc2df692f7a54f55/junit-jupiter-api-5.8.0-SNAPSHOT.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>
@@ -362,7 +353,7 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.8.0-SNAPSHOT/149a6b550ace3a327cc8bc3631539b15749727de/junit-platform-commons-1.8.0-SNAPSHOT.jar!/"/>
+          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.8.0-SNAPSHOT/b9d0ecc5adaf53cb19b76b561da818284a8e5d6b/junit-platform-commons-1.8.0-SNAPSHOT.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>
@@ -373,7 +364,7 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.8.0-SNAPSHOT/d92bcbfaa0a136f48794e4944248233bdd9ebfe3/junit-jupiter-5.8.0-SNAPSHOT.jar!/"/>
+          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.8.0-SNAPSHOT/b8ae5b2d747da487da51a89442c1a5b14ed9b301/junit-jupiter-5.8.0-SNAPSHOT.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>
@@ -560,18 +551,18 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.8.0-SNAPSHOT/cb3adc74231a286d09d932f789b16fd88771d12b/junit-jupiter-engine-5.8.0-SNAPSHOT.jar!/"/>
+          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.8.0-SNAPSHOT/96385af6237fb2e74b04629d4d4420abd0b3ee8e/junit-jupiter-engine-5.8.0-SNAPSHOT.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>
-          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.8.0-SNAPSHOT/8cabc87ecfcdcbe02494adff7e5b7fe2e383f31/junit-jupiter-engine-5.8.0-SNAPSHOT-sources.jar!/"/>
+          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.8.0-SNAPSHOT/1a32acfd33f7d807c5d31af7526b044a74f065c/junit-jupiter-engine-5.8.0-SNAPSHOT-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.8.0-SNAPSHOT/96ea09dc48155baa3415d10eb75bfba54112fd3c/junit-platform-engine-1.8.0-SNAPSHOT.jar!/"/>
+          <root url="jar://C:/Users/train/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.8.0-SNAPSHOT/189fd0f776a12873d00b1234d006a364d622fd8e/junit-platform-engine-1.8.0-SNAPSHOT.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>

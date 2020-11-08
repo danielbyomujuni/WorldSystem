@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="World System:test" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="de.butzlabben" external.system.module.type="sourceSet" external.system.module.version="2.4.11" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="World System:test" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="de.butzlabben" external.system.module.type="sourceSet" external.system.module.version="2.4.12-Stable(20w45a)" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager">
     <output-test url="file://$MODULE_DIR$/build/classes/java/test" />
     <exclude-output />
@@ -25,15 +25,6 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/FastAsyncWorldEdit.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/perworldinventory-kt-2.3.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

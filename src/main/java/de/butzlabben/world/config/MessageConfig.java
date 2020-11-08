@@ -267,6 +267,10 @@ public class MessageConfig {
         return getMessage("command_help.delete_command", "/ws delete §8- §7Will delete a World");
     }
 
+    public static String getSaveCommandHelp() {
+        return getMessage("command_help.save_command", "/ws save-all &8- &7Saves All worlds");
+    }
+
     public static List<String> getCommandHelp() {
         List<String> list = getConfig().getStringList("command_help.list");
         if (list == null)

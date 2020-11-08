@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b759da6d-d482-40e6-a78c-4a65e88087e5" name="Default Changelist" comment="" />
+    <list default="true" id="2ba035ec-35e2-472c-b210-19b190692a0a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,6 +79,17 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="World System" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="spigot debug" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="World System" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -87,7 +101,7 @@
     <option name="LAST_EDITED_MODULE_NAME" />
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
-  <component name="ProjectId" id="1jZgl69zxJGy8U7vtKaVkC4ARhv" />
+  <component name="ProjectId" id="1jvIqOMbubCRDjbEX0Gi9STOoo0" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state />
@@ -108,9 +122,14 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
   </component>
-  <component name="RunManager" selected="Gradle.worldsystem-master [build]">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\train\Desktop\worldsystem-Stable-Updates\lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.worldsystem-Stable-Updates [build]">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -138,7 +157,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="worldsystem-master [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="worldsystem-Stable-Updates [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="worldsystem-Stable-Updates [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="buildDependents" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="worldsystem-Stable-Updates [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -193,20 +250,34 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.worldsystem-master [build]" />
+        <item itemvalue="Gradle.worldsystem-Stable-Updates [build]" />
+        <item itemvalue="Gradle.worldsystem-Stable-Updates [assemble]" />
+        <item itemvalue="Gradle.worldsystem-Stable-Updates [buildDependents]" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="UPDATE_RUN_STATUS" value="false" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="DETECT_NESTED_COPIES" value="true" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b759da6d-d482-40e6-a78c-4a65e88087e5" name="Default Changelist" comment="" />
-      <created>1604017177303</created>
+      <changelist id="2ba035ec-35e2-472c-b210-19b190692a0a" name="Default Changelist" comment="" />
+      <created>1604678330268</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1604017177303</updated>
+      <updated>1604678330268</updated>
     </task>
     <servers />
   </component>
@@ -215,21 +286,25 @@
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1306" height="75" key="GridCell.Tab.0.bottom" timestamp="1604061426479">
+    <state width="1286" height="163" key="GridCell.Tab.0.bottom" timestamp="1604767383004">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="75" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.-128.1600.860@0.0.1366.728" timestamp="1604061426479" />
-    <state width="1306" height="75" key="GridCell.Tab.0.center" timestamp="1604061426479">
+    <state width="1286" height="163" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1604767383004" />
+    <state width="1286" height="163" key="GridCell.Tab.0.center" timestamp="1604767383003">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="75" key="GridCell.Tab.0.center/0.0.1366.728/1366.-128.1600.860@0.0.1366.728" timestamp="1604061426479" />
-    <state width="1306" height="75" key="GridCell.Tab.0.left" timestamp="1604061426479">
+    <state width="1286" height="163" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1604767383003" />
+    <state width="1286" height="163" key="GridCell.Tab.0.left" timestamp="1604767383003">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="75" key="GridCell.Tab.0.left/0.0.1366.728/1366.-128.1600.860@0.0.1366.728" timestamp="1604061426479" />
-    <state width="1306" height="75" key="GridCell.Tab.0.right" timestamp="1604061426479">
+    <state width="1286" height="163" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1604767383003" />
+    <state width="1286" height="163" key="GridCell.Tab.0.right" timestamp="1604767383004">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="75" key="GridCell.Tab.0.right/0.0.1366.728/1366.-128.1600.860@0.0.1366.728" timestamp="1604061426479" />
+    <state width="1286" height="163" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1604767383004" />
+    <state x="67" y="0" key="new project wizard" timestamp="1604767332049">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="67" y="0" key="new project wizard/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1604767332049" />
   </component>
 </project>

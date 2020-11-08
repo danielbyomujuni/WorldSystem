@@ -87,3 +87,4 @@ command_help:
     - "/ws info &8- &7Shows information about the world"
     - "/ws reset &8- &7Will reset your world"
   delete_command: "/ws delete &8- &7Will delete a world"
+  save_command: "/ws save-all &8- &7Saves All worlds"

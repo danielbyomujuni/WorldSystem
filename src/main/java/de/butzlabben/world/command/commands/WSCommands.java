@@ -13,8 +13,6 @@ import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import de.butzlabben.world.wrapper.WorldTemplate;
 import de.butzlabben.world.wrapper.WorldTemplateProvider;
-import me.ebonjaeger.perworldinventory.PerWorldInventory;
-import me.ebonjaeger.perworldinventory.api.PerWorldInventoryAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -30,12 +28,15 @@ public class WSCommands {
 
         String prefix = PluginConfig.getPrefix();
         cs.sendMessage(
-                prefix + "WorldSystem by Butzlabben v" + WorldSystem.getInstance().getDescription().getVersion());
+                prefix + "WorldSystem by Butzlabben v + Trainerlord" + WorldSystem.getInstance().getDescription().getVersion());
         cs.sendMessage(prefix + "Contributors: Jubeki, montlikadani, jstoeckm2");
         List<String> cmdHelp = MessageConfig.getCommandHelp();
         cmdHelp.forEach(s -> cs.sendMessage(prefix + s));
         if (cs.hasPermission("ws.delete")) {
             cs.sendMessage(MessageConfig.getDeleteCommandHelp());
+        }
+        if (cs.hasPermission("ws.saveall")) {
+            cs.sendMessage(MessageConfig.getSaveCommandHelp());
         }
         return true;
     }
@@ -157,12 +158,6 @@ public class WSCommands {
                 sw.teleportToWorldSpawn(p);
             } else {
                 sw.load(p);
-            }
-            if (PluginConfig.isPerWorldInv()) {
-                PerWorldInventory pwi = (PerWorldInventory) Bukkit.getServer().getPluginManager().getPlugin("PerWorldInventory");
-                PerWorldInventoryAPI api = pwi.getApi();
-                api.getGroupFromWorld(sw.getWorld().getName());
-
             }
             return true;
         } else {

@@ -14,6 +14,7 @@ import de.butzlabben.world.wrapper.WorldPlayer;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -329,4 +330,17 @@ public class WorldAdministrateCommand {
                 return false;
             }
         }
+
+    public boolean saveAll(CommandSender sender, Command command, String label, String[] args) {
+        if (sender.hasPermission("ws.saveall")) {
+            for (World w : Bukkit.getWorlds()) {
+                SystemWorld sw = SystemWorld.getSystemWorld(w.getName());
+                if (sw != null && sw.isLoaded()) {
+                    sw.directUnload(w);
+                }
+            }
+            return true;
+        }
+        return false;
+    }
 }
