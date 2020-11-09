@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import com.google.gson.*;
 
 public class DependenceConfig {
 
@@ -180,4 +181,8 @@ public class DependenceConfig {
     public OfflinePlayer getOwner() {
         return Bukkit.getOfflinePlayer(uuid);
     }
+}
+
+class config {
+    
 }
