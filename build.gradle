@@ -108,8 +108,6 @@ spigot {
         }
         'ws.saveall' {
             description = 'Saves all the worlds'
-            defaults = 'op'
-        }
         'ws.worldborder.tier1' {
             description = 'Adjusts World Border'
             defaults = 'op'
@@ -148,6 +146,19 @@ spigot {
                     'ws.worldborder.tier4':true,
                     'ws.worldborder.tier5':true
             ]
+        }
+        'ws.worldLimit.default' {
+            description = 'Set your World Limit'
+            defaults = true
+        }
+        'ws.worldLimit.big' {
+            description = 'Sets your World Limit Higher'
+            defaults = 'op'
+            children = ['ws.worldLimit.default':true]
+        }
+        'ws.worldLimit.bigger' {
+            defaults = 'op'
+            children = ['ws.worldLimit.default':true,'ws.worldLimit.big':true]
         }
     }
     load = STARTUP
@@ -212,7 +223,7 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:2.10.9'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
     compileOnly 'com.mojang:authlib:1.5.25'
-	compileOnly 'org.projectlombok:lombok:1.18.14'
+	  compileOnly 'org.projectlombok:lombok:1.18.14'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.0.0-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.0.0-SNAPSHOT'
     compile files('/lib/commons-io-2.7.jar')

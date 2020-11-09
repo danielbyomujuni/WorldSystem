@@ -14,7 +14,12 @@ worldborder:
     ws.worldborder.tier4: 2500
     ws.worldborder.tier5: 3000
     ws.worldborder.tier6: 3500
-
+worldLimit:
+  ranks:
+    # Set the world Limit of users
+    ws.worldLimit.default: 1
+    ws.worldLimit.big: 5
+    ws.worldLimit.bigger: 10
   # Set a specialized center which is not the spawn
   center:
     as_spawn: true

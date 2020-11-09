@@ -14,10 +14,10 @@ public class GeneratorSettings {
 
     // Default generatorsettings
     public GeneratorSettings() {
-        type = null;
-        environment = null;
-        seed = 0;
-        generator = null;
+        this.type = null;
+        this.environment = null;
+        this.seed = 0;
+        this.generator = null;
     }
 
     public WorldCreator asWorldCreator(String name) {

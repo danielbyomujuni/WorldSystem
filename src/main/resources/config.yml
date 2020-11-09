@@ -50,6 +50,9 @@ unloadingtime: 20
 # Except for players with the permissions: ws.gamemode | ws.tp.*
 survival: false
 
+# If true there will be a seperate inventory for each world
+seperateInventory: false
+
 # If WorldSystem should load the worlds async if possible (FAWE installed)
 load_worlds_async: true
 # If WorldSystem should create a new player a world when they join the server

@@ -30,7 +30,7 @@ public class WorldTemplateProvider {
             if (section.isInt(key + ".cost"))
                 cost = section.getInt(key + ".cost");
 
-            GeneratorSettings settings = new GeneratorSettings();
+            GeneratorSettings settings = new GeneratorSettings(0,null,null,null);
             if (section.contains(key + ".generator")) {
                 ConfigurationSection gSection = section.getConfigurationSection(key + ".generator");
                 long seed = gSection.getLong("seed", 0);
@@ -38,6 +38,7 @@ public class WorldTemplateProvider {
                 String type = gSection.getString("type");
                 String generator = gSection.getString("generator");
                 settings = new GeneratorSettings(seed, getEnvironment(env), getWorldType(type), generator);
+
             }
 
             templates.put(name, new WorldTemplate(name, permission, cost, settings));

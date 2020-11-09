@@ -76,8 +76,8 @@ public class SystemWorld {
             }, 20);
     }
 
-    public static boolean create(Player p, WorldTemplate template) {
-        return create(p.getUniqueId(), template);
+    public static boolean create(Player p, WorldTemplate template, int WorldNumber) {
+        return create(p.getUniqueId(), template, WorldNumber);
     }
 
     public static boolean hasWorld(Player p) {
@@ -92,7 +92,7 @@ public class SystemWorld {
      * @param uniqueID UUID of the player to create the world for
      * @return whether it succesfull or not
      */
-    public static boolean create(UUID uniqueID, WorldTemplate template) {
+    public static boolean create(UUID uniqueID, WorldTemplate template, int WorldNumber) {
 
         DependenceConfig dc = new DependenceConfig(uniqueID);
 
@@ -128,7 +128,7 @@ public class SystemWorld {
         else
             newworld.mkdirs();
 
-        WorldConfig.create(uniqueID, template);
+        WorldConfig.create(uniqueID, template, WorldNumber);
 
         // Move World into Server dir
         File world = new File(worlddir + "/" + worldname);
@@ -284,9 +284,9 @@ public class SystemWorld {
      * @throws NullPointerException     if p is null
      * @throws IllegalArgumentException if player is not online
      */
-    public void load(Player p) {
+    public void load(Player p, int worldNumber) {
         if (!Bukkit.isPrimaryThread()) {
-            Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> load(p));
+            Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> load(p, worldNumber));
             return;
         }
         Preconditions.checkNotNull(p, "player must not be null");
@@ -361,13 +361,13 @@ public class SystemWorld {
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(WorldSystem.getInstance(), new Runnable() {
             public void run() {
-                teleportToWorldSpawn(p);
+                teleportToWorldSpawn(p, worldNumber);
             }
         }, 10L);
 
         OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
         DependenceConfig dc = new DependenceConfig(owner);
-        dc.setLastLoaded();
+        dc.setLastLoaded(worldNumber);
     }
 
     /**
@@ -395,7 +395,7 @@ public class SystemWorld {
      * @throws NullPointerException     if player is null
      * @throws IllegalArgumentException if player is not online
      */
-    public void teleportToWorldSpawn(Player p) {
+    public void teleportToWorldSpawn(Player p,int worldNumber) {
         Preconditions.checkNotNull(p, "player must not be null");
         Preconditions.checkArgument(p.isOnline(), "player must be online");
         PlayerPositions positions = PlayerPositions.instance;
@@ -428,7 +428,7 @@ public class SystemWorld {
 
         OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
         DependenceConfig dc = new DependenceConfig(owner);
-        dc.setLastLoaded();
+        dc.setLastLoaded(worldNumber);
     }
 
     /**

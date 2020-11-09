@@ -22,6 +22,8 @@ import org.bukkit.entity.Player;
 import java.util.Iterator;
 import java.util.List;
 
+import static de.butzlabben.world.config.SettingsConfig.worldLimit;
+
 public class WSCommands {
     public boolean mainCommand(CommandSender sender, Command command, String label, String[] args) {
         CommandSender cs = sender;
@@ -86,13 +88,14 @@ public class WSCommands {
 
             // create New Entry
             DependenceConfig dc = new DependenceConfig(p);
-            if (dc.hasWorld()) {
+            /*if (dc.hasWorld()) {
                 p.sendMessage(MessageConfig.getWorldAlreadyExists());
                 return false;
-            }
+            }*/
 
-
+            int addWorld = dc.worldCount() + 1;
             if (PluginConfig.isMultiChoose()) {
+
                 if (args.length > 1) {
                     String key = args[1];
                     WorldTemplate template = WorldTemplateProvider.getInstance().getTemplate(key);
@@ -111,8 +114,13 @@ public class WSCommands {
                             }
                             MoneyUtil.removeMoney(p.getUniqueId(), template.getCost());
                         }
-
-                        this.create(p, template);
+                        // MultiWorld Check
+                        for (String string : worldLimit.keySet()) {
+                            if (p.hasPermission(string) && dc.worldCount() < worldLimit.get(string)) {
+                                this.create(p, template, addWorld);
+                                return true;
+                            }
+                        }
                         return false;
                     }
                 }
@@ -121,7 +129,12 @@ public class WSCommands {
                 WorldTemplate template = WorldTemplateProvider.getInstance()
                         .getTemplate(PluginConfig.getDefaultWorldTemplate());
                 if (template != null)
-                    this.create(p, template);
+                    for (String string : worldLimit.keySet()) {
+                        if (p.hasPermission(string) && dc.worldCount() < worldLimit.get(string)) {
+                            this.create(p, template, addWorld);
+                            return true;
+                        }
+                    }
                 else {
                     p.sendMessage(PluginConfig.getPrefix() + "§cError in config at \"worldtemplates.default\"");
                     p.sendMessage(PluginConfig.getPrefix() + "§cPlease contact an administrator");
@@ -132,7 +145,6 @@ public class WSCommands {
             sender.sendMessage("No Console"); //TODO Add Config
             return false;
         }
-
     }
     public boolean homeCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -145,19 +157,36 @@ public class WSCommands {
                 p.sendMessage(MessageConfig.getNoWorldOwn());
                 return false;
             }
+            int worldNumber;
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
+            }
+
+            if (worldNumber >= dc.worldCount()) {
+                worldNumber = dc.worldCount();
+            }
             WorldPlayer wp = new WorldPlayer(p, worldname);
             if (wp.isOnSystemWorld()) {
                 SystemWorld.tryUnloadLater(Bukkit.getWorld(worldname));
             }
-            SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname());
+            SystemWorld sw = SystemWorld.getSystemWorld(dc.getWorldname(worldNumber));
             if (sw == null) {
                 p.sendMessage(MessageConfig.getNoWorldOwn());
                 return false;
             }
             if (sw.isLoaded()) {
-                sw.teleportToWorldSpawn(p);
+                sw.teleportToWorldSpawn(p, worldNumber);
             } else {
-                sw.load(p);
+                sw.load(p, worldNumber);
             }
             return true;
         } else {
@@ -236,7 +265,7 @@ public class WSCommands {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             if (args.length < 2) {
-                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws tp <World>"));
+                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws tp <World> {World Number}"));
                 return false;
             }
 
@@ -244,10 +273,23 @@ public class WSCommands {
                 p.chat("/ws home");
                 return false;
             }
+            int worldNumber;
+            try
+            {
+                if (args.length > 1) {
+                    worldNumber = Integer.parseInt(args[1]);
+                } else {
+                    worldNumber = 1;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                worldNumber = 1;
+            }
 
 
             DependenceConfig dc = new DependenceConfig(args[1]);
-            String worldname = dc.getWorldNameByOfflinePlayer();
+            String worldname = dc.getWorldNameByOfflinePlayer(worldNumber);
             if (!dc.hasWorld()) {
                 p.sendMessage(MessageConfig.getNoWorldOther());
                 return false;
@@ -256,7 +298,7 @@ public class WSCommands {
             WorldPlayer wp1 = new WorldPlayer(p, p.getWorld().getName());
             WorldPlayer wp = new WorldPlayer(p, worldname);
             if (p.getWorld().getName().equals(worldname)) {
-                sw.teleportToWorldSpawn(p);
+                sw.teleportToWorldSpawn(p, worldNumber);
                 return false;
             }
             if (!p.hasPermission("ws.tp.world")) {
@@ -271,9 +313,9 @@ public class WSCommands {
             }
             if (sw != null) {
                 if (!sw.isLoaded()) {
-                    sw.load(p);
+                    sw.load(p, worldNumber);
                 } else {
-                    sw.teleportToWorldSpawn(p);
+                    sw.teleportToWorldSpawn(p, worldNumber);
                 }
             }
             return true;
@@ -284,9 +326,9 @@ public class WSCommands {
     }
 
 
-    private void create(Player p, WorldTemplate template) {
+    private void create(Player p, WorldTemplate template, int WorldNumber) {
         Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> {
-            if (SystemWorld.create(p, template))
+            if (SystemWorld.create(p, template, WorldNumber))
                 p.sendMessage(MessageConfig.getSettingUpWorld());
         });
     }
