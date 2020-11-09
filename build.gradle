@@ -28,6 +28,7 @@ spigot {
     name = project.property("pluginName")
     authors = [project.property("author")]
     apiVersion = project.property("apiVersion")
+    loadBefore = ['FastAsyncWorldEdit', 'WorldEdit', 'BuildersUtilities']
 	//Comands
 
 	commands {
@@ -51,10 +52,13 @@ spigot {
                 'ws.gamemode':true,
                 'ws.delete':true,
                 'ws.lag':true,
-                'ws.big':true,
-                'ws.large':true,
                 'ws.confirm':true,
-                'ws.saveall':true
+                'ws.worldborder.tier1':true,
+                'ws.worldborder.tier2':true,
+                'ws.worldborder.tier3':true,
+                'ws.worldborder.tier4':true,
+                'ws.worldborder.tier5':true,
+                'ws.worldborder.tier6':true
             ]
         }
         'ws.sethome' {
@@ -98,14 +102,6 @@ spigot {
             description = 'You can see lag messages'
             defaults = 'op'
         }
-        'ws.big' {
-            description = 'Gives you a bigger world (if set)'
-            defaults = 'op'
-        }
-        'ws.large' {
-            defaults = 'op'
-            children = ['ws.big':true]
-        }
         'ws.confirm' {
             description = 'You can confirm (if needed) an auto-update'
             defaults = 'op'
@@ -114,9 +110,47 @@ spigot {
             description = 'Saves all the worlds'
             defaults = 'op'
         }
+        'ws.worldborder.tier1' {
+            description = 'Adjusts World Border'
+            defaults = 'op'
+        }
+        'ws.worldborder.tier2' {
+            defaults = 'op'
+            children = ['ws.worldborder.tier1':true]
+        }
+        'ws.worldborder.tier3' {
+            defaults = 'op'
+            children = ['ws.worldborder.tier1':true,'ws.worldborder.tier2':true]
+        }
+        'ws.worldborder.tier4' {
+            defaults = 'op'
+            children = [
+                    'ws.worldborder.tier1':true,
+                    'ws.worldborder.tier2':true,
+                    'ws.worldborder.tier3':true
+            ]
+        }
+        'ws.worldborder.tier5' {
+            defaults = 'op'
+            children = [
+                    'ws.worldborder.tier1':true,
+                    'ws.worldborder.tier2':true,
+                    'ws.worldborder.tier3':true,
+                    'ws.worldborder.tier4':true
+            ]
+        }
+        'ws.worldborder.tier6' {
+            defaults = 'op'
+            children = [
+                    'ws.worldborder.tier1':true,
+                    'ws.worldborder.tier2':true,
+                    'ws.worldborder.tier3':true,
+                    'ws.worldborder.tier4':true,
+                    'ws.worldborder.tier5':true
+            ]
+        }
     }
     load = STARTUP
-    //    depends = ['']
 }
 
 compileJava {
@@ -181,8 +215,8 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.14'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.0.0-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.0.0-SNAPSHOT'
-    compile files('C:/Users/train/Desktop/worldsystem-Stable-Updates/lib/commons-io-2.7.jar')
-    compile files('C:/Users/train/Desktop/worldsystem-Stable-Updates/lib/FastAsyncWorldEdit.jar')
+    compile files('/lib/commons-io-2.7.jar')
+    compile files('/lib/FastAsyncWorldEdit.jar')
 }
 
 shadowJar {

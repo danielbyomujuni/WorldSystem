@@ -8,8 +8,12 @@ worldborder:
   # The permission node will be the key and the value the size
   ranks:
     # For example, with the permission ws.big you will get a worldborder with the size 1000
-    ws.big: 1000
-    ws.bigger: 1500
+    ws.worldborder.tier1: 1000
+    ws.worldborder.tier2: 1500
+    ws.worldborder.tier3: 2000
+    ws.worldborder.tier4: 2500
+    ws.worldborder.tier5: 3000
+    ws.worldborder.tier6: 3500
 
   # Set a specialized center which is not the spawn
   center:

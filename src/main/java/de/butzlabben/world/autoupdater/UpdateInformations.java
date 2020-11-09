@@ -27,7 +27,7 @@ public class UpdateInformations {
     }
 
     protected static synchronized UpdateInformations getInformations() {
-        String json = callURL("https://zendilu.net/butzlabben/worldsystem/info.php?version=" + WorldSystem.getInstance().getDescription().getVersion());
+        String json = callURL("trainerlordDevelopment.uk.to/autoUpdater/worldsystem.php" + WorldSystem.getInstance().getDescription().getVersion());
         Gson gson = new GsonBuilder().create();
         return gson.fromJson(json, UpdateInformations.class);
     }
