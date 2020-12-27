@@ -22,7 +22,7 @@ public class PlayerOptionsGUI extends OrcInventory {
 
     public PlayerOptionsGUI(Player loader, String otherPlayer, UUID other) {
         super(GuiConfig.getTitle(GuiConfig.getConfig(), "options.player").replace("%player", otherPlayer), GuiConfig.getRows("options.player"), GuiConfig.isFill("options.player"));
-        WorldPlayer wp = new WorldPlayer(Bukkit.getOfflinePlayer(other), loader.getWorld().getName());
+        WorldPlayer wp = new WorldPlayer(PlayerWrapper.getOfflinePlayer(other), loader.getWorld().getName());
         loadItem("build", "/ws togglebuild " + otherPlayer, new BuildStatus(wp));
         loadItem("gamemode", "/ws togglegm " + otherPlayer, new GamemodeStatus(wp));
         loadItem("teleport", "/ws toggletp " + otherPlayer, new TeleportStatus(wp));

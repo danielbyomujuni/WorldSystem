@@ -208,6 +208,12 @@ public class PluginConfig {
         return getConfig().getString("database.players_table_name");
     }
 
+    public static String getUUIDTableName() {
+        return getConfig().getString("database.players_uuids");
+    }
+
+
+
     public static String getDatabaseType() {
         return getConfig().getString("database.type");
     }

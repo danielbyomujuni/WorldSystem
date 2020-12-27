@@ -94,7 +94,7 @@ public class WorldConfig {
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
         cfg.set("Informations.ID", dc.getID());
         cfg.set("Informations.Owner.PlayerUUID", uuid.toString());
-        cfg.set("Informations.Owner.Actualname", Objects.requireNonNull(Bukkit.getOfflinePlayer(uuid)).getName());
+        cfg.set("Informations.Owner.Actualname", Objects.requireNonNull(PlayerWrapper.getOfflinePlayer(uuid)).getName());
         cfg.set("Informations.template_key", template.getName());
         cfg.set("Settings.TNTDamage", false);
         cfg.set("Settings.Fire", false);
@@ -370,7 +370,7 @@ public class WorldConfig {
     public HashMap<UUID, String> getMembersWithNames() {
         HashMap<UUID, String> map = new HashMap<>();
         for (UUID uuid : permissions.keySet()) {
-            OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
+            OfflinePlayer op = PlayerWrapper.getOfflinePlayer(uuid);
             if (op == null || op.getName() == null) {
                 if (PluginConfig.contactAuth()) {
                     try {

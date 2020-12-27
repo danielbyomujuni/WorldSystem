@@ -9,6 +9,7 @@ import de.butzlabben.world.event.WorldAddmemberEvent;
 import de.butzlabben.world.event.WorldDeleteEvent;
 import de.butzlabben.world.event.WorldRemovememberEvent;
 import de.butzlabben.world.util.PlayerPositions;
+import de.butzlabben.world.util.PlayerWrapper;
 import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import org.apache.commons.io.FileUtils;
@@ -39,7 +40,7 @@ public class WorldAdministrateCommand {
         }
 
         @SuppressWarnings("deprecation")
-        OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+        OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
         WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
         if (a == null) {
             p.sendMessage(MessageConfig.getNotRegistered().replaceAll("%player", args[1]));
@@ -152,7 +153,7 @@ public class WorldAdministrateCommand {
             return false;
         }
         @SuppressWarnings("deprecation")
-        OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+        OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
         WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
         if (a == null) {
             p.sendMessage(MessageConfig.getNotRegistered().replaceAll("%player", args[1]));
@@ -196,7 +197,7 @@ public class WorldAdministrateCommand {
                 return false;
             }
             @SuppressWarnings("deprecation")
-            OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+            OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             if (!wc.isMember(a.getUniqueId())) {
                 p.sendMessage(MessageConfig.getNoMemberOwn());
@@ -233,7 +234,7 @@ public class WorldAdministrateCommand {
             return false;
         }
         @SuppressWarnings("deprecation")
-        OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+        OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
         WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
         if (!wc.isMember(a.getUniqueId())) {
             p.sendMessage(MessageConfig.getNoMemberOwn());
@@ -270,7 +271,7 @@ public class WorldAdministrateCommand {
                 return false;
             }
             @SuppressWarnings("deprecation")
-            OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+            OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             if (!wc.isMember(a.getUniqueId())) {
                 p.sendMessage(MessageConfig.getNoMemberOwn());
@@ -307,7 +308,7 @@ public class WorldAdministrateCommand {
                 return false;
             }
             @SuppressWarnings("deprecation")
-            OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+            OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             if (!wc.isMember(a.getUniqueId())) {
                 p.sendMessage(MessageConfig.getNoMemberOwn());
