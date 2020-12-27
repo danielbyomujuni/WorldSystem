@@ -28,6 +28,9 @@ spigot {
     name = project.property("pluginName")
     authors = [project.property("author")]
     apiVersion = project.property("apiVersion")
+    depends  = [ project.property("FAWE"),  project.property("Vault")]
+
+
 	//Comands
 
 	commands {
