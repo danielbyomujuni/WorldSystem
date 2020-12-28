@@ -78,6 +78,12 @@ public class CommandRegistry implements CommandExecutor {
                     return settings.tntCommand(sender, command, label, args);
                 case "fire":
                     return settings.fireCommand(sender, command, label, args);
+                case "reload":
+                    if(!sender.isOp()){
+                        sender.sendMessage("Reloaded Templates!");
+                        WorldTemplateProvider.getInstance().reload();
+                        return true;
+                    }
                 default:
                     //default command is better than the other one
                     return ws.mainCommand(sender, command, label, args);
