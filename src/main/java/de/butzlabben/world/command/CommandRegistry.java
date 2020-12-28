@@ -3,13 +3,10 @@ package de.butzlabben.world.command;
 import de.butzlabben.world.command.commands.WSCommands;
 import de.butzlabben.world.command.commands.WorldAdministrateCommand;
 import de.butzlabben.world.command.commands.WorldSettingsCommands;
+import de.butzlabben.world.wrapper.WorldTemplateProvider;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import static de.butzlabben.world.command.commands.WSCommands.*;
-import static de.butzlabben.world.command.commands.WorldAdministrateCommand.*;
-
-import java.util.List;
 
 
 public class CommandRegistry implements CommandExecutor {
