@@ -3,6 +3,7 @@ package de.butzlabben.world.config;
 import com.google.common.collect.Sets;
 import com.mojang.authlib.GameProfile;
 import de.butzlabben.world.GameProfileBuilder;
+import de.butzlabben.world.util.PlayerWrapper;
 import de.butzlabben.world.wrapper.WorldTemplate;
 import java.io.File;
 import java.io.IOException;

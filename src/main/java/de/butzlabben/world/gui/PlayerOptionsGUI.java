@@ -10,6 +10,7 @@ import de.butzlabben.world.gui.playeroption.BuildStatus;
 import de.butzlabben.world.gui.playeroption.GamemodeStatus;
 import de.butzlabben.world.gui.playeroption.TeleportStatus;
 import de.butzlabben.world.gui.playeroption.WorldEditStatus;
+import de.butzlabben.world.util.PlayerWrapper;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

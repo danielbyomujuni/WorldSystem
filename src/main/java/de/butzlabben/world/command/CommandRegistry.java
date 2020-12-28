@@ -79,7 +79,8 @@ public class CommandRegistry implements CommandExecutor {
                 case "fire":
                     return settings.fireCommand(sender, command, label, args);
                 default:
-                    return false;
+                    //default command is better than the other one
+                    return ws.mainCommand(sender, command, label, args);
             }
         }
     }

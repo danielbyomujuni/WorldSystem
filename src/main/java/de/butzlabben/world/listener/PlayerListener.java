@@ -4,6 +4,7 @@ import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.util.PlayerPositions;
+import de.butzlabben.world.util.PlayerWrapper;
 import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class PlayerListener implements Listener {
     //#17
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent e) {
+        PlayerWrapper.updateDatabase(e.getPlayer());
         if (PluginConfig.spawnTeleportation()) {
             Player p = e.getPlayer();
             DependenceConfig dc = new DependenceConfig(p);

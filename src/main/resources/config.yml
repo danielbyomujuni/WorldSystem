@@ -63,6 +63,9 @@ database:
   worlds_table_name: worlds_positions
   # How the table with the saved player positions on the normal worlds should be named
   players_table_name: player_positions
+  # how should the uuid cache be stored
+  players_uuids: players_uuids
+
   # Configure here your mysql connection
   mysql_settings:
     host: 127.0.0.1

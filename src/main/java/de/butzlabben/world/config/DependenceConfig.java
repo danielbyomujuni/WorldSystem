@@ -1,5 +1,6 @@
 package de.butzlabben.world.config;
 
+import de.butzlabben.world.util.PlayerWrapper;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -17,7 +18,6 @@ public class DependenceConfig {
         setConfig();
     }
 
-    @SuppressWarnings("deprecation")
     public DependenceConfig(String s) {
         OfflinePlayer op = null;
         try {

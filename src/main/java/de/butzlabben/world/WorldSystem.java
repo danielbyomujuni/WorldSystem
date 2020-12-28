@@ -2,15 +2,8 @@ package de.butzlabben.world;
 
 import de.butzlabben.world.autoupdater.AutoUpdater;
 import de.butzlabben.world.command.CommandRegistry;
-import de.butzlabben.world.config.DependenceConfig;
-import de.butzlabben.world.config.GuiConfig;
-import de.butzlabben.world.config.MessageConfig;
-import de.butzlabben.world.config.PluginConfig;
-import de.butzlabben.world.config.SettingsConfig;
-import de.butzlabben.world.listener.BlockListener;
-import de.butzlabben.world.listener.CommandListener;
-import de.butzlabben.world.listener.PlayerListener;
-import de.butzlabben.world.listener.WorldEditListener;
+import de.butzlabben.world.config.*;
+import de.butzlabben.world.listener.*;
 import de.butzlabben.world.util.PapiExtension;
 import de.butzlabben.world.util.PlayerPositions;
 import de.butzlabben.world.util.VersionUtil;
@@ -18,15 +11,15 @@ import de.butzlabben.world.util.database.DatabaseProvider;
 import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
 import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
-import java.io.File;
-import java.io.IOException;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author Butzlabben
@@ -38,6 +31,7 @@ public class WorldSystem extends JavaPlugin {
     private static boolean is1_13Plus = false;
     final private String version = this.getDescription().getVersion();
     private CreatorAdapter creator;
+
     public static void createConfigs() {
         File folder = getInstance().getDataFolder();
         File dir = new File(folder + "/worldsources");
@@ -120,6 +114,7 @@ public class WorldSystem extends JavaPlugin {
         pm.registerEvents(new PlayerListener(), this);
         pm.registerEvents(new BlockListener(), this);
         pm.registerEvents(new CommandListener(), this);
+        pm.registerEvents(new WorldInitSkipSpawn(), this);
         if (pm.getPlugin("WorldEdit") != null)
             pm.registerEvents(new WorldEditListener(), this);
 
@@ -159,11 +154,6 @@ public class WorldSystem extends JavaPlugin {
         //this.getCommand("ws fire").setExecutor(new WorldFire());
 
 
-
-
-
-
-
         System.setProperty("bstats.relocatecheck", "false");
         Metrics m = new Metrics(this);
         m.addCustomChart(new Metrics.SingleLineChart("worlds", DependenceConfig::getHighestID));
@@ -171,15 +161,15 @@ public class WorldSystem extends JavaPlugin {
         AutoUpdater.startAsync();
 
         // Choose right creatoradapter for #16
-        /*if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null
+        if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null
                 && Bukkit.getPluginManager().getPlugin("WorldEdit") != null
                 && PluginConfig.loadWorldsASync()
-                && !is1_13Plus) {*/
-        try{
+                && !is1_13Plus) {
+
             creator = new AsyncCreatorAdapter();
             Bukkit.getConsoleSender()
                     .sendMessage(PluginConfig.getPrefix() + "Found FAWE! Worlds now will be created asynchronously");
-        }catch(Exception e) {
+        } else {
             creator = (c, sw, r) -> {
                 Bukkit.getWorlds().add(c.createWorld());
                 if (sw != null)

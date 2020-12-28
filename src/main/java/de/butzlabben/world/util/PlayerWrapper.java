@@ -1,6 +1,7 @@
 package de.butzlabben.world.util;
 
 import com.google.common.base.Preconditions;
+import com.sk89q.worldedit.bukkit.BukkitPlayer;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.util.database.DatabaseProvider;
 import de.butzlabben.world.util.database.DatabaseUtil;
@@ -80,17 +81,17 @@ public class PlayerWrapper {
     public static OfflinePlayer getOfflinePlayer(String name) {
         Player player = Bukkit.getPlayer(name);
         if(player != null)
-            return PlayerWrapper.getOfflinePlayer(player.getUniqueId());
+            return Bukkit.getOfflinePlayer(player.getUniqueId());
 
         UUID uuid = PlayerWrapper.getUUID(name);
         if(uuid != null)
-            return PlayerWrapper.getOfflinePlayer(uuid);
+            return Bukkit.getOfflinePlayer(uuid);
 
-        return PlayerWrapper.getOfflinePlayer(name);
+        return Bukkit.getOfflinePlayer(name);
     }
 
     public static OfflinePlayer getOfflinePlayer(UUID uuid) {
-        return PlayerWrapper.getOfflinePlayer(uuid);
+        return Bukkit.getOfflinePlayer(uuid);
     }
 
 
