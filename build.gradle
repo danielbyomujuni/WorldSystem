@@ -28,7 +28,7 @@ spigot {
     name = project.property("pluginName")
     authors = [project.property("author")]
     apiVersion = project.property("apiVersion")
-    depends  = [ project.property("WorldEdit"),  project.property("Vault")]
+    depends  = [project.property("Vault")]
 
 
 	//Comands
