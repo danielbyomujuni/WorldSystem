@@ -31,7 +31,7 @@ public class PlayerWrapper {
         try {
             PreparedStatement ps = util.prepareStatement("CREATE TABLE IF NOT EXISTS " + uuidTableName +
                     " ( `uuid` VARCHAR(36) NOT NULL , `name` VARCHAR(36) NOT NULL , " +
-                    " PRIMARY KEY (`uuid`))");
+                    " PRIMARY KEY (`name`))");
 
             util.executeUpdate(ps);
         } catch (SQLException e) {
@@ -63,7 +63,7 @@ public class PlayerWrapper {
         String uuidTableName = PluginConfig.getUUIDTableName();
 
         try {
-            PreparedStatement ps = util.prepareStatement("SELECT * FROM " + uuidTableName + " WHERE player=?");
+            PreparedStatement ps = util.prepareStatement("SELECT * FROM " + uuidTableName + " WHERE name=?");
 
             ps.setString(1, name);
             ResultSet rs = util.executeQuery(ps);
