@@ -53,7 +53,7 @@ public class WorldAdministrateCommand {
         Player p = (Player) sender;
         DependenceConfig dc = new DependenceConfig(p);
         if (!dc.hasWorld()) {
-            p.sendMessage(MessageConfig.getNoWorldOwn());
+            p.sendMessage(MessageConfig.getNotOnWorld());
             return false;
         }
 
@@ -63,7 +63,7 @@ public class WorldAdministrateCommand {
         }
 
 
-        p.sendMessage(MessageConfig.getNoMemberOwn());
+        p.sendMessage(MessageConfig.getNotOnWorld());
         return false;
     }
 
@@ -76,7 +76,7 @@ public class WorldAdministrateCommand {
         Player p = (Player) sender;
         DependenceConfig dc = new DependenceConfig(p);
         if (!dc.hasWorld()) {
-            p.sendMessage(MessageConfig.getNoWorldOwn());
+            p.sendMessage(MessageConfig.getNotOnWorld());
             return false;
         }
 
@@ -86,7 +86,7 @@ public class WorldAdministrateCommand {
         }
 
 
-        p.sendMessage(MessageConfig.getNoMemberOwn());
+        p.sendMessage(MessageConfig.getNotOnWorld());
         return false;
     }
 
