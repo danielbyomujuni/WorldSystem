@@ -3,6 +3,7 @@ package de.butzlabben.world.command;
 import de.butzlabben.world.command.commands.WSCommands;
 import de.butzlabben.world.command.commands.WorldAdministrateCommand;
 import de.butzlabben.world.command.commands.WorldSettingsCommands;
+import de.butzlabben.world.util.Worldutils;
 import de.butzlabben.world.wrapper.WorldTemplateProvider;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -77,8 +78,9 @@ public class CommandRegistry implements CommandExecutor {
                     return settings.fireCommand(sender, command, label, args);
                 case "reload":
                     if(!sender.isOp()){
-                        sender.sendMessage("Reloaded Templates!");
+                        sender.sendMessage("Reloading Settings!");
                         WorldTemplateProvider.getInstance().reload();
+                        Worldutils.reloadWorldSettings();
                         return true;
                     }
                 default:

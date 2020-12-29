@@ -127,6 +127,8 @@ public class WorldSystem extends JavaPlugin {
                     20 * PluginConfig.getGCPeriod());
         }
 
+
+        /* TODO better check this only on worldInitEvent
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
             for (World w : Bukkit.getWorlds()) {
                 SystemWorld sw = SystemWorld.getSystemWorld(w.getName());
@@ -134,7 +136,7 @@ public class WorldSystem extends JavaPlugin {
                     SettingsConfig.editWorld(w);
 
             }
-        }, 20, 20 * 10);
+        }, 20, 20 * 10);*/
 
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
             for (World w : Bukkit.getWorlds()) {
