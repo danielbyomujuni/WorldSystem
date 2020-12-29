@@ -43,6 +43,17 @@ public class CommandRegistry implements CommandExecutor {
                 case "tp":
                         return ws.tpCommand(sender, command, label, args);
                 //Admin Command
+                case "day":
+                    return admin.setTime(sender,0);
+                case "night":
+                    return admin.setTime(sender,14000);
+                case "time":
+                    return admin.setTime(sender, args[1]);
+                case "rain":
+                case "storm":
+                    return admin.setStorm(sender,true);
+                case "sun":
+                    return admin.setStorm(sender, false);
                 case "delmember":
                     return admin.delMemberCommand(sender, command, label, args);
                 case "delete":
@@ -66,6 +77,7 @@ public class CommandRegistry implements CommandExecutor {
                     return settings.resetCommand(sender, command, label, args);
                 case "sethome":
                     sender.sendMessage("Disabled For Major Error and Rework");
+                    return false;
                             /*
                     if (sender.hasPermission("ws.sethome")) {
                         return settings.setHomeCommand(sender, command, label, args);

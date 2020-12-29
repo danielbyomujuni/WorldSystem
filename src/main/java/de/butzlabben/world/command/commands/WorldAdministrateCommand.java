@@ -25,6 +25,71 @@ import java.io.IOException;
 
 public class WorldAdministrateCommand {
 
+    public boolean setTime(CommandSender sender, String ticks) {
+        switch (ticks) {
+            case "day":
+                return setTime(sender, 0);
+            case "night":
+                return setTime(sender, 14000);
+            case "dawn":
+                return setTime(sender, 23000);
+            default:
+                try {
+                    return setTime(sender, Long.parseLong(ticks));
+                } catch (NumberFormatException e) {
+                    sender.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws time [day/night/dawn/0-24000]"));
+                    return false;
+                }
+
+        }
+    }
+
+    public boolean setStorm(CommandSender sender, boolean storm) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("Command has to be executed as a player!");
+            return false;
+        }
+
+        Player p = (Player) sender;
+        DependenceConfig dc = new DependenceConfig(p);
+        if (!dc.hasWorld()) {
+            p.sendMessage(MessageConfig.getNoWorldOwn());
+            return false;
+        }
+
+        if (dc.getWorldname().equals(p.getWorld().getName())) {
+            p.getWorld().setStorm(storm);
+            return true;
+        }
+
+
+        p.sendMessage(MessageConfig.getNoMemberOwn());
+        return false;
+    }
+
+    public boolean setTime(CommandSender sender, long ticks) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("Command has to be executed as a player!");
+            return false;
+        }
+
+        Player p = (Player) sender;
+        DependenceConfig dc = new DependenceConfig(p);
+        if (!dc.hasWorld()) {
+            p.sendMessage(MessageConfig.getNoWorldOwn());
+            return false;
+        }
+
+        if (dc.getWorldname().equals(p.getWorld().getName())) {
+            p.getWorld().setTime(ticks);
+            return true;
+        }
+
+
+        p.sendMessage(MessageConfig.getNoMemberOwn());
+        return false;
+    }
+
     public boolean delMemberCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
