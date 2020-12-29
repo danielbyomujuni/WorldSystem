@@ -44,10 +44,10 @@ public class PlayerWrapper {
             return;
 
         Preconditions.checkNotNull(player);
-        String playersTableName = PluginConfig.getPlayersTableName();
+        String uuidTableName = PluginConfig.getUUIDTableName();
 
         try {
-            PreparedStatement ps = util.prepareStatement("REPLACE INTO " + playersTableName +
+            PreparedStatement ps = util.prepareStatement("REPLACE INTO " + uuidTableName +
                     " (uuid, name) VALUES (?, ?)");
             ps.setString(1, player.getUniqueId().toString());
             ps.setString(2, player.getName());
