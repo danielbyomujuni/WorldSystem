@@ -21,8 +21,8 @@ if (project.hasProperty("local_script")) {
     apply from: file(local_script + "/build.local.gradle")
 }
 
-sourceCompatibility = 11
-targetCompatibility = 11
+sourceCompatibility = 8
+targetCompatibility = 8
 
 ext {
     mcVersion = project.property("mcVersion")
@@ -35,9 +35,8 @@ spigot {
     authors = [project.property("author")]
 
     apiVersion = project.property("apiVersion")
-    depends  = [project.property("Vault")]
     load = STARTUP
-    softDepends = ["PlaceholderAPI"]
+    softDepends = ["PlaceholderAPI","Vault"]
 	loadBefore = ["FastAsyncWorldEdit", "WorldEdit", "BuildersUtilities","PlaceholderAPI"]
 	commands {
         "ws" {
@@ -134,9 +133,8 @@ repositories {
     mavenCentral()
     jcenter()
     spigot()
-    // Commons - IO
+ // Commons - IO
     maven { url = "https://mvnrepository.com/artifact/commons-io/commons-io" }
-
     // WorldEdit
     maven { url = "http://maven.enginehub.org/repo/" }
       maven {
@@ -180,7 +178,7 @@ dependencies {
 
         compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.0-SNAPSHOT'
         compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.0-SNAPSHOT'
-        compileOnly files('lib/commons-io-2.7.jar')
+        compile group: 'commons-io', name: 'commons-io', version: '2.8.0'
         compileOnly files('lib/FastAsyncWorldEdit.jar')
 }
 
