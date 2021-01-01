@@ -15,7 +15,7 @@ public class TntStatus implements DependListener {
 
     @Override
     public ItemStack getItemStack(Player p, WorldPlayer wp) {
-        String worldname = new DependenceConfig(p).getWorldname(0);//TODO MultiWorlds
+        String worldname = new DependenceConfig(p).getWorldname();
         File file = new File(worldname + "/worldconfig.yml");
         if (!file.exists())
             file = new File(PluginConfig.getWorlddir() + "/worldconfig.yml");

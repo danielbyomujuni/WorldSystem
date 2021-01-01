@@ -26,6 +26,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -173,13 +174,13 @@ public class WorldSystem extends JavaPlugin {
         AutoUpdater.startAsync();
 
         // Choose right creatoradapter for #16
-        if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null
-                && Bukkit.getPluginManager().getPlugin("WorldEdit") != null
-                && PluginConfig.loadWorldsASync()
-                && !is1_13Plus) {
+        if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null && Bukkit.getPluginManager().getPlugin("WorldEdit") != null && PluginConfig.loadWorldsASync() && !is1_13Plus) {
+            System.out.println("Registering Adapter");
             creator = new AsyncCreatorAdapter();
-            Bukkit.getConsoleSender()
-                    .sendMessage(PluginConfig.getPrefix() + "Found FAWE! Worlds now will be created asynchronously");
+            System.out.println("Logging Adapter");
+            Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Found FAWE! Worlds now will be created asynchronously");
+
+
         } else {
             creator = (c, sw, r) -> {
                 Bukkit.getWorlds().add(c.createWorld());
@@ -195,9 +196,10 @@ public class WorldSystem extends JavaPlugin {
                     + "Searching for old worlds to delete if not loaded for " + PluginConfig.deleteAfter() + " days");
             DependenceConfig.checkWorlds();
         }
-
-        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new PapiExtension().register();
+            System.out.println(PluginConfig.getPrefix() + "Found PlaceholderAPI");
+        }
 
         Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix() + "Successfully enabled WorldSystem v" + version);
     }

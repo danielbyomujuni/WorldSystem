@@ -35,20 +35,7 @@ public class WorldSettingsCommands {
             Player p = (Player) sender;
 
         DependenceConfig dc = new DependenceConfig(p);
-            int worldNumber;
-            try
-            {
-                if (args.length > 1) {
-                    worldNumber = Integer.parseInt(args[1]);
-                } else {
-                    worldNumber = 1;
-                }
-            }
-            catch (NumberFormatException e)
-            {
-                worldNumber = 1;
-            }
-        String worldname = dc.getWorldname(worldNumber);
+        String worldname = dc.getWorldname();
         SystemWorld sw = SystemWorld.getSystemWorld(worldname);
         if (!dc.hasWorld()) {
             p.sendMessage(MessageConfig.getNoWorldOwn());
@@ -173,23 +160,10 @@ public class WorldSettingsCommands {
     public boolean tntCommand(CommandSender sender, Command command, String label, String[] args) {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
-                int worldNumber;
-                try
-                {
-                    if (args.length > 1) {
-                        worldNumber = Integer.parseInt(args[1]);
-                    } else {
-                        worldNumber = 1;
-                    }
-                }
-                catch (NumberFormatException e)
-                {
-                    worldNumber = 1;
-                }
             DependenceConfig dc = new DependenceConfig(p);
-            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
+            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             boolean tnt = wc.isTnt();
-            WorldToggleTntEvent event = new WorldToggleTntEvent(p, SystemWorld.getSystemWorld(dc.getWorldname(worldNumber)), tnt);
+            WorldToggleTntEvent event = new WorldToggleTntEvent(p, SystemWorld.getSystemWorld(dc.getWorldname()), tnt);
             Bukkit.getPluginManager().callEvent(event);
             if (event.isCancelled())
                 return false;
@@ -217,23 +191,10 @@ public class WorldSettingsCommands {
     public boolean fireCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            int worldNumber;
-            try
-            {
-                if (args.length > 1) {
-                    worldNumber = Integer.parseInt(args[1]);
-                } else {
-                    worldNumber = 1;
-                }
-            }
-            catch (NumberFormatException e)
-            {
-                worldNumber = 1;
-            }
         DependenceConfig dc = new DependenceConfig(p);
-        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname(worldNumber));
+        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
         boolean fire = wc.isFire();
-        WorldToggleFireEvent event = new WorldToggleFireEvent(p, SystemWorld.getSystemWorld(dc.getWorldname(worldNumber)), fire);
+        WorldToggleFireEvent event = new WorldToggleFireEvent(p, SystemWorld.getSystemWorld(dc.getWorldname()), fire);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
             return false;

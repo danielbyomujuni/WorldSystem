@@ -8,15 +8,21 @@ buildscript {
 plugins {
     id 'com.github.johnrengelman.shadow' version '6.1.0'
     id 'kr.entree.spigradle' version '2.2.3'
+    id 'io.freefair.lombok' version '5.3.0'
     id 'java'
     id 'jacoco'
+    id 'idea'
 }
 
 apply from: "$rootDir/gradle/jacoco.gradle"
 //apply from: "$rootDir/gradle/publish.gradle"
 
-sourceCompatibility = 8
-targetCompatibility = 8
+if (project.hasProperty("local_script")) {
+    apply from: file(local_script + "/build.local.gradle")
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
 
 ext {
     mcVersion = project.property("mcVersion")
@@ -27,10 +33,11 @@ group project.property("group")
 spigot {
     name = project.property("pluginName")
     authors = [project.property("author")]
-    apiVersion = project.property("apiVersion")
-    loadBefore = ['FastAsyncWorldEdit', 'WorldEdit', 'BuildersUtilities']
-	//Comands
 
+    apiVersion = project.property("apiVersion")
+    load = STARTUP
+    softDepends = ["PlaceholderAPI"]
+	loadBefore = ["FastAsyncWorldEdit", "WorldEdit", "BuildersUtilities","PlaceholderAPI"]
 	commands {
         "ws" {
             description = 'All WorldSystem Commands'
@@ -52,13 +59,9 @@ spigot {
                 'ws.gamemode':true,
                 'ws.delete':true,
                 'ws.lag':true,
-                'ws.confirm':true,
-                'ws.worldborder.tier1':true,
-                'ws.worldborder.tier2':true,
-                'ws.worldborder.tier3':true,
-                'ws.worldborder.tier4':true,
-                'ws.worldborder.tier5':true,
-                'ws.worldborder.tier6':true
+                'ws.big':true,
+                'ws.large':true,
+                'ws.confirm':true
             ]
         }
         'ws.sethome' {
@@ -102,66 +105,19 @@ spigot {
             description = 'You can see lag messages'
             defaults = 'op'
         }
+        'ws.big' {
+            description = 'Gives you a bigger world (if set)'
+            defaults = 'op'
+        }
+        'ws.large' {
+            defaults = 'op'
+            children = ['ws.big':true]
+        }
         'ws.confirm' {
             description = 'You can confirm (if needed) an auto-update'
             defaults = 'op'
         }
-        'ws.saveall' {
-            description = 'Saves all the worlds'
-        'ws.worldborder.tier1' {
-            description = 'Adjusts World Border'
-            defaults = 'op'
-        }
-        'ws.worldborder.tier2' {
-            defaults = 'op'
-            children = ['ws.worldborder.tier1':true]
-        }
-        'ws.worldborder.tier3' {
-            defaults = 'op'
-            children = ['ws.worldborder.tier1':true,'ws.worldborder.tier2':true]
-        }
-        'ws.worldborder.tier4' {
-            defaults = 'op'
-            children = [
-                    'ws.worldborder.tier1':true,
-                    'ws.worldborder.tier2':true,
-                    'ws.worldborder.tier3':true
-            ]
-        }
-        'ws.worldborder.tier5' {
-            defaults = 'op'
-            children = [
-                    'ws.worldborder.tier1':true,
-                    'ws.worldborder.tier2':true,
-                    'ws.worldborder.tier3':true,
-                    'ws.worldborder.tier4':true
-            ]
-        }
-        'ws.worldborder.tier6' {
-            defaults = 'op'
-            children = [
-                    'ws.worldborder.tier1':true,
-                    'ws.worldborder.tier2':true,
-                    'ws.worldborder.tier3':true,
-                    'ws.worldborder.tier4':true,
-                    'ws.worldborder.tier5':true
-            ]
-        }
-        'ws.worldLimit.default' {
-            description = 'Set your World Limit'
-            defaults = true
-        }
-        'ws.worldLimit.big' {
-            description = 'Sets your World Limit Higher'
-            defaults = 'op'
-            children = ['ws.worldLimit.default':true]
-        }
-        'ws.worldLimit.bigger' {
-            defaults = 'op'
-            children = ['ws.worldLimit.default':true,'ws.worldLimit.big':true]
-        }
-    }
-    load = STARTUP
+	}
 }
 
 compileJava {
@@ -174,60 +130,51 @@ compileJava {
 archivesBaseName = project.property("pluginName")
 
 repositories {
-
-    jcenter()
-
-    spigot()
-//    bungeecord()
-//    paper()
-//    protocolLib()
-//    enginehub()
-
-    maven {
-            url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
-    }
-    maven {
-            url = 'https://jitpack.io'
-    }
-    maven {
-            url = 'https://libraries.minecraft.net'
-    }
-    maven {
-        url = 'https://repo.onarandombox.com/content/groups/public/'
-    }
-    maven {
-        url = 'http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/'
-    }
-    maven {
-        url = 'http://maven.sk89q.com/repo/'
-    }
-    maven { url = "https://mvn.intellectualsites.com/content/repositories/releases/" }
     mavenCentral()
+    jcenter()
+    spigot()
+      maven {
+            url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        }
+        maven {
+            url = 'https://jitpack.io'
+        }
+        maven {
+            url = 'https://libraries.minecraft.net'
+        }
+        maven {
+            url = 'https://repo.onarandombox.com/content/groups/public/'
+        }
+        maven {
+            url = 'http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/'
+        }
+        maven {
+            url = 'http://maven.sk89q.com/repo/'
+        }
+        maven { url = "https://mvn.intellectualsites.com/content/repositories/releases/" }
 }
 
 dependencies {
-    compileOnly lombok()
-    annotationProcessor lombok()
-
     compileOnly spigot(mcVersion)
 
     //Add dependencies here
+	worldedit()
     //Test dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
-    testImplementation "org.mockito:mockito-core:3.+"
-    testImplementation mockBukkit()
-    testImplementation 'org.assertj:assertj-core:3.+'
-    testImplementation lombok()
-    testAnnotationProcessor lombok()
+        testImplementation "org.mockito:mockito-core:3.+"
+        testImplementation mockBukkit()
+        testImplementation 'org.assertj:assertj-core:3.+'
+        testImplementation lombok()
+        testAnnotationProcessor lombok()
 
-    compileOnly 'me.clip:placeholderapi:2.10.9'
-    compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
-    compileOnly 'com.mojang:authlib:1.5.25'
-	  compileOnly 'org.projectlombok:lombok:1.18.14'
-    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.0.0-SNAPSHOT'
-    compileOnly 'com.sk89q.worldedit:worldedit-core:7.0.0-SNAPSHOT'
-    compile files('/lib/commons-io-2.7.jar')
-    compile files('/lib/FastAsyncWorldEdit.jar')
+        compileOnly 'me.clip:placeholderapi:2.10.9'
+        compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
+        compileOnly 'com.mojang:authlib:1.5.25'
+        compileOnly 'org.projectlombok:lombok:1.18.14'
+        //compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.0-SNAPSHOT'
+       // compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.0-SNAPSHOT'
+        compile files('/lib/commons-io-2.7.jar')
+        compile files('/lib/FastAsyncWorldEdit.jar')
 }
 
 shadowJar {
@@ -240,6 +187,8 @@ shadowJar {
 }
 
 tasks.build.dependsOn(shadowJar)
+//tasks.publish.dependsOn(shadowJar)
+tasks.prepareSpigotPlugins.dependsOn(shadowJar)
 
 test {
     useJUnitPlatform()
@@ -255,4 +204,3 @@ processResources {
 }
 
 defaultTasks 'build'
-

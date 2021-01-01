@@ -18,13 +18,18 @@ public class PapiExtension extends PlaceholderExpansion {
     private final WorldSystem worldSystem = WorldSystem.getInstance();
 
     @Override
+    public boolean canRegister(){
+        return true;
+    }
+
+    @Override
     public String getIdentifier() {
         return "worldsystem";
     }
 
     @Override
     public String getAuthor() {
-        return "Butzlabben";
+        return "Butzlabben & Trainerlord";
     }
 
     @Override
@@ -47,11 +52,11 @@ public class PapiExtension extends PlaceholderExpansion {
                 if (!config.hasWorld())
                     return "none";
                 else
-                    return config.getWorldname(0);//TODO MultiWorlds
+                    return config.getWorldname();
             case "world_of_player_loaded":
                 if (!config.hasWorld())
                     return "none";
-                return SystemWorld.getSystemWorld(config.getWorldname(0)).isLoaded() + ""; //TODO MultiWorlds
+                return SystemWorld.getSystemWorld(config.getWorldname()).isLoaded() + "";
             case "pretty_world_name":
                 if (!p.isOnline()) {
                     if (!config.hasWorld()) {

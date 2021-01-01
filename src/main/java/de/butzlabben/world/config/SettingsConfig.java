@@ -20,7 +20,7 @@ import java.util.UUID;
 public class SettingsConfig {
 
     private static final HashMap<String, Long> borderSizes = new HashMap<>();
-    public static final HashMap<String, Long> worldLimit = new HashMap<>();
+
     private static File file;
 
     private SettingsConfig() {
@@ -180,10 +180,6 @@ public class SettingsConfig {
         for (String s : cfg.getConfigurationSection("worldborder.ranks").getKeys(true)) {
             if (cfg.isInt("worldborder.ranks." + s) || cfg.isLong("worldborder.ranks." + s))
                 borderSizes.put(s, cfg.getLong("worldborder.ranks." + s));
-        }
-        for (String s : cfg.getConfigurationSection("worldLimit.ranks").getKeys(true)) {
-            if (cfg.isInt("worldLimit.ranks." + s) || cfg.isLong("worldLimit.ranks." + s))
-                worldLimit.put(s, cfg.getLong("worldLimit.ranks." + s));
         }
     }
 
