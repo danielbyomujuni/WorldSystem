@@ -3,13 +3,11 @@ package de.butzlabben.world.command;
 import de.butzlabben.world.command.commands.WSCommands;
 import de.butzlabben.world.command.commands.WorldAdministrateCommand;
 import de.butzlabben.world.command.commands.WorldSettingsCommands;
+import de.butzlabben.world.util.Worldutils;
+import de.butzlabben.world.wrapper.WorldTemplateProvider;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import static de.butzlabben.world.command.commands.WSCommands.*;
-import static de.butzlabben.world.command.commands.WorldAdministrateCommand.*;
-
-import java.util.List;
 
 
 public class CommandRegistry implements CommandExecutor {
@@ -27,9 +25,9 @@ public class CommandRegistry implements CommandExecutor {
             switch (args[0]) {
                 //WSCommands
                 case "get":
-                        return ws.getCommand(sender, command, label, args);
+                    return ws.getCommand(sender, command, label, args);
                 case "gui":
-                        return ws.guiCommand(sender, command, label, args);
+                    return ws.guiCommand(sender, command, label, args);
                 case "confirm":
                     if (sender.hasPermission("ws.confirm")) {
                         return ws.confirmCommand(sender, command, label, args);
@@ -43,8 +41,19 @@ public class CommandRegistry implements CommandExecutor {
                 case "leave":
                     return ws.leaveCommand(sender, command, label, args);
                 case "tp":
-                        return ws.tpCommand(sender, command, label, args);
+                    return ws.tpCommand(sender, command, label, args);
                 //Admin Command
+                case "day":
+                    return admin.setTime(sender,0);
+                case "night":
+                    return admin.setTime(sender,14000);
+                case "time":
+                    return admin.setTime(sender, args[1]);
+                case "rain":
+                case "storm":
+                    return admin.setStorm(sender,true);
+                case "sun":
+                    return admin.setStorm(sender, false);
                 case "delmember":
                     return admin.delMemberCommand(sender, command, label, args);
                 case "delete":
@@ -68,6 +77,7 @@ public class CommandRegistry implements CommandExecutor {
                     return settings.resetCommand(sender, command, label, args);
                 case "sethome":
                     sender.sendMessage("Disabled For Major Error and Rework");
+                    return false;
                             /*
                     if (sender.hasPermission("ws.sethome")) {
                         return settings.setHomeCommand(sender, command, label, args);
@@ -78,10 +88,16 @@ public class CommandRegistry implements CommandExecutor {
                     return settings.tntCommand(sender, command, label, args);
                 case "fire":
                     return settings.fireCommand(sender, command, label, args);
-                case "save-all":
-                    return admin.saveAll(sender, command, label,args);
+                case "reload":
+                    if(!sender.isOp()){
+                        sender.sendMessage("Reloading Settings!");
+                        WorldTemplateProvider.getInstance().reload();
+                        Worldutils.reloadWorldSettings();
+                        return true;
+                    }
                 default:
-                    return false;
+                    //default command is better than the other one
+                    return ws.mainCommand(sender, command, label, args);
             }
         }
     }

@@ -25,51 +25,115 @@ import java.io.IOException;
 
 public class WorldAdministrateCommand {
 
+    public boolean setTime(CommandSender sender, String ticks) {
+        switch (ticks) {
+            case "day":
+                return setTime(sender, 0);
+            case "night":
+                return setTime(sender, 14000);
+            case "dawn":
+                return setTime(sender, 23000);
+            default:
+                try {
+                    return setTime(sender, Long.parseLong(ticks));
+                } catch (NumberFormatException e) {
+                    sender.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws time [day/night/dawn/0-24000]"));
+                    return false;
+                }
+
+        }
+    }
+
+    public boolean setStorm(CommandSender sender, boolean storm) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("Command has to be executed as a player!");
+            return false;
+        }
+        Player p = (Player) sender;
+        DependenceConfig dc = new DependenceConfig(p);
+        if (!dc.hasWorld()) {
+            p.sendMessage(MessageConfig.getNotOnWorld());
+            return false;
+        }
+
+        if (dc.getWorldname().equals(p.getWorld().getName())) {
+            p.getWorld().setStorm(storm);
+            return true;
+        }
+
+
+        p.sendMessage(MessageConfig.getNotOnWorld());
+        return false;
+    }
+
+    public boolean setTime(CommandSender sender, long ticks) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("Command has to be executed as a player!");
+            return false;
+        }
+
+        Player p = (Player) sender;
+        DependenceConfig dc = new DependenceConfig(p);
+        if (!dc.hasWorld()) {
+            p.sendMessage(MessageConfig.getNotOnWorld());
+            return false;
+        }
+
+        if (dc.getWorldname().equals(p.getWorld().getName())) {
+            p.getWorld().setTime(ticks);
+            return true;
+        }
+
+
+        p.sendMessage(MessageConfig.getNotOnWorld());
+        return false;
+    }
+
     public boolean delMemberCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-        if (args.length < 2) {
-            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws delmember <Player>"));
-            return false;
-        }
-
-        DependenceConfig dc = new DependenceConfig(p);
-        if (!dc.hasWorld()) {
-            p.sendMessage(MessageConfig.getNoWorldOwn());
-            return false;
-        }
-
-        @SuppressWarnings("deprecation")
-        OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
-        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
-        if (a == null) {
-            p.sendMessage(MessageConfig.getNotRegistered().replaceAll("%player", args[1]));
-            return false;
-        } else if (!wc.isMember(a.getUniqueId())) {
-            p.sendMessage(MessageConfig.getNoMemberOwn());
-            return false;
-        }
-        WorldRemovememberEvent event = new WorldRemovememberEvent(a.getUniqueId(), dc.getWorldname(), p);
-        Bukkit.getPluginManager().callEvent(event);
-        if (event.isCancelled())
-            return false;
-
-        if (a.isOnline()) {
-            Player t = (Player) a;
-            if (t.getWorld().getName().equals(new DependenceConfig(p).getWorldname())) {
-                t.teleport(PluginConfig.getSpawn(t));
-                t.setGameMode(PluginConfig.getSpawnGamemode());
+            if (args.length < 2) {
+                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws delmember <Player>"));
+                return false;
             }
-        }
 
-        wc.removeMember(a.getUniqueId());
-        try {
-            wc.save();
-        } catch (IOException e) {
-            p.sendMessage(MessageConfig.getUnknownError());
-            e.printStackTrace();
-        }
-        p.sendMessage(MessageConfig.getMemberRemoved().replaceAll("%player", a.getName()));
+            DependenceConfig dc = new DependenceConfig(p);
+            if (!dc.hasWorld()) {
+                p.sendMessage(MessageConfig.getNoWorldOwn());
+                return false;
+            }
+
+            @SuppressWarnings("deprecation")
+            OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
+            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+            if (a == null) {
+                p.sendMessage(MessageConfig.getNotRegistered().replaceAll("%player", args[1]));
+                return false;
+            } else if (!wc.isMember(a.getUniqueId())) {
+                p.sendMessage(MessageConfig.getNoMemberOwn());
+                return false;
+            }
+            WorldRemovememberEvent event = new WorldRemovememberEvent(a.getUniqueId(), dc.getWorldname(), p);
+            Bukkit.getPluginManager().callEvent(event);
+            if (event.isCancelled())
+                return false;
+
+            if (a.isOnline()) {
+                Player t = (Player) a;
+                if (t.getWorld().getName().equals(new DependenceConfig(p).getWorldname())) {
+                    t.teleport(PluginConfig.getSpawn(t));
+                    t.setGameMode(PluginConfig.getSpawnGamemode());
+                }
+            }
+
+            wc.removeMember(a.getUniqueId());
+            try {
+                wc.save();
+            } catch (IOException e) {
+                p.sendMessage(MessageConfig.getUnknownError());
+                e.printStackTrace();
+            }
+            p.sendMessage(MessageConfig.getMemberRemoved().replaceAll("%player", a.getName()));
             return true;
         } else {
             sender.sendMessage("No Console"); //TODO Get Config
@@ -140,8 +204,11 @@ public class WorldAdministrateCommand {
     }
 
     public boolean addMemberCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player) {
-            Player p = (Player) sender;
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("No Console"); //TODO Get Config
+            return false;
+        }
+        Player p = (Player) sender;
         if (args.length < 2) {
             p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws addmember <Player>"));
             return false;
@@ -152,8 +219,7 @@ public class WorldAdministrateCommand {
             p.sendMessage(MessageConfig.getNoWorldOwn());
             return false;
         }
-        @SuppressWarnings("deprecation")
-        OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+        OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
         WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
         if (a == null) {
             p.sendMessage(MessageConfig.getNotRegistered().replaceAll("%player", args[1]));
@@ -177,10 +243,6 @@ public class WorldAdministrateCommand {
         }
         p.sendMessage(MessageConfig.getMemberAdded().replaceAll("%player", a.getName()));
             return true;
-        } else {
-            sender.sendMessage("No Console"); //TODO Get Config
-            return false;
-        }
     }
 
     public boolean toggleTeleportCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -196,8 +258,7 @@ public class WorldAdministrateCommand {
                 p.sendMessage(MessageConfig.getNoWorldOwn());
                 return false;
             }
-            @SuppressWarnings("deprecation")
-            OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+            OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             if (!wc.isMember(a.getUniqueId())) {
                 p.sendMessage(MessageConfig.getNoMemberOwn());
@@ -223,33 +284,33 @@ public class WorldAdministrateCommand {
     public boolean toggleGamemodeCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-        if (args.length < 2) {
-            p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglegm <Player>"));
-            return false;
-        }
+            if (args.length < 2) {
+                p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglegm <Player>"));
+                return false;
+            }
 
-        DependenceConfig dc = new DependenceConfig(p);
-        if (!dc.hasWorld()) {
-            p.sendMessage(MessageConfig.getNoWorldOwn());
-            return false;
-        }
-        @SuppressWarnings("deprecation")
-        OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
-        WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
-        if (!wc.isMember(a.getUniqueId())) {
-            p.sendMessage(MessageConfig.getNoMemberOwn());
-            return false;
-        }
-        WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
-        if (wp.isOwnerofWorld()) {
-            p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
-            return false;
-        }
-        if (wp.toggleGamemode()) {
-            p.sendMessage(MessageConfig.getToggleGameModeEnabled().replaceAll("%player", a.getName()));
-        } else {
-            p.sendMessage(MessageConfig.getToggleGameModeDisabled().replaceAll("%player", a.getName()));
-        }
+            DependenceConfig dc = new DependenceConfig(p);
+            if (!dc.hasWorld()) {
+                p.sendMessage(MessageConfig.getNoWorldOwn());
+                return false;
+            }
+            @SuppressWarnings("deprecation")
+            OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
+            WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
+            if (!wc.isMember(a.getUniqueId())) {
+                p.sendMessage(MessageConfig.getNoMemberOwn());
+                return false;
+            }
+            WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
+            if (wp.isOwnerofWorld()) {
+                p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
+                return false;
+            }
+            if (wp.toggleGamemode()) {
+                p.sendMessage(MessageConfig.getToggleGameModeEnabled().replaceAll("%player", a.getName()));
+            } else {
+                p.sendMessage(MessageConfig.getToggleGameModeDisabled().replaceAll("%player", a.getName()));
+            }
             return true;
         } else {
             sender.sendMessage("No Console"); //TODO Get Config
@@ -271,7 +332,7 @@ public class WorldAdministrateCommand {
                 return false;
             }
             @SuppressWarnings("deprecation")
-            OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+            OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             if (!wc.isMember(a.getUniqueId())) {
                 p.sendMessage(MessageConfig.getNoMemberOwn());
@@ -295,8 +356,8 @@ public class WorldAdministrateCommand {
     }
 
     public boolean toggleBuildCommand(CommandSender sender, Command command, String label, String[] args) {
-            if (sender instanceof Player) {
-                Player p = (Player) sender;
+        if (sender instanceof Player) {
+            Player p = (Player) sender;
             if (args.length < 2) {
                 p.sendMessage(MessageConfig.getWrongUsage().replaceAll("%usage", "/ws togglebuild <Player>"));
                 return false;
@@ -308,7 +369,7 @@ public class WorldAdministrateCommand {
                 return false;
             }
             @SuppressWarnings("deprecation")
-            OfflinePlayer a = Bukkit.getOfflinePlayer(args[1]);
+            OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             if (!wc.isMember(a.getUniqueId())) {
                 p.sendMessage(MessageConfig.getNoMemberOwn());
@@ -324,12 +385,12 @@ public class WorldAdministrateCommand {
             } else {
                 p.sendMessage(MessageConfig.getToggleBuildDisabled().replaceAll("%player", a.getName()));
             }
-                return true;
-            } else {
-                sender.sendMessage("No Console"); //TODO Get Config
-                return false;
-            }
+            return true;
+        } else {
+            sender.sendMessage("No Console"); //TODO Get Config
+            return false;
         }
+    }
 
     public boolean saveAll(CommandSender sender, Command command, String label, String[] args) {
         if (sender.hasPermission("ws.saveall")) {
