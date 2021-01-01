@@ -36,8 +36,7 @@ public class PluginConfig {
                     && cfg.isInt("request_expires") && cfg.isBoolean("need_confirm")
                     && cfg.isBoolean("contact_authserver") && cfg.isBoolean("spawn_teleportation")
                     && cfg.isInt("delete_after") && cfg.isBoolean("worldtemplates.multi_choose")
-                    && cfg.isString("worldtemplates.default") && cfg.isBoolean("load_worlds_async")
-                    && cfg.isBoolean("create_world_on_join") && cfg.isBoolean("PerWorldInventory") &&
+                    && cfg.isString("worldtemplates.default") && cfg.isBoolean("load_worlds_async") &&
 
                     // Database stuff
                     cfg.isString("database.type") && cfg.isString("database.worlds_table_name") && cfg.isString("database.players_table_name")
@@ -125,14 +124,6 @@ public class PluginConfig {
         return getConfig().getBoolean("survival", false);
     }
 
-    public static boolean canCreateWorldOnJoin() {
-        return getConfig().getBoolean("create_world_on_join", false);
-    }
-
-    public static boolean isPerWorldInv() {
-        return getConfig().getBoolean("PerWorldInventory", false);
-    }
-
     public static int getUnloadingTime() {
         return getConfig().getInt("unloadingtime", 20);
     }
@@ -216,6 +207,12 @@ public class PluginConfig {
     public static String getPlayersTableName() {
         return getConfig().getString("database.players_table_name");
     }
+
+    public static String getUUIDTableName() {
+        return getConfig().getString("database.players_uuids");
+    }
+
+
 
     public static String getDatabaseType() {
         return getConfig().getString("database.type");

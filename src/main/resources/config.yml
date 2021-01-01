@@ -52,8 +52,7 @@ survival: false
 
 # If WorldSystem should load the worlds async if possible (FAWE installed)
 load_worlds_async: true
-# If WorldSystem should create a new player a world when they join the server
-create_world_on_join: false
+
 # Options for the database saving player positions
 database:
   # Which type should be choosen:
@@ -64,6 +63,9 @@ database:
   worlds_table_name: worlds_positions
   # How the table with the saved player positions on the normal worlds should be named
   players_table_name: player_positions
+  # how should the uuid cache be stored
+  players_uuids: players_uuids
+
   # Configure here your mysql connection
   mysql_settings:
     host: 127.0.0.1
@@ -109,7 +111,7 @@ lagsystem:
 
 # Location where you will be teleported when you leave you world
 spawn:
-  gamemode: 0
+  gamemode: 2
   spawnpoint:
     use_last_location: true
     world: world

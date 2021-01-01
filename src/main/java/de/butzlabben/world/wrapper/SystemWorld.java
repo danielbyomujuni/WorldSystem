@@ -8,6 +8,7 @@
         import de.butzlabben.world.event.WorldLoadEvent;
         import de.butzlabben.world.event.WorldUnloadEvent;
         import de.butzlabben.world.util.PlayerPositions;
+        import de.butzlabben.world.util.PlayerWrapper;
         import de.butzlabben.world.util.VersionUtil;
         import org.apache.commons.io.FileUtils;
         import org.bukkit.*;
@@ -80,10 +81,6 @@ public class SystemWorld {
         return create(p.getUniqueId(), template);
     }
 
-    public static boolean hasWorld(Player p) {
-        DependenceConfig dc = new DependenceConfig(p);
-        return dc.hasWorld();
-    }
 
     /**
      * Trys to create a new systemworld with all entries etc. finally loads the
@@ -365,7 +362,7 @@ public class SystemWorld {
             }
         }, 10L);
 
-        OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
+        OfflinePlayer owner = PlayerWrapper.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
         DependenceConfig dc = new DependenceConfig(owner);
         dc.setLastLoaded();
     }
@@ -426,7 +423,7 @@ public class SystemWorld {
             p.setGameMode(GameMode.CREATIVE);
         }
 
-        OfflinePlayer owner = Bukkit.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
+        OfflinePlayer owner = PlayerWrapper.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
         DependenceConfig dc = new DependenceConfig(owner);
         dc.setLastLoaded();
     }

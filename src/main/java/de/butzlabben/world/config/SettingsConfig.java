@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+//maybe just merge this config with the WorldConfig
 public class SettingsConfig {
 
     private static final HashMap<String, Long> borderSizes = new HashMap<>();
@@ -27,6 +28,8 @@ public class SettingsConfig {
     }
 
     @SuppressWarnings("deprecation")
+    // TODO rebuild this, as it's inperformant and not very beautiful code..
+    // only load once, and then reload the things from the disk on command
     public static void editWorld(World w) {
         YamlConfiguration cfg = getConfig();
 
