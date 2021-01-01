@@ -9,6 +9,7 @@ import de.butzlabben.world.event.WorldAddmemberEvent;
 import de.butzlabben.world.event.WorldDeleteEvent;
 import de.butzlabben.world.event.WorldRemovememberEvent;
 import de.butzlabben.world.util.PlayerPositions;
+import de.butzlabben.world.util.PlayerWrapper;
 import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import org.apache.commons.io.FileUtils;

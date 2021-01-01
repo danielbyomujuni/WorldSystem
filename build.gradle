@@ -180,8 +180,8 @@ dependencies {
 
         compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.0-SNAPSHOT'
         compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.0-SNAPSHOT'
-        compile group: 'commons-io', name: 'commons-io', version: '2.7'
-        compileOnly files('dependency/FastAsyncWorldEdit.jar')
+        compileOnly files('lib/commons-io-2.7.jar')
+        compileOnly files('lib/FastAsyncWorldEdit.jar')
 }
 
 shadowJar {

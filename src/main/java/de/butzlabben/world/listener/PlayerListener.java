@@ -1,6 +1,8 @@
 package de.butzlabben.world.listener;
 
+import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
+import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.util.PlayerPositions;
@@ -9,6 +11,10 @@ import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
 import java.util.HashMap;
 import java.util.UUID;
+
+import de.butzlabben.world.wrapper.WorldTemplate;
+import de.butzlabben.world.wrapper.WorldTemplateProvider;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -47,7 +53,7 @@ public class PlayerListener implements Listener {
         // Save last location for #23
         if (player.isOnSystemWorld()) {
             WorldConfig config = WorldConfig.getWorldConfig(player.getWorldname());
-            PlayerPositions.getInstance().saveWorldsPlayerLocation(p, config);
+            PlayerPositions.instance.saveWorldsPlayerLocation(p, config);
         }
         SystemWorld.tryUnloadLater(w);
     }
@@ -82,5 +88,29 @@ public class PlayerListener implements Listener {
             }
         }
     }
+
+    /*@EventHandler(priority = EventPriority.HIGHEST)
+    public void onJoin(PlayerJoinEvent event) {
+        System.out.println("creating world for " + event.getPlayer().getDisplayName());
+        if (PluginConfig.canCreateWorldOnJoin()) {
+            if (!SystemWorld.hasWorld(event.getPlayer())) {
+
+                WorldTemplate template = WorldTemplateProvider.getInstance().getTemplate(PluginConfig.getDefaultWorldTemplate());
+                if (template != null) {
+                    //event.getPlayer().sendMessage(PluginConfig.getPrefix() + "Creating you world");
+                    this.create(event.getPlayer(), template);
+                } else {
+                    event.getPlayer().sendMessage(PluginConfig.getPrefix() + "§cError in config at \"worldtemplates.default\"");
+                    event.getPlayer().sendMessage(PluginConfig.getPrefix() + "§cPlease contact an administrator");
+                }
+            }
+        }
+    }
+    private void create (Player p, WorldTemplate template){
+        Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> {
+            if (SystemWorld.create(p, template))
+                p.sendMessage(MessageConfig.getSettingUpWorld());
+        });
+    }*/
 
 }
