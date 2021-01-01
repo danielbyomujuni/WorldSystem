@@ -28,6 +28,9 @@ spigot {
     name = project.property("pluginName")
     authors = [project.property("author")]
     apiVersion = project.property("apiVersion")
+    depends  = [project.property("Vault")]
+
+
 	//Comands
 
 	commands {
@@ -152,6 +155,13 @@ repositories {
         url = 'http://maven.sk89q.com/repo/'
     }
     maven { url = "https://mvn.intellectualsites.com/content/repositories/releases/" }
+
+    // Commons - IO
+    maven { url = "https://mvnrepository.com/artifact/commons-io/commons-io" }
+
+    // WorldEdit
+    maven { url = "http://maven.enginehub.org/repo/" }
+
     mavenCentral()
 }
 
@@ -174,10 +184,10 @@ dependencies {
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
     compileOnly 'com.mojang:authlib:1.5.25'
 	compileOnly 'org.projectlombok:lombok:1.18.14'
-    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.0.0-SNAPSHOT'
-    compileOnly 'com.sk89q.worldedit:worldedit-core:7.0.0-SNAPSHOT'
-    compile files('C:/Users/train/Desktop/Programing/Git/worldsystem/lib/commons-io-2.7.jar')
-    compile files('C:/Users/train/Desktop/Programing/Git/worldsystem/lib/FastAsyncWorldEdit.jar')
+    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.0-SNAPSHOT'
+    compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.0-SNAPSHOT'
+    compile group: 'commons-io', name: 'commons-io', version: '2.7'
+    compileOnly files('dependency/FastAsyncWorldEdit.jar')
 }
 
 shadowJar {

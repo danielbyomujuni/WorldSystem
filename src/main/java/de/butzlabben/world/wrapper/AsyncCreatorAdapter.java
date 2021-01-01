@@ -18,6 +18,8 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
     // Create worlds async to close #16
     @Override
     public void create(WorldCreator creator, SystemWorld sw, Runnable r) {
+
+
         TaskManager.IMP.async(() -> {
             AsyncWorld world;
             if (Bukkit.getWorld(creator.name()) == null)

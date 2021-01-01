@@ -1,5 +1,6 @@
 package de.butzlabben.world.config;
 
+import de.butzlabben.world.util.PlayerWrapper;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -17,15 +18,14 @@ public class DependenceConfig {
         setConfig();
     }
 
-    @SuppressWarnings("deprecation")
     public DependenceConfig(String s) {
         OfflinePlayer op = null;
         try {
-            op = Bukkit.getOfflinePlayer(UUID.fromString(s));
+            op = PlayerWrapper.getOfflinePlayer(UUID.fromString(s));
         } catch (Exception ignored) {
         }
         if (op == null) {
-            op = Bukkit.getOfflinePlayer(s);
+            op = PlayerWrapper.getOfflinePlayer(s);
         }
         uuid = op.getUniqueId();
     }
@@ -85,7 +85,7 @@ public class DependenceConfig {
             File dconfig = new File("plugins//WorldSystem//dependence.yml");
             YamlConfiguration cfg = YamlConfiguration.loadConfiguration(dconfig);
             String uuid = this.uuid.toString();
-            cfg.set("Dependences." + uuid + ".ActualName", Bukkit.getOfflinePlayer(this.uuid).getName());
+            cfg.set("Dependences." + uuid + ".ActualName", PlayerWrapper.getOfflinePlayer(this.uuid).getName());
             try {
                 cfg.save(dconfig);
             } catch (IOException e) {
@@ -102,7 +102,7 @@ public class DependenceConfig {
         id++;
         cfg.set("HighestID", id);
         cfg.set("Dependences." + uuid + ".ID", id);
-        cfg.set("Dependences." + uuid + ".ActualName", Bukkit.getOfflinePlayer(this.uuid).getName());
+        cfg.set("Dependences." + uuid + ".ActualName", PlayerWrapper.getOfflinePlayer(this.uuid).getName());
         try {
             cfg.save(dconfig);
         } catch (IOException e) {
@@ -158,6 +158,6 @@ public class DependenceConfig {
     }
 
     public OfflinePlayer getOwner() {
-        return Bukkit.getOfflinePlayer(uuid);
+        return PlayerWrapper.getOfflinePlayer(uuid);
     }
 }

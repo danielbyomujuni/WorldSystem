@@ -39,7 +39,7 @@ public class MoneyUtil {
         Preconditions.checkNotNull(uuid);
         Preconditions.checkNotNull(economy);
         Preconditions.checkArgument(money > 0, "Money must not be negative");
-        OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
+        OfflinePlayer op = PlayerWrapper.getOfflinePlayer(uuid);
         Economy economy = (Economy) MoneyUtil.economy;
         EconomyResponse response = economy.withdrawPlayer(op, money);
         if (!response.transactionSuccess()) {
@@ -52,7 +52,7 @@ public class MoneyUtil {
         Preconditions.checkNotNull(uuid);
         Preconditions.checkNotNull(economy);
         Preconditions.checkArgument(money > 0, "Money must not be negative");
-        OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
+        OfflinePlayer op = PlayerWrapper.getOfflinePlayer(uuid);
         Economy economy = (Economy) MoneyUtil.economy;
         return economy.getBalance(op) >= money;
     }
