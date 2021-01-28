@@ -33,6 +33,9 @@ worldtemplates:
         # Environment for the world
         # Valid inputs are 'NORMAL', 'NETHER' and 'THE_END'
         environment: NORMAL
+        # Generated Structures for the world
+        # Valid inputs are 'true' or 'false'
+        generated-structures: true
         # Type of the world eg. flat, amplified, ...
         # Valid types are 'NORMAL', 'VERSION_1_1', 'FLAT', 'AMPLIFIED', 'CUSTOMIZED' or 'LARGE_BIOMES'
         type: NORMAL

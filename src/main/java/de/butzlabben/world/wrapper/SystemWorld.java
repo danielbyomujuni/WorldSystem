@@ -99,7 +99,7 @@ public class SystemWorld {
         String worldname = "ID" + id + "-" + uuid;
         Player p = Bukkit.getPlayer(uniqueID);
 
-        WorldCreator creator = template.generatorSettings.asWorldCreator(worldname);
+        WorldCreator creator = template.generatorSettings.asWorldCreator(worldname).generateStructures(template.generateStructures);
 
         WorldCreateEvent event = new WorldCreateEvent(uniqueID, creator);
         Bukkit.getPluginManager().callEvent(event);

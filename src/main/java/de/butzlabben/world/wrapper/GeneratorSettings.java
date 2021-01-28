@@ -1,11 +1,10 @@
 package de.butzlabben.world.wrapper;
 
-import lombok.AllArgsConstructor;
+
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 
-@AllArgsConstructor
 public class GeneratorSettings {
     final private long seed;
     final private World.Environment environment;
@@ -18,6 +17,12 @@ public class GeneratorSettings {
         environment = null;
         seed = 0;
         generator = null;
+    }
+    public GeneratorSettings(long seed, World.Environment environment, WorldType type,String generator) {
+        this.type = type;
+        this.environment = environment;
+        this.seed = seed;
+        this.generator = generator;
     }
 
     public WorldCreator asWorldCreator(String name) {

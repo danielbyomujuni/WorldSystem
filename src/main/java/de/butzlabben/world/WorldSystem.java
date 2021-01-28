@@ -31,59 +31,81 @@ public class WorldSystem extends JavaPlugin {
     final private String version = this.getDescription().getVersion();
     private CreatorAdapter creator;
 
+    /**
+     createConfigs()
+
+     creates all necessary config files for the plugin to run
+     */
     public static void createConfigs() {
+            //Registers the plugin data folder as a variable
         File folder = getInstance().getDataFolder();
+            //Grabs/Creates the World Sources Directory and stores it as a variable
         File dir = new File(folder + "/worldsources");
+            // Grabs/Creates The Config File and stores it as a variable
         File config = new File(folder, "config.yml");
+            // Grabs/Creates Dependence Config and stores it as a variable
         File dconfig = new File(folder, "dependence.yml");
+            //Grabs/Creates the directory for language files and stores it as a variable
         File languages = new File(folder + "/languages");
+            //Grabs/Creates the gui config file and stores it as a variable
         File gui = new File(folder, "gui.yml");
 
-        if (!dir.exists()) {
+            //checks to make sure the worldsources directory exists
+        if (!dir.exists())
+                //the it doesn't exist, it is created
             dir.mkdirs();
-        }
 
+            //checks to make sure the language directory exists
         if (!languages.exists())
+                //the it doesn't exist, it is created
             languages.mkdirs();
 
+            //Calls a method from the Bukkit Class **Plugin Config** to make sure the template config
+            //matchs the one in the data folder.
         PluginConfig.checkConfig(config);
 
-        // Done with #6
-        MessageConfig.checkConfig(new File(languages, "en.yml"));
-
-        MessageConfig.checkConfig(new File(languages, "de.yml"));
+            //Registers and creates all the language files for the plugin
+        MessageConfig.checkConfig(new File(languages, "en.yml"));//Registers english
+        MessageConfig.checkConfig(new File(languages, "de.yml"));//Registers German
         MessageConfig.checkConfig(new File(languages, "hu.yml"));
         MessageConfig.checkConfig(new File(languages, "nl.yml"));
         MessageConfig.checkConfig(new File(languages, "pl.yml"));
         MessageConfig.checkConfig(new File(languages, "es.yml"));
-        MessageConfig.checkConfig(new File(languages, "ru.yml"));
+        MessageConfig.checkConfig(new File(languages, "ru.yml"));//Registers Russian
         MessageConfig.checkConfig(new File(languages, "fi.yml"));
         MessageConfig.checkConfig(new File(languages, "ja.yml"));
-        // Here we are for #5
         MessageConfig.checkConfig(new File(languages, "zh.yml"));
-        MessageConfig.checkConfig(new File(languages, "fr.yml"));
+        MessageConfig.checkConfig(new File(languages, "fr.yml"));//Registers French
 
-        // If has custom language
+            //Registers and creates language files for custom languages
         MessageConfig.checkConfig(new File(languages, PluginConfig.getLanguage() + ".yml"));
 
+            //checks to make sure the DependenceConfig exists
         if (!dconfig.exists()) {
+                //Uses a try catch statement to create the DependenceConfig.
             try {
                 dconfig.createNewFile();
             } catch (IOException e) {
+                    //Prints the Error the the console for the server operator.
                 System.err.println("Wasn't able to create DependenceConfig");
                 e.printStackTrace();
             }
             new DependenceConfig();
         }
-
+            //creates a YAML Interpreter
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(config);
+            //Checks for any errors in Settings Config (settings.yml)
         SettingsConfig.checkConfig();
 
+        //Grabs the Director for where user worlds will be stored
         File worlddir = new File(cfg.getString("worldfolder"));
+        //Checks if the world directory exists
         if (!worlddir.exists()) {
+            //creates the world directory
             worlddir.mkdirs();
         }
 
+        //Checks for any errors in Gui Config (gui.yml)
         GuiConfig.checkConfig(gui);
     }
 

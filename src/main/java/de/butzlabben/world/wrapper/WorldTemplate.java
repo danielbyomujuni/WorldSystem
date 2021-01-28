@@ -17,12 +17,14 @@ public class WorldTemplate {
     public final int slot;
     public final int cost;
     public final GeneratorSettings generatorSettings;
+    public final boolean generateStructures;
 
-    public WorldTemplate(String name, String permission, int cost, GeneratorSettings generatorSettings) {
+    public WorldTemplate(String name, String permission, int cost, GeneratorSettings generatorSettings, Boolean generateStructures) {
         this.name = name;
         this.permission = permission;
         this.cost = cost;
         this.generatorSettings = generatorSettings;
+        this.generateStructures = generateStructures;
 
         this.icon = GuiConfig.getItem("worldchoose." + name);
         this.slot = GuiConfig.getSlot("worldchoose." + name);
