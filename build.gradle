@@ -187,7 +187,7 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.+'
     testImplementation lombok()
     testAnnotationProcessor lombok()
-    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 
 
     compileOnly 'me.clip:placeholderapi:2.10.9'
