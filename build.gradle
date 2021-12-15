@@ -1,13 +1,16 @@
 buildscript {
     repositories {
-        jcenter()
+        jcenter() {
+            allowInsecureProtocol = true
+        }
         mavenCentral()
     }
 }
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '6.1.0'
-    id 'kr.entree.spigradle' version '2.2.3'
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+    id 'kr.entree.spigradle' version '2.2.4'
+    id 'io.freefair.lombok' version '6.3.0'
     id 'java'
     id 'jacoco'
 }
@@ -15,8 +18,8 @@ plugins {
 apply from: "$rootDir/gradle/jacoco.gradle"
 //apply from: "$rootDir/gradle/publish.gradle"
 
-sourceCompatibility = 8
-targetCompatibility = 8
+sourceCompatibility = 17
+targetCompatibility = 17
 
 ext {
     mcVersion = project.property("mcVersion")
@@ -29,7 +32,6 @@ spigot {
     authors = [project.property("author")]
     apiVersion = project.property("apiVersion")
     depends  = [project.property("Vault")]
-
 
 	//Comands
 
@@ -128,7 +130,9 @@ archivesBaseName = project.property("pluginName")
 
 repositories {
 
-    jcenter()
+    jcenter() {
+        allowInsecureProtocol = true
+    }
 
     spigot()
 //    bungeecord()
@@ -136,8 +140,12 @@ repositories {
 //    protocolLib()
 //    enginehub()
 
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/public/' }
     maven {
             url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+    }
+    maven {
+        url = 'https://ci.athion.net/job/FAWE-1.13/ws/mvn'
     }
     maven {
             url = 'https://jitpack.io'
@@ -149,10 +157,7 @@ repositories {
         url = 'https://repo.onarandombox.com/content/groups/public/'
     }
     maven {
-        url = 'http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/'
-    }
-    maven {
-        url = 'http://maven.sk89q.com/repo/'
+        url = 'https://maven.sk89q.com/repo/'
     }
     maven { url = "https://mvn.intellectualsites.com/content/repositories/releases/" }
 
@@ -160,8 +165,11 @@ repositories {
     maven { url = "https://mvnrepository.com/artifact/commons-io/commons-io" }
 
     // WorldEdit
-    maven { url = "http://maven.enginehub.org/repo/" }
-
+    maven { url = "https://maven.enginehub.org/repo/" }
+    maven {
+        name = "IntellectualSites Releases"
+        url = uri("https://mvn.intellectualsites.com/content/repositories/releases/")
+    }
     mavenCentral()
 }
 
@@ -169,7 +177,7 @@ dependencies {
     compileOnly lombok()
     annotationProcessor lombok()
 
-    compileOnly spigot(mcVersion)
+    implementation spigot('1.17')
 
     //Add dependencies here
     //Test dependencies
@@ -179,15 +187,18 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.+'
     testImplementation lombok()
     testAnnotationProcessor lombok()
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+
 
     compileOnly 'me.clip:placeholderapi:2.10.9'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
     compileOnly 'com.mojang:authlib:1.5.25'
-	compileOnly 'org.projectlombok:lombok:1.18.14'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.0-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.0-SNAPSHOT'
-    compile group: 'commons-io', name: 'commons-io', version: '2.7'
-    compileOnly files('dependency/FastAsyncWorldEdit.jar')
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:1.17-420")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:1.17-420")
+    compileOnly files('lib/FastAsyncWorldEdit.jar')
 }
 
 shadowJar {

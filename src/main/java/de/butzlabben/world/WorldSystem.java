@@ -160,7 +160,7 @@ public class WorldSystem extends JavaPlugin {
         Metrics m = new Metrics(this);
         m.addCustomChart(new Metrics.SingleLineChart("worlds", DependenceConfig::getHighestID));
 
-        AutoUpdater.startAsync();
+        //AutoUpdater.startAsync();
 
         // Choose right creatoradapter for #16
         if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null

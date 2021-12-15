@@ -1,5 +1,6 @@
 package de.butzlabben.world.util;
 
+import de.butzlabben.world.WorldSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -18,7 +19,11 @@ public class VersionUtil {
         if (version == 0) {
             // Detect version
             String v = Bukkit.getVersion();
-            if (v.contains("1.16"))
+            if (v.contains("1.18"))
+                version = 18;
+            else if (v.contains("1.17"))
+                version = 17;
+            else if (v.contains("1.16"))
                 version = 16;
             else if (v.contains("1.15"))
                 version = 15;
