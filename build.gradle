@@ -196,7 +196,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.22'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.0-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.0-SNAPSHOT'
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:1.17-420")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.2.0")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:1.17-420")
     compileOnly files('lib/FastAsyncWorldEdit.jar')
 }
