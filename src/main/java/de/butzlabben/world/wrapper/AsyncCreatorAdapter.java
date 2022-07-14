@@ -28,7 +28,7 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
             else
                 world = AsyncWorld.wrap(Objects.requireNonNull(Bukkit.getWorld(creator.name())));
 
-            Block block = world.getBlockAt(0, 0, 0);
+            Block block = world.getBlockAt(0, -64, 0);
             block.setType(Material.BEDROCK);
 
             // When you are done
