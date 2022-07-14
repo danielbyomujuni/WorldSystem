@@ -98,7 +98,7 @@ public class WorldSystem extends JavaPlugin {
         getCommand("ws").setExecutor(new CommandRegistry());
 
         // Set right version
-        if (VersionUtil.getVersion() >= 19)
+        if (VersionUtil.getVersion() >= 13)
             is1_13Plus = true;
 
         createConfigs();
