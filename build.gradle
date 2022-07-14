@@ -179,6 +179,8 @@ dependencies {
             version { strictly("1.30") }
             because("Bukkit provides SnakeYaml")
         }
+	
+    }
     compileOnly lombok()
     annotationProcessor lombok()
 
