@@ -198,7 +198,7 @@ dependencies {
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.11-SNAPSHOT'
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.1-243")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.4.1-243")
-    compileOnly files('artifact/artifacts/FastAsyncWorldEdit.jar')
+    compileOnly files('lib/FastAsyncWorldEdit.jar')
 }
 
 shadowJar {
