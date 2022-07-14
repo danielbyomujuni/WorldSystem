@@ -1,3 +1,4 @@
+// Nomally it is in this location: src/main/java/org/bstats/bukkit/Metrics.java
 package org.bstats.bukkit;
 
 import org.bukkit.Bukkit;
