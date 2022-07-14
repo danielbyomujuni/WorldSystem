@@ -162,7 +162,7 @@ repositories {
     maven { url = "https://ci.athion.net/job/FastAsyncWorldEdit/changes" }
 
     // Commons - IO
-    maven { url = "https://mvnrepository.com/artifact/commons-io/commons-io" }
+    maven { url = "https://mvnrepository.com/artifact/commons-io/commons-io/2.11.0" }
 
     // WorldEdit
     maven { url = "https://maven.enginehub.org/repo/" }
