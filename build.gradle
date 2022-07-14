@@ -194,17 +194,17 @@ dependencies {
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7.3'
     compileOnly 'com.mojang:authlib:1.5.25'
 	compileOnly 'org.projectlombok:lombok:1.18.24
-    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.11-APSHOT'
-    compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.0-SNAPSHOT'
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:1.17-420")
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:1.17-420")
-    compileOnly files('lib/FastAsyncWorldEdit.jar')
+    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.11-SNAPSHOT'
+    compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.11-SNAPSHOT'
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.1-243")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.4.1-243")
+    compileOnly files('artifact/artifacts/FastAsyncWorldEdit.jar')
 }
 
 shadowJar {
     classifier = ''
 //    dependencies {
-//        include(dependency('co.aikar:acf-paper:0.5.0-SNAPSHOT'))
+//        include(dependency('co.aikar:acf-paper:0.5.1-SNAPSHOT'))
 //    }
 //    relocate 'co.aikar.commands', "${packageName}.acf"
 //    relocate 'co.aikar.locales', "${packageName}.locales"
