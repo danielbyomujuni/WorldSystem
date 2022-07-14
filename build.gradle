@@ -174,8 +174,12 @@ repositories {
 }
 
 dependencies {
+    constraints {
+        implementation("org.yaml:snakeyaml") {
+            version { strictly("1.30") }
+            because("Bukkit provides SnakeYaml")
+        }
     compileOnly lombok()
-    compileOnlyApi lombok()
     annotationProcessor lombok()
 
     implementation spigot('1.19')
