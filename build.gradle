@@ -193,7 +193,7 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:2.11.2'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7.3'
     compileOnly 'com.mojang:authlib:1.5.25'
-	compileOnly 'org.projectlombok:lombok:1.18.24
+    compileOnly 'org.projectlombok:lombok:1.18.24
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.11-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.11-SNAPSHOT'
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.1-243")
