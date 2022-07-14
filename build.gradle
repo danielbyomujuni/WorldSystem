@@ -174,13 +174,13 @@ repositories {
 }
 
 dependencies {
-    constraints {
-        implementation("org.yaml:snakeyaml") {
-            version { strictly("1.30") }
-            because("Bukkit provides SnakeYaml")
-        }
-	
-    }
+//    constraints {
+//        implementation("org.yaml:snakeyaml") {
+//            version { strictly("1.30") }
+//            because("Bukkit provides SnakeYaml")
+//        }
+//	
+//    }
     compileOnly lombok()
     annotationProcessor lombok()
 
@@ -205,7 +205,7 @@ dependencies {
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.11-SNAPSHOT'
     // compileOnlyApi 'net.kyori:adventure-text-minimessage'
     compileOnly("net.kyori:adventure-api")
-    // pileOnlyApi("net.kyori:adventure-text-minimessage")
+    // compileOnlyApi("net.kyori:adventure-text-minimessage")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.1")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.4.1")
     compileOnly files('lib/FastAsyncWorldEdit.jar')
