@@ -11,7 +11,7 @@ import de.butzlabben.world.util.database.DatabaseProvider;
 import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
 import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
-import org.bstats.bukkit.Metrics;
+// import org.bstats.bukkit.Metrics; // Argantiu Development hates bstats, cause of data privecy. Also it isn't working.
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
