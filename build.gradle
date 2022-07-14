@@ -191,7 +191,7 @@ dependencies {
 
 
     compileOnly 'me.clip:placeholderapi:2.11.2'
-    compileOnly 'net.milkbowl.vault:VaultAPI:1.7.1'
+    // compileOnly 'net.milkbowl.vault:VaultAPI:1.7.1'
     compileOnly 'com.mojang:authlib:1.5.25'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.11-SNAPSHOT'
