@@ -4,6 +4,9 @@
 <p align="center">
   <a>A spigot plugin to give every user his own world</a>
 </p>
+<p align="center">
+  <a>1.7 - 1.19 Support</a>
+</p>
 <h2 align="center">
     About
 </h2>
