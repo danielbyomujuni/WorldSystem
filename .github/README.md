@@ -42,7 +42,7 @@
   
 ***
 <p align="center">
-  <a href="https://www.spigotmc.org/resources/49756/">Download Resource</a>
+  <a href="https://www.spigotmc.org/resources/49756/">Download Old Resource (Spigot.com)</a>
 </p>
 <p align="center">
   <a href="https://www.spigotmc.org/conversations/add?to=trainerlord">Contact author on spigot</a>
