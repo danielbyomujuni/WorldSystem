@@ -18,8 +18,8 @@ plugins {
 apply from: "$rootDir/gradle/jacoco.gradle"
 //apply from: "$rootDir/gradle/publish.gradle"
 
-sourceCompatibility = 17
-targetCompatibility = 17
+sourceCompatibility = 18
+targetCompatibility = 18
 
 ext {
     mcVersion = project.property("mcVersion")
