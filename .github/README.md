@@ -11,7 +11,10 @@
     About
 </h2>
 <p align="center">
-  <a>WorldSystem is a plugin where every player can get a world. There they can build, play and do anything they want without creating stress in a single world. The world owner can also add other players and manage their permissions on his world like is he allowed to build, teleport or changing his gamemode.</a>
+  <a>WorldSystem is a plugin where every player can get a world.</a>
+</p>
+<p align="center">
+  <a>There they can build, play and do anything they want without creating stress in a single world. The world owner can also add other players and manage their permissions on his world like is he allowed to build, teleport or changing his gamemode.</a>
 </p>
 <p align="center">
   <a>When a player creates a new world you can also set a template which will then be cloned.</a>
