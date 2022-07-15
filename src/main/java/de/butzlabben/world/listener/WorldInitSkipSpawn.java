@@ -12,6 +12,7 @@ public class WorldInitSkipSpawn implements Listener {
     @EventHandler
     public void worldInit(WorldInitEvent e) {
         World world = e.getWorld();
+        world.getWorldBorder().setWarningDistance(0);
         SystemWorld sw = SystemWorld.getSystemWorld(world.getName());
         if(sw == null)
             return;
