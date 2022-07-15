@@ -155,10 +155,10 @@ public class WorldSystem extends JavaPlugin {
         //this.getCommand("ws tnt").setExecutor(new WorldTnt());
         //this.getCommand("ws fire").setExecutor(new WorldFire());
 
-
-        System.setProperty("bstats.relocatecheck", "false");
-        Metrics m = new Metrics(this);
-        m.addCustomChart(new Metrics.SingleLineChart("worlds", DependenceConfig::getHighestID));
+            // Bstats deactivated
+        // System.setProperty("bstats.relocatecheck", "false");
+        // Metrics m = new Metrics(this);
+        // m.addCustomChart(new Metrics.SingleLineChart("worlds", DependenceConfig::getHighestID));
 
         //AutoUpdater.startAsync();
 
