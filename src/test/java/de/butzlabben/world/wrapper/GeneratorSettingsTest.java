@@ -1,3 +1,4 @@
+/*
 package de.butzlabben.world.wrapper;
 
 import org.bukkit.WorldCreator;
@@ -13,4 +14,4 @@ public class GeneratorSettingsTest {
         WorldCreator creator = settings.asWorldCreator("test");
         assertNotNull(creator);
     }
-}
+}*/
