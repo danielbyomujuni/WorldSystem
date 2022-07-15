@@ -192,10 +192,10 @@ dependencies {
 
     //Add dependencies here
     //Test dependencies
-    testImplementation 'com.github.seeseemelk:MockBukkit-v1.19:2.+'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
     testImplementation "org.mockito:mockito-core:4.+"
-    testImplementation mockBukkit()
+    // testImplementation 'com.github.seeseemelk:MockBukkit-v1.19:2.+'
+    // testImplementation mockBukkit()
     testImplementation 'org.assertj:assertj-core:3.+'
     testImplementation lombok()
     testAnnotationProcessor lombok()
