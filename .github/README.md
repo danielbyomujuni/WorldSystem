@@ -47,5 +47,5 @@
   <a href="https://discord.gg/WYz7Qck">Discord server</a>
 </p>
 <p align="center">
-  <a>Author on Discord: N1klasse#1486</a>
+  <a>Author on Discord: N1klasse#1486 or Trainerlord#3534</a>
 </p>
