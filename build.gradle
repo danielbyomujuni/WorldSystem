@@ -133,14 +133,27 @@ repositories {
     jcenter() {
         allowInsecureProtocol = true
     }
+  maven {
+    url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
 
+    content {
+      includeGroup 'org.bukkit'
+      includeGroup 'org.spigotmc'
+    }
     spigot()
 //    bungeecord()
 //    paper()
 //    protocolLib()
 //    enginehub()
-
-    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/public/' }
+    maven { 
+        url = 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
+    maven { 
+        url = 'https://oss.sonatype.org/content/repositories/central'
+    }
+    maven { 
+        url 'https://hub.spigotmc.org/nexus/content/repositories/public/'
+    }
     maven { 
         url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
     }
@@ -174,6 +187,7 @@ repositories {
         url = uri("https://ci.athion.net/job/FastAsyncWorldEdit/changes")
     }
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -203,6 +217,7 @@ dependencies {
 
 
     compileOnly 'me.clip:placeholderapi:2.11.2'
+    compileOnly 'org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7.1'
     compileOnly 'com.mojang:authlib:1.5.25'
     compileOnly 'org.projectlombok:lombok:1.18.24'
