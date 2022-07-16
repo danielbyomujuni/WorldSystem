@@ -5,14 +5,19 @@ buildscript {
         }
         maven {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-
+        }
         content {
         includeGroup 'org.bukkit'
         includeGroup 'org.spigotmc'
-        }
+	maven {
+	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/bukkit/bukkit/'
+	}
+	maven {
+	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/'
+	}
         }
         mavenCentral()
-         mavenLocal()
+        mavenLocal()
     }
 }
 
@@ -142,14 +147,19 @@ repositories {
     jcenter() {
         allowInsecureProtocol = true
     }
-    maven {
-    url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
 
     content {
-      includeGroup 'org.bukkit'
-      includeGroup 'org.spigotmc'
+    includeGroup 'org.bukkit'
+    includeGroup 'org.spigotmc'
+    maven {
+    url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/bukkit/bukkit/'
+    }
+    maven {
+    url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/'
     }
     }
+    mavenCentral()
+    mavenLocal()
 
     spigot()
 //    bungeecord()
