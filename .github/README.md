@@ -34,23 +34,18 @@
 <p align="center">
   <a>Leaving a good review</a>
 </p>
-<p align="center">
-    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=johannes.c.naegele%40gmail.com&currency_code=EUR&source=url">
-        <img src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" />
-    </a>
-</p>
   
 ***
 <p align="center">
   <a href="https://www.spigotmc.org/resources/49756/">Download Old Resource (Spigot.com)</a>
 </p>
 <p align="center">
-  <a href="https://www.spigotmc.org/conversations/add?to=trainerlord">Contact author on spigot</a>
+  <a href="https://www.spigotmc.org/conversations/add?to=buzcraft">Contact author on spigot</a>
   <a>(rather consider to create an issue here)</a>
 </p>
 <p align="center">
   <a href="https://discord.gg/WYz7Qck">Discord server</a>
 </p>
 <p align="center">
-  <a>Author on Discord: Trainerlord#3534</a>
+  <a>Author on Discord: N1klasse#1486</a>
 </p>
