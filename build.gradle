@@ -133,24 +133,20 @@ repositories {
     jcenter() {
         allowInsecureProtocol = true
     }
-//  maven {
-//    url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-//
-//  content {
-//    includeGroup 'org.bukkit'
-//    includeGroup 'org.spigotmc'
-//  }
+  maven {
+    url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+
+    content {
+      includeGroup 'org.bukkit'
+      includeGroup 'org.spigotmc'
+    }
+  }
 
     spigot()
 //    bungeecord()
 //    paper()
 //    protocolLib()
 //    enginehub()
-    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-    content {
-      includeGroup 'org.bukkit'
-      includeGroup 'org.spigotmc'
-    }
     maven { 
         url = 'https://oss.sonatype.org/content/repositories/snapshots'
     }
