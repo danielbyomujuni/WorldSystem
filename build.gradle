@@ -3,22 +3,7 @@ buildscript {
         jcenter() {
             allowInsecureProtocol = true
         }
-        maven {
-        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-
-     content {
-        includeGroup 'org.bukkit'
-        includeGroup 'org.spigotmc'
-	}
-	maven {
-	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/bukkit/bukkit/'
-	}
-	maven {
-	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/'
-	}
-	}
         mavenCentral()
-        mavenLocal()
     }
 }
 
@@ -148,22 +133,22 @@ repositories {
     jcenter() {
         allowInsecureProtocol = true
     }
-    maven {
-        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+//    maven {
+//        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
 
-    content {
-        includeGroup 'org.bukkit'
-        includeGroup 'org.spigotmc'
-	}
-    maven {
-	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/bukkit/bukkit/'
-	}
-    maven {
-	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/'
-	}
-    }
+//    content {
+//        includeGroup 'org.bukkit'
+//        includeGroup 'org.spigotmc'
+//	}
+//    maven {
+//	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/bukkit/bukkit/'
+//	}
+//    maven {
+//	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/'
+//        }
+//    }
         mavenCentral()
-        mavenLocal()
+        // mavenLocal()
 
     spigot()
 //    bungeecord()
@@ -171,10 +156,10 @@ repositories {
 //    protocolLib()
 //    enginehub()
     maven { 
-        url = 'https://oss.sonatype.org/content/repositories/snapshots'
+        url = 'https://oss.sonatype.org/content/repositories/snapshots/'
     }
     maven { 
-        url = 'https://oss.sonatype.org/content/repositories/central'
+        url = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
     }
     maven { 
         url 'https://hub.spigotmc.org/nexus/content/repositories/public/'
@@ -214,6 +199,15 @@ repositories {
     mavenCentral()
     mavenLocal()
 }
+
+//nexusPublishing {
+//    repositories {
+//        sonatype {
+//            nexusUrl.set(URI.create("https://s01.oss.sonatype.org/service/local/"))
+//            snapshotRepositoryUrl.set(URI.create("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+//        }
+//    }
+//}
 
 dependencies {
     constraints {
