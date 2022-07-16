@@ -1,0 +1,236 @@
+buildscript {
+    repositories {
+        jcenter() {
+            allowInsecureProtocol = true
+        }
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+    id 'kr.entree.spigradle' version '2.2.4'
+    id 'io.freefair.lombok' version '6.3.0'
+    id 'java'
+    id 'jacoco'
+}
+
+apply from: "$rootDir/gradle/jacoco.gradle"
+//apply from: "$rootDir/gradle/publish.gradle"
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+ext {
+    mcVersion = project.property("mcVersion")
+}
+
+group project.property("group")
+
+spigot {
+    name = project.property("pluginName")
+    authors = [project.property("author")]
+    apiVersion = project.property("apiVersion")
+    depends  = [project.property("Vault")]
+
+	//Comands
+
+	commands {
+        "ws" {
+            description = 'All WorldSystem Commands'
+            permissionMessage = 'You do not have permission!'
+        }
+    }
+    permissions {
+        'ws.*' {
+            description = 'gives all Perms'
+            defaults = 'op'
+            children = [
+                'ws.tp.*':true,
+                'ws.get':true,
+                'ws.sethome':true,
+                'ws.tp.world':true,
+                'ws.tp.toother':true,
+                'ws.tp.other':true,
+                'ws.build':true,
+                'ws.gamemode':true,
+                'ws.delete':true,
+                'ws.lag':true,
+                'ws.big':true,
+                'ws.large':true,
+                'ws.confirm':true
+            ]
+        }
+        'ws.sethome' {
+            description = 'You can set a different worldspawn'
+            defaults = true
+        }
+        'ws.tp' {
+            description = 'You can teleport everything'
+            defaults = 'op'
+            children = ['ws.tp.toother':true,'ws.tp.other':true,'ws.tp.world':true]
+        }
+        'ws.build' {
+            description = 'You can build on other Worlds without WorldPermissions'
+            defaults = 'op'
+        }
+        'ws.get' {
+            description = 'You can create a world via /ws get'
+            defaults = true
+        }
+        'ws.delete' {
+            description = 'You can delete a world'
+            defaults = 'op'
+        }
+        'ws.gamemode' {
+            description = 'You can change GameMode on other worlds'
+            defaults = 'op'
+        }
+        'ws.tp.other' {
+            description = 'You can teleport other persons'
+            defaults = 'op'
+        }
+        'ws.tp.toother' {
+            description = 'You can teleport across worlds'
+            defaults = 'op'
+        }
+        'ws.tp.world' {
+            description = 'You can teleport to without rights World'
+            defaults = 'op'
+        }
+        'ws.lag' {
+            description = 'You can see lag messages'
+            defaults = 'op'
+        }
+        'ws.big' {
+            description = 'Gives you a bigger world (if set)'
+            defaults = 'op'
+        }
+        'ws.large' {
+            defaults = 'op'
+            children = ['ws.big':true]
+        }
+        'ws.confirm' {
+            description = 'You can confirm (if needed) an auto-update'
+            defaults = 'op'
+        }
+    }
+    load = STARTUP
+    //    depends = ['']
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ["-parameters"]
+    options.fork = true
+    options.forkOptions.executable = 'javac'
+}
+
+archivesBaseName = project.property("pluginName")
+
+repositories {
+
+    jcenter() {
+        allowInsecureProtocol = true
+    }
+
+    spigot()
+//    bungeecord()
+//    paper()
+//    protocolLib()
+//    enginehub()
+
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/public/' }
+    maven {
+            url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+    }
+    maven {
+        url = 'https://ci.athion.net/job/FastAsyncWorldEdit/ws'
+    }
+    maven {
+            url = 'https://jitpack.io'
+    }
+    maven {
+            url = 'https://libraries.minecraft.net'
+    }
+    maven {
+        url = 'https://repo.onarandombox.com/content/groups/public/'
+    }
+    maven {
+        url = 'https://maven.enginehub.org/repo/'
+    }
+    maven { url = "https://ci.athion.net/job/FastAsyncWorldEdit/changes/" }
+
+    // Commons - IO
+    maven { url = "https://mvnrepository.com/artifact/commons-io/commons-io/" }
+
+    // WorldEdit
+    maven { url = "https://maven.enginehub.org/repo/" }
+    maven {
+        name = "IntellectualSites Releases"
+        url = uri("https://mvn.intellectualsites.com/content/repositories/releases/")
+    }
+    mavenCentral()
+}
+
+dependencies {
+    constraints {
+        implementation("org.yaml:snakeyaml") {
+            version { strictly("1.30") }
+            because("Bukkit provides SnakeYaml")
+	      implementation("net.kyori:adventure-text-minimessage:4.11.0")
+        }
+	
+    }
+    compileOnly lombok()
+    annotationProcessor lombok()
+
+    implementation spigot('1.19')
+
+    //Add dependencies here
+    //Test dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
+    testImplementation "org.mockito:mockito-core:3.+"
+    // testImplementation mockBukkit()
+    testImplementation 'org.assertj:assertj-core:3.+'
+    testImplementation lombok()
+    testAnnotationProcessor lombok()
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+
+
+    compileOnly 'me.clip:placeholderapi:2.11.2'
+    compileOnly 'com.github.MilkBowl:VaultAPI:1.7.1'
+    compileOnly 'com.mojang:authlib:1.5.25'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.11-SNAPSHOT'
+    compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.11-SNAPSHOT'
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.1")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.4.1")
+    compileOnly files('lib/FastAsyncWorldEdit.jar')
+}
+
+shadowJar {
+    classifier = ''
+//    dependencies {
+//        include(dependency('co.aikar:acf-paper:0.5.0-SNAPSHOT'))
+//    }
+//    relocate 'co.aikar.commands', "${packageName}.acf"
+//    relocate 'co.aikar.locales', "${packageName}.locales"
+}
+
+tasks.build.dependsOn(shadowJar)
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    ignoreFailures = false
+}
+
+processResources {
+    project.properties.put("version", this.version)
+    expand project.properties
+}
+
+defaultTasks 'build'
