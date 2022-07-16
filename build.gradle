@@ -5,17 +5,17 @@ buildscript {
         }
         maven {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-        }
-      content {
+
+     content {
         includeGroup 'org.bukkit'
         includeGroup 'org.spigotmc'
+	}
 	maven {
 	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/bukkit/bukkit/'
 	}
 	maven {
 	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/'
 	}
-        }
         mavenCentral()
         mavenLocal()
     }
