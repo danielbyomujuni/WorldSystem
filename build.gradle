@@ -16,6 +16,7 @@ buildscript {
 	maven {
 	url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/'
 	}
+	}
         mavenCentral()
         mavenLocal()
     }
