@@ -190,7 +190,7 @@ dependencies {
     //Add dependencies here
     //Test dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
-    testImplementation "org.mockito:mockito-core:3.+"
+    testImplementation "org.mockito:mockito-core:4.+"
     // testImplementation mockBukkit()
     testImplementation 'org.assertj:assertj-core:3.+'
     testImplementation lombok()
