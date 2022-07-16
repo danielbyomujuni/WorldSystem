@@ -2,6 +2,11 @@
         <img src="https://github.com/CrazyCloudCraft/worldsystem-depecated/raw/master/.github/Worldsystemlogo_V24X.png" />
 </p>
 <p align="center">
+    <a href="https://github.com/CrazyCloudCraft/worldsystem-depecated/actions/workflows/codacy.yml">
+        <img src="https://github.com/CrazyCloudCraft/worldsystem-depecated/actions/workflows/codacy.yml/badge.svg" />
+    </a>
+
+<p align="center">
   <a>A spigot plugin to give every user his own world</a>
 </p>
 <p align="center">
