@@ -8,9 +8,9 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '7.1.0'
-    id 'kr.entree.spigradle' version '2.2.4'
-    id 'io.freefair.lombok' version '6.3.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'kr.entree.spigradle' version '2.4.2'
+    id 'io.freefair.lombok' version '6.5.0.3'
     id 'java'
     id 'jacoco'
 }
@@ -201,7 +201,7 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:2.11.2'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7.1'
     compileOnly 'com.mojang:authlib:1.5.25'
-	compileOnly 'org.projectlombok:lombok:1.18.22'
+	compileOnly 'org.projectlombok:lombok:1.18.24'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.11-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.11-SNAPSHOT'
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.1")
@@ -212,7 +212,7 @@ dependencies {
 shadowJar {
     classifier = ''
 //    dependencies {
-//        include(dependency('co.aikar:acf-paper:0.5.0-SNAPSHOT'))
+//        include(dependency('co.aikar:acf-paper:0.5.1-SNAPSHOT'))
 //    }
 //    relocate 'co.aikar.commands', "${packageName}.acf"
 //    relocate 'co.aikar.locales', "${packageName}.locales"
