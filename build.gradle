@@ -8,7 +8,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '7.1.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'kr.entree.spigradle' version '2.4.2'
     id 'io.freefair.lombok' version '6.5.0.3'
     id 'java'
@@ -190,7 +190,7 @@ dependencies {
     //Add dependencies here
     //Test dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
-    testImplementation "org.mockito:mockito-core:3.+"
+    testImplementation "org.mockito:mockito-core:4.+"
     // testImplementation mockBukkit()
     testImplementation 'org.assertj:assertj-core:3.+'
     testImplementation lombok()
@@ -201,7 +201,7 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:2.11.2'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7.1'
     compileOnly 'com.mojang:authlib:1.5.25'
-	compileOnly 'org.projectlombok:lombok:1.18.24'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.11-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.11-SNAPSHOT'
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.1")
