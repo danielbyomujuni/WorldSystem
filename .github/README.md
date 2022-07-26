@@ -18,9 +18,11 @@
 <p align="center">
   <a>1.7 - 1.19 Support</a>
 </p>
-<p align="center">
+<!--
+ <p align="center">
   <a href="https://github.com/CrazyCloudCraft/worldsystem-depecated/tree/v2.4.31-beta2">View N1klasse trying to integrade features</a>
-</p>
+ </p>
+-->
 <h2 align="center">
     About
 </h2>
