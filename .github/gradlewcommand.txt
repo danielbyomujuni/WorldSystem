@@ -1,1 +1,1 @@
-git clone https://github.com/CrazyCloudCraft/worldsystem-depecated.git && cd worldsystem-depecated && chmod +x gradlew && ./gradlew
+git clone https://github.com/CrazyCloudCraft/worldsystem-depecated.git && cd worldsystem-depecated && chmod +x gradlew && ./gradlew builf
