@@ -186,6 +186,8 @@ dependencies {
     annotationProcessor lombok()
 
     implementation spigot('1.19')
+    implementation spigot('1.18')
+    implementation spigot('1.17')
 
     //Add dependencies here
     //Test dependencies
