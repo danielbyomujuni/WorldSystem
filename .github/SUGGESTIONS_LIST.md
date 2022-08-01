@@ -1,4 +1,4 @@
-Hello, this is the suggestion site where you can view the things that I fix or add to the plugin.
+Hello, this is the suggestion site where you can view the things that I fix or add to the plugin.  
 This is not offical, you can only see here IDEAS how i strukture the issues.
 
 
