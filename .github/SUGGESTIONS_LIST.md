@@ -43,8 +43,7 @@ This is not offical, you can only see here IDEAS how i strukture the issues.
 #48  
 
 
-How it would could look like in the end:
-what we have now:
+How it would could look like in the end:  
 
 
 ### cmds & perms:
