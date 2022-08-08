@@ -206,6 +206,7 @@ dependencies {
     compileOnly 'com.mojang:authlib:1.5.25'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     // compileOnly spigot('1.19')
+    compileOnly 'org.spigotmc:spigot-api:jar:1.19-R0.1-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.11-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.11-SNAPSHOT'
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.2")
