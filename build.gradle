@@ -182,6 +182,7 @@ dependencies {
         }
 	
     }
+    compileOnly spigot('1.19.2')
     compileOnly lombok()
     annotationProcessor lombok()
 
