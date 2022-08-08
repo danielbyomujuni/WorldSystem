@@ -20,8 +20,8 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
     @Override
     public void create(WorldCreator creator, SystemWorld sw, Runnable r) {
 
-
-        TaskManager.IMP.async(() -> {
+// moved IMP to INSTANCE
+        TaskManager.INSTANCE.async(() -> {
             AsyncWorld world;
             if (Bukkit.getWorld(creator.name()) == null)
                 world = AsyncWorld.create(creator);
