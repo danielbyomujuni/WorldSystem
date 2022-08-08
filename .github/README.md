@@ -9,7 +9,7 @@
         <img src="https://img.shields.io/github/downloads/CrazyCloudCraft/worldsystem-depecated/total?color=green&label=All%20Downloads&style=plastic" />
     </a>
     <a href="https://github.com/CrazyCloudCraft/worldsystem-depecated/releases/v2.4.31-beta2%2312">
-        <img src="https://img.shields.io/github/downloads-pre/CrazyCloudCraft/worldsystem-depecated/v2.4.31-beta2%252312/total?color=lime&label=Downloads%20latest&logo=github&style=plastic" />
+        <img src="https://img.shields.io/github/downloads-pre/CrazyCloudCraft/worldsystem-depecated/v2.4.31-beta2%252312/total?color=lime&label=Downloads%20latest%20v2.4.31-beta2&logo=github&style=plastic" />
 </a>
 
 <p align="center">
