@@ -8,7 +8,7 @@ import de.butzlabben.world.util.PapiExtension;
 import de.butzlabben.world.util.PlayerPositions;
 import de.butzlabben.world.util.VersionUtil;
 import de.butzlabben.world.util.database.DatabaseProvider;
-import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
+// import de.butzlabben.world.wrapper.AsyncCreatorAdapter; // Since FAWE 2.0 this do nothing
 import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
 // import org.bstats.bukkit.Metrics; // Argantiu Development hates bstats, cause of data privecy. Also it isn't working.
@@ -168,7 +168,7 @@ public class WorldSystem extends JavaPlugin {
                 && PluginConfig.loadWorldsASync()
                 && !is1_13Plus) {
 
-            creator = new AsyncCreatorAdapter();
+            // creator = new AsyncCreatorAdapter(); // Since FAWE 2.0 this do nothing
             Bukkit.getConsoleSender()
                     .sendMessage(PluginConfig.getPrefix() + "Found FAWE! Worlds now will be created asynchronously");
         } else {

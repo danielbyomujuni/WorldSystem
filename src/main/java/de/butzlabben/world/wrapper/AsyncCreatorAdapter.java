@@ -1,4 +1,4 @@
-package de.butzlabben.world.wrapper;
+/* package de.butzlabben.world.wrapper;
 
 import com.boydti.fawe.bukkit.wrapper.AsyncWorld;
 //import com.boydti.fawe.util.TaskManager;
@@ -10,11 +10,11 @@ import org.bukkit.block.Block;
 
 import java.util.Objects;
 
-/**
+/*
  * @author Butzlabben
  * @since 08.06.2018
  */
-public class AsyncCreatorAdapter implements CreatorAdapter {
+/* public class AsyncCreatorAdapter implements CreatorAdapter {
 
     // Create worlds async to close #16
     @Override
@@ -43,3 +43,4 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
     }
 
 }
+*/
