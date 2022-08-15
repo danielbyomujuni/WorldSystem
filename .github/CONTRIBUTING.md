@@ -80,7 +80,7 @@ format that includes a **type**, a **scope** and a **subject**:
 ```
 
 > Any line of the commit message cannot be longer 100 characters!<br/>
-  This allows the message to be easier to read on GitHub as well as in various Git tools.
+> This allows the message to be easier to read on GitHub as well as in various Git tools.
 
 ##### Type
 Must be one of the following:
@@ -121,7 +121,7 @@ The footer should contain any information about **Breaking Changes** and is also
 reference GitHub issues that this commit **Closes**, **Fixes**, or **Relates to**.
 
 > Breaking Changes are intended to be highlighted in the ChangeLog as changes that will require
-  community users to modify their code after updating to a version that contains this commit.
+> community users to modify their code after updating to a version that contains this commit.
 
 ##### Sample Commit messages:
 ```text
