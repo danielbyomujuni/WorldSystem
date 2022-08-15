@@ -1,7 +1,7 @@
 ---
-Name: Feature request
-About: Suggest an idea for WorldSystems
-Title: ''
+Name: 'Feature request'
+About: 'Suggest an idea for WorldSystems'
+Title: 'Feature'
 Labels: 'new-feature'
 Assignees: ''
 
