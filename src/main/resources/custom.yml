@@ -26,7 +26,7 @@ world:
 member:
   removed: "%player"
   added: "%player"
-  already_added: "
+  already_added: ""
   not_added:
     own: ""
     other: ""
