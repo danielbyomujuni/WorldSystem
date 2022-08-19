@@ -16,7 +16,7 @@
   <a>A spigot plugin to give every user his own world</a>
 </p>
 <p align="center">
-  <a>1.7 - 1.19 Support</a>
+  <a>1.7 - 1.19.x Support</a>
 </p>
 <!--
  <p align="center">
