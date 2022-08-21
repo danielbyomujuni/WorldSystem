@@ -32,7 +32,7 @@ public class WSCommands {
         cs.sendMessage(prefix + "Contributors: Jubeki, montlikadani, jstoeckm2, Butzlabben");
         List<String> cmdHelp = MessageConfig.getCommandHelp();
         cmdHelp.forEach(s -> cs.sendMessage(s)); //(prefix + s));
-        cs.sendMessage(prefix + "==============");
+        // cs.sendMessage(prefix + "==============");
         if (cs.hasPermission("ws.delete")) {
             cs.sendMessage(MessageConfig.getDeleteCommandHelp());
         }
