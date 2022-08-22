@@ -142,6 +142,10 @@ repositories {
 
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/public/' }
     maven {
+            name "papermc"
+            url "https://papermc.io/repo/repository/maven-public/"
+    }
+    maven {
             url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
     }
     maven {
@@ -185,7 +189,8 @@ dependencies {
     compileOnly spigot('1.19.2')
     compileOnly lombok()
     annotationProcessor lombok()
-
+    
+    implementation "io.papermc:paperlib:1.0.7"
     implementation spigot('1.19')
     implementation spigot('1.18')
     implementation spigot('1.17')
@@ -216,6 +221,7 @@ dependencies {
 
 shadowJar {
     classifier = ''
+      relocate "io.papermc.lib", "${packageName}.paperlib"
 //    dependencies {
 //        include(dependency('co.aikar:acf-paper:0.5.1-SNAPSHOT'))
 //    }
