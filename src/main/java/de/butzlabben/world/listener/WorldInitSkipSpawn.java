@@ -19,7 +19,7 @@ public class WorldInitSkipSpawn implements Listener {
 
         SettingsConfig.editWorld(world);
         // e.getWorld().setKeepSpawnInMemory(false);
-        e.getWorld().setKeepSpawnInMemory(true);
+        e.getWorld().setKeepSpawnInMemory(false);
     }
 
 }
