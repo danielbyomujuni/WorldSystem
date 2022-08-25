@@ -214,7 +214,7 @@ dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.11-SNAPSHOT'
     compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.11-SNAPSHOT'
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.3")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.4")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.4.3")
     compileOnly files('lib/FastAsyncWorldEdit.jar')
 }
