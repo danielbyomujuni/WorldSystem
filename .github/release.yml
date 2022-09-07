@@ -17,6 +17,6 @@ changelog:
     - title: BugFix > v2.4.31 
       labels:
         - bugfixing
-    - title:
+    - title: Fast changes > v2.4.31
       labels:
         - duplicate
