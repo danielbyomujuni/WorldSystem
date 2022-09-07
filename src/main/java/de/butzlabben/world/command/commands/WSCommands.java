@@ -215,7 +215,7 @@ public class WSCommands {
             }
 
             p.teleport(PluginConfig.getSpawn(p));
-            p.setGameMode(PluginConfig.getSpawnGamemode());
+            p.setGameMode(GameMode.SURVIVAL);//p.setGameMode(PluginConfig.getSpawnGamemode());
             World w = Bukkit.getWorld(p.getWorld().getName());
             SystemWorld.tryUnloadLater(w);
             } else {
