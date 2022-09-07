@@ -17,6 +17,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 import java.util.Iterator;
@@ -215,7 +216,7 @@ public class WSCommands {
             }
 
             p.teleport(PluginConfig.getSpawn(p));
-            p.setGameMode(GameMode.SURVIVAL);//p.setGameMode(PluginConfig.getSpawnGamemode());
+            p.setGameMode(GameMode.SURVIVAL); //p.setGameMode(PluginConfig.getSpawnGamemode());
             World w = Bukkit.getWorld(p.getWorld().getName());
             SystemWorld.tryUnloadLater(w);
             } else {
