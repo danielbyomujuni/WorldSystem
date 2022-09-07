@@ -1,6 +1,6 @@
 package de.butzlabben.world.wrapper;
 
-import com.boydti.fawe.bukkit.wrapper.AsyncWorld;
+//import com.boydti.fawe.bukkit.wrapper.AsyncWorld;
 //import com.boydti.fawe.util.TaskManager;
 import com.fastasyncworldedit.core.util.TaskManager;
 import org.bukkit.Bukkit;
@@ -19,7 +19,7 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
     // Create worlds async to close #16
     @Override
     public void create(WorldCreator creator, SystemWorld sw, Runnable r) {
-
+        /*
 
         TaskManager.IMP.async(() -> {
             AsyncWorld world;
@@ -39,7 +39,7 @@ public class AsyncCreatorAdapter implements CreatorAdapter {
 
             // Send the message
             r.run();
-        });
+        });*/
     }
 
 }

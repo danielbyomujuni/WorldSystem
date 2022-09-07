@@ -163,7 +163,7 @@ public class WorldSystem extends JavaPlugin {
         //AutoUpdater.startAsync();
 
         // Choose right creatoradapter for #16
-        if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null
+        /*if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null
                 && Bukkit.getPluginManager().getPlugin("WorldEdit") != null
                 && PluginConfig.loadWorldsASync()
                 && !is1_13Plus) {
@@ -171,14 +171,14 @@ public class WorldSystem extends JavaPlugin {
             creator = new AsyncCreatorAdapter();
             Bukkit.getConsoleSender()
                     .sendMessage(PluginConfig.getPrefix() + "Found FAWE! Worlds now will be created asynchronously");
-        } else {
+        } else {*/
             creator = (c, sw, r) -> {
                 Bukkit.getWorlds().add(c.createWorld());
                 if (sw != null)
                     sw.setCreating(false);
                 r.run();
             };
-        }
+        //}
 
         // Starting for #28
         if (PluginConfig.shouldDelete()) {
