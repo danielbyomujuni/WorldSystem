@@ -7,12 +7,16 @@ changelog:
   categories:
     - title:  Dev Update > v2.4.31 beta 
       labels:
-        - Semver-Major
-        - breaking-change
+        - dev release
+        - dependencies
     - title: Update > v2.4.32
       labels:
-        - Semver-Minor
-        - enhancement
+        - Offical Release
+        - new-feature
+        - bugfixing
     - title: BugFix > v2.4.31 
       labels:
-        - ""
+        - bugfixing
+    - title:
+      labels:
+        - duplicate
