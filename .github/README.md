@@ -19,8 +19,18 @@
     About
 </h2>
 <p align="center">
+<a>Daniel (Trainerlord) ~Hey Sorry I've been away for a while and neglating this plugin. However I have new Vigor and Currently planing out what I want to do with the plugin.
+Right now I'm setting small goals to help improve the robustness of the plugin before I go and add any new features and you can see what I'm planing by checking the issues tab. I want to work through all the issues currently there before adding
+any feature requests.<a>
+<a>-Thank you.<a>
+</p>
+  
+---
+  
+<p align="center">
   <a>WorldSystem is a plugin where every player can get a world.</a>
 </p>
+
 <p align="center">
   <a>There they can build, play and do anything they want without creating stress in a single world. The world owner can also add other players and manage their permissions on his world like is he allowed to build, teleport or changing his gamemode.</a>
 </p>
