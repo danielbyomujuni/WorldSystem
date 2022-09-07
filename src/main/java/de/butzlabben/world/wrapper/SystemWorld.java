@@ -420,7 +420,7 @@ public class SystemWorld {
         if (PluginConfig.isSurvival()) {
             p.setGameMode(GameMode.SURVIVAL);
         } else {
-            p.setGameMode(GameMode.SURVIVAL); //p.setGameMode(GameMode.CREATIVE); //Fixed spawn in other worlds with creative
+            p.setGameMode(GameMode.CREATIVE); //p.setGameMode(GameMode.CREATIVE); //Fixed spawn in other worlds with creative
         }
 
         OfflinePlayer owner = PlayerWrapper.getOfflinePlayer(WorldConfig.getWorldConfig(worldname).getOwner());
