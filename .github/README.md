@@ -2,14 +2,11 @@
         <img src="https://github.com/CrazyCloudCraft/worldsystem-depecated/raw/master/.github/Worldsystemlogo_V24X.png" />
 </p>
 <p align="center">
-    <a href="https://github.com/CrazyCloudCraft/worldsystem-depecated/actions/workflows/codacy.yml">
-        <img src="https://github.com/CrazyCloudCraft/worldsystem-depecated/actions/workflows/codacy.yml/badge.svg" />
+    <a href="https://github.com/trainerlord/WorldSystem/actions/workflows/codacy.yml">
+        <img src="https://github.com/trainerlord/WorldSystem/actions/workflows/codacy.yml/badge.svg" />
     </a>
-    <a hreg="https://github.com/CrazyCloudCraft/worldsystem-depecated/releases">
-        <img src="https://img.shields.io/github/downloads/CrazyCloudCraft/worldsystem-depecated/total?color=green&label=All%20Downloads&style=plastic" />
-    </a>
-    <a href="https://github.com/CrazyCloudCraft/worldsystem-depecated/releases/v2.4.31-beta2%2312">
-        <img src="https://img.shields.io/github/downloads-pre/CrazyCloudCraft/worldsystem-depecated/v2.4.31-beta2%252312/total?color=lime&label=Downloads%20latest%20v2.4.31-beta2&logo=github&style=plastic" />
+    <a hreg="https://github.com/trainerlord/WorldSystem/releases">
+        <img src="https://img.shields.io/github/downloads/trainerlord/WorldSystem/total?color=green&label=All%20Downloads&style=plastic" />
 </a>
 
 <p align="center">
@@ -18,11 +15,6 @@
 <p align="center">
   <a>1.7 - 1.19.x Support</a>
 </p>
-<!--
- <p align="center">
-  <a href="https://github.com/CrazyCloudCraft/worldsystem-depecated/tree/v2.4.31-beta2">View N1klasse trying to integrade features</a>
- </p>
--->
 <h2 align="center">
     About
 </h2>
@@ -53,15 +45,15 @@
   
 ***
 <p align="center">
-  <a href="https://www.spigotmc.org/resources/49756/">Download Old Resource (Spigot.com)</a>
+  <a href="https://www.spigotmc.org/resources/49756/">Download Resource (Spigot.com)</a>
 </p>
 <p align="center">
-  <a href="https://www.spigotmc.org/conversations/add?to=buzcraft">Contact author on spigot</a>
+  <a href="https://www.spigotmc.org/conversations/add?to=trainerlord">Contact author on spigot</a>
   <a>(rather consider to create an issue here)</a>
 </p>
 <p align="center">
   <a href="https://discord.gg/WYz7Qck">Discord server</a>
 </p>
 <p align="center">
-  <a>Author on Discord: N1klasse#1486 or Trainerlord#3534</a>
+  <a>Author on Discord: Trainerlord#3534</a>
 </p>
