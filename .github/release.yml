@@ -1,0 +1,18 @@
+changelog:
+  exclude:
+    labels:
+      - this-is-an-unwanted-label
+    authors:
+      - CrazyCloudCraft
+  categories:
+    - title:  Dev Update > v2.4.31 beta 
+      labels:
+        - Semver-Major
+        - breaking-change
+    - title: Update > v2.4.32
+      labels:
+        - Semver-Minor
+        - enhancement
+    - title: BugFix > v2.4.31 
+      labels:
+        - ""
