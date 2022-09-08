@@ -2,9 +2,6 @@
         <img src="https://github.com/CrazyCloudCraft/worldsystem-depecated/raw/master/.github/Worldsystemlogo_V24X.png" />
 </p>
 <p align="center">
-    <a href="https://github.com/trainerlord/WorldSystem/actions/workflows/codacy.yml">
-        <img src="https://github.com/trainerlord/WorldSystem/actions/workflows/codacy.yml/badge.svg" />
-    </a>
     <a hreg="https://github.com/trainerlord/WorldSystem/releases">
         <img src="https://img.shields.io/github/downloads/trainerlord/WorldSystem/total?color=green&label=All%20Downloads&style=plastic" />
 </a>
