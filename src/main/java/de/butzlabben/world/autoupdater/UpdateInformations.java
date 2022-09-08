@@ -2,7 +2,7 @@ package de.butzlabben.world.autoupdater;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import de.butzlabben.world.WorldSystem;
+import de.butzlabben.WorldSystem;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -1,6 +1,6 @@
 package de.butzlabben.world.config;
 
-import de.butzlabben.world.WorldSystem;
+import de.butzlabben.WorldSystem;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;

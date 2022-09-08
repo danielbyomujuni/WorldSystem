@@ -2,7 +2,7 @@
         package de.butzlabben.world.wrapper;
 
         import com.google.common.base.Preconditions;
-        import de.butzlabben.world.WorldSystem;
+        import de.butzlabben.WorldSystem;
         import de.butzlabben.world.config.*;
         import de.butzlabben.world.event.WorldCreateEvent;
         import de.butzlabben.world.event.WorldLoadEvent;

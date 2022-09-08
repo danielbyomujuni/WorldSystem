@@ -1,6 +1,6 @@
 package de.butzlabben.inventory;
 
-import de.butzlabben.world.WorldSystem;
+import de.butzlabben.WorldSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

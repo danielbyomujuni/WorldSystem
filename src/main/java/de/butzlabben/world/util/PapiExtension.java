@@ -1,6 +1,6 @@
 package de.butzlabben.world.util;
 
-import de.butzlabben.world.WorldSystem;
+import de.butzlabben.WorldSystem;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.wrapper.SystemWorld;

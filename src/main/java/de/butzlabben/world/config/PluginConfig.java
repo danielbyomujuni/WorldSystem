@@ -1,6 +1,6 @@
 package de.butzlabben.world.config;
 
-import de.butzlabben.world.WorldSystem;
+import de.butzlabben.WorldSystem;
 import de.butzlabben.world.util.PlayerPositions;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;

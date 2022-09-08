@@ -1,6 +1,7 @@
-package de.butzlabben.world;
+package de.butzlabben;
 
-import de.butzlabben.world.autoupdater.AutoUpdater;
+import de.butzlabben.world.GCRunnable;
+import de.butzlabben.world.WorldCheckerRunnable;
 import de.butzlabben.world.command.CommandRegistry;
 import de.butzlabben.world.config.*;
 import de.butzlabben.world.listener.*;
@@ -8,7 +9,6 @@ import de.butzlabben.world.util.PapiExtension;
 import de.butzlabben.world.util.PlayerPositions;
 import de.butzlabben.world.util.VersionUtil;
 import de.butzlabben.world.util.database.DatabaseProvider;
-import de.butzlabben.world.wrapper.AsyncCreatorAdapter;
 import de.butzlabben.world.wrapper.CreatorAdapter;
 import de.butzlabben.world.wrapper.SystemWorld;
 import org.bstats.bukkit.Metrics;

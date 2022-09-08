@@ -1,6 +1,6 @@
 package de.butzlabben.world.config;
 
-import de.butzlabben.world.WorldSystem;
+import de.butzlabben.WorldSystem;
 import de.butzlabben.world.wrapper.SystemWorld;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;

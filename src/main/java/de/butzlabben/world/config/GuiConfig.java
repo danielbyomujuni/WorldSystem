@@ -1,7 +1,7 @@
 package de.butzlabben.world.config;
 
 import de.butzlabben.inventory.OrcItem;
-import de.butzlabben.world.WorldSystem;
+import de.butzlabben.WorldSystem;
 import de.butzlabben.world.util.VersionUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
