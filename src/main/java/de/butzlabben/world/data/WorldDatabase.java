@@ -99,7 +99,7 @@ public class WorldDatabase {
                 dataFile.createNewFile();
             } catch (IOException e) {
                 //Should Never Run
-                throw new RuntimeException(e);
+                //TODO add to Logger
             }
         }
 
