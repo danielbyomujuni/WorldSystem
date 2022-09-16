@@ -1,11 +1,15 @@
 package de.butzlabben.world.data.objects;
 
 public class PlayerWorld {
-    public int worldNumber;
-    public long lastLoaded;
+    private int worldNumber;
+    private long lastLoaded;
 
-    public PlayerWorld(String OWNER, String OWNERname, int worldNumber) {
+    public PlayerWorld(int worldNumber) {
         this.worldNumber = worldNumber;
-        this.lastLoaded = 0;
+        this.lastLoaded = -1;
+    }
+
+    public int getWorldNumber() {
+        return worldNumber;
     }
 }

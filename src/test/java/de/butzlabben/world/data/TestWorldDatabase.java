@@ -1,10 +1,13 @@
 package de.butzlabben.world.data;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,11 +20,8 @@ public class TestWorldDatabase {
      * but then allows us to run the tests Fresh.
      */
     @BeforeAll
-    static void CleanLastTest() {
-        File workingDir = new File("src\\TestFiles\\workingDir\\");
-        for (File file : workingDir.listFiles()) {
-            file.delete();
-        }
+    static void CleanLastTest() throws IOException {
+        FileUtils.cleanDirectory(new File("TestFiles/workingDir/"));
     }
 
     /**
@@ -29,7 +29,7 @@ public class TestWorldDatabase {
      */
     @Test
     public void testDatabaseInitalizationFromNoFile() {
-        final String path = "src\\TestFiles\\workingDir\\dataBaseInitTestFromNoFile.json";
+        final String path = "TestFiles/workingDir/dataBaseInitTestFromNoFile.json";
 
         WorldDatabase wb = new WorldDatabase(path);
         assertEquals(0, wb.getPlayerCount());
@@ -41,7 +41,7 @@ public class TestWorldDatabase {
      */
     @Test
     public void testDatabaseInitalizationCreateValidFile() throws FileNotFoundException {
-        final String path = "src\\TestFiles\\workingDir\\dataBaseInitTestCreateValidFile.json";
+        final String path = "TestFiles/workingDir/dataBaseInitTestCreateValidFile.json";
 
         WorldDatabase wb = new WorldDatabase(path);
         wb.addPlayer("BlankUUID");
@@ -57,7 +57,7 @@ public class TestWorldDatabase {
      */
     @Test
     public void testDatabaseInitalizationWithExistingEmptyFile() {
-        final String path = "src\\TestFiles\\ExistingEmptyFileInit.json";
+        final String path = "TestFiles/workingDir/ExistingEmptyFileInit.json";
 
         WorldDatabase wb = new WorldDatabase(path);
         assertEquals(0, wb.getPlayerCount());

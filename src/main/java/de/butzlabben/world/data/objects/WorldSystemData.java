@@ -35,6 +35,10 @@ public class WorldSystemData {
         return players.size();
     }
 
+    public PlayerData getPlayer(String uuid) {
+        return players.get(uuid);
+    }
+
 
 
 }

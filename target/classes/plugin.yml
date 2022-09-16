@@ -1,0 +1,7 @@
+name: 'WorldSystem'
+version: '2.4.20'
+main: de.bulzlabben.world.WorldSystem
+
+description: The one world per player solution you have always dreamed of.
+
+api-version: '1.17'

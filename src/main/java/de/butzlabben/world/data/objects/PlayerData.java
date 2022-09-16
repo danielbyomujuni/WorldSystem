@@ -6,7 +6,7 @@ import java.util.List;
 public class PlayerData {
 
     //TODO Write Tests
-    public List<PlayerWorld> playerWorlds;
+    private List<PlayerWorld> playerWorlds;
 
 
     public PlayerData() {
