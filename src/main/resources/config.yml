@@ -1,133 +1,121 @@
+##########################################################################
+### __              __         __    _______          __               ###
+### \ \            / /        / /   / / ___/         / /               ###
+###  \ \    __    / /___  ___/ /___/ / /____  ______/ /______________  ###
+###   \ \  /  \  / / __ \/ _/ / __  /__  / / / / __/ __/ ___/ _  _  /  ###
+###    \ \/ /\ \/ / /_/ / // / /_/ /__/ / /_/ /_  / /_/ ___/ // // /   ###
+###     \__/  \__/\____/_//_/\__,_/____/\__, /___/\__/\___/_//_//_/    ###
+###                                    ___/ /                          ###
+###                                    \___/                           ###
+##########################################################################
 
 
-# Path where the worlds will be saved
-worldfolder: 'plugins/WorldSystem/Worlds'
+####################
+# General Settings #
+####################
 
-worldtemplates:
-  # Whether players can decide on different templates
-  multi_choose: false
-  # If multi_choose is disabled, which template should be choosen
-  default: 'template_default'
-  templates:
-    # The "1" can be any key
-    1:
-      # Name of directory in plugins/WorldSystem/worldsources
-      # e.g. this would be plugins/WorldSystem/worldsources/template_default
-      name: 'template_default'
-      # Just remove the permission field if everybody should be able to use this template
-    2:
-      name: 'another_template'
-      # Only players with this exact permission can use and see this template
-      # ws.* will not work with this
-      permission: ws.template.another_template
-      # If this config option is given, 100 is needed to create a world
-      # This amount will then with withdrawn from the player
-      cost: 100
+#The Path that the Worlds of players will be stored when not in use.
+playerWorldsDir: 'plugins/WorldSystem/Worlds'
 
-      # Options for random world generation
-      # Here you can configure the world generator of a template
-      generator:
-        # A seed for worldgeneration
-        # Set it to 0 for no seed-useage
-        seed: 0
-        # Environment for the world
-        # Valid inputs are 'NORMAL', 'NETHER' and 'THE_END'
-        environment: NORMAL
-        # Type of the world eg. flat, amplified, ...
-        # Valid types are 'NORMAL', 'VERSION_1_1', 'FLAT', 'AMPLIFIED', 'CUSTOMIZED' or 'LARGE_BIOMES'
-        type: NORMAL
-        # Put in here the name of a generator
-        # If you have one from one plugin
-        generator: ''
+#The time that a world should take till it unloads from no use
+unloadTime: 20
 
-# If a confirm is needed before auto-update
-need_confirm: true
-
-# When nobody is on a world time until it get unloaded
-unloadingtime: 20
-
-# If true nobody can teleport or change their gamemode a WorldSystem world
-# Except for players with the permissions: ws.gamemode | ws.tp.*
-survival: false
-
-# If WorldSystem should load the worlds async if possible (FAWE installed)
-load_worlds_async: true
-
-# Options for the database saving player positions
-database:
-  # Which type should be choosen:
-  # 'mysql' or 'sqlite'
-  # You need a working mysql database in order to use this option
-  type: sqlite
-  # How the table with the saved player positions on the playerworlds should be named
-  worlds_table_name: worlds_positions
-  # How the table with the saved player positions on the normal worlds should be named
-  players_table_name: player_positions
-  # how should the uuid cache be stored
-  players_uuids: players_uuids
-
-  # Configure here your mysql connection
-  mysql_settings:
-    host: 127.0.0.1
-    port: 3306
-    username: root
-    password: YOUR_PASSWORD_HERE
-    database: database
-  sqlite_settings:
-    # Where the database file should be located
-    file: 'plugins/WorldSystem/repository.db'
-
-# If true players will teleported to the spawn on join
-spawn_teleportation: true
-
-# Time in seconds until a request expires
-request_expires: 20
-
-# Name of the languagefile in plugins/WorldSystem/languages/
-language: en
-
-# Prefix which will be shown before each message
+#Prefix on Messages sent by the plugin
 prefix: '&8[&3WorldSystem&8] &6'
 
-# Time in days after a not used world will be deleted
-# Set to -1 to disable
-delete_after: -1
+#Delete the world after set amount of days
+#-1 to disable
+deleteAfterDays: -1
 
-# Whether WorldSystem should contact the Mojang authserver
-# If not, some unknown playernames will not be displayed
-# eg. in the gui or in /ws info
-contact_authserver: true
+#World Difficulty
+  #Options: PEACEFUL, EASY, NORMAL, HARD
+worldDifficulty: EASY
 
-# Options for the LagSystem:
-# period_in_seconds - how often will be checked for entities in seconds
-# entities_per_world - maximal allowed entities per world
-# garbagecollector - how often will be unused ram be cleared
-lagsystem:
-  period_in_seconds: 10
-  entities_per_world: 350
-  garbagecollector:
-    use: false
-    period_in_minutes: 5
+##########################
+# World Creation Setting #
+##########################
 
-# Location where you will be teleported when you leave you world
-spawn:
-  gamemode: 2
-  spawnpoint:
-    use_last_location: true
-    world: world
+#Allow Players to Choose the Template they want
+multiChoose: false
+#The Default Generation File
+#Warning: "do not add the .json"
+defaultGenerator: 'vanilla'
+#World Generation Folder
+worldGenTemplates: 'plugins/WorldSystem/Generators'
+
+#World Borders
+  #The Default World Border Size for everyone
+worldBorderDefaultSize: 500
+#!Note: Dynamic World Borders Will Added back in a Future Update
+
+#World Border Center
+worldBorderCenter:
+  x: 0
+  z: 0
+
+##########################
+# World Entering/Exiting #
+##########################
+
+#This is the Settings you need to adjust to your server
+serverSpawn:
+  #The Gamemode the Main server uses
+    #Options: Survival, Creative, Adventure
+    #Warning: Spectator is not a Valid Input
+    #Warning: Spelling Matters, Capitalization Does not
+  serverGamemode: 'Survival'
+  #The point the player should be placed when leaving a WS World
+  serverSpawnPoint:
+    worldName: 'world'
     x: 0
-    y: 20
+    y: 60
     z: 0
-    yaw: 0
-    pitch: 0
 
-# Location where you spawn when you join a world
-worldspawn:
-  use_last_location: true
-  use: false
-  spawnpoint:
-    x: 0
-    y: 20
-    z: 0
-    yaw: 0
-    pitch: 0
+#This is the Settings you need to adjust to your server
+wsWorldSpawn:
+  #The Gamemode the Main server uses
+  #World Gamemode
+    #Options: Survival, Creative, Adventure
+    #Warning: Spectator is not a Valid Input
+    #Warning: Spelling Matters, Capitalization Does not
+  worldGameMode: 'Survival'
+  # places the player at their last known location in the world
+  useLastLocation: true;
+  #The point the player should be placed when entering a WS World
+  #for the first Time
+  defaultWorldSpawnPoint:
+      worldName: 'world'
+      x: 0
+      y: 60
+      z: 0
+
+###################
+# World Gamerules #
+###################
+
+#!DevTODO create a class to handle this to make it cleaner
+#Also Document this part of the config
+announceAdvancements: true
+commandBlockOutput: false
+disableElytraMovementCheck: false
+doDaylightCycle: true
+doEntityDrops: true
+doFireTick: true
+doLimitedCrafting: false
+doMobLoot: true
+doMobSpawning: true
+doTileDrops: true
+doWeatherCycle: false
+gameLoopFunction: false
+keepInventory: true
+logAdminCommands: true
+maxCommandChainLength: 65536
+maxEntityCramming: 24
+mobGriefing: true
+naturalRegeneration: true
+randomTickSpeed: 3
+reducedDebugInfo: false
+sendCommandFeedback: true
+showDeathMessages: true
+spawnRadius: 10
+spectatorsGenerateChunks: true

@@ -1,6 +1,7 @@
 package de.butzlabben.world.config;
 
 import de.butzlabben.WorldSystem;
+import de.butzlabben.world.exceptions.InvalidConfigFormatException;
 import de.butzlabben.world.util.PlayerPositions;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -20,7 +21,35 @@ import java.util.Date;
 
 public class PluginConfig {
 
-    private final static GameMode[] gameModes = new GameMode[]{GameMode.SURVIVAL, GameMode.CREATIVE,
+    //New Config
+    private YamlConfiguration config;
+
+
+    public PluginConfig(File configFile) throws FileNotFoundException {
+        try {
+            config = YamlConfiguration.loadConfiguration(
+                    new InputStreamReader(new FileInputStream(configFile), StandardCharsets.UTF_8));
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("Cannot access config file");
+        }
+
+        try {
+            verifyConfigFormating();
+        } catch (InvalidConfigFormatException e) {
+            e.printStackTrace();
+            //Disable the Plugin
+            Bukkit.getPluginManager().disablePlugin(WorldSystem.getProvidingPlugin(WorldSystem.class));
+        }
+
+    }
+
+    private void verifyConfigFormating() throws InvalidConfigFormatException {
+        return;
+    }
+
+
+
+   /* private final static GameMode[] gameModes = new GameMode[]{GameMode.SURVIVAL, GameMode.CREATIVE,
             GameMode.ADVENTURE, GameMode.SPECTATOR};
     private static File file;
 
@@ -76,7 +105,7 @@ public class PluginConfig {
             }
         } else {
             try {
-                InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource("config.yml");
+                InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource("configOLD.yml");
                 Files.copy(in, file.toPath());
             } catch (IOException e) {
                 System.err.println("Wasn't able to create Config");
@@ -244,5 +273,5 @@ public class PluginConfig {
 
     public static boolean loadWorldsASync() {
         return getConfig().getBoolean("load_worlds_async");
-    }
+    }*/
 }

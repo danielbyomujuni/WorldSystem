@@ -279,7 +279,7 @@ worldchoose:
 
   rows: 4
 
-  # The key must be named exactly as in the config.yml
+  # The key must be named exactly as in the configOLD.yml
   template_default:
     enabled: true
     slot:
