@@ -1,6 +1,7 @@
 package de.butzlabben.world.wrapper;
 
 import com.google.common.base.Preconditions;
+import de.butzlabben.WorldSystem;
 import de.butzlabben.world.config.PluginConfig;
 import de.butzlabben.world.config.WorldConfig;
 import org.bukkit.Bukkit;
@@ -9,6 +10,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -176,7 +178,11 @@ public class WorldPlayer {
     public boolean isOnSystemWorld() {
         File worldconfig = new File(Bukkit.getWorldContainer(), worldname + "/worldconfig.yml");
         if (!worldconfig.exists()) {
-            worldconfig = new File(PluginConfig.getWorlddir() + worldname + "/worldconfig.yml");
+            try {
+                worldconfig = new File(new PluginConfig(WorldSystem.getConfigFile()).getWorlddir() + worldname + "/worldconfig.yml");
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         if (worldconfig.exists()) {
             YamlConfiguration cfg = YamlConfiguration.loadConfiguration(worldconfig);

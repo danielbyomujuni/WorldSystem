@@ -1,7 +1,6 @@
 package de.butzlabben.world.command.commands;
 
 import de.butzlabben.WorldSystem;
-import de.butzlabben.world.autoupdater.AutoUpdater;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
@@ -56,18 +55,6 @@ public class WSCommands {
             sender.sendMessage("No Console"); //TODO Get Config
             return false;
         }
-    }
-
-    public boolean confirmCommand(CommandSender sender, Command command, String label, String[] args) {
-        CommandSender cs = sender;
-
-        if (AutoUpdater.getInstance().confirmed()) {
-            cs.sendMessage(PluginConfig.getPrefix() + "§cAlready confirmed or no confirm needed");
-            return false;
-        }
-        AutoUpdater.getInstance().confirm();
-        cs.sendMessage(PluginConfig.getPrefix() + "§aAutoupdate confirmed, §crestart §ato apply changes");
-        return true;
     }
 
 

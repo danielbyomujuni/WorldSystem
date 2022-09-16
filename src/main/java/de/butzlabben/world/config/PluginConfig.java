@@ -23,9 +23,12 @@ public class PluginConfig {
 
     //New Config
     private YamlConfiguration config;
+    private File configFile;
 
 
+    //TODO Document
     public PluginConfig(File configFile) throws FileNotFoundException {
+        this.configFile = configFile;
         try {
             config = YamlConfiguration.loadConfiguration(
                     new InputStreamReader(new FileInputStream(configFile), StandardCharsets.UTF_8));
@@ -36,98 +39,155 @@ public class PluginConfig {
         try {
             verifyConfigFormating();
         } catch (InvalidConfigFormatException e) {
-            e.printStackTrace();
-            //Disable the Plugin
-            Bukkit.getPluginManager().disablePlugin(WorldSystem.getProvidingPlugin(WorldSystem.class));
+            try {
+                Files.copy(configFile.toPath(),
+                        new File(configFile.getParentFile(), "config-broken-"
+                                + new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date()) + ".yml").toPath(),
+                        StandardCopyOption.REPLACE_EXISTING);
+                Files.delete(configFile.toPath());
+                System.err.println("[WorldSystem] Config is broken, creating a new one!");
+            } catch (IOException ex) {
+
+                //Somthing Really Bad Happened
+                //TODO Log it
+                ex.printStackTrace();
+            }
+            try {
+                verifyConfigFormating();
+            } catch (InvalidConfigFormatException ex) {
+                //Should Never Run
+                throw new RuntimeException(ex);
+            }
         }
 
     }
 
     private void verifyConfigFormating() throws InvalidConfigFormatException {
-        return;
-    }
-
-
-
-   /* private final static GameMode[] gameModes = new GameMode[]{GameMode.SURVIVAL, GameMode.CREATIVE,
-            GameMode.ADVENTURE, GameMode.SPECTATOR};
-    private static File file;
-
-    private PluginConfig() {
-    }
-
-    public static void checkConfig(File f) {
-        file = f;
-        if (file.exists()) {
-            YamlConfiguration cfg = getConfig();
-            if (!(cfg.isString("worldfolder") && cfg.isInt("unloadingtime")
-                    && cfg.isBoolean("survival") && cfg.isString("language") && cfg.isString("prefix")
-                    && cfg.isInt("request_expires") && cfg.isBoolean("need_confirm")
-                    && cfg.isBoolean("contact_authserver") && cfg.isBoolean("spawn_teleportation")
-                    && cfg.isInt("delete_after") && cfg.isBoolean("worldtemplates.multi_choose")
-                    && cfg.isString("worldtemplates.default") && cfg.isBoolean("load_worlds_async") &&
-
-                    // Database stuff
-                    cfg.isString("database.type") && cfg.isString("database.worlds_table_name") && cfg.isString("database.players_table_name")
-                    && cfg.isString("database.mysql_settings.host") && cfg.isInt("database.mysql_settings.port")
-                    && cfg.isString("database.mysql_settings.username") && cfg.isString("database.mysql_settings.password")
-                    && cfg.isString("database.mysql_settings.database") && cfg.isString("database.sqlite_settings.file") &&
-
-                    cfg.isInt("lagsystem.period_in_seconds") && cfg.isInt("lagsystem.entities_per_world")
-                    && cfg.isBoolean("lagsystem.garbagecollector.use")
-                    && cfg.isInt("lagsystem.garbagecollector.period_in_minutes") &&
-
-                    cfg.isString("spawn.spawnpoint.world") && cfg.isInt("spawn.gamemode")
-                    && cfg.isBoolean("spawn.spawnpoint.use_last_location")
-                    && (cfg.isDouble("spawn.spawnpoint.x") || cfg.isInt("spawn.spawnpoint.x"))
-                    && (cfg.isDouble("spawn.spawnpoint.y") || cfg.isInt("spawn.spawnpoint.y"))
-                    && (cfg.isDouble("spawn.spawnpoint.z") || cfg.isInt("spawn.spawnpoint.z"))
-                    && (cfg.isDouble("spawn.spawnpoint.yaw") || cfg.isInt("spawn.spawnpoint.yaw"))
-                    && (cfg.isDouble("spawn.spawnpoint.pitch") || cfg.isInt("spawn.spawnpoint.pitch")) &&
-
-                    cfg.isBoolean("worldspawn.use") && cfg.isBoolean("worldspawn.use_last_location")
-                    && (cfg.isDouble("worldspawn.spawnpoint.x") || cfg.isInt("worldspawn.spawnpoint.x"))
-                    && (cfg.isDouble("worldspawn.spawnpoint.y") || cfg.isInt("worldspawn.spawnpoint.y"))
-                    && (cfg.isDouble("worldspawn.spawnpoint.z") || cfg.isInt("worldspawn.spawnpoint.z"))
-                    && (cfg.isDouble("worldspawn.spawnpoint.yaw") || cfg.isInt("worldspawn.spawnpoint.yaw"))
-                    && (cfg.isDouble("worldspawn.spawnpoint.pitch") || cfg.isInt("worldspawn.spawnpoint.pitch")))) {
-                try {
-                    Files.copy(file.toPath(),
-                            new File(file.getParentFile(), "config-broken-"
-                                    + new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date()) + ".yml").toPath(),
-                            StandardCopyOption.REPLACE_EXISTING);
-                    Files.delete(file.toPath());
-                    System.err.println("[WorldSystem] Config is broken, creating a new one!");
-                    checkConfig(f);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            try {
-                InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource("configOLD.yml");
-                Files.copy(in, file.toPath());
-            } catch (IOException e) {
-                System.err.println("Wasn't able to create Config");
-                e.printStackTrace();
-            }
+        //Verify General
+        if (!(config.isString("playerWorldsDir") &&
+        config.isInt("unloadTime") &&
+        config.isString("prefix") &&
+        config.isInt("deleteAfterDays") &&
+        config.isString("worldDifficulty"))) {
+            throw new InvalidConfigFormatException("Invaild Config Format in General Settings");
+        }
+        //Verify World Creation Settings
+        if (!(config.isBoolean("multiChoose") &&
+                config.isString("defaultGenerator") &&
+                config.isString("worldGenTemplates") &&
+                config.isInt("worldBorderDefaultSize") &&
+                config.isInt("worldBorderCenter.x") &&
+                config.isInt("worldBorderCenter.z")
+                )) {
+            throw new InvalidConfigFormatException("Invaild Config Format in World Creation Settings");
         }
 
-        // Should fix #2
-        if (getSpawn(null).getWorld() == null) {
-            Bukkit.getConsoleSender().sendMessage(getPrefix() + "§cWorld is null in spawn.world!");
+        if (!(config.isString("serverSpawn.serverGamemode") &&
+                config.isString("serverSpawn.serverSpawnPoint.worldName") &&
+                config.isInt("serverSpawn.serverSpawnPoint.x") &&
+                config.isInt("serverSpawn.serverSpawnPoint.y") &&
+                config.isInt("serverSpawn.serverSpawnPoint.z") &&
+                config.isString("wsWorldSpawn.worldGameMode") &&
+                config.isBoolean("wsWorldSpawn.useLastLocation") &&
+                config.isString("wsWorldSpawn.defaultWorldSpawnPoint.worldName") &&
+                config.isInt("wsWorldSpawn.defaultWorldSpawnPoint.x") &&
+                config.isInt("wsWorldSpawn.defaultWorldSpawnPoint.y") &&
+                config.isInt("wsWorldSpawn.defaultWorldSpawnPoint.z")))  {
+            throw new InvalidConfigFormatException("Invaild Config Format in World Entering/Exiting");
+        }
+
+        if (!(config.isBoolean("announceAdvancements") &&
+                config.isBoolean("commandBlockOutput") &&
+                config.isBoolean("disableElytraMovementCheck") &&
+                config.isBoolean("doDaylightCycle") &&
+                config.isBoolean("doEntityDrops") &&
+                config.isBoolean("doFireTick") &&
+                config.isBoolean("doLimitedCrafting") &&
+                config.isBoolean("doMobLoot") &&
+                config.isBoolean("doMobSpawning") &&
+                config.isBoolean("doTileDrops") &&
+                config.isBoolean("doWeatherCycle") &&
+                config.isBoolean("gameLoopFunction") &&
+                config.isBoolean("keepInventory") &&
+                config.isBoolean("logAdminCommands") &&
+                config.isInt("maxCommandChainLength") &&
+                config.isInt("maxEntityCramming") &&
+                config.isBoolean("mobGriefing") &&
+                config.isBoolean("naturalRegeneration") &&
+                config.isInt("randomTickSpeed") &&
+                config.isBoolean("reducedDebugInfo") &&
+                config.isBoolean("sendCommandFeedback") &&
+                config.isBoolean("showDeathMessages") &&
+                config.isInt("spawnRadius") &&
+                config.isBoolean("spectatorsGenerateChunks"))) {
+            throw new InvalidConfigFormatException("Invaild Config Format in Gamerules ");
         }
     }
 
-    public static YamlConfiguration getConfig() {
-        try {
-            return YamlConfiguration
-                    .loadConfiguration(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        throw new IllegalStateException("Cannot access config file");
+    public String getWorldDir() {
+        return config.getString("playerWorldsDir", "plugins/WorldSystem/Worlds") + "/";
     }
+
+    public boolean useWorldSpawn() {
+        return config.getBoolean("wsWorldSpawn.useLastLocation", true);
+    }
+
+    public GameMode getWorldSystemGamemode() {
+        return stringToGamemode(config.getString("wsWorldSpawn.worldGameMode", "Survival"));
+    }
+
+    public GameMode getServerGamemode() {
+        return stringToGamemode(config.getString("serverSpawn.serverGamemode", "Survival"));
+    }
+
+    public int getUnloadingTime() {
+        return config.getInt("unloadTime", 20);
+    }
+
+    public boolean isMultiChoose() {
+        return config.getBoolean("multiChoose", false);
+    }
+
+    public String getDefaultWorldGenerator() {
+        return config.getString("defaultGenerator", "Vanilla");
+    }
+
+    public String getLanguage() {
+        return config.getString("language", "en");
+    }
+
+    public String getPrefix() {
+        return ChatColor.translateAlternateColorCodes('&', config.getString("prefix", "§8[§3WorldSystem§8] §6"));
+    }
+
+    public Location getWorldSpawn(World w) {
+        return getLocation(config, "wsWorldSpawn.defaultWorldSpawnPoint", w);
+    }
+
+    public Location getSpawn(Player player) {
+        Location location = getLocation(config, "wsWorldSpawn.defaultWorldSpawnPoint", Bukkit.getWorld(config.getString("wsWorldSpawn.defaultWorldSpawnPoint.worldName", "world")));
+
+        //TODO Player Positions with PlayerWorldData;
+        return PlayerPositions.instance.injectPlayersLocation(player, location);
+    }
+
+
+    private GameMode stringToGamemode(String gamemode) {
+        switch (gamemode.toLowerCase()) {
+            case "Creative":
+                return GameMode.CREATIVE;
+            case "Adventure":
+                return GameMode.ADVENTURE;
+            default:
+                return GameMode.SURVIVAL;
+        }
+    }
+
+    private static Location getLocation(YamlConfiguration cfg, String path, World world) {
+        return new Location(world, cfg.getDouble(path + ".x", 0), cfg.getDouble(path + ".y", 20),
+                cfg.getDouble(path + ".z", 0));
+    }
+   /*
 
     public static int getGCPeriod() {
         return getConfig().getInt("lagsystem.garbagecollector.period_in_minutes", 5);
@@ -145,45 +205,7 @@ public class PluginConfig {
         return getConfig().getInt("lagsystem.period_in_seconds", 10);
     }
 
-    public static boolean useWorldSpawn() {
-        return getConfig().getBoolean("worldspawn.use", true);
-    }
-
-    public static boolean isSurvival() {
-        return getConfig().getBoolean("survival", false);
-    }
-
-    public static int getUnloadingTime() {
-        return getConfig().getInt("unloadingtime", 20);
-    }
-
-    public static GameMode getSpawnGamemode() {
-        return gameModes[getConfig().getInt("spawn.gamemode", 2)];
-    }
-
-    public static String getWorlddir() {
-        return getConfig().getString("worldfolder", "plugins/WorldSystem/Worlds") + "/";
-    }
-
-    public static boolean isMultiChoose() {
-        return getConfig().getBoolean("worldtemplates.multi_choose", false);
-    }
-
-    public static String getDefaultWorldTemplate() {
-        return getConfig().getString("worldtemplates.default", "");
-    }
-
-    public static String getLanguage() {
-        return getConfig().getString("language", "en");
-    }
-
-    public static String getPrefix() {
-        return ChatColor.translateAlternateColorCodes('&', getConfig().getString("prefix", "§8[§3WorldSystem§8] §6"));
-    }
-
-    public static Location getWorldSpawn(World w) {
-        return getLocation(getConfig(), "worldspawn.spawnpoint", w);
-    }
+/////////////////////////////////////
 
     public static Location getSpawn(Player player) {
         YamlConfiguration cfg = getConfig();
@@ -193,12 +215,6 @@ public class PluginConfig {
 
     public static int getRequestExpire() {
         return getConfig().getInt("request_expires", 20);
-    }
-
-    private static Location getLocation(YamlConfiguration cfg, String path, World world) {
-        return new Location(world, cfg.getDouble(path + ".x", 0), cfg.getDouble(path + ".y", 20),
-                cfg.getDouble(path + ".z", 0), (float) cfg.getDouble(path + ".yaw", 0),
-                (float) cfg.getDouble(path + ".pitch", 0));
     }
 
     public static boolean confirmNeed() {

@@ -30,12 +30,13 @@ import java.io.IOException;
 public class WorldSystem extends JavaPlugin {
     private static boolean is1_13Plus = false;
     final private String version = this.getDescription().getVersion();
+    private static File configFile;
     private CreatorAdapter creator;
 
     public static void createConfigs() {
         File folder = getInstance().getDataFolder();
         File dir = new File(folder + "/worldsources");
-        File config = new File(folder, "config.yml");
+        configFile = new File(folder, "config.yml");
         File dconfig = new File(folder, "dependence.yml");
         File languages = new File(folder + "/languages");
         File gui = new File(folder, "gui.yml");
@@ -212,5 +213,7 @@ public class WorldSystem extends JavaPlugin {
     public CreatorAdapter getAdapter() {
         return creator;
     }
+
+    public static File getConfigFile() { return configFile; }
 
 }

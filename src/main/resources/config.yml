@@ -14,6 +14,8 @@
 # General Settings #
 ####################
 
+# The Language to plugin should run in
+language: "en"
 #The Path that the Worlds of players will be stored when not in use.
 playerWorldsDir: 'plugins/WorldSystem/Worlds'
 
@@ -29,7 +31,7 @@ deleteAfterDays: -1
 
 #World Difficulty
   #Options: PEACEFUL, EASY, NORMAL, HARD
-worldDifficulty: EASY
+worldDifficulty: 'EASY'
 
 ##########################
 # World Creation Setting #
@@ -39,7 +41,7 @@ worldDifficulty: EASY
 multiChoose: false
 #The Default Generation File
 #Warning: "do not add the .json"
-defaultGenerator: 'vanilla'
+defaultGenerator: 'Vanilla'
 #World Generation Folder
 worldGenTemplates: 'plugins/WorldSystem/Generators'
 
@@ -80,7 +82,7 @@ wsWorldSpawn:
     #Warning: Spelling Matters, Capitalization Does not
   worldGameMode: 'Survival'
   # places the player at their last known location in the world
-  useLastLocation: true;
+  useLastLocation: false;
   #The point the player should be placed when entering a WS World
   #for the first Time
   defaultWorldSpawnPoint:

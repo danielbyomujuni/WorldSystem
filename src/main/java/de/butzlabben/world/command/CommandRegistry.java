@@ -28,12 +28,6 @@ public class CommandRegistry implements CommandExecutor {
                         return ws.getCommand(sender, command, label, args);
                 case "gui":
                         return ws.guiCommand(sender, command, label, args);
-                case "confirm":
-                    if (sender.hasPermission("ws.confirm")) {
-                        return ws.confirmCommand(sender, command, label, args);
-                    } else {
-                        return false;
-                    }
                 case "home":
                     return ws.homeCommand(sender, command, label, args);
                 case "info":
