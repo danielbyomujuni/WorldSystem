@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
