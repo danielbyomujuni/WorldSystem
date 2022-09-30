@@ -3,7 +3,9 @@
 </p>
 <p align="center">
     <a hreg="https://github.com/trainerlord/WorldSystem/releases">
-        <img src="https://img.shields.io/github/downloads/trainerlord/WorldSystem/total?color=green&label=All%20Downloads&style=plastic" />
+        <img src="https://img.shields.io/github/downloads/trainerlord/WorldSystem/total?color=green&label=All%20downloads&style=plastic" />
+   <a hreg="https://github.com/trainerlord/WorldSystem/releases/2.4.11">
+        <img src="https://img.shields.io/github/downloads-pre/trainerlord/WorldSystem/2.4.11/total?label=Downloads%20latest&sort=semver&style=plastic" />
 </a>
 
 <p align="center">
