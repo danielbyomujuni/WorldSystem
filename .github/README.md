@@ -4,7 +4,7 @@
 <p align="center">
     <a href="https://github.com/trainerlord/WorldSystem/releases">
     <img src="https://img.shields.io/github/downloads/trainerlord/WorldSystem/total?color=green&label=All%20downloads&style=plastic" />
-    <a href="https://github.com/trainerlord/WorldSystem/releases/2.4.11">
+    <a href="https://github.com/trainerlord/WorldSystem/releases">
     <img src="https://img.shields.io/github/downloads-pre/trainerlord/WorldSystem/2.4.11/total?label=Downloads%20latest&sort=semver&style=plastic" />
 </a>
    
