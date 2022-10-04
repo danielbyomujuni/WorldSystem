@@ -1,7 +1,8 @@
 package de.butzlabben.world.config;
 
 import de.butzlabben.world.exceptions.InvalidConfigFormatException;
-import de.butzlabben.world.utils.PlanerCords;
+import de.butzlabben.world.utils.Location;
+import de.butzlabben.world.utils.Location2D;
 import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,7 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Dictionary;
 
 public class PluginConfig {
 
@@ -177,8 +177,8 @@ public class PluginConfig {
         return config.getInt("worldBorderDefaultSize");
     }
 
-    public PlanerCords getWorldBorderCords() {
-        return new PlanerCords(config.getInt("worldBorderCenter.x"), config.getInt("worldBorderCenter.y"));
+    public Location2D getWorldBorderCords() {
+        return new Location2D(config.getInt("worldBorderCenter.x"), config.getInt("worldBorderCenter.y"));
     }
 
     //World Entering/Exiting Getters
@@ -186,6 +186,13 @@ public class PluginConfig {
     public GameMode getServerGamemode() {
 
         return stringToGamemode(config.getString("serverSpawn.serverGamemode"));
+    }
+
+    public Location getServerSpawnPoint() {
+        return new Location(
+            config.getInt("serverSpawn.serverSpawnPoint.x"),
+            config.getInt("serverSpawn.serverSpawnPoint.y"),
+            config.getInt("serverSpawn.serverSpawnPoint.z"));
     }
 
 

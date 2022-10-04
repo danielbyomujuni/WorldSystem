@@ -1,6 +1,5 @@
 package de.butzlabben.world.config;
 
-import de.butzlabben.world.utils.PlanerCords;
 import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
 import org.junit.jupiter.api.Test;
@@ -108,9 +107,9 @@ public class TestPluginConfig {
     {
         File cfgFile = new File("TestFiles/TestConfig.yml");
         PluginConfig cfg = new PluginConfig(cfgFile);
-        
+
         assertEquals(0, cfg.getWorldBorderCords().getX());
-        assertEquals(0, cfg.getWorldBorderCords().getY());
+        assertEquals(0, cfg.getWorldBorderCords().getZ());
     }
 
 
@@ -124,4 +123,16 @@ public class TestPluginConfig {
         PluginConfig cfg = new PluginConfig(cfgFile);
         assertEquals(GameMode.SURVIVAL, cfg.getServerGamemode());
     }
+
+    @Test
+    public void testGetServerSpawnPoint() throws FileNotFoundException
+    {
+        File cfgFile = new File("TestFiles/TestConfig.yml");
+        PluginConfig cfg = new PluginConfig(cfgFile);
+
+        assertEquals(0, cfg.getServerSpawnPoint().getX());
+        assertEquals(60, cfg.getServerSpawnPoint().getY());
+        assertEquals(0, cfg.getServerSpawnPoint().getZ());
+    }
+
 }
