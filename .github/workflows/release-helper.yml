@@ -11,13 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get github directory
-        with:
-          path: "**/.github"
-
       - uses: actions/checkout@v3
 
       - name: Run the Version changer
         run: |
           chmod +x release-code-changer.sh
           ./release-code-changer.sh
+        with:
+          path: "**/.github"
