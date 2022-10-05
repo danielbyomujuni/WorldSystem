@@ -66,7 +66,7 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Grant execute permission to pom.xml
-      run: mvn archetype:generate -DgroupId=de.butzlabben -DartifactId=WorldSystem -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+      run: mvn --version #mvn archetype:generate -DgroupId=de.butzlabben -DartifactId=WorldSystem -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 
     - name: Build
       run: mvn -q package
