@@ -82,14 +82,21 @@ wsWorldSpawn:
     #Warning: Spelling Matters, Capitalization Does not
   worldGameMode: 'Survival'
   # places the player at their last known location in the world
-  useLastLocation: false
+  useLastLocation: false;
   #The point the player should be placed when entering a WS World
   #for the first Time
   defaultWorldSpawnPoint:
-      worldName: 'world'
       x: 0
       y: 60
       z: 0
+
+#############
+# Dev Tools #
+#############
+# These Config Options are for the Devlopment and Maintenace
+# Of World System. These features are not for production.
+
+devcmds: false;
 
 ###################
 # World Gamerules #
