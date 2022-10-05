@@ -14,7 +14,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Run the Version changer
+        with:
+          path: ~/.github
+          key: ${{ runner.os }}-github
         run: |
-          cd ../ || exit 1
           chmod +x release-code-changer.sh
           ./release-code-changer.sh
