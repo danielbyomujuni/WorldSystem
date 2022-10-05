@@ -7,7 +7,7 @@ on:
     branches: [ change-to-master-or-main ]
 
 jobs:
-  build:
+  changeversion:
     runs-on: ubuntu-latest
 
     steps:
