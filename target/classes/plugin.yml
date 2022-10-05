@@ -1,7 +1,14 @@
 name: 'WorldSystem'
 version: '2.4.20'
-main: de.bulzlabben.world.WorldSystem
-
+main: de.butzlabben.world.WorldSystem
+author: Trainerlord
 description: The one world per player solution you have always dreamed of.
+
+commands:
+  ws:
+    description: Main Commands for World System
+    usage: /ws
+    permission: ws.*;
+
 
 api-version: '1.17'

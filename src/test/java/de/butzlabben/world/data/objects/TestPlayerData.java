@@ -1,5 +1,6 @@
 package de.butzlabben.world.data.objects;
 
+import de.butzlabben.world.utils.Location;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

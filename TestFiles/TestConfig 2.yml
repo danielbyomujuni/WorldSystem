@@ -1,0 +1,123 @@
+##########################################################################
+### __              __         __    _______          __               ###
+### \ \            / /        / /   / / ___/         / /               ###
+###  \ \    __    / /___  ___/ /___/ / /____  ______/ /______________  ###
+###   \ \  /  \  / / __ \/ _/ / __  /__  / / / / __/ __/ ___/ _  _  /  ###
+###    \ \/ /\ \/ / /_/ / // / /_/ /__/ / /_/ /_  / /_/ ___/ // // /   ###
+###     \__/  \__/\____/_//_/\__,_/____/\__, /___/\__/\___/_//_//_/    ###
+###                                    ___/ /                          ###
+###                                    \___/                           ###
+##########################################################################
+
+
+####################
+# General Settings #
+####################
+
+# The Language to plugin should run in
+language: "en"
+#The Path that the Worlds of players will be stored when not in use.
+playerWorldsDir: 'plugins/WorldSystem/Worlds'
+
+#The time that a world should take till it unloads from no use
+unloadTime: 20
+
+#Prefix on Messages sent by the plugin
+prefix: '&8[&3WorldSystem&8] &6'
+
+#Delete the world after set amount of days
+#-1 to disable
+deleteAfterDays: -1
+
+#World Difficulty
+  #Options: PEACEFUL, EASY, NORMAL, HARD
+worldDifficulty: 'EASY'
+
+##########################
+# World Creation Setting #
+##########################
+
+#Allow Players to Choose the Template they want
+multiChoose: false
+#The Default Generation File
+#Warning: "do not add the .json"
+defaultGenerator: 'Vanilla'
+#World Generation Folder
+worldGenTemplates: 'plugins/WorldSystem/Generators'
+
+#World Borders
+  #The Default World Border Size for everyone
+worldBorderDefaultSize: 500
+#!Note: Dynamic World Borders Will Added back in a Future Update
+
+#World Border Center
+worldBorderCenter:
+  x: 0
+  z: 0
+
+##########################
+# World Entering/Exiting #
+##########################
+
+#This is the Settings you need to adjust to your server
+serverSpawn:
+  #The Gamemode the Main server uses
+    #Options: Survival, Creative, Adventure
+    #Warning: Spectator is not a Valid Input
+    #Warning: Spelling Matters, Capitalization Does not
+  serverGamemode: 'Survival'
+  #The point the player should be placed when leaving a WS World
+  serverSpawnPoint:
+    worldName: 'world'
+    x: 0
+    y: 60
+    z: 0
+
+#This is the Settings you need to adjust to your server
+wsWorldSpawn:
+  #The Gamemode the Main server uses
+  #World Gamemode
+    #Options: Survival, Creative, Adventure
+    #Warning: Spectator is not a Valid Input
+    #Warning: Spelling Matters, Capitalization Does not
+  worldGameMode: 'Survival'
+  # places the player at their last known location in the world
+  useLastLocation: false
+  #The point the player should be placed when entering a WS World
+  #for the first Time
+  defaultWorldSpawnPoint:
+      worldName: 'world'
+      x: 0
+      y: 60
+      z: 0
+
+###################
+# World Gamerules #
+###################
+
+#!DevTODO create a class to handle this to make it cleaner
+#Also Document this part of the config
+announceAdvancements: true
+commandBlockOutput: false
+disableElytraMovementCheck: false
+doDaylightCycle: true
+doEntityDrops: true
+doFireTick: true
+doLimitedCrafting: false
+doMobLoot: true
+doMobSpawning: true
+doTileDrops: true
+doWeatherCycle: false
+gameLoopFunction: false
+keepInventory: true
+logAdminCommands: true
+maxCommandChainLength: 65536
+maxEntityCramming: 24
+mobGriefing: true
+naturalRegeneration: true
+randomTickSpeed: 3
+reducedDebugInfo: false
+sendCommandFeedback: true
+showDeathMessages: true
+spawnRadius: 10
+spectatorsGenerateChunks: true

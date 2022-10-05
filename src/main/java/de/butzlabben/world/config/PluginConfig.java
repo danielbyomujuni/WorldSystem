@@ -18,7 +18,7 @@ public class PluginConfig {
 
 
     //New Config
-    private YamlConfiguration config;
+    protected YamlConfiguration config;
     private File configFile;
 
 
@@ -31,21 +31,12 @@ public class PluginConfig {
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("Cannot access config file");
         }
-
         try {
             verifyConfigFormating();
         } catch (InvalidConfigFormatException e) {
             try {
-                Files.copy(configFile.toPath(),
-                        new File(configFile.getParentFile(), "config-broken-"
-                                + new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date()) + ".yml").toPath(),
-                        StandardCopyOption.REPLACE_EXISTING);
-                Files.delete(configFile.toPath());
-                System.err.println("[WorldSystem] Config is broken, creating a new one!");
-
-                //TODO Create new Config
+                brokenConfig();
             } catch (IOException ex) {
-
                 //Somthing Really Bad Happened
                 //TODO Log it
                 ex.printStackTrace();
@@ -82,6 +73,11 @@ public class PluginConfig {
         {
             throw new InvalidConfigFormatException("Invaild Config Format in World Creation Settings");
         }
+        //Verify Dev Settings
+        if (!(config.isBoolean("devcmds")))
+        {
+            throw new InvalidConfigFormatException("Invaild Config Format in Dev Settings");
+        }
 
         if (!(config.isString("serverSpawn.serverGamemode") &&
             config.isString("serverSpawn.serverSpawnPoint.worldName") &&
@@ -90,40 +86,11 @@ public class PluginConfig {
             config.isInt("serverSpawn.serverSpawnPoint.z") &&
             config.isString("wsWorldSpawn.worldGameMode") &&
             config.isBoolean("wsWorldSpawn.useLastLocation") &&
-            config.isString("wsWorldSpawn.defaultWorldSpawnPoint.worldName") &&
             config.isInt("wsWorldSpawn.defaultWorldSpawnPoint.x") &&
             config.isInt("wsWorldSpawn.defaultWorldSpawnPoint.y") &&
             config.isInt("wsWorldSpawn.defaultWorldSpawnPoint.z")))
         {
             throw new InvalidConfigFormatException("Invaild Config Format in World Entering/Exiting");
-        }
-
-        if (!(config.isBoolean("announceAdvancements") &&
-            config.isBoolean("commandBlockOutput") &&
-            config.isBoolean("disableElytraMovementCheck") &&
-            config.isBoolean("doDaylightCycle") &&
-            config.isBoolean("doEntityDrops") &&
-            config.isBoolean("doFireTick") &&
-            config.isBoolean("doLimitedCrafting") &&
-            config.isBoolean("doMobLoot") &&
-            config.isBoolean("doMobSpawning") &&
-            config.isBoolean("doTileDrops") &&
-            config.isBoolean("doWeatherCycle") &&
-            config.isBoolean("gameLoopFunction") &&
-            config.isBoolean("keepInventory") &&
-            config.isBoolean("logAdminCommands") &&
-            config.isInt("maxCommandChainLength") &&
-            config.isInt("maxEntityCramming") &&
-            config.isBoolean("mobGriefing") &&
-            config.isBoolean("naturalRegeneration") &&
-            config.isInt("randomTickSpeed") &&
-            config.isBoolean("reducedDebugInfo") &&
-            config.isBoolean("sendCommandFeedback") &&
-            config.isBoolean("showDeathMessages") &&
-            config.isInt("spawnRadius") &&
-            config.isBoolean("spectatorsGenerateChunks")))
-        {
-            throw new InvalidConfigFormatException("Invaild Config Format in Gamerules ");
         }
     }
 
@@ -195,6 +162,39 @@ public class PluginConfig {
             config.getInt("serverSpawn.serverSpawnPoint.z"));
     }
 
+    public String getServerWorldName() {
+        return config.getString("serverSpawn.serverSpawnPoint.worldName");
+    }
+
+    public GameMode getPlayerWorldGamemode() {
+
+        return stringToGamemode(config.getString("wsWorldSpawn.worldGameMode"));
+    }
+
+    public boolean usePlayerWorldLastLocation() {
+
+        return config.getBoolean("wsWorldSpawn.useLastLocation");
+    }
+
+    public Location getPlayerWorldSpawnPoint() {
+        return new Location(
+            config.getInt("wsWorldSpawn.defaultWorldSpawnPoint.x"),
+            config.getInt("wsWorldSpawn.defaultWorldSpawnPoint.y"),
+            config.getInt("wsWorldSpawn.defaultWorldSpawnPoint.z"));
+    }
+
+    //Dev Settings
+
+    public boolean allowDevCommands() {
+        return config.getBoolean("devcmds");
+    }
+
+    //Gamerule Stuff
+    public GameruleConfig getGamerules()
+    {
+        return new GameruleConfig(this);
+    }
+
 
 
 
@@ -222,5 +222,17 @@ public class PluginConfig {
             default:
                 return Difficulty.PEACEFUL;
         }
+    }
+
+    protected void brokenConfig() throws IOException
+    {
+        Files.copy(configFile.toPath(),
+            new File(configFile.getParentFile(), "config-broken-"
+                + new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date()) + ".yml").toPath(),
+            StandardCopyOption.REPLACE_EXISTING);
+        Files.delete(configFile.toPath());
+        System.err.println("[WorldSystem] Config is broken, creating a new one!");
+
+        //TODO Create new Config
     }
 }

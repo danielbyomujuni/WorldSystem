@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TestPluginConfig {
     @Test
@@ -133,6 +134,43 @@ public class TestPluginConfig {
         assertEquals(0, cfg.getServerSpawnPoint().getX());
         assertEquals(60, cfg.getServerSpawnPoint().getY());
         assertEquals(0, cfg.getServerSpawnPoint().getZ());
+    }
+
+    @Test
+    public void testGetServerWorldName() throws FileNotFoundException
+    {
+        File cfgFile = new File("TestFiles/TestConfig.yml");
+        PluginConfig cfg = new PluginConfig(cfgFile);
+
+        assertEquals("world", cfg.getServerWorldName());
+    }
+
+    @Test
+    public void testPlayerWorldGamemode() throws FileNotFoundException
+    {
+        File cfgFile = new File("TestFiles/TestConfig.yml");
+        PluginConfig cfg = new PluginConfig(cfgFile);
+        assertEquals(GameMode.SURVIVAL, cfg.getPlayerWorldGamemode());
+    }
+
+    @Test
+    public void testUsePlayersLastLocation() throws FileNotFoundException
+    {
+        File cfgFile = new File("TestFiles/TestConfig.yml");
+        PluginConfig cfg = new PluginConfig(cfgFile);
+
+        assertFalse(cfg.usePlayerWorldLastLocation());
+    }
+
+    @Test
+    public void testGetPlayerWorldDefaultSpawnPoint() throws FileNotFoundException
+    {
+        File cfgFile = new File("TestFiles/TestConfig.yml");
+        PluginConfig cfg = new PluginConfig(cfgFile);
+
+        assertEquals(0, cfg.getPlayerWorldSpawnPoint().getX());
+        assertEquals(60, cfg.getPlayerWorldSpawnPoint().getY());
+        assertEquals(0, cfg.getPlayerWorldSpawnPoint().getZ());
     }
 
 }

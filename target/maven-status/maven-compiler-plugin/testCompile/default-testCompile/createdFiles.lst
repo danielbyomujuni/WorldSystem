@@ -1,0 +1,8 @@
+de/butzlabben/world/commands/MockCommand.class
+de/butzlabben/world/data/objects/TestWorldSystemData.class
+de/butzlabben/world/data/TestWorldDatabase.class
+de/butzlabben/world/commands/TestCommandExecuter.class
+de/butzlabben/world/data/objects/TestPlayerData.class
+de/butzlabben/world/data/objects/TestPlayerWorld.class
+de/butzlabben/world/config/TestPluginConfig.class
+de/butzlabben/world/config/TestGameRules.class

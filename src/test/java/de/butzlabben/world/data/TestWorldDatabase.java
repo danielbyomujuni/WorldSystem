@@ -31,7 +31,17 @@ public class TestWorldDatabase {
         final String path = "TestFiles/workingDir/dataBaseInitTestFromNoFile.json";
 
         WorldDatabase wb = new WorldDatabase(path);
-        assertEquals(0, wb.getPlayerCount());
+        wb.addPlayer("null");
+        assertEquals(1, wb.getPlayerCount());
+    }
+
+    @Test
+    public void testDatabaseInitalizationFromNoFile2() {
+        final String path = "TestFiles/workingDir/dataBaseInitTestFromNoFileNum2.json";
+
+        WorldDatabase wb = new WorldDatabase(path);
+        wb.addPlayer("null");
+        assertEquals(1, wb.getPlayerCount());
     }
 
     /**
@@ -59,7 +69,8 @@ public class TestWorldDatabase {
         final String path = "TestFiles/workingDir/ExistingEmptyFileInit.json";
 
         WorldDatabase wb = new WorldDatabase(path);
-        assertEquals(0, wb.getPlayerCount());
+        wb.addPlayer("BlankUUID");
+        assertEquals(1, wb.getPlayerCount());
     }
 
     /**
