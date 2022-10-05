@@ -71,7 +71,7 @@ jobs:
          mvn archetype:generate -DgroupId=de.butzlabben -DartifactId=WorldSystem -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 
     - name: Build
-      run: mvn package
+      run: mvn -q package
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
