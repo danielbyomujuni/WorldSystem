@@ -4,7 +4,7 @@ name: Release code changer
 
 on:
   push:
-    branches: [ change-to-master-or-main ]
+    branches: [ "master" ]
 
 jobs:
   changeversion:
