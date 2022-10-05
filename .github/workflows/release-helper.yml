@@ -15,7 +15,6 @@ jobs:
 
       - name: Run the Version changer
         run: |
+          cd ~/.github || exit 1
           chmod +x release-code-changer.sh
           ./release-code-changer.sh
-        with:
-          path: "**/.github"
