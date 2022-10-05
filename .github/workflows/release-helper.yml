@@ -11,12 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Run the Version changer
+      - name: Get github directory
+        id: cache-gradle
+        uses: actions/cache@v1
         with:
           path: ~/.github
           key: ${{ runner.os }}-github
+
+      - uses: actions/checkout@v3
+
+      - name: Run the Version changer
         run: |
           chmod +x release-code-changer.sh
           ./release-code-changer.sh
