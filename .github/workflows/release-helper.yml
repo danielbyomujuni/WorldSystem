@@ -12,11 +12,8 @@ jobs:
 
     steps:
       - name: Get github directory
-        id: cache-gradle
-        uses: actions/cache@v1
         with:
-          path: ~/.github
-          key: ${{ runner.os }}-github
+          path: "**/.github"
 
       - uses: actions/checkout@v3
 
