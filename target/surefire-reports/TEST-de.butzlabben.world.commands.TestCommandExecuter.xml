@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="de.butzlabben.world.commands.TestCommandExecuter" time="0.003" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="de.butzlabben.world.commands.TestCommandExecuter" time="0.002" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.2.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -60,6 +60,6 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
   <testcase classname="de.butzlabben.world.commands.TestCommandExecuter" name="de.butzlabben.world.commands.TestCommandExecuter.testExecuterMultipleCommands" time="0"/>
+  <testcase classname="de.butzlabben.world.commands.TestCommandExecuter" name="de.butzlabben.world.commands.TestCommandExecuter.testExecuterInvalidCommand" time="0.002"/>
   <testcase classname="de.butzlabben.world.commands.TestCommandExecuter" name="de.butzlabben.world.commands.TestCommandExecuter.testExecuterAddCMD" time="0"/>
-  <testcase classname="de.butzlabben.world.commands.TestCommandExecuter" name="de.butzlabben.world.commands.TestCommandExecuter.testExecuterInvalidCommand" time="0.003"/>
 </testsuite>

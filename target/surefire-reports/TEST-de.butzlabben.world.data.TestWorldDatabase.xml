@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="de.butzlabben.world.data.TestWorldDatabase" time="0.097" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="de.butzlabben.world.data.TestWorldDatabase" time="0.092" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.2.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -59,9 +59,9 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="de.butzlabben.world.data.TestWorldDatabase" name="de.butzlabben.world.data.TestWorldDatabase.testDatabaseInitalizationFromNoFile" time="0.068"/>
-  <testcase classname="de.butzlabben.world.data.TestWorldDatabase" name="de.butzlabben.world.data.TestWorldDatabase.testDatabaseInitalizationFromNoFile2" time="0.008"/>
-  <testcase classname="de.butzlabben.world.data.TestWorldDatabase" name="de.butzlabben.world.data.TestWorldDatabase.testDatabaseInitalizationCreateValidFile" time="0.017"/>
+  <testcase classname="de.butzlabben.world.data.TestWorldDatabase" name="de.butzlabben.world.data.TestWorldDatabase.testDatabaseInitalizationFromNoFile" time="0.072"/>
+  <testcase classname="de.butzlabben.world.data.TestWorldDatabase" name="de.butzlabben.world.data.TestWorldDatabase.testDatabaseInitalizationFromNoFile2" time="0.001"/>
+  <testcase classname="de.butzlabben.world.data.TestWorldDatabase" name="de.butzlabben.world.data.TestWorldDatabase.testDatabaseInitalizationCreateValidFile" time="0.015"/>
   <testcase classname="de.butzlabben.world.data.TestWorldDatabase" name="de.butzlabben.world.data.TestWorldDatabase.testDatabaseInitalizationWithExistingEmptyFile" time="0.002"/>
   <testcase classname="de.butzlabben.world.data.TestWorldDatabase" name="de.butzlabben.world.data.TestWorldDatabase.testDatabaseInitalizationWithPopulatedEmptyFile" time="0.002"/>
 </testsuite>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="25" failures="0" name="de.butzlabben.world.config.TestGameRules" time="0.167" errors="0" skipped="0">
+<testsuite tests="25" failures="0" name="de.butzlabben.world.config.TestGameRules" time="0.196" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.2.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -59,29 +59,29 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testGameruleInit" time="0.097"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testAnnounceAdvancements" time="0.006"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testCommandBlockOutput" time="0.005"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testElytraMovementCheck" time="0.004"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testDaylightCycle" time="0.004"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testEntityDrops" time="0.004"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testFireTick" time="0.003"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testLimitCrafting" time="0.003"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testMobLoot" time="0.003"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testMobSpawning" time="0.002"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testGameruleInit" time="0.106"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testAnnounceAdvancements" time="0.008"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testCommandBlockOutput" time="0.006"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testElytraMovementCheck" time="0.005"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testDaylightCycle" time="0.005"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testEntityDrops" time="0.006"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testFireTick" time="0.004"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testLimitCrafting" time="0.004"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testMobLoot" time="0.004"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testMobSpawning" time="0.005"/>
   <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testTileDrops" time="0.003"/>
   <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testWeatherCycle" time="0.003"/>
   <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testLoopFunction" time="0.003"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testKeepInventory" time="0.002"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testAdminCommandLogs" time="0.002"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testKeepInventory" time="0.004"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testAdminCommandLogs" time="0.003"/>
   <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testCommandChainLength" time="0.004"/>
   <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testMaxEntityCramming" time="0.003"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testMobGriefing" time="0.002"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testNaturalRegen" time="0.003"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testMobGriefing" time="0.005"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testNaturalRegen" time="0.002"/>
   <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testRandomTickSpeed" time="0.002"/>
   <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testReducedDebugInfo" time="0.002"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testCommandFeedback" time="0.002"/>
-  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testDeathMessage" time="0.001"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testCommandFeedback" time="0.003"/>
+  <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testDeathMessage" time="0.002"/>
   <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testSpawnRad" time="0.002"/>
   <testcase classname="de.butzlabben.world.config.TestGameRules" name="de.butzlabben.world.config.TestGameRules.testSpectatorsChunkGen" time="0.002"/>
 </testsuite>

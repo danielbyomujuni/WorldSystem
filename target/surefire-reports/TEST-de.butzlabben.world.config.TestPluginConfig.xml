@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="17" failures="0" name="de.butzlabben.world.config.TestPluginConfig" time="0.04" errors="0" skipped="0">
+<testsuite tests="17" failures="0" name="de.butzlabben.world.config.TestPluginConfig" time="0.049" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.2.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -62,18 +62,18 @@
   <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetPlayerWorldDefaultSpawnPoint" time="0"/>
   <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testPluginConfigInit" time="0"/>
   <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetLanguage" time="0.001"/>
-  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetWorldDir" time="0.002"/>
+  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetWorldDir" time="0.003"/>
   <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetUnloadTime" time="0.003"/>
-  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetPrefix" time="0.001"/>
-  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetDeleteAfter" time="0.001"/>
-  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGameDifficulty" time="0.009"/>
-  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testMultiChoice" time="0.003"/>
+  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetPrefix" time="0.003"/>
+  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetDeleteAfter" time="0.003"/>
+  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGameDifficulty" time="0.013"/>
+  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testMultiChoice" time="0.002"/>
   <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testgetDefaultGenerator" time="0.003"/>
   <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testWorldBorderDefaultSize" time="0.002"/>
   <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testWorldBorderCords" time="0.002"/>
-  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testServerGamemode" time="0.002"/>
-  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetServerSpawnPoint" time="0.002"/>
+  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testServerGamemode" time="0.003"/>
+  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetServerSpawnPoint" time="0.003"/>
   <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testGetServerWorldName" time="0.002"/>
-  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testPlayerWorldGamemode" time="0.002"/>
+  <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testPlayerWorldGamemode" time="0.001"/>
   <testcase classname="de.butzlabben.world.config.TestPluginConfig" name="de.butzlabben.world.config.TestPluginConfig.testUsePlayersLastLocation" time="0.005"/>
 </testsuite>

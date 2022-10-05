@@ -1,11 +1,13 @@
 package de.butzlabben.world.config;
 
+import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.exceptions.InvalidConfigFormatException;
 import de.butzlabben.world.utils.Location;
 import de.butzlabben.world.utils.Location2D;
 import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -23,8 +25,13 @@ public class PluginConfig {
 
 
     //TODO Document
+
     public PluginConfig(File configFile) throws FileNotFoundException {
         this.configFile = configFile;
+        if (!configFile.exists()) {
+            JavaPlugin.getPlugin(WorldSystem.class).saveDefaultConfig();
+        }
+
         try {
             config = YamlConfiguration.loadConfiguration(
                     new InputStreamReader(new FileInputStream(configFile), StandardCharsets.UTF_8));

@@ -1,5 +1,8 @@
 package de.butzlabben.world.config;
 
+import be.seeseemelk.mockbukkit.MockBukkit;
+import be.seeseemelk.mockbukkit.ServerMock;
+import de.butzlabben.world.WorldSystem;
 import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
 import org.junit.jupiter.api.Test;
@@ -7,15 +10,17 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPluginConfig {
+
+
     @Test
     public void testPluginConfigInit() throws FileNotFoundException {
         File cfgFile = new File("TestFiles/TestConfig.yml");
         PluginConfig cfg = new PluginConfig(cfgFile);
     }
+
 
 
     //TODO ADD Invalid Config Test

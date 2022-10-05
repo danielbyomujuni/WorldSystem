@@ -45,4 +45,8 @@ public class WorldSystemCommandExecuter implements CommandExecutor
     return commands.get(cmd).run(commandSender);
   }
 
+  public String[] commandList()
+  {
+    return commands.keySet().toArray(new String[0]);
+  }
 }

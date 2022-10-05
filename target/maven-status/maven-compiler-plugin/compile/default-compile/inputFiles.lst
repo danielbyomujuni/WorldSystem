@@ -1,6 +1,7 @@
 /Users/danielbyomujuni/Documents/Projects/WorldSystem/src/main/java/de/butzlabben/world/utils/Location2D.java
 /Users/danielbyomujuni/Documents/Projects/WorldSystem/src/main/java/de/butzlabben/world/data/objects/PlayerWorld.java
 /Users/danielbyomujuni/Documents/Projects/WorldSystem/src/main/java/de/butzlabben/world/commands/WorldSystemCommandExecuter.java
+/Users/danielbyomujuni/Documents/Projects/WorldSystem/src/main/java/de/butzlabben/world/commands/commands/WorldSystemTabComplete.java
 /Users/danielbyomujuni/Documents/Projects/WorldSystem/src/main/java/de/butzlabben/world/data/objects/WorldSystemData.java
 /Users/danielbyomujuni/Documents/Projects/WorldSystem/src/main/java/de/butzlabben/world/commands/commands/DebugCommandTest.java
 /Users/danielbyomujuni/Documents/Projects/WorldSystem/src/main/java/de/butzlabben/world/exceptions/InvaildCommandException.java

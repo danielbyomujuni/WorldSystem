@@ -12,6 +12,7 @@ org/bstats/bukkit/Metrics.class
 org/bstats/bukkit/Metrics$SimplePie.class
 org/bstats/bukkit/Metrics$2.class
 de/butzlabben/world/exceptions/InvalidConfigFormatException.class
+de/butzlabben/world/commands/commands/WorldSystemTabComplete.class
 org/bstats/bukkit/Metrics$AdvancedPie.class
 de/butzlabben/world/commands/commands/DebugCommandTest.class
 org/bstats/bukkit/Metrics$1$1.class

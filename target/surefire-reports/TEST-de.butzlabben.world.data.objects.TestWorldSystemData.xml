@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="de.butzlabben.world.data.objects.TestWorldSystemData" time="0.003" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="de.butzlabben.world.data.objects.TestWorldSystemData" time="0.004" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.2.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -61,7 +61,7 @@
   </properties>
   <testcase classname="de.butzlabben.world.data.objects.TestWorldSystemData" name="de.butzlabben.world.data.objects.TestWorldSystemData.testAddMultipleWorldsToPlayer" time="0"/>
   <testcase classname="de.butzlabben.world.data.objects.TestWorldSystemData" name="de.butzlabben.world.data.objects.TestWorldSystemData.testWorldSystemDataInit" time="0"/>
-  <testcase classname="de.butzlabben.world.data.objects.TestWorldSystemData" name="de.butzlabben.world.data.objects.TestWorldSystemData.testAddPlayer" time="0"/>
+  <testcase classname="de.butzlabben.world.data.objects.TestWorldSystemData" name="de.butzlabben.world.data.objects.TestWorldSystemData.testAddPlayer" time="0.001"/>
   <testcase classname="de.butzlabben.world.data.objects.TestWorldSystemData" name="de.butzlabben.world.data.objects.TestWorldSystemData.testAddMultiplePlayers" time="0.003"/>
   <testcase classname="de.butzlabben.world.data.objects.TestWorldSystemData" name="de.butzlabben.world.data.objects.TestWorldSystemData.testAddDulpicatePlayer" time="0"/>
   <testcase classname="de.butzlabben.world.data.objects.TestWorldSystemData" name="de.butzlabben.world.data.objects.TestWorldSystemData.testAddWorldToPlayer" time="0"/>
