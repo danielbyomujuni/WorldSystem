@@ -8,7 +8,7 @@
 POMRELEASE=2.4.20-SNAPSHOT
 
 # What version should be shown in the README.md latest badge
-RELEASEVER=2.4.11
+RELEASEVER=2.4.12
 
 
 sed -i "0,:WorldSystem/.*/:s:WorldSystem/$RELEASEVER/" ./README.md $>/dev/null 2>&1
