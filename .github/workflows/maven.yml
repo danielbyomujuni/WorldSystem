@@ -29,4 +29,4 @@ jobs:
           export PATH=./apache-maven-3.8.6/bin:$PATH
 
     - name: Build with Maven
-      run: mvn -e package --file pom.xml
+      run: mvn package --file pom.xml
