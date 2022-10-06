@@ -66,10 +66,10 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Grant execute permission to pom.xml
-      run: mvn -q -e archetype:generate -DgroupId=de.butzlabben -DartifactId=WorldSystem -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+      run: mvn --version #mvn -q -e archetype:generate -DgroupId=de.butzlabben -DartifactId=WorldSystem -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 
     - name: Build
-      run: mvn -q -e package
+      run: mvn -q -e package --file pom.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
