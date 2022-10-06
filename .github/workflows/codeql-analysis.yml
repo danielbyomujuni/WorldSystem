@@ -72,7 +72,7 @@ jobs:
           export PATH=./apache-maven-3.8.6/bin:$PATH
          
     - name: Build
-      run: mvn -q -e package --file pom.xml
+      run: mvn -e package --file pom.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
