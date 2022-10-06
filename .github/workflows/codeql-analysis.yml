@@ -68,7 +68,7 @@ jobs:
     - name: Grant execute permission to pom.xml
       run: |
          mvn --version 
-         mvn -q -e archetype:generate -DgroupId=de.butzlabben -DartifactId=WorldSystem -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+         mvn -q -e -X archetype:generate -DgroupId=de.butzlabben -DartifactId=WorldSystem -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 
     - name: Build
       run: mvn -q package
