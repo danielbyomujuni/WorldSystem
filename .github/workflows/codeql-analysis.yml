@@ -66,8 +66,11 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Grant execute permission to pom.xml
-      run: mvn --version #mvn -q -e archetype:generate -DgroupId=de.butzlabben -DartifactId=WorldSystem -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
-
+      run: |
+          wget -q https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+          tar xzvf apache-maven-3.8.6-bin.tar.gz
+          export PATH=./apache-maven-3.8.6/bin:$PATH
+         
     - name: Build
       run: mvn -q -e package --file pom.xml
       env:
