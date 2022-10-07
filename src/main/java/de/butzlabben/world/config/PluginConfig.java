@@ -29,7 +29,7 @@ public class PluginConfig {
     public PluginConfig(File configFile) throws FileNotFoundException {
         this.configFile = configFile;
         if (!configFile.exists()) {
-            JavaPlugin.getPlugin(WorldSystem.class).saveDefaultConfig();
+            WorldSystem.getInstance().saveDefaultConfig();
         }
 
         try {

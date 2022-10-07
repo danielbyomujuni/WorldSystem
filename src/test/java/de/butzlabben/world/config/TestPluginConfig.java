@@ -1,25 +1,45 @@
 package de.butzlabben.world.config;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
+import be.seeseemelk.mockbukkit.MockPlugin;
 import be.seeseemelk.mockbukkit.ServerMock;
+import de.butzlabben.world.MockWorldSystem;
 import de.butzlabben.world.WorldSystem;
+import org.apache.commons.io.FileUtils;
 import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPluginConfig {
 
+    @BeforeAll
+    static void CleanLastTest() throws IOException
+    {
+        FileUtils.cleanDirectory(new File("TestFiles/workingDir/"));
+    }
 
     @Test
     public void testPluginConfigInit() throws FileNotFoundException {
         File cfgFile = new File("TestFiles/TestConfig.yml");
         PluginConfig cfg = new PluginConfig(cfgFile);
     }
+
+    @Test
+    public void testNoPluginConfigInit() throws FileNotFoundException {
+        File cfgFile = new File("TestFiles/workingDir/TestConfigNoExist.yml");
+        WorldSystem mock = new MockWorldSystem(cfgFile);
+
+        PluginConfig cfg = new PluginConfig(cfgFile);
+    }
+
 
 
 

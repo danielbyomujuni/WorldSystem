@@ -4,32 +4,37 @@ import de.butzlabben.world.commands.WorldSystemCommandExecuter;
 import de.butzlabben.world.commands.commands.DebugCommandTest;
 import de.butzlabben.world.commands.commands.WorldSystemTabComplete;
 import de.butzlabben.world.config.PluginConfig;
-import org.bukkit.plugin.PluginDescriptionFile;
+import de.butzlabben.world.utils.PluginRunner;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.JavaPluginLoader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 
-public class WorldSystem extends JavaPlugin
+public class WorldSystem
 {
+  private PluginRunner runner;
+  protected static WorldSystem activeInst = null;
 
   private static PluginConfig cfg;
 
-  public WorldSystem()
-  {
-    super();
+
+  private WorldSystem(PluginRunner run) {
+    runner = run;
   }
 
-  protected WorldSystem(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file)
-  {
-    super(loader, description, dataFolder, file);
+  protected WorldSystem() {
+    runner = null;
   }
 
-  @Override
+  public void saveDefaultConfig()
+  {
+    runner.saveDefaultConfig();
+  }
+
   public void onEnable() {
     createConfigs();
-
     createCommands();
   }
 
@@ -42,12 +47,12 @@ public class WorldSystem extends JavaPlugin
       cmdExecuter.addCommand("test", new DebugCommandTest());
     }
 
-    this.getCommand("ws").setExecutor(cmdExecuter);
-    this.getCommand("ws").setTabCompleter(new WorldSystemTabComplete(cmdExecuter));
+    runner.getCommand("ws").setExecutor(cmdExecuter);
+    runner.getCommand("ws").setTabCompleter(new WorldSystemTabComplete(cmdExecuter));
   }
 
   private void createConfigs() {
-    File folder = getInstance().getDataFolder();
+    File folder = runner.getInstance().getDataFolder();
     try
     {
       cfg = new PluginConfig(new File(folder, "config.yml"));
@@ -63,7 +68,14 @@ public class WorldSystem extends JavaPlugin
   }
 
   public static WorldSystem getInstance() {
-    return JavaPlugin.getPlugin(WorldSystem.class);
+    if (activeInst == null) {
+      activeInst = new WorldSystem(JavaPlugin.getPlugin(PluginRunner.class));
+    }
+    return activeInst;
+  }
+
+  public InputStream getResource(String filename) {
+    return runner.getResource(filename);
   }
 
 }
