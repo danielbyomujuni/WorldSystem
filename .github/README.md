@@ -2,10 +2,12 @@
         <img src="https://github.com/CrazyCloudCraft/worldsystem-depecated/raw/master/.github/Worldsystemlogo_V24X.png" />
 </p>
 <p align="center">
-    <a hreg="https://github.com/trainerlord/WorldSystem/releases">
-        <img src="https://img.shields.io/github/downloads/trainerlord/WorldSystem/total?color=green&label=All%20Downloads&style=plastic" />
+    <a href="https://github.com/trainerlord/WorldSystem/releases">
+    <img src="https://img.shields.io/github/downloads/trainerlord/WorldSystem/total?color=green&label=All%20downloads&style=plastic" />
+    <a href="https://github.com/trainerlord/WorldSystem/releases">
+    <img src="https://img.shields.io/github/downloads-pre/trainerlord/WorldSystem/2.4.11/total?label=Downloads%20latest&sort=semver&style=plastic" />
 </a>
-
+   
 <p align="center">
   <a>A spigot plugin to give every user his own world</a>
 </p>

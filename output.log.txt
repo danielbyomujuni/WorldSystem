@@ -1,0 +1,491 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for de.butzlabben:WorldSystem:jar:2.4.20-SNAPSHOT
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: com.fastasyncworldedit:FastAsyncWorldEdit-Core:jar -> version 2.4.5 vs (?) @ line 121, column 21
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ---------------------< de.butzlabben:WorldSystem >----------------------
+[INFO] Building WorldSystem 2.4.20-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ WorldSystem ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 19 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ WorldSystem ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 80 source files to /opt/lol/WorldSystem/target/classes
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING : 
+[INFO] -------------------------------------------------------------
+[WARNING] /opt/lol/WorldSystem/src/main/java/org/bstats/bukkit/Metrics.java: Some input files use or override a deprecated API.
+[WARNING] /opt/lol/WorldSystem/src/main/java/org/bstats/bukkit/Metrics.java: Recompile with -Xlint:deprecation for details.
+[INFO] 2 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/CommandListener.java:[74,45] cannot find symbol
+  symbol:   method getSpawnGamemode()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/CommandListener.java:[76,33] cannot find symbol
+  symbol:   method isSurvival()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/CommandListener.java:[101,29] cannot find symbol
+  symbol:   method isSurvival()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/CommandListener.java:[116,33] cannot find symbol
+  symbol:   method isSurvival()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/CommandListener.java:[144,33] cannot find symbol
+  symbol:   method isSurvival()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[110,39] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[136,45] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[147,47] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[206,36] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[207,39] cannot find symbol
+  symbol:   method getSpawnGamemode()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[212,54] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[255,36] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[256,39] cannot find symbol
+  symbol:   method getSpawnGamemode()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[274,29] non-static method getUnloadingTime() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[264,58] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[307,39] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[328,43] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[347,84] cannot find symbol
+  symbol:   method getDefaultWorldTemplate()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[384,43] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[414,29] non-static method useWorldSpawn() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[415,82] non-static method getWorldSpawn(org.bukkit.World) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[420,25] cannot find symbol
+  symbol:   method isSurvival()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/WorldPlayer.java:[182,85] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/PlayerListener.java:[30,25] cannot find symbol
+  symbol:   method spawnTeleportation()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/PlayerListener.java:[36,56] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/PlayerListener.java:[62,39] cannot find symbol
+  symbol:   method getSpawnGamemode()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/PlayerListener.java:[77,33] non-static method useWorldSpawn() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/PlayerListener.java:[78,54] non-static method getWorldSpawn(org.bukkit.World) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/MoneyUtil.java:[32,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/MoneyUtil.java:[46,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/MoneyUtil.java:[47,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/SettingsConfig.java:[60,37] non-static method useWorldSpawn() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/SettingsConfig.java:[61,66] non-static method getWorldSpawn(org.bukkit.World) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/SettingsConfig.java:[84,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[67,47] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[69,34] non-static method isMultiChoose() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[71,54] cannot find symbol
+  symbol:   method getDefaultWorldTemplate()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[75,51] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[76,51] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[83,55] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[84,55] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[101,36] cannot find symbol
+  symbol:   method getRequestExpire()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[175,43] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[206,39] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/DependenceConfig.java:[57,61] cannot find symbol
+  symbol:   method deleteAfter()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/DependenceConfig.java:[66,37] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerWrapper.java:[30,44] cannot find symbol
+  symbol:   method getUUIDTableName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerWrapper.java:[47,44] cannot find symbol
+  symbol:   method getUUIDTableName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerWrapper.java:[63,44] cannot find symbol
+  symbol:   method getUUIDTableName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/GuiConfig.java:[105,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[28,37] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[79,29] non-static method isMultiChoose() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[106,50] cannot find symbol
+  symbol:   method getDefaultWorldTemplate()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[110,47] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[111,47] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[197,29] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[198,67] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[199,43] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[203,36] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[204,39] cannot find symbol
+  symbol:   method getSpawnGamemode()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/WorldConfig.java:[54,48] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/WorldConfig.java:[88,42] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/WorldConfig.java:[376,33] cannot find symbol
+  symbol:   method contactAuth()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[51,34] cannot find symbol
+  symbol:   variable config
+  location: class de.butzlabben.WorldSystem
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[69,67] non-static method getLanguage() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[81,69] cannot find symbol
+  symbol:   variable config
+  location: class de.butzlabben.WorldSystem
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[124,34] cannot find symbol
+  symbol:   method getLagCheckPeriod()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[126,25] cannot find symbol
+  symbol:   method useGC()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[128,38] cannot find symbol
+  symbol:   method getGCPeriod()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[185,25] cannot find symbol
+  symbol:   method shouldDelete()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[186,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[187,93] cannot find symbol
+  symbol:   method deleteAfter()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[194,59] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[210,42] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/SqliteConnection.java:[41,29] cannot find symbol
+  symbol:   method getSqliteFile()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/DatabaseProvider.java:[14,37] cannot find symbol
+  symbol:   method getDatabaseType()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/WorldTemplateProvider.java:[28,52] cannot find symbol
+  symbol:   method getConfig()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/gui/worldoption/TntStatus.java:[21,41] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/gui/worldoption/FireStatus.java:[21,41] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[34,26] cannot find symbol
+  symbol:   method useWorldSpawnLastLocation()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[45,40] cannot find symbol
+  symbol:   method getWorldsTableName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[71,26] cannot find symbol
+  symbol:   method useSpawnLastLocation()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[80,40] cannot find symbol
+  symbol:   method getPlayersTableName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[112,26] cannot find symbol
+  symbol:   method useSpawnLastLocation()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[119,47] cannot find symbol
+  symbol:   method getPlayersTableName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[141,26] cannot find symbol
+  symbol:   method useWorldSpawnLastLocation()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[152,40] cannot find symbol
+  symbol:   method getWorldsTableName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[175,40] cannot find symbol
+  symbol:   method getWorldsTableName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[196,46] cannot find symbol
+  symbol:   method getWorldsTableName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[207,47] cannot find symbol
+  symbol:   method getPlayersTableName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/WorldCheckerRunnable.java:[20,37] cannot find symbol
+  symbol:   method getEntitysPerWorld()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/MysqlConnection.java:[32,95] cannot find symbol
+  symbol:   method getMysqlPort()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/MysqlConnection.java:[32,29] cannot find symbol
+  symbol:   method getMysqlHost()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/MysqlConnection.java:[32,58] cannot find symbol
+  symbol:   method getMysqlDatabaseName()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/MysqlConnection.java:[33,29] cannot find symbol
+  symbol:   method getMysqlUser()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/MysqlConnection.java:[33,58] cannot find symbol
+  symbol:   method getMysqlPassword()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldAdministrateCommand.java:[125,44] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldAdministrateCommand.java:[126,47] cannot find symbol
+  symbol:   method getSpawnGamemode()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldAdministrateCommand.java:[177,45] cannot find symbol
+  symbol:   method getWorlddir()
+  location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldAdministrateCommand.java:[272,43] non-static method getPrefix() cannot be referenced from a static context
+[INFO] 100 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.444 s
+[INFO] Finished at: 2022-10-06T08:17:05+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.1:compile (default-compile) on project WorldSystem: Compilation failure: Compilation failure: 
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/CommandListener.java:[74,45] cannot find symbol
+[ERROR]   symbol:   method getSpawnGamemode()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/CommandListener.java:[76,33] cannot find symbol
+[ERROR]   symbol:   method isSurvival()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/CommandListener.java:[101,29] cannot find symbol
+[ERROR]   symbol:   method isSurvival()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/CommandListener.java:[116,33] cannot find symbol
+[ERROR]   symbol:   method isSurvival()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/CommandListener.java:[144,33] cannot find symbol
+[ERROR]   symbol:   method isSurvival()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[110,39] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[136,45] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[147,47] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[206,36] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[207,39] cannot find symbol
+[ERROR]   symbol:   method getSpawnGamemode()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[212,54] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[255,36] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[256,39] cannot find symbol
+[ERROR]   symbol:   method getSpawnGamemode()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[274,29] non-static method getUnloadingTime() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[264,58] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[307,39] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[328,43] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[347,84] cannot find symbol
+[ERROR]   symbol:   method getDefaultWorldTemplate()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[384,43] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[414,29] non-static method useWorldSpawn() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[415,82] non-static method getWorldSpawn(org.bukkit.World) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/SystemWorld.java:[420,25] cannot find symbol
+[ERROR]   symbol:   method isSurvival()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/WorldPlayer.java:[182,85] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/PlayerListener.java:[30,25] cannot find symbol
+[ERROR]   symbol:   method spawnTeleportation()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/PlayerListener.java:[36,56] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/PlayerListener.java:[62,39] cannot find symbol
+[ERROR]   symbol:   method getSpawnGamemode()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/PlayerListener.java:[77,33] non-static method useWorldSpawn() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/listener/PlayerListener.java:[78,54] non-static method getWorldSpawn(org.bukkit.World) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/MoneyUtil.java:[32,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/MoneyUtil.java:[46,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/MoneyUtil.java:[47,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/SettingsConfig.java:[60,37] non-static method useWorldSpawn() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/SettingsConfig.java:[61,66] non-static method getWorldSpawn(org.bukkit.World) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/SettingsConfig.java:[84,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[67,47] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[69,34] non-static method isMultiChoose() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[71,54] cannot find symbol
+[ERROR]   symbol:   method getDefaultWorldTemplate()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[75,51] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[76,51] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[83,55] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[84,55] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[101,36] cannot find symbol
+[ERROR]   symbol:   method getRequestExpire()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[175,43] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldSettingsCommands.java:[206,39] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/DependenceConfig.java:[57,61] cannot find symbol
+[ERROR]   symbol:   method deleteAfter()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/DependenceConfig.java:[66,37] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerWrapper.java:[30,44] cannot find symbol
+[ERROR]   symbol:   method getUUIDTableName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerWrapper.java:[47,44] cannot find symbol
+[ERROR]   symbol:   method getUUIDTableName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerWrapper.java:[63,44] cannot find symbol
+[ERROR]   symbol:   method getUUIDTableName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/GuiConfig.java:[105,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[28,37] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[79,29] non-static method isMultiChoose() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[106,50] cannot find symbol
+[ERROR]   symbol:   method getDefaultWorldTemplate()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[110,47] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[111,47] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[197,29] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[198,67] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[199,43] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[203,36] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WSCommands.java:[204,39] cannot find symbol
+[ERROR]   symbol:   method getSpawnGamemode()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/WorldConfig.java:[54,48] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/WorldConfig.java:[88,42] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/config/WorldConfig.java:[376,33] cannot find symbol
+[ERROR]   symbol:   method contactAuth()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[51,34] cannot find symbol
+[ERROR]   symbol:   variable config
+[ERROR]   location: class de.butzlabben.WorldSystem
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[69,67] non-static method getLanguage() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[81,69] cannot find symbol
+[ERROR]   symbol:   variable config
+[ERROR]   location: class de.butzlabben.WorldSystem
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[124,34] cannot find symbol
+[ERROR]   symbol:   method getLagCheckPeriod()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[126,25] cannot find symbol
+[ERROR]   symbol:   method useGC()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[128,38] cannot find symbol
+[ERROR]   symbol:   method getGCPeriod()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[185,25] cannot find symbol
+[ERROR]   symbol:   method shouldDelete()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[186,63] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[187,93] cannot find symbol
+[ERROR]   symbol:   method deleteAfter()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[194,59] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/WorldSystem.java:[210,42] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/SqliteConnection.java:[41,29] cannot find symbol
+[ERROR]   symbol:   method getSqliteFile()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/DatabaseProvider.java:[14,37] cannot find symbol
+[ERROR]   symbol:   method getDatabaseType()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/wrapper/WorldTemplateProvider.java:[28,52] cannot find symbol
+[ERROR]   symbol:   method getConfig()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/gui/worldoption/TntStatus.java:[21,41] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/gui/worldoption/FireStatus.java:[21,41] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[34,26] cannot find symbol
+[ERROR]   symbol:   method useWorldSpawnLastLocation()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[45,40] cannot find symbol
+[ERROR]   symbol:   method getWorldsTableName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[71,26] cannot find symbol
+[ERROR]   symbol:   method useSpawnLastLocation()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[80,40] cannot find symbol
+[ERROR]   symbol:   method getPlayersTableName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[112,26] cannot find symbol
+[ERROR]   symbol:   method useSpawnLastLocation()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[119,47] cannot find symbol
+[ERROR]   symbol:   method getPlayersTableName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[141,26] cannot find symbol
+[ERROR]   symbol:   method useWorldSpawnLastLocation()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[152,40] cannot find symbol
+[ERROR]   symbol:   method getWorldsTableName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[175,40] cannot find symbol
+[ERROR]   symbol:   method getWorldsTableName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[196,46] cannot find symbol
+[ERROR]   symbol:   method getWorldsTableName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/PlayerPositions.java:[207,47] cannot find symbol
+[ERROR]   symbol:   method getPlayersTableName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/WorldCheckerRunnable.java:[20,37] cannot find symbol
+[ERROR]   symbol:   method getEntitysPerWorld()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/MysqlConnection.java:[32,95] cannot find symbol
+[ERROR]   symbol:   method getMysqlPort()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/MysqlConnection.java:[32,29] cannot find symbol
+[ERROR]   symbol:   method getMysqlHost()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/MysqlConnection.java:[32,58] cannot find symbol
+[ERROR]   symbol:   method getMysqlDatabaseName()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/MysqlConnection.java:[33,29] cannot find symbol
+[ERROR]   symbol:   method getMysqlUser()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/util/database/MysqlConnection.java:[33,58] cannot find symbol
+[ERROR]   symbol:   method getMysqlPassword()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldAdministrateCommand.java:[125,44] non-static method getSpawn(org.bukkit.entity.Player) cannot be referenced from a static context
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldAdministrateCommand.java:[126,47] cannot find symbol
+[ERROR]   symbol:   method getSpawnGamemode()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldAdministrateCommand.java:[177,45] cannot find symbol
+[ERROR]   symbol:   method getWorlddir()
+[ERROR]   location: class de.butzlabben.world.config.PluginConfig
+[ERROR] /opt/lol/WorldSystem/src/main/java/de/butzlabben/world/command/commands/WorldAdministrateCommand.java:[272,43] non-static method getPrefix() cannot be referenced from a static context
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

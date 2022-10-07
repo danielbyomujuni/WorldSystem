@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Release code changer
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  changeversion:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .github
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run the Version changer
+        run: |
+          chmod +x release-code-changer.sh
+          ./release-code-changer.sh
