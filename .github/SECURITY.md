@@ -14,11 +14,9 @@ currently being supported with security updates.
 ## Reporting a Vulnerability
 
 This software was edited by CrazyCloudCraft.  
-The offical Creator @trainerlord seems to be offline, so we take now over this plugin.  
-He is every time welcomed.  
-We do not support forks or other (malware) downloads exapt for our [github site](https://github.com/CrazyCloudCraft/worldsystem-depecated/).  
-   
+The offical Creator @trainerlord seems to be online again, so we will end the support here.
+We do not support forks or other (malware) downloads exapt for our [github site](https://github.com/CrazyCloudCraft/worldsystem-depecated/) or [trainerlords site](https://github.com/trainerlord/WorldSystem)
 Please write any security bugs directly to our issues.  
-For direct support contact N1klasse#1486 on discord.  
+For direct support contact N1klasse#1486 or Trainerlord#3534 on discord.  
   
 [Here are more informations about privacy policy](https://crazycloudcraft.de/datenschutzerklaerung/)  
