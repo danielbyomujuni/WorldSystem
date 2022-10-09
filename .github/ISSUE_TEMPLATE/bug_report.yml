@@ -14,7 +14,10 @@ body:
   - type: dropdown
     attributes:
       label: Server Software
-      description: Which server software are you using? No support if the version isn't listed. Switch to a supported software first.
+  - type: textarea
+  attributes:
+    label: "Which server software are you using? No support if the version isn't listed. Switch to a supported software first."
+  - type: dropdown
       multiple: false
       options:
         - PurPur
