@@ -3,20 +3,20 @@ about: Create a report to help us to improve things
 title: "|BUG|"
 labels: "bug"
 body:
-  - type: markdown
+- type: markdown
     attributes:
       value: |
         Thanks for fill out this bug report! Fill out the following form to your best ability to help us to fix the problem.
         Only use this if you're absolutely sure that you found a bug and can reproduce it. For anything else, use: [our Discord server](https://discord.gg/WYz7Qck) or [the wiki](https://github.com/trainerlord/WorldSystem/wiki).
         Do NOT use the public issue tracker to report security vulnerabilities!
 
-  - type: dropdown
+- type: dropdown
     attributes:
       label: Server Software
-  - type: textarea
+- type: textarea
   attributes:
     label: "Which server software are you using? No support if the version isn't listed. Switch to a supported software first."
-  - type: dropdown
+- type: dropdown
       multiple: false
       options:
         - PurPur
