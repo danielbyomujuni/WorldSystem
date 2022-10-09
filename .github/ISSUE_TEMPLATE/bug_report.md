@@ -2,7 +2,7 @@
 name: Bug report
 description: Create a report to help us to improve things
 title: "|BUG|"
-labels: 'bug'
+labels: "bug"
   
 ---
 
