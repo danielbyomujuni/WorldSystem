@@ -1,7 +1,6 @@
 package de.butzlabben.world.command.commands;
 
 import de.butzlabben.world.WorldSystem;
-import de.butzlabben.world.autoupdater.AutoUpdater;
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.PluginConfig;
@@ -60,7 +59,7 @@ public class WSCommands {
         }
     }
 
-    public boolean confirmCommand(CommandSender sender, Command command, String label, String[] args) {
+    /*public boolean confirmCommand(CommandSender sender, Command command, String label, String[] args) {
         CommandSender cs = sender;
 
         if (AutoUpdater.getInstance().confirmed()) {
@@ -70,7 +69,7 @@ public class WSCommands {
         AutoUpdater.getInstance().confirm();
         cs.sendMessage(PluginConfig.getPrefix() + "§aAutoupdate confirmed, §crestart §ato apply changes");
         return true;
-    }
+    }*/
 
 
     public boolean getCommand(CommandSender sender, Command command, String label, String[] args) {
