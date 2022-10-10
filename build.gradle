@@ -58,7 +58,7 @@ spigot {
                 'ws.lag':true,
                 'ws.big':true,
                 'ws.large':true,
-                'ws.confirm':true
+                //'ws.confirm':true
             ]
         }
         'ws.sethome' {
@@ -109,10 +109,10 @@ spigot {
         'ws.large' {
             defaults = 'op'
             children = ['ws.big':true]
-        }
+        /*}
         'ws.confirm' {
             description = 'You can confirm (if needed) an auto-update'
-            defaults = 'op'
+            defaults = 'op'*/
         }
     }
     load = STARTUP
