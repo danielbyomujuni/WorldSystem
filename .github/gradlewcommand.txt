@@ -1,2 +1,2 @@
-git clone https://github.com/CrazyCloudCraft/worldsystem-updated.git && cd worldsystem-updated && chmod +x gradlew && ./gradlew build && cd ./build/libs
-Version: 2.4.31-3
+git clone https://github.com/CrazyCloudCraft/worldsystem-updated-old.git && cd worldsystem-updated-old && chmod +x gradlew && ./gradlew build && cd ./build/libs
+Version: 2.4.32
