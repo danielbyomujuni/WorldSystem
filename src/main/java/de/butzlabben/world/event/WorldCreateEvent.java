@@ -49,5 +49,11 @@ public class WorldCreateEvent extends WorldEvent {
     public void setWorldCreator(WorldCreator worldCreator) {
         this.worldCreator = worldCreator;
     }
+    public class PaperLib {
+    public static CompletableFuture<Chunk> getChunkAtAsync(Location loc);
+    public static CompletableFuture<Chunk> getChunkAtAsync(Location loc, boolean gen);
+    public static CompletableFuture<Chunk> getChunkAtAsync(World world, int x, int z);
+    public static CompletableFuture<Chunk> getChunkAtAsync(World world, int x, int z, boolean gen); 
+    }
 
 }
