@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
+import io.papermc.lib.PaperLib;
 
 @AllArgsConstructor
 public class GeneratorSettings {
@@ -13,12 +14,19 @@ public class GeneratorSettings {
     final private String generator;
 
     // Default generatorsettings
-    public GeneratorSettings() {
+     {
         type = null;
         environment = null;
         seed = 0;
         generator = null;
     }
+    /* Default generatorsettings
+     {
+        type = null;
+        environment = null;
+        seed = 0;
+        generator = null;
+    }*/
 
     public WorldCreator asWorldCreator(String name) {
         WorldCreator creator = new WorldCreator(name);
