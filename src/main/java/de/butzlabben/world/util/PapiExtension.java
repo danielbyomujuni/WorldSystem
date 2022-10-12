@@ -38,9 +38,9 @@ public class PapiExtension extends PlaceholderExpansion {
         DependenceConfig config = new DependenceConfig(p);
         switch (params) {
             case "has_world":
-                String has_world = "%worldsystem_has_world%";
-                has_world = PlaceholderAPI.setPlaceholders(event.getPlayer(), has_world);
-                event.setJoinMessage(joinText);
+                String hasworld = "%worldsystem_has_world%";
+                hasworld = PlaceholderAPI.setPlaceholders(event.getPlayer(), hasworld);
+                event.setJoinMessage(hasworld);
                 return new DependenceConfig(p).hasWorld() + "";
             case "is_creator":
                 WorldPlayer player = new WorldPlayer(Objects.requireNonNull(Bukkit.getPlayer(p.getUniqueId())));
