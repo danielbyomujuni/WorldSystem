@@ -85,8 +85,8 @@ public class PapiExtension extends PlaceholderExpansion {
                     return config.getOwner().getName();
                 } else {
                     World world = ((Player) p).getWorld();
-                    if (WorldConfig.exists(world.getName())
-                        return WorldConfig.getWorldConfig(world.getName().getOwnerName();
+                    if (WorldConfig.exists(world.getName()))
+                        return WorldConfig.getWorldConfig(world.getName()).getOwnerName();
                     return world.getName();
                 }
             default:
