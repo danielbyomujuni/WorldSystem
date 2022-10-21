@@ -15,6 +15,7 @@
         import org.bukkit.entity.Player;
         import org.bukkit.scheduler.BukkitRunnable;
         import org.bukkit.scheduler.BukkitTask;
+        import io.papermc.paperlib
 
         import java.io.File;
         import java.io.IOException;
@@ -158,7 +159,7 @@ public class SystemWorld {
         new BukkitRunnable() {
             @Override
             public void run() {
-                WorldSystem.getInstance().getAdapter().create(event.getWorldCreator(), sw, () -> {
+                WorldSystem.getInstance().getAdapter().create(event.getWorldCreator().getChunkAtAsync(), sw, () -> {
                     // Fix for #16
                     new BukkitRunnable() {
                         @Override
