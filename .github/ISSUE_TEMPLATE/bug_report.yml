@@ -79,7 +79,6 @@ body:
     attributes:
       label: WorldSystem Version
       description: What version of WorldSystem are you running? (`/ws help`)
-      placeholder: "For example: WorldSystem version 2.4.33"
       multiple: false
       options:
         - '2.4.34 (dev)'
