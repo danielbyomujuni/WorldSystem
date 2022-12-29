@@ -75,11 +75,17 @@ body:
       label: Error log (if applicable)
       description: If you are reporting a console error, upload any relevant log excerpts to either https://paste.gg/ or https://gist.github.com, save and the paste the link in this box.
 
-  - type: input
+  - type: dropdown
     attributes:
       label: WorldSystem Version
       description: What version of WorldSystem are you running? (`/ws help`)
       placeholder: "For example: WorldSystem version 2.4.33"
+      multiple: false
+      options:
+        - '2.4.34 (dev)'
+        - '2.4.33 (@crazycloudcraft)'
+        - '2.4.32 (@crazycloudcraft)'
+        - '2.4.20 (default)'
     validations:
       required: true
 
@@ -89,7 +95,9 @@ body:
       description: Make sure you have followed each of the steps outlined here.
       options:
         - label: I am using the newest build from https://github.com/trainerlord/WorldSystem and the issue still persists.
-          required: true
+          required: false
+        - label: I am using the newest build from https://github.com/CrazyCloudCraft/WorldSystem and the issue still persists.
+          required: false
 
   - type: textarea
     attributes:
