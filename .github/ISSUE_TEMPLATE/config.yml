@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: WorldSystem Discord
+    url: https://discord.gg/WYz7Qck
+    about: Our support Discord, please ask questions and search support here.
+  - name: WorldSystem Wiki
+    url: https://github.com/trainerlord/WorldSystem/wiki
+    about: Take a look at the wiki page for instructions how to setup WorldSystem and use its commands.

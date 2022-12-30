@@ -1,0 +1,79 @@
+main: de.butzlabben.WorldSystem
+name: WorldSystem
+version: '2.4.33'
+author: Trainerlord
+authors: [Butzlabben, CrazyCloudCraft]
+website: https://github.com/CrazyCloudCraft/worldsystem-updated-old
+api-version: 1.18
+load: STARTUP
+depend:
+- Vault
+softdepend:
+- EssentialsX
+- WorldEdit
+- FAWE
+commands:
+  ws:
+    description: All WorldSystem commands
+    permission: ws.*
+    permission-message: You have no rights to use /ws.
+    usage: /ws
+permissions:
+  ws.*:
+    description: Gives all permissions
+    default: op
+    children:
+      ws.tp.*: true
+      ws.get: true
+      ws.sethome: true
+      ws.tp.world: true
+      ws.tp.toother: true
+      ws.tp.other: true
+      ws.build: true
+      ws.gamemode: true
+      ws.delete: true
+      ws.lag: true
+      ws.big: true
+      ws.large: true
+  ws.get:
+    description: You can create a world via /ws get
+    default: true
+  ws.sethome:
+    description: You can set a different worldspawn
+    default: true
+  ws.tp:
+    description: You can teleport everything
+    default: op
+    children:
+      ws.tp.toother: true
+      ws.tp.other: true
+      ws.tp.world: true
+  ws.tp.world:
+    description: You can teleport to without rights World
+    default: op
+  ws.tp.toother:
+    description: You can teleport across worlds
+    default: op
+  ws.tp.other:
+    description: You can teleport other persons
+    default: op
+  ws.gamemode:
+    description: You can change GameMode on other worlds
+    default: op
+  ws.delete:
+    description: You can delete a world
+    default: op
+  ws.build:
+    description: You can build on other Worlds without WorldPermissions
+    default: op
+  ws.large:
+    description: World size
+    default: op
+    children:
+      ws.big: true
+  ws.big:
+    description: Gives you a bigger world (if set)
+    default: op
+  ws.lag:
+    description: You can see lag messages
+    default: op
