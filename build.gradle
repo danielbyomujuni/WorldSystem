@@ -16,7 +16,7 @@ plugins {
 }
 
 apply from: "$rootDir/gradle/jacoco.gradle"
-//apply from: "$rootDir/gradle/publish.gradle"
+apply from: "$rootDir/gradle/publish.gradle"
 
 sourceCompatibility = 17
 targetCompatibility = 17
@@ -130,7 +130,7 @@ archivesBaseName = project.property("pluginName")
 
 repositories {
 
-    jcenter() {
+    mavenCentral() {
         allowInsecureProtocol = true
     }
 
