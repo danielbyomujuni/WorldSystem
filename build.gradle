@@ -1,7 +1,7 @@
 buildscript {
     repositories {
-        mavenCentral() {
-            allowInsecureProtocol = true
+        //mavenCentral() {
+        //    allowInsecureProtocol = true
         }
         mavenCentral()
     }
@@ -123,15 +123,15 @@ compileJava {
     options.encoding = 'UTF-8'
     options.compilerArgs += ["-parameters"]
     options.fork = true
-    options.forkOptions.executable = 'java'
+    //options.forkOptions.executable = 'javac'
 }
 
 archivesBaseName = project.property("pluginName")
 
 repositories {
 
-    mavenCentral() {
-        allowInsecureProtocol = true
+    //mavenCentral() {
+    //allowInsecureProtocol = true
     }
 
     spigot()
