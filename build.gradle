@@ -8,9 +8,9 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'com.github.johnrengelman.shadow' version '8.1.0'
     id 'kr.entree.spigradle' version '2.4.3' //'2.2.4'
-    id 'io.freefair.lombok' version '6.5.1'
+    id 'io.freefair.lombok' version '6.6.3'
     id 'java'
     id 'jacoco'
 }
@@ -180,13 +180,13 @@ repositories {
 dependencies {
     constraints {
         implementation("org.yaml:snakeyaml") {
-            version { strictly("1.30") }
+            version { strictly("1.33") }
             because("Bukkit provides SnakeYaml")
-	      implementation("net.kyori:adventure-text-minimessage:4.11.0")
+	      implementation("net.kyori:adventure-text-minimessage:4.12.0")
         }
 	
     }
-    compileOnly spigot('1.19.2')
+    compileOnly spigot('1.19.3')
     compileOnly lombok()
     annotationProcessor lombok()
     
@@ -198,7 +198,7 @@ dependencies {
     //Add dependencies here
     //Test dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
-    testImplementation "org.mockito:mockito-core:4.+"
+    testImplementation "org.mockito:mockito-core:5.+"
     // testImplementation mockBukkit()
     testImplementation 'org.assertj:assertj-core:3.+'
     testImplementation lombok()
@@ -209,14 +209,14 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:2.11.2'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7.1'
     compileOnly 'com.mojang:authlib:1.5.25'
-    compileOnly 'org.projectlombok:lombok:1.18.24'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
     // compileOnly spigot('1.19')
-    compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
-    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.13-SNAPSHOT'
-    compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.13-SNAPSHOT'
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.4.9")
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.4.9")
-    compileOnly files('lib/FastAsyncWorldEdit.jar')
+    compileOnly 'org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT'
+    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.14-SNAPSHOT'
+    compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.14-SNAPSHOT'
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.5.3")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.5.3")
+    //compileOnly files('lib/FastAsyncWorldEdit.jar')
 }
 
 shadowJar {
