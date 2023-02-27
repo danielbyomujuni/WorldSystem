@@ -28,7 +28,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build
-        run: ./gradlew build -x test
+        run: ./gradlew build -x test --warning-mode all
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -60,7 +60,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Test
-        run: ./gradlew test
+        run: ./gradlew test --warning-mode all
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
