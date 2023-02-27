@@ -220,7 +220,7 @@ dependencies {
 }
 
 shadowJar {
-    classifier = ''
+ //   classifier = ''
 //      relocate "io.papermc.lib", "${packageName}.paperlib"
 //    dependencies {
 //        include(dependency('co.aikar:acf-paper:0.5.1-SNAPSHOT'))
