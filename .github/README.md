@@ -3,7 +3,7 @@
 </p>
 <p align="center">
     <a hreg="https://github.com/trainerlord/WorldSystem/releases">
-        <img src="https://img.shields.io/github/downloads/trainerlord/WorldSystem/total?color=green&label=All%20Downloads&style=plastic" />
+        <img src="https://img.shields.io/github/downloads/Argantiu/WorldSystem-dev/total?color=green&label=All%20Downloads&style=plastic" />
 </a>
 
 <p align="center">
