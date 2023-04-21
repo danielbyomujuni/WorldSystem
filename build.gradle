@@ -1,21 +1,13 @@
-buildscript {
-    repositories {
-        //mavenCentral() {
-        //    allowInsecureProtocol = true
-        }
-        mavenCentral()
-    }
-}
+import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '8.0.0' //'7.1.2'
-    id 'kr.entree.spigradle' version '2.4.3' //'2.2.4'
-    id 'io.freefair.lombok' version '6.6.3'
-    id 'java'
-    id 'jacoco'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "io.freefair.lombok" version "6.6.3"
+    id "io.github.slimjar" version "1.3.0"
+    id "java"
 }
 
-apply from: "$rootDir/gradle/jacoco.gradle"
+//apply from: "$rootDir/gradle/jacoco.gradle"
 //apply from: "$rootDir/gradle/publish.gradle"
 
 sourceCompatibility = 17
@@ -25,155 +17,114 @@ ext {
     mcVersion = project.property("mcVersion")
 }
 
-group project.property("group")
+group = "de.butzlabben"
+version = "2.4.34"
+description = "WorldSystem is a world creator that allows you to easily create per player worlds"
 
-spigot {
-    name = project.property("pluginName")
-    authors = [project.property("author")]
-    apiVersion = project.property("apiVersion")
-    depends  = [project.property("Vault")]
-
-	//Comands
-
-	commands {
-        "ws" {
-            description = 'All WorldSystem Commands'
-            permissionMessage = 'You do not have permission!'
-        }
-    }
-    permissions {
-        'ws.*' {
-            description = 'gives all Perms'
-            defaults = 'op'
-            children = [
-                'ws.tp.*':true,
-                'ws.get':true,
-                'ws.sethome':true,
-                'ws.tp.world':true,
-                'ws.tp.toother':true,
-                'ws.tp.other':true,
-                'ws.build':true,
-                'ws.gamemode':true,
-                'ws.delete':true,
-                'ws.lag':true,
-                'ws.big':true,
-                'ws.large':true,
-                //'ws.confirm':true
-            ]
-        }
-        'ws.sethome' {
-            description = 'You can set a different worldspawn'
-            defaults = true
-        }
-        'ws.tp' {
-            description = 'You can teleport everything'
-            defaults = 'op'
-            children = ['ws.tp.toother':true,'ws.tp.other':true,'ws.tp.world':true]
-        }
-        'ws.build' {
-            description = 'You can build on other Worlds without WorldPermissions'
-            defaults = 'op'
-        }
-        'ws.get' {
-            description = 'You can create a world via /ws get'
-            defaults = true
-        }
-        'ws.delete' {
-            description = 'You can delete a world'
-            defaults = 'op'
-        }
-        'ws.gamemode' {
-            description = 'You can change GameMode on other worlds'
-            defaults = 'op'
-        }
-        'ws.tp.other' {
-            description = 'You can teleport other persons'
-            defaults = 'op'
-        }
-        'ws.tp.toother' {
-            description = 'You can teleport across worlds'
-            defaults = 'op'
-        }
-        'ws.tp.world' {
-            description = 'You can teleport to without rights World'
-            defaults = 'op'
-        }
-        'ws.lag' {
-            description = 'You can see lag messages'
-            defaults = 'op'
-        }
-        'ws.big' {
-            description = 'Gives you a bigger world (if set)'
-            defaults = 'op'
-        }
-        'ws.large' {
-            defaults = 'op'
-            children = ['ws.big':true]
-        /*}
-        'ws.confirm' {
-            description = 'You can confirm (if needed) an auto-update'
-            defaults = 'op'*/
-        }
-    }
-    load = STARTUP
-    //    depends = ['']
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
-compileJava {
+repositories {
+    mavenCentral()
+    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+    maven { url "https://papermc.io/repo/repository/maven-public/" }
+    maven { url "https://repo.extendedclip.com/content/repositories/placeholderapi/" }
+    maven { url "https://jitpack.io" }
+    maven { url "https://mvn.intellectualsites.com/content/repositories/releases/" }
+    maven { url "https://ci.athion.net/job/FastAsyncWorldEdit/ws" }
+    maven { url "https://repo.onarandombox.com/content/groups/public/" }
+    maven { url "https://maven.enginehub.org/repo/"}
+    maven { url "https://ci.athion.net/job/FastAsyncWorldEdit/changes/" }
+    maven { url "https://mvnrepository.com/artifact/commons-io/commons-io/" }
+}
+
+dependencies {
+    implementation('org.bstats:bstats-bukkit:3.0.0')
+    implementation("space.rocketplugins.pluginslib:bukkit:2.0.3.2")
+    implementation("io.github.slimjar:slimjar:1.2.7")
+    implementation('dev.triumphteam:triumph-gui:3.2')
+    compileOnly("org.spigotmc:spigot-api:1.18-R0.1-SNAPSHOT")
+    compileOnly("com.comphenix.protocol:ProtocolLib:4.8.0")
+    compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
+    compileOnly("me.clip:placeholderapi:2.11.1")
+    compileOnly("me.lorenzo0111:RocketPlaceholders:2.2")
+    compileOnly("org.jetbrains:annotations:23.0.0")
+    slim("com.squareup.okhttp3:okhttp:4.9.3")
+    slim("com.zaxxer:HikariCP:4.0.3")
+    slim("com.github.cryptomorin:XSeries:8.7.1")
+    slim("mysql:mysql-connector-java:8.0.28")
+    slim("org.xerial:sqlite-jdbc:3.36.0.3")
+    slim("org.slf4j:slf4j-simple:1.7.36")
+}
+
+slimJar {
+    relocate('dev.triumphteam',"${libsBase}")
+    relocate('com.cryptomorin.xseries',"${libsBase}.xseries")
+    relocate('com.zaxxer.hikari',"${libsBase}.hikari")
+    relocate('okhttp3', "${libsBase}.okhttp")
+}
+
+shadowJar {
+    minimize()
+    archiveFileName.set("${project.name}-${project.version}.jar")
+    relocate("io.github.slimjar","${libsBase}.slimjar")
+    relocate("dev.triumphteam","${libsBase}")
+    relocate("com.cryptomorin.xseries","${libsBase}.xseries")
+    relocate("net.kyori.adventure", "${libsBase}.adventure")
+    relocate("net.kyori.examination", "${libsBase}.examination")
+    relocate("com.google.j2objc", "${libsBase}.google.j2objc")
+    relocate("com.google.common", "${libsBase}.google.common")
+    relocate("com.google.errorprone", "${libsBase}.google.errorprone")
+    relocate("org.yaml.snakeyaml", "${libsBase}.yaml")
+    relocate("org.spongepowered.configurate", "${libsBase}.configurate")
+    relocate("org.bstats", "${libsBase}.bstats")
+    relocate("com.google.gson", "${libsBase}.google.gson")
+}
+
+
+javadoc {
+    options.links(
+            'https://javadoc.io/static/org.jetbrains/annotations/20.1.0/',
+            'https://docs.oracle.com/javase/17/docs/api/',
+            'https://papermc.io/javadocs/paper/1.19/'
+    )
+    source = sourceSets.main.allJava
+    include("**/api/*")
+    destinationDir = new File("build/javadocs")
+}
+
+signing {
+    sign configurations.archives
+    useGpgCmd()
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        duplicatesStrategy DuplicatesStrategy.INCLUDE
+        filter ReplaceTokens, tokens: [version: version]
+    }
+}
+
+java.sourceCompatibility = JavaVersion.VERSION_17
+
+tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
     options.compilerArgs += ["-parameters"]
     options.fork = true
     //options.forkOptions.executable = 'javac'
 }
 
+tasks.build.dependsOn tasks.shadowJar
+
+
+
+//------------------
+
+
 archivesBaseName = project.property("pluginName")
 
-repositories {
-
-    //mavenCentral() {
-    //allowInsecureProtocol = true
-    }
-
-    spigot()
-//    bungeecord()
-//    paper()
-//    protocolLib()
-//    enginehub()
-
-    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/public/' }
-    maven {
-            name "papermc"
-            url "https://papermc.io/repo/repository/maven-public/"
-    }
-    maven {
-            url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
-    }
-    maven {
-        url = 'https://ci.athion.net/job/FastAsyncWorldEdit/ws'
-    }
-    maven {
-            url = 'https://jitpack.io'
-    }
-    maven {
-            url = 'https://libraries.minecraft.net'
-    }
-    maven {
-        url = 'https://repo.onarandombox.com/content/groups/public/'
-    }
-    maven {
-        url = 'https://maven.enginehub.org/repo/'
-    }
-    maven { url = "https://ci.athion.net/job/FastAsyncWorldEdit/changes/" }
-
-    // Commons - IO
-    maven { url = "https://mvnrepository.com/artifact/commons-io/commons-io/" }
-
-    // WorldEdit
-    maven { url = "https://maven.enginehub.org/repo/" }
-    maven {
-        name = "IntellectualSites Releases"
-        url = uri("https://mvn.intellectualsites.com/content/repositories/releases/")
-    }
     mavenCentral()
 }
 
