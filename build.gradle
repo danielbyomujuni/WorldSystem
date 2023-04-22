@@ -89,7 +89,7 @@ dependencies {
 shadowJar {
     minimize()
     archiveFileName.set("${project.name}-${project.version}.jar")
-    relocate("io.github.slimjar","${libsBase}.slimjar")
+    /*relocate("io.github.slimjar","${libsBase}.slimjar")
     relocate("dev.triumphteam","${libsBase}")
     relocate("com.cryptomorin.xseries","${libsBase}.xseries")
     relocate("net.kyori.adventure", "${libsBase}.adventure")
@@ -100,7 +100,7 @@ shadowJar {
     relocate("org.yaml.snakeyaml", "${libsBase}.yaml")
     relocate("org.spongepowered.configurate", "${libsBase}.configurate")
     relocate("org.bstats", "${libsBase}.bstats")
-    relocate("com.google.gson", "${libsBase}.google.gson")
+    relocate("com.google.gson", "${libsBase}.google.gson")*/
 }
 
 
