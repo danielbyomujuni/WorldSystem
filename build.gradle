@@ -63,12 +63,12 @@ dependencies {
     compileOnly("com.sk89q.worldedit:worldedit-core:7.2.14-SNAPSHOT")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.6.0")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.6.0")
-    slim("com.squareup.okhttp3:okhttp:4.9.3")
+    /*slim("com.squareup.okhttp3:okhttp:4.9.3")
     slim("com.zaxxer:HikariCP:4.0.3")
     slim("com.github.cryptomorin:XSeries:8.7.1")
     slim("mysql:mysql-connector-java:8.0.28")
     slim("org.xerial:sqlite-jdbc:3.36.0.3")
-    slim("org.slf4j:slf4j-simple:1.7.36")
+    slim("org.slf4j:slf4j-simple:1.7.36")*/
     
     //Test dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
