@@ -109,4 +109,3 @@ tasks.withType(JavaCompile) {
 }
 
 tasks.build.dependsOn tasks.shadowJar
-defaultTasks 'build'
