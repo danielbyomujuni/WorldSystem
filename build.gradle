@@ -10,21 +10,24 @@ plugins {
 //apply from: "$rootDir/gradle/jacoco.gradle"
 //apply from: "$rootDir/gradle/publish.gradle"
 
-sourceCompatibility = 17
-targetCompatibility = 17
-
-ext {
-    mcVersion = project.property("mcVersion")
-}
+//sourceCompatibility = 17
+//targetCompatibility = 17
 
 group = "de.butzlabben"
+pluginName = "WorldSystem"
 version = "2.4.34"
 description = "WorldSystem is a world creator that allows you to easily create per player worlds"
+
+ext {
+    mcVersion = ("mcVersion")
+}
 
 java {
     withJavadocJar()
     withSourcesJar()
 }
+
+archivesBaseName = ("pluginName")
 
 repositories {
     mavenCentral()
@@ -39,7 +42,7 @@ repositories {
     maven { url "https://ci.athion.net/job/FastAsyncWorldEdit/changes/" }
     maven { url "https://mvnrepository.com/artifact/commons-io/commons-io/" }
 }
-    //Add dependencies here
+  
 dependencies {
     //compileOnly spigot('1.19.4')
     //compileOnly lombok()
@@ -52,7 +55,7 @@ dependencies {
     implementation('dev.triumphteam:triumph-gui:3.2')
     compileOnly("org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
-    compileOnly("me.clip:placeholderapi:2.11.1")
+    compileOnly("me.clip:placeholderapi:2.11.3")
     compileOnly("org.jetbrains:annotations:23.0.0")
     compileOnly('com.mojang:authlib:1.5.25')
     compileOnly('org.projectlombok:lombok:1.18.26')
