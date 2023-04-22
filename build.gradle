@@ -115,10 +115,10 @@ javadoc {
     destinationDir = new File("build/javadocs")
 }
 
-signing {
+/*signing {
     sign configurations.archives
     useGpgCmd()
-}
+}*/
 
 test {
     useJUnitPlatform()
