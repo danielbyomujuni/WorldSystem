@@ -14,7 +14,7 @@ plugins {
 //targetCompatibility = 17
 
 group = "de.butzlabben"
-pluginName = "WorldSystem"
+//pluginName = "WorldSystem"
 version = "2.4.34"
 description = "WorldSystem is a world creator that allows you to easily create per player worlds"
 
