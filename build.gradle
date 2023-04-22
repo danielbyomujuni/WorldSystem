@@ -6,9 +6,6 @@ plugins {
     id "java"
 }
 
-//apply from: "$rootDir/gradle/jacoco.gradle"
-//apply from: "$rootDir/gradle/publish.gradle"
-
 //sourceCompatibility = 17
 //targetCompatibility = 17
 
@@ -43,8 +40,8 @@ repositories {
   
 dependencies {
     //compileOnly spigot('1.19.4')
-    //compileOnly lombok()
-    //annotationProcessor lombok()
+    compileOnly lombok()
+    annotationProcessor lombok()
     implementation("io.papermc:paperlib:1.0.7")
     implementation("org.yaml:snakeyaml:2.0")
     implementation("net.kyori:adventure-text-minimessage:4.13.1")
@@ -64,8 +61,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
     testImplementation "org.mockito:mockito-core:5.+"
     testImplementation 'org.assertj:assertj-core:3.+'
-    //testImplementation lombok()
-    //testAnnotationProcessor lombok()
+    testImplementation lombok()
+    testAnnotationProcessor lombok()
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 }
 
