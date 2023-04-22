@@ -39,24 +39,41 @@ repositories {
     maven { url "https://ci.athion.net/job/FastAsyncWorldEdit/changes/" }
     maven { url "https://mvnrepository.com/artifact/commons-io/commons-io/" }
 }
-
+    //Add dependencies here
 dependencies {
+    //compileOnly spigot('1.19.4')
+    //compileOnly lombok()
+    //annotationProcessor lombok()
+    implementation("io.papermc:paperlib:1.0.7")
+    implementation("org.yaml:snakeyaml:2.0")
+    implementation("net.kyori:adventure-text-minimessage:4.12.0")
     implementation('org.bstats:bstats-bukkit:3.0.0')
-    implementation("space.rocketplugins.pluginslib:bukkit:2.0.3.2")
     implementation("io.github.slimjar:slimjar:1.2.7")
     implementation('dev.triumphteam:triumph-gui:3.2')
-    compileOnly("org.spigotmc:spigot-api:1.18-R0.1-SNAPSHOT")
-    compileOnly("com.comphenix.protocol:ProtocolLib:4.8.0")
+    compileOnly("org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
     compileOnly("me.clip:placeholderapi:2.11.1")
-    compileOnly("me.lorenzo0111:RocketPlaceholders:2.2")
     compileOnly("org.jetbrains:annotations:23.0.0")
+    compileOnly('com.mojang:authlib:1.5.25')
+    compileOnly('org.projectlombok:lombok:1.18.26')
+    compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.14-SNAPSHOT")
+    compileOnly("com.sk89q.worldedit:worldedit-core:7.2.14-SNAPSHOT")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.6.0")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.6.0")
     slim("com.squareup.okhttp3:okhttp:4.9.3")
     slim("com.zaxxer:HikariCP:4.0.3")
     slim("com.github.cryptomorin:XSeries:8.7.1")
     slim("mysql:mysql-connector-java:8.0.28")
     slim("org.xerial:sqlite-jdbc:3.36.0.3")
     slim("org.slf4j:slf4j-simple:1.7.36")
+    
+    //Test dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
+    testImplementation "org.mockito:mockito-core:5.+"
+    testImplementation 'org.assertj:assertj-core:3.+'
+    //testImplementation lombok()
+    //testAnnotationProcessor lombok()
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 }
 
 slimJar {
@@ -100,7 +117,16 @@ signing {
     useGpgCmd()
 }
 
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    ignoreFailures = false
+}
 processResources {
+    project.properties.put("version", this.version)
+    expand project.properties
     from(sourceSets.main.resources.srcDirs) {
         duplicatesStrategy DuplicatesStrategy.INCLUDE
         filter ReplaceTokens, tokens: [version: version]
@@ -117,82 +143,4 @@ tasks.withType(JavaCompile) {
 }
 
 tasks.build.dependsOn tasks.shadowJar
-
-
-
-//------------------
-
-
-archivesBaseName = project.property("pluginName")
-
-    mavenCentral()
-}
-
-dependencies {
-    constraints {
-        implementation("org.yaml:snakeyaml") {
-            version { strictly("1.33") }
-            because("Bukkit provides SnakeYaml")
-	      implementation("net.kyori:adventure-text-minimessage:4.12.0")
-        }
-	
-    }
-    compileOnly spigot('1.19.3')
-    compileOnly lombok()
-    annotationProcessor lombok()
-    
-    implementation "io.papermc:paperlib:1.0.7"
-    implementation spigot('1.19')
-    implementation spigot('1.18')
-    implementation spigot('1.17')
-
-    //Add dependencies here
-    //Test dependencies
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
-    testImplementation "org.mockito:mockito-core:5.+"
-    // testImplementation mockBukkit()
-    testImplementation 'org.assertj:assertj-core:3.+'
-    testImplementation lombok()
-    testAnnotationProcessor lombok()
-    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
-
-
-    compileOnly 'me.clip:placeholderapi:2.11.2'
-    compileOnly 'com.github.MilkBowl:VaultAPI:1.7.1'
-    compileOnly 'com.mojang:authlib:1.5.25'
-    compileOnly 'org.projectlombok:lombok:1.18.26'
-    // compileOnly spigot('1.19')
-    compileOnly 'org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT'
-    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.14-SNAPSHOT'
-    compileOnly 'com.sk89q.worldedit:worldedit-core:7.2.14-SNAPSHOT'
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.5.3")
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.5.3")
-    //compileOnly files('lib/FastAsyncWorldEdit.jar')
-}
-
-shadowJar {
- //   classifier = ''
-//      relocate "io.papermc.lib", "${packageName}.paperlib"
-//    dependencies {
-//        include(dependency('co.aikar:acf-paper:0.5.1-SNAPSHOT'))
-//    }
-//    relocate 'co.aikar.commands', "${packageName}.acf"
-//    relocate 'co.aikar.locales', "${packageName}.locales"
-}
-
-tasks.build.dependsOn(shadowJar)
-
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
-    ignoreFailures = false
-}
-
-processResources {
-    project.properties.put("version", this.version)
-    expand project.properties
-}
-
 defaultTasks 'build'
