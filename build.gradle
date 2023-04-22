@@ -79,12 +79,12 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 }
 
-slimJar {
+/*slimJar {
     relocate('dev.triumphteam',"${libsBase}")
     relocate('com.cryptomorin.xseries',"${libsBase}.xseries")
     relocate('com.zaxxer.hikari',"${libsBase}.hikari")
     relocate('okhttp3', "${libsBase}.okhttp")
-}
+}*/
 
 shadowJar {
     minimize()
