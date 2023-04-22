@@ -6,8 +6,8 @@ description: ${description}
 api-version: 1.13
 load: STARTUP
 folia-supported: false
-depend: [  ]
-softdepend: [ ProtocolSupport, PacketListenerApi ]
+depend: [ FAWE, WorldEdit, Vault ]
+softdepend: [ PlaceholderAPI ]
 commands:
   ws:
     description: WorldSystem command
