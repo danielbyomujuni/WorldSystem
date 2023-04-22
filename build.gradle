@@ -49,8 +49,6 @@ dependencies {
     implementation("org.yaml:snakeyaml:2.0")
     implementation("net.kyori:adventure-text-minimessage:4.13.1")
     implementation('org.bstats:bstats-bukkit:3.0.0')
-    implementation("io.github.slimjar:slimjar:1.2.7")
-    implementation('dev.triumphteam:triumph-gui:3.2')
     compileOnly("org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
     compileOnly("me.clip:placeholderapi:2.11.3")
