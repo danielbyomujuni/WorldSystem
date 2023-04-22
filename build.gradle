@@ -3,7 +3,6 @@ import org.apache.tools.ant.filters.ReplaceTokens
 plugins {
     id "com.github.johnrengelman.shadow" version "8.1.1"
     id "io.freefair.lombok" version "8.0.1"
-    id "io.github.slimjar" version "1.3.0"
     id "java"
 }
 
@@ -14,7 +13,6 @@ plugins {
 //targetCompatibility = 17
 
 group = "de.butzlabben"
-//pluginName = "WorldSystem"
 version = "2.4.34"
 description = "WorldSystem is a world creator that allows you to easily create per player worlds"
 
@@ -63,12 +61,6 @@ dependencies {
     compileOnly("com.sk89q.worldedit:worldedit-core:7.2.14-SNAPSHOT")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.6.0")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.6.0")
-    /*slim("com.squareup.okhttp3:okhttp:4.9.3")
-    slim("com.zaxxer:HikariCP:4.0.3")
-    slim("com.github.cryptomorin:XSeries:8.7.1")
-    slim("mysql:mysql-connector-java:8.0.28")
-    slim("org.xerial:sqlite-jdbc:3.36.0.3")
-    slim("org.slf4j:slf4j-simple:1.7.36")*/
     
     //Test dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
@@ -79,28 +71,9 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 }
 
-/*slimJar {
-    relocate('dev.triumphteam',"${libsBase}")
-    relocate('com.cryptomorin.xseries',"${libsBase}.xseries")
-    relocate('com.zaxxer.hikari',"${libsBase}.hikari")
-    relocate('okhttp3', "${libsBase}.okhttp")
-}*/
-
 shadowJar {
     minimize()
     archiveFileName.set("${project.name}-${project.version}.jar")
-    /*relocate("io.github.slimjar","${libsBase}.slimjar")
-    relocate("dev.triumphteam","${libsBase}")
-    relocate("com.cryptomorin.xseries","${libsBase}.xseries")
-    relocate("net.kyori.adventure", "${libsBase}.adventure")
-    relocate("net.kyori.examination", "${libsBase}.examination")
-    relocate("com.google.j2objc", "${libsBase}.google.j2objc")
-    relocate("com.google.common", "${libsBase}.google.common")
-    relocate("com.google.errorprone", "${libsBase}.google.errorprone")
-    relocate("org.yaml.snakeyaml", "${libsBase}.yaml")
-    relocate("org.spongepowered.configurate", "${libsBase}.configurate")
-    relocate("org.bstats", "${libsBase}.bstats")
-    relocate("com.google.gson", "${libsBase}.google.gson")*/
 }
 
 
@@ -114,11 +87,6 @@ javadoc {
     include("**/api/*")
     destinationDir = new File("build/javadocs")
 }
-
-/*signing {
-    sign configurations.archives
-    useGpgCmd()
-}*/
 
 test {
     useJUnitPlatform()
