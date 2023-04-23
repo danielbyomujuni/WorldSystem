@@ -159,7 +159,7 @@ public class SystemWorld {
         new BukkitRunnable() {
             @Override
             public void run() {
-                WorldSystem.getInstance().getAdapter().create(event.getWorldCreator().getChunkAtAsync(), sw, () -> {
+                WorldSystem.getInstance().getAdapter().create(event.getWorldCreator(), sw, () -> {
                     // Fix for #16
                     new BukkitRunnable() {
                         @Override
