@@ -120,7 +120,7 @@ repositories {
 
 dependencies {
     implementation("org.yaml:snakeyaml:2.0")
-    implementation("net.kyori:adventure-text-minimessage:4.12.0")
+    implementation("net.kyori:adventure-text-minimessage:4.13.1")
     compileOnly lombok()
     annotationProcessor lombok()
     //Test dependencies
