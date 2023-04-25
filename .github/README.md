@@ -4,7 +4,7 @@
 <p align="center">
     <a hreg="https://github.com/trainerlord/WorldSystem/releases">
         <img src="https://img.shields.io/github/downloads/Argantiu/WorldSystem-dev/total?color=green&label=All%20Downloads&style=plastic" />
-</a><br>
+</a></br>
   <img src="https://visitcount.itsvg.in/api?id=repoid92837r92i4i492i28&label=Repoviews&color=12&icon=5&pretty=false" />
 
 <p align="center">
