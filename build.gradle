@@ -19,7 +19,7 @@ group "de.butzlabben"
 name = "WorldSystem"
 authors = [" Trainerlord, Butzlabben & CrazyCloudCraft "]
 apiVersion = "1.13"
-softdepend  = ["Vault"]
+depends = ["WorldEdit"]
 load = STARTUP
 	commands {
         "ws" {
