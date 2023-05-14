@@ -1,7 +1,7 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'kr.entree.spigradle' version '2.4.3'
-    id 'io.freefair.lombok' version '6.6.3'
+    id 'io.freefair.lombok' version '8.0.1'
     id 'java'
     id 'jacoco'
 }
@@ -139,7 +139,7 @@ dependencies {
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.14-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-core:7.2.14-SNAPSHOT")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.6.1")
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.6.0")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.6.1")
 }
 shadowJar {
     minimize()
