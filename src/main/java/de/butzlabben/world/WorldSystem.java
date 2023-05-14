@@ -180,11 +180,20 @@ public class WorldSystem extends JavaPlugin {
         }
 
         // Starting for #28
-        if (PluginConfig.shouldDelete()) {
-            Bukkit.getConsoleSender().sendMessage(PluginConfig.getPrefix()
-                    + "Searching for old worlds to delete if not loaded for " + PluginConfig.deleteAfter() + " days");
-            DependenceConfig.checkWorlds();
+        @Override
+    public void onEnable() {
+ 
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+           
+            Bukkit.getPluginManager().registerEvents(this, this);
+        } else {
+            getLogger().warn("Could not find PlaceholderAPI! This plugin is required.");
+            Bukkit.getPluginManager().disablePlugin(this);
         }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onJoin(PlayerJoinEvent event) {
 
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))
             new PapiExtension().register();
