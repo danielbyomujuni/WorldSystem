@@ -32,7 +32,7 @@ import java.util.stream.IntStream;
  * @author SamJakob
  * @version 1.3.0
  */
-public class SpiGUITest extends JavaPlugin {
+public class gui extends JavaPlugin {
 
     /*
     Please feel free to use code from here. Though, do note that it is a very rough proof of concept intended to
