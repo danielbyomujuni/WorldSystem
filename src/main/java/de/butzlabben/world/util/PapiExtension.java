@@ -19,7 +19,11 @@ import java.util.Objects;
 public class PapiExtension extends PlaceholderExpansion {
 
     private final WorldSystem worldSystem = WorldSystem.getInstance();
-
+    
+    @Override
+    public String getIdentifier() {
+        return "worldsystem";
+    }
     @Override
     public String getAuthor() {
         return "Argantiu";
