@@ -2,7 +2,7 @@
 
 <img src="https://github.com/CrazyCloudCraft/worldsystem-depecated/raw/master/.github/Worldsystemlogo_renewed.png" /></br>
 <img src="https://img.shields.io/github/downloads/Argantiu/WorldSystem-dev/total?color=green&label=All%20Downloads&style=plastic" />
-<img src="https://img.shields.io/github/downloads/Argantiu/WorldSystem-dev/v2.4.35/total?style=plastic&label=v2.4.35%20(latest)&labelColor=green&color=00ff74" /></br>
+<img src="https://img.shields.io/github/downloads/Argantiu/WorldSystem-dev/v2.4.35/total?style=plastic&label=v2.4.35%20(latest)" /></br>
   <a>A spigot plugin to give every user his own world</a>
   <a>1.7 - 1.19.4 Support</a>
 <h2>About</h2>
