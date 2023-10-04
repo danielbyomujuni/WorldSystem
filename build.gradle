@@ -1,7 +1,7 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'kr.entree.spigradle' version '2.4.3'
-    id 'io.freefair.lombok' version '8.2.2'
+    id 'io.freefair.lombok' version '8.3'
     id 'java'
     id 'jacoco'
 }
@@ -18,7 +18,7 @@ spigot {
 group "de.butzlabben"
 name = "WorldSystem"
 authors = [" Trainerlord, Butzlabben & CrazyCloudCraft "]
-apiVersion = "1.13"
+apiVersion = "1.20"
 depends = ["WorldEdit"]
 load = STARTUP
 	commands {
@@ -119,7 +119,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.yaml:snakeyaml:2.0")
+    implementation("org.yaml:snakeyaml:2.2")
     implementation("net.kyori:adventure-text-minimessage:4.14.0")
     compileOnly lombok()
     annotationProcessor lombok()
@@ -134,12 +134,12 @@ dependencies {
     compileOnly("me.clip:placeholderapi:2.11.3")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
     compileOnly("com.mojang:authlib:1.5.26")
-    compileOnly("org.projectlombok:lombok:1.18.26")
+    compileOnly("org.projectlombok:lombok:1.18.30")
     compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.16-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-core:7.2.16-SNAPSHOT")
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.7.0")
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.7.0")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.8.0")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.8.0")
 }
 shadowJar {
     minimize()
