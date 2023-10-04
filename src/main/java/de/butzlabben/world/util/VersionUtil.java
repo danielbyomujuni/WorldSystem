@@ -19,7 +19,9 @@ public class VersionUtil {
         if (version == 0) {
             // Detect version
             String v = Bukkit.getVersion();
-            if (v.contains("1.19"))
+            if (v.contains("1.20"))
+                version = 20;
+            else if (v.contains("1.19"))
                 version = 19;
             else if (v.contains("1.18"))
                 version = 18;
