@@ -10,10 +10,10 @@ sourceCompatibility = 17
 targetCompatibility = 17
 
 ext {
-    mcVersion = "1.20.1"
+    mcVersion = "1.20.2"
 }
 archivesBaseName = "WorldSystem"
-version = "2.4.35-dev"
+version = "2.4.36"
 spigot {
 group "de.butzlabben"
 name = "WorldSystem"
