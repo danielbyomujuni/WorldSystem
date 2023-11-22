@@ -114,30 +114,25 @@ public class CommandRegistry implements TabExecutor {
         List<String> subCommands = new ArrayList<>(Arrays.asList("get", "home", "sethome", "gui", "tp", "addmember", "delmember", "leave", "tnt", "fire", "togglegm", "togglebuild", "toggletp", "togglewe", "info", "reset"));
         if (sender.hasPermission("ws.delete")) subCommands.add("delete");
         List<String> playerCompletions = Arrays.asList("addmember", "delmember", "tp","togglegm", "togglebuild", "toggletp", "togglewe", "delete");
-        List<String> completions = null;
+        List<String> completions = new ArrayList<>();
+        List<String> playerNames = new ArrayList<>();
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            playerNames.add(p.getName());
+        }
 
-        for(String s : subCommands) {
-            if (args.length == 1) {
-                if (s.startsWith(args[0].toLowerCase())) {
-                    if (completions == null) {
-                        completions = new ArrayList();
-                    }
-
-                    completions.add(s);
-                }
-            }
-            if (args.length == 2) {
-                completions = new ArrayList();
-                if (playerCompletions.contains(args[0].toLowerCase())) {
-                    for (Player p : Bukkit.getOnlinePlayers()) {
-                        completions.add(p.getName());
-                    }
-                }
+        if (args.length == 1) {
+            for(String s : subCommands) {
+                if (s.startsWith(args[0].toLowerCase())) completions.add(s);
             }
         }
-        if (completions != null) {
-            Collections.sort(completions);
+
+        if (args.length == 2 && playerCompletions.contains(args[0].toLowerCase())) {
+            for(String s : playerNames) {
+                if (s.toLowerCase().startsWith(args[1].toLowerCase())) completions.add(s);
+            }
         }
+
+        Collections.sort(completions);
 
         return completions;
     }
