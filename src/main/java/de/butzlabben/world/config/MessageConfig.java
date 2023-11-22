@@ -264,7 +264,7 @@ public class MessageConfig {
     }
 
     public static String getDeleteCommandHelp() {
-        return getMessage("command_help.delete_command", "/ws delete §8- §7Will delete a World");
+        return getRawMessage("command_help.delete_command", "/ws delete §8- §7Will delete a World");
     }
 
     public static List<String> getCommandHelp() {

@@ -98,6 +98,11 @@ public class WorldAdministrateCommand {
                 return false;
             }
 
+            if (p.getName().toLowerCase().equals(args[1].toLowerCase())) {
+                p.sendMessage(PluginConfig.getPrefix() + "§cYou cannot remove yourself!");
+                return false;
+            }
+
             DependenceConfig dc = new DependenceConfig(p);
             if (!dc.hasWorld()) {
                 p.sendMessage(MessageConfig.getNoWorldOwn());
@@ -215,6 +220,11 @@ public class WorldAdministrateCommand {
             return false;
         }
 
+        if (p.getName().toLowerCase().equals(args[1].toLowerCase())) {
+            p.sendMessage(PluginConfig.getPrefix() + "§cYou're already a member!");
+            return false;
+        }
+
         DependenceConfig dc = new DependenceConfig(p);
         if (!dc.hasWorld()) {
             p.sendMessage(MessageConfig.getNoWorldOwn());
@@ -269,7 +279,7 @@ public class WorldAdministrateCommand {
             }
             WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
             if (wp.isOwnerofWorld()) {
-                p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
+                p.sendMessage(PluginConfig.getPrefix() + "§cYou cannot disable teleporting for yourself!");
                 return false;
             }
             if (wp.toggleTeleport()) {
@@ -306,7 +316,7 @@ public class WorldAdministrateCommand {
             }
             WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
             if (wp.isOwnerofWorld()) {
-                p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
+                p.sendMessage(PluginConfig.getPrefix() + "§cYou cannot disable gamemode changing for yourself!");
                 return false;
             }
             if (wp.toggleGamemode()) {
@@ -343,7 +353,7 @@ public class WorldAdministrateCommand {
             }
             WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
             if (wp.isOwnerofWorld()) {
-                p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
+                p.sendMessage(PluginConfig.getPrefix() + "§cYou cannot disable WorldEdit for yourself!");
                 return false;
             }
             if (wp.toggleWorldEdit()) {
@@ -380,7 +390,7 @@ public class WorldAdministrateCommand {
             }
             WorldPlayer wp = new WorldPlayer(a, dc.getWorldname());
             if (wp.isOwnerofWorld()) {
-                p.sendMessage(PluginConfig.getPrefix() + "§cYou are the owner");
+                p.sendMessage(PluginConfig.getPrefix() + "§cYou cannot disable building for yourself!");
                 return false;
             }
             if (wp.toggleBuild()) {
