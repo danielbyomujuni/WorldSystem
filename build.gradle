@@ -13,7 +13,7 @@ ext {
     mcVersion = "1.20.2"
 }
 archivesBaseName = "WorldSystem"
-version = "2.4.36"
+version = "2.4.37"
 spigot {
 group "de.butzlabben"
 name = "WorldSystem"

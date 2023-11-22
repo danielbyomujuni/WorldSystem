@@ -95,6 +95,7 @@ public class WorldSystem extends JavaPlugin {
     public void onEnable() {
         //////
         getCommand("ws").setExecutor(new CommandRegistry());
+        getCommand("ws").setTabCompleter(new CommandRegistry());
 
         // Set right version
         if (VersionUtil.getVersion() >= 13)
