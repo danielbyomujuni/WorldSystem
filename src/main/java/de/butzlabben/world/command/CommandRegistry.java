@@ -111,7 +111,8 @@ public class CommandRegistry implements TabExecutor {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        List<String> subCommands = Arrays.asList("get", "home", "sethome", "gui", "tp", "addmember", "delmember", "leave", "tnt", "fire", "togglegm", "togglebuild", "toggletp", "togglewe", "info", "reset", "delete");
+        List<String> subCommands = new ArrayList<>(Arrays.asList("get", "home", "sethome", "gui", "tp", "addmember", "delmember", "leave", "tnt", "fire", "togglegm", "togglebuild", "toggletp", "togglewe", "info", "reset"));
+        if (sender.hasPermission("ws.delete")) subCommands.add("delete");
         List<String> playerCompletions = Arrays.asList("addmember", "delmember", "togglegm", "togglebuild", "toggletp", "togglewe", "delete");
         List<String> completions = null;
 
