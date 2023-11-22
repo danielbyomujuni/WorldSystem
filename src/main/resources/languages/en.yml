@@ -5,7 +5,7 @@ wrong_usage: "&c%usage"
 not_registered: "&cThis player hasn't joined yet!"
 
 world:
-  reseted: "You world was reset successfully!"
+  reseted: "Your world was reset successfully!"
   still_loaded: "&cYour world is still loaded!"
   not_on: "&cYou are not in a world!"
   created: "Your world is now ready. Get there with &a/ws home"
