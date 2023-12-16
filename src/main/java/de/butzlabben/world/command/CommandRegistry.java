@@ -5,12 +5,19 @@ import de.butzlabben.world.command.commands.WorldAdministrateCommand;
 import de.butzlabben.world.command.commands.WorldSettingsCommands;
 import de.butzlabben.world.util.Worldutils;
 import de.butzlabben.world.wrapper.WorldTemplateProvider;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 
-public class CommandRegistry implements CommandExecutor {
+public class CommandRegistry implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -100,5 +107,33 @@ public class CommandRegistry implements CommandExecutor {
                     return ws.mainCommand(sender, command, label, args);
             }
         }
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        List<String> subCommands = new ArrayList<>(Arrays.asList("get", "home", "sethome", "gui", "tp", "addmember", "delmember", "leave", "tnt", "fire", "togglegm", "togglebuild", "toggletp", "togglewe", "info", "reset"));
+        if (sender.hasPermission("ws.delete")) subCommands.add("delete");
+        List<String> playerCompletions = Arrays.asList("addmember", "delmember", "tp","togglegm", "togglebuild", "toggletp", "togglewe", "delete");
+        List<String> completions = new ArrayList<>();
+        List<String> playerNames = new ArrayList<>();
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            playerNames.add(p.getName());
+        }
+
+        if (args.length == 1) {
+            for(String s : subCommands) {
+                if (s.startsWith(args[0].toLowerCase())) completions.add(s);
+            }
+        }
+
+        if (args.length == 2 && playerCompletions.contains(args[0].toLowerCase())) {
+            for(String s : playerNames) {
+                if (s.toLowerCase().startsWith(args[1].toLowerCase())) completions.add(s);
+            }
+        }
+
+        Collections.sort(completions);
+
+        return completions;
     }
 }

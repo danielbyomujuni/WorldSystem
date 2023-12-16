@@ -87,7 +87,7 @@ public class WorldSettingsCommands {
                 }
 
             } else {
-                p.sendMessage(MessageConfig.getInvalidInput().replaceAll("input", args[1]));
+                p.sendMessage(MessageConfig.getInvalidInput().replaceAll("%input", "\"reset " + args[1] + "\""));
             }
         } else {
             if (sw.isLoaded())
@@ -161,6 +161,11 @@ public class WorldSettingsCommands {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
             DependenceConfig dc = new DependenceConfig(p);
+            if (!dc.hasWorld()) {
+                p.sendMessage(MessageConfig.getNoWorldOwn());
+                return false;
+            }
+
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             boolean tnt = wc.isTnt();
             WorldToggleTntEvent event = new WorldToggleTntEvent(p, SystemWorld.getSystemWorld(dc.getWorldname()), tnt);
@@ -192,6 +197,11 @@ public class WorldSettingsCommands {
         if (sender instanceof Player) {
             Player p = (Player) sender;
         DependenceConfig dc = new DependenceConfig(p);
+        if (!dc.hasWorld()) {
+            p.sendMessage(MessageConfig.getNoWorldOwn());
+            return false;
+        }
+
         WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
         boolean fire = wc.isFire();
         WorldToggleFireEvent event = new WorldToggleFireEvent(p, SystemWorld.getSystemWorld(dc.getWorldname()), fire);

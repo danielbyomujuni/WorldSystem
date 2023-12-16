@@ -31,10 +31,10 @@ public class WSCommands {
                 prefix + "WorldSystem by CrazyCloudCraft v" + WorldSystem.getInstance().getDescription().getVersion());
         cs.sendMessage(prefix + "Contributors: Jubeki, montlikadani, jstoeckm2, Butzlabben");
         List<String> cmdHelp = MessageConfig.getCommandHelp();
-        cmdHelp.forEach(s -> cs.sendMessage("\u00A76" + s)); //(prefix + s));
+        cmdHelp.forEach(s -> cs.sendMessage("§6" + s)); //(prefix + s));
         // cs.sendMessage(prefix + "==============");
         if (cs.hasPermission("ws.delete")) {
-            cs.sendMessage(MessageConfig.getDeleteCommandHelp());
+            cs.sendMessage("§6" + MessageConfig.getDeleteCommandHelp());
         }
         return true;
     }
