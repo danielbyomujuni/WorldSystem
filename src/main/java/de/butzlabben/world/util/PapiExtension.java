@@ -21,13 +21,13 @@ public class PapiExtension extends PlaceholderExpansion {
     private final WorldSystem worldSystem = WorldSystem.getInstance();
 
     @Override
-    public @NotNull String getIdentifier() {
-        return "worldsystem";
+    public @NotNull String getAuthor() {
+        return "CrazyCloudCraft";
     }
 
-    @Override
-    public @NotNull String getAuthor() {
-        return "Butzlabben";
+        @Override
+    public @NotNull String getIdentifier() {
+        return "worldsystem";
     }
 
     @Override
@@ -36,14 +36,31 @@ public class PapiExtension extends PlaceholderExpansion {
     }
 
     @Override
-    public String onRequest(OfflinePlayer p, String params) {
-        DependenceConfig config = new DependenceConfig(p);
+    public String onRequest(OfflinePlayer player, String params) {
+        if(params.equalsIgnoreCase("name")) {
+            return player == null ? null : player.getName(); // "name" requires the player to be valid
+        }
+        
+        if(params.equalsIgnoreCase("placeholder1")) {
+            return "Ich bin ne Placeholder du lappn";
+        }
+        
+        if(params.equalsIgnoreCase("placeholder2")) {
+            return "Placeholder Text 2";
+        }
+        
+        return null; // Placeholder is unknown by the Expansion
+    }/*
+
+    @Override
+    public String onRequest(OfflinePlayer player, String params) {
+        DependenceConfig config = new DependenceConfig(player);
 
         String[] args = params.split("_");
         if (args.length == 3 && args[0].equalsIgnoreCase("world")
                 && args[1].equalsIgnoreCase("member")){
 
-            Player playerOnline = p.getPlayer();
+            Player playerOnline = player.getPlayer();
             if(playerOnline == null) return "none";
             WorldConfig wc = WorldConfig.getWorldConfig(playerOnline.getWorld().getName());
             List<String> members = new ArrayList<>(wc.getMembersWithNames().values());
@@ -91,6 +108,6 @@ public class PapiExtension extends PlaceholderExpansion {
                 }
             default:
                 throw new IllegalArgumentException("No placeholder named\"" + getIdentifier() + "_" + params + "\" is known");
-        }
+        }*/
     }
 }
