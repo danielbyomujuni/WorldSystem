@@ -108,6 +108,6 @@ public class PapiExtension extends PlaceholderExpansion {
                 }
             default:
                 throw new IllegalArgumentException("No placeholder named\"" + getIdentifier() + "_" + params + "\" is known");
-        }*/
-    }
+        }
+    }*/
 }
