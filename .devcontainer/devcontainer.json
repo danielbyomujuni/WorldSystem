@@ -9,7 +9,8 @@
 		"ghcr.io/devcontainers/features/java:1": {
 			"version": "17",
 			"installMaven": "false",
-			"installGradle": "true"
+			"installGradle": "true",
+			"postCreateCommand": "java -version && chmod +x gradlew"
 		}
 	}
 
@@ -17,7 +18,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "java -version",
+	//"postCreateCommand": "java -version",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
