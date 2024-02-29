@@ -46,6 +46,7 @@ public class GameProfileBuilder {
             connection.setReadTimeout(5000);
         }
         if (connection.getResponseCode() == 200) {
+            @SuppressWarnings("resource")
             String json = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
 
             GameProfile result = gson.fromJson(json, GameProfile.class);

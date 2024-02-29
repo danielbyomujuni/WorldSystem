@@ -1,21 +1,22 @@
 package de.butzlabben.world.util;
 
 import de.butzlabben.world.WorldSystem;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.OfflinePlayer;
+import org.jetbrains.annotations.NotNull;
+/*
 import de.butzlabben.world.config.DependenceConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.wrapper.SystemWorld;
 import de.butzlabben.world.wrapper.WorldPlayer;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+*/
 public class PapiExtension extends PlaceholderExpansion {
 
     private final WorldSystem worldSystem = WorldSystem.getInstance();
