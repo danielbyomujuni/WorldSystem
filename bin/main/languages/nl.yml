@@ -1,0 +1,85 @@
+nopermission: "&cJij hebt geen rechten om dit te doen!"
+unknown_error: "&cEr is iets verkeerd gegaan.."
+lagdetection: "Lag gededecteerd in wereld: &c%world"
+wrong_usage: "&c%gebruik"
+not_registered: "&cDeze speler heeft nog nooit gejoined!"
+
+world:
+  reseted: "Jouw wereld is gereset!"
+  still_loaded: "&cJouw wereld is nog steeds geladen!"
+  not_on: "&cJij bent niet in een wereld!"
+  created: "Jouw wereld is gemaakt gebruik: &a/ws home"
+  already_exists: "&cJij hebt al een wereld!"
+  delete:
+    own: "&cJouw wereld is verwijderd!"
+    other: "Jij hebt de wereld verwijderd van: &c%player&6!"
+  does_not_exists:
+    own: "&cJij hebt nog geen wereld!"
+    other: "&cDeze speler heeft nog geen wereld!"
+  setting_up: "&aWereld word aangemaakt"
+  playerlist: "speler is in wereld: %players"
+  still_creating: "&cWorld is still creating"
+  set_home: "You set the home"
+  not_enough_money: "You do not have enough money"
+
+member:
+  removed: "Jij hebt &c%player&6 verwijderd van jouw wereld!"
+  added: "Jij hebt &c%player&6 toegevoegd aan jouw wereld!"
+  already_added: "&cDeze speler is al toegevoegd!"
+  not_added:
+    own: "&cDeze speler is nog niet toegevoegd!"
+    other: "&cJij bent niet aan deze wereld toegevoegd"
+  no_one_added: "&cThere are no members added"
+
+request:
+  expired: "&cJouw uitnodiging is verlopen!"
+  confirm: "&cBevestig het verwijderen van jouw wereld: %command"
+  until_expire: "&cJouw uitnodiging verloopt over %time seconden!"
+  already_sent: "&cJij hebt al een uitnodiging verstuurd!"
+  not_sent: "&cJij hebt geen uitnodiging gestuurd!"
+  invalid_input: "&c%input is niet een command!"
+
+toggle:
+  gamemode:
+    enabled: "&a%player&6 kan nu zijn spelermodus veranderen!"
+    disabled: "&c%player&6 kan niet meer zijn spelermodus veranderen!"
+  teleport:
+    enabled: "&a%player&6 kan nu teleporteren!"
+    disabled: "&c%player&6 kan nu niet meer teleporteren!"
+  build:
+    enabled: "&a%player&6 kan nu bouwen!"
+    disabled: "&c%player&6 kan nu niet meer bouwen!"
+  fire:
+    enabled: "&aJij hebt vuur geactiveert!"
+    disabled: "&cJij hebt vuur gedeactiveerd!"
+  tnt:
+    enabled: "&aJij hebt TNT-schade geactiveerd!"
+    disabled: "&cJij hebt TNT-schade gedeactiveerd!"
+
+info:
+  owner: "Owner: %data"
+  id: "ID: %data"
+  member: "Toegevoegd: %data"
+  tnt: "TNT: %data"
+  fire: "Vuur: %data"
+  enabled: "&Aan"
+  disabled: "&cUit"
+
+command_help:
+  list:
+    - "/ws get &8- &7Will give you a world"
+    - "/ws home &8- &7Teleports you on your world"
+    - "/ws sethome &8- &7Sets a specific home"
+    - "/ws gui &8- &7Opens the GUI menu if you are the worldowner"
+    - "/ws tp &8- &7Teleports you on a specific world"
+    - "/ws addmember &8- &7Adds a player to your world"
+    - "/ws delmember &8- &7Removes a player from your world"
+    - "/ws leave &8- &7Leave a world"
+    - "/ws tnt &8- &7Allows/Denys TNT on your world"
+    - "/ws fire &8- &7Allows/Denys Fire on your world"
+    - "/ws togglegm &8- &7Allows/Denys a player changing gamemode"
+    - "/ws togglebuild &8- &7Allows/Denys a player building"
+    - "/ws toggletp &8- &7Allows/Denys a player teleporting"
+    - "/ws info &8- &7Shows information about the world"
+    - "/ws reset &8- &7Will reset your world"
+  delete_command: "/ws delete &8- &7Will delete a world"

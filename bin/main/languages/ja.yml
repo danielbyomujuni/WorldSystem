@@ -1,0 +1,89 @@
+nopermission: "&cこのコマンドを実行する権限を持っていません！"
+unknown_error: "&c何かがうまくいきませんでした..."
+lagdetection: "ワールドのラグを検出: &c%world"
+wrong_usage: "&c%usage"
+not_registered: "&cこのプレイヤーはまだ参加していません！"
+
+world:
+  reseted: "リセットされました！"
+  still_loaded: "&cワールドはまだロード中です！"
+  not_on: "&cワールドにいません！"
+  created: "ワールドの準備が整いました。&a/ws home &rで移動する"
+  already_exists: "&c既にワールドがあります！"
+  delete:
+    own: "&cワールドを削除しました！"
+    other: "&c%player&6のワールドを削除しました！"
+  does_not_exists:
+    own: "&cワールドがありません！"
+    other: "&cこのプレイヤーはワールドがありません！"
+  setting_up: "&aワールド読み込み中..."
+  playerlist: "このワールドのプレイヤー: %players"
+  still_creating: "&cワールドはまだ作成中です"
+  set_home: "ホームを設定しました"
+  not_enough_money: "十分なお金を持っていません"
+
+member:
+  removed: "ワールドから &c%player &6を削除しました！"
+  added: "ワールドに &c%player &6を追加しました！"
+  already_added: "&cこのプレイヤーは既にメンバーです！"
+  not_added:
+    own: "&cこのプレイヤーはメンバーではありません！"
+    other: "&cあなたはこのワールドに追加されていません！"
+  no_one_added: "&cメンバーが追加されていません"
+
+request:
+  expired: "&cリクエストの期限が切れました！"
+  confirm: "警告 - ワールドのリセットを確認してください: %command"
+  until_expire: "&cリクエストは %time 秒で期限切れになります！"
+  already_sent: "&c既にリクエストを送信しました！"
+  not_sent: "&cリクエストを送信していません！"
+  invalid_input: "&c%input は有効なリクエストではありません！"
+
+toggle:
+  gamemode:
+    enabled: "&a%player&6 はゲームモードを変更できるようになりました！"
+    disabled: "&c%player&6 はゲームモードの変更ができなくなりました！"
+  teleport:
+    enabled: "&a%player&6 はテレポートでるようになりました！"
+    disabled: "&c%player&6 はテレポートできなくなりました！"
+  build:
+    enabled: "&a%player&6 は建築できるようになりました！"
+    disabled: "&c%player&6 は建築できないようになりました！"
+  worldedit:
+    enabled: "&a%player&6 はWorldEditが使えるようになりました！"
+    disabled: "&c%player&6 はWorldEditが使えないようになりました！"
+  fire:
+    enabled: "&a炎が有効になりました！"
+    disabled: "&c炎が無効になりました！"
+  tnt:
+    enabled: "&aTNTダメージが有効になりました！"
+    disabled: "&cTNTダメージが無効になりました！"
+
+info:
+  owner: "所有者: %data"
+  id: "ID: %data"
+  member: "メンバー: %data"
+  tnt: "TNT: %data"
+  fire: "炎: %data"
+  enabled: "&aオン"
+  disabled: "&cオフ"
+
+command_help:
+  list:
+    - "/ws get &8- &7ワールドを与える"
+    - "/ws home &8- &7ワールドにテレポートする"
+    - "/ws sethome &8- &7特定のホームを設定する"
+    - "/ws gui &8- &7ワールドの所有者である場合、GUIメニューを開く"
+    - "/ws tp &8- &7特定のワールドにテレポートする"
+    - "/ws addmember &8- &7プレイヤーをワールドに追加する"
+    - "/ws delmember &8- &7プレイヤーをワールドから削除する"
+    - "/ws leave &8- &7ワールドから抜ける"
+    - "/ws tnt &8- &7ワールドでのTNTを許可/拒否する"
+    - "/ws fire &8- &7ワールドでの炎を許可/拒否する"
+    - "/ws togglegm &8- &7ワールドでのゲームモード変更を許可/拒否する"
+    - "/ws togglebuild &8- &7ワールドでの建築を許可/拒否する"
+    - "/ws toggletp &8- &7ワールドでのテレポートを許可/拒否する"
+    - "/ws togglewe &8- &7ワールドでのWorldEditを許可/拒否する"
+    - "/ws info &8- &7ワールドに関する情報を表示する"
+    - "/ws reset &8- &7ワールドをリセットする"
+  delete_command: "/ws delete &8- &7ワールドを削除する"

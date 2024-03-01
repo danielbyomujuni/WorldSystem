@@ -1,0 +1,86 @@
+nopermission: "&cNincs jogod ehhez!"
+unknown_error: "&cValami elromlott..."
+lagdetection: "Lag észlelés a világban: &c%world"
+wrong_usage: "&c%usage"
+not_registered: "&cEz a játékos még nem csatlakozott!"
+
+world:
+  reseted: "A világod vissza lett állítva!"
+  still_loaded: "&cA világod még mindig be van töltve!"
+  not_on: "&cNem vagy a világon!"
+  created: "A világod készen áll. Szállj fel a &a/ws home"
+  already_exists: "&cMár van világod!"
+  delete:
+    own: "&cA világod törölve!"
+    other: "Törölte a világot &c%player&6 játékostól!"
+  does_not_exists:
+    own: "&cNincs világod!"
+    other: "&cEz a játékos nem rendelkezik világgal!"
+  setting_up: "&aA világ létrehozása..."
+  playerlist: "Játékos ebben a világban: %player"
+  still_creating: "&cA világ még mindig létrehozás alatt"
+  set_home: "Beállítottad az otthonodat"
+  not_enough_money: "Nincs elég pénzed"
+
+member:
+  removed: "Törölted &c%player&6 játékost a világodból!"
+  added: "Hozzáadtad &c%player&6 játékost a világodhoz!"
+  already_added: "&cEz a játékos már tagja!"
+  not_added:
+    own: "&cEz a játékos nem tagja!"
+    other: "&cNem vagy hozzáadva ehhez a világhoz"
+  still_creating: "&cA világ még mindig létrehozás alatt"
+  no_one_added: "&cNincs tagok hozzáadva"
+
+request:
+  expired: "&cA kérelem lejárt!"
+  confirm: "&cKérlek, erősítsd meg a világ újraindítását: %command"
+  until_expire: "&cA kérés lejárati ideje %time másodperc!"
+  already_sent: "&cMár elküldtél egy kérelmet!"
+  not_sent: "&cNem küldtél kérést!"
+  invalid_input: "&c%input nem érvényes bemenet!"
+
+toggle:
+  gamemode:
+    enabled: "&a%player&6 most megváltoztathatja játékmódját!"
+    disabled: "&c%player&6 már nem tudja megváltoztatni játékmódját!"
+  teleport:
+    enabled: "&a%player&6 most teleportálhat!"
+    disabled: "&c%player&6 már nem teleportálhat!"
+  build:
+    enabled: "&a%player&6 most építhet!"
+    disabled: "&c%player&6 már nem építhet!"
+  fire:
+    enabled: "&aAktiváltad a tüzet!"
+    disabled: "&cDeaktiváltad a tüzet!"
+  tnt:
+    enabled: "&aAktiváltad a TNT-sebzést!"
+    disabled: "&cDeaktiváltad TNT-sebzést!"
+
+info:
+  owner: "Tulajdonos: %data"
+  id: "ID: %data"
+  member: "Tag: %data"
+  tnt: "TNT: %data"
+  fire: "Tűz: %data"
+  enabled: "&aBe"
+  disabled: "&cKi"
+
+command_help:
+  list:
+    - "/ws get &8- &7Add neked egy világot"
+    - "/ws home &8- &7Teleportálás a világodba"
+    - "/ws sethome &8- &7Beállítja a megadott otthont"
+    - "/ws gui &8- &7Megnyitja a GUI menüt ha a világ tulajdonosa vagy"
+    - "/ws tp &8- &7Teleportál egy kiválasztott világba"
+    - "/ws addmember &8- &7Hozzáad egy játékost a világodhoz"
+    - "/ws delmember &8- &7Eltávolít egy játékost a világodból"
+    - "/ws leave &8- &7Elhagyja a világot"
+    - "/ws tnt &8- &7Engedi/Tagadja a TNT-t a világodban"
+    - "/ws fire &8- &7Engedi/Tagadja a Tüzet a világodban"
+    - "/ws togglegm &8- &7Engedi/Tagadja játékos változtatt játék módot"
+    - "/ws togglebuild &8- &7Engedi/Tagadja a játékos építést"
+    - "/ws toggletp &8- &7Engedi/Tagadja a játékos teleportálást"
+    - "/ws info &8- &7Információt mutat a világról"
+    - "/ws reset &8- &7Visszaállítja a világodat"
+  delete_command: "/ws delete &8- &7Törli a világot"

@@ -109,7 +109,6 @@ public class WorldAdministrateCommand {
                 return false;
             }
 
-            @SuppressWarnings("deprecation")
             OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             if (a == null) {
@@ -230,7 +229,6 @@ public class WorldAdministrateCommand {
             p.sendMessage(MessageConfig.getNoWorldOwn());
             return false;
         }
-        @SuppressWarnings("deprecation")
         OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
         WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
         if (a == null) {
@@ -307,7 +305,6 @@ public class WorldAdministrateCommand {
                 p.sendMessage(MessageConfig.getNoWorldOwn());
                 return false;
             }
-            @SuppressWarnings("deprecation")
             OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             if (!wc.isMember(a.getUniqueId())) {
@@ -344,7 +341,6 @@ public class WorldAdministrateCommand {
                 p.sendMessage(MessageConfig.getNoWorldOwn());
                 return false;
             }
-            @SuppressWarnings("deprecation")
             OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             if (!wc.isMember(a.getUniqueId())) {
@@ -381,7 +377,6 @@ public class WorldAdministrateCommand {
                 p.sendMessage(MessageConfig.getNoWorldOwn());
                 return false;
             }
-            @SuppressWarnings("deprecation")
             OfflinePlayer a = PlayerWrapper.getOfflinePlayer(args[1]);
             WorldConfig wc = WorldConfig.getWorldConfig(dc.getWorldname());
             if (!wc.isMember(a.getUniqueId())) {
