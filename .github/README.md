@@ -18,4 +18,4 @@
   
 ***
   <a href="https://discord.gg/WYz7Qck">Discord server</a></br></br>
-  <a>Author on Discord: trainerlord or n1klasse</a>
+  <a>Author on Discord: n1klasse</a>
