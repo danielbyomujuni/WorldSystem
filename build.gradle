@@ -131,7 +131,7 @@ dependencies {
     testAnnotationProcessor lombok()
     implementation group: 'commons-io', name: 'commons-io', version: '2.15.1'
 
-    compileOnly("me.clip:placeholderapi:2.11.5")
+    compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
     compileOnly("com.mojang:authlib:1.5.26")
     compileOnly("org.projectlombok:lombok:1.18.30")
