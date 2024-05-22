@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-
+import org.bukkit.Bukkit;
 public class WorldEditListener implements Listener {
 
     private final List<String> worldEditCommands= new ArrayList<>();
@@ -28,7 +28,7 @@ public class WorldEditListener implements Listener {
         try {
             String packageName = Bukkit.getServer().getClass().getPackage().getName();
             String version = packageName.substring(packageName.lastIndexOf(".") + 1);
-            Class<?> serverClass = Class.forName("org.bukkit.craftbukkit." + version + ".CraftServer");
+            Class<?> serverClass = Bukkit.getServer().getClass();
 
             Field f1 = serverClass.getDeclaredField("commandMap");
             f1.setAccessible(true);
