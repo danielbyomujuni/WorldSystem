@@ -19,6 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * @author Butzlabben
@@ -70,7 +71,7 @@ public class WorldSystem extends JavaPlugin {
             try {
                 dconfig.createNewFile();
             } catch (IOException e) {
-                System.err.println("Wasn't able to create DependenceConfig");
+                WorldSystem.logger().log(Level.SEVERE,"Wasn't able to create DependenceConfig");
                 e.printStackTrace();
             }
             new DependenceConfig();
@@ -90,6 +91,8 @@ public class WorldSystem extends JavaPlugin {
     public static WorldSystem getInstance() {
         return JavaPlugin.getPlugin(WorldSystem.class);
     }
+
+    public static Logger logger() {return WorldSystem.getPlugin(WorldSystem.class).getLogger();}
 
     @Override
     public void onEnable() {

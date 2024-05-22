@@ -38,7 +38,7 @@ public class GuiConfig {
                 InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource(guiFileResource);
                 Files.copy(in, file.toPath());
             } catch (IOException e) {
-                System.err.println("Wasn't able to create Config");
+                WorldSystem.logger().log(Level.SEVERE,"Wasn't able to create Config");
                 e.printStackTrace();
             }
         }

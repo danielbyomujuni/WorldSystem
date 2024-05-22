@@ -39,8 +39,8 @@ public class VersionUtil {
             else if (v.contains("1.3")) version = 3;
         }
         if (version == 0) {
-            System.err.println("[WorldSystem] Unknown version: " + Bukkit.getVersion());
-            System.err.println("[WorldSystem] Choosing version 1.12.2");
+            WorldSystem.logger().log(Level.SEVERE,"[WorldSystem] Unknown version: " + Bukkit.getVersion());
+            WorldSystem.logger().log(Level.SEVERE,"[WorldSystem] Choosing version 1.12.2");
             version = 12;
         }
         return version;

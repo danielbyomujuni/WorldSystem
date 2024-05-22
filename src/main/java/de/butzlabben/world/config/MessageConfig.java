@@ -47,7 +47,7 @@ public class MessageConfig {
                 }
                 Files.copy(in, file.toPath());
             } catch (IOException e) {
-                System.err.println("Wasn't able to create Message file");
+                WorldSystem.logger().log(Level.SEVERE,"Wasn't able to create Message file");
                 e.printStackTrace();
             }
         }

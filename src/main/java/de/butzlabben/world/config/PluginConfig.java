@@ -68,7 +68,7 @@ public class PluginConfig {
                                     + new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date()) + ".yml").toPath(),
                             StandardCopyOption.REPLACE_EXISTING);
                     Files.delete(file.toPath());
-                    System.err.println("[WorldSystem] Config is broken, creating a new one!");
+                    WorldSystem.logger().log(Level.SEVERE,"[WorldSystem] Config is broken, creating a new one!");
                     checkConfig(f);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -79,7 +79,7 @@ public class PluginConfig {
                 InputStream in = JavaPlugin.getPlugin(WorldSystem.class).getResource("config.yml");
                 Files.copy(in, file.toPath());
             } catch (IOException e) {
-                System.err.println("Wasn't able to create Config");
+                WorldSystem.logger().log(Level.SEVERE,"Wasn't able to create Config");
                 e.printStackTrace();
             }
         }

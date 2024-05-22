@@ -119,7 +119,7 @@ public class SystemWorld {
             try {
                 FileUtils.copyDirectory(exampleworld, newworld);
             } catch (IOException e) {
-                System.err.println("Couldn't create world for " + uuid);
+                WorldSystem.logger().log(Level.SEVERE,"Couldn't create world for " + uuid);
                 e.printStackTrace();
             }
         else
@@ -145,7 +145,7 @@ public class SystemWorld {
             } catch (IOException e) {
                 if (p != null && p.isOnline())
                     p.sendMessage(PluginConfig.getPrefix() + "§cError: " + e.getMessage());
-                System.err.println("Couldn't load world of " + uuid);
+                WorldSystem.logger().log(Level.SEVERE,"Couldn't load world of " + uuid);
                 e.printStackTrace();
                 return false;
             }
@@ -311,7 +311,7 @@ public class SystemWorld {
             // Check for duplicated worlds
             File propablyExistingWorld = new File(Bukkit.getWorldContainer(), worldname);
             if (propablyExistingWorld.exists()) {
-                System.err.println("World " + worldname + " existed twice!");
+                WorldSystem.logger().log(Level.SEVERE,"World " + worldname + " existed twice!");
                 try {
                     FileUtils.deleteDirectory(propablyExistingWorld);
                 } catch (IOException e) {
@@ -324,7 +324,7 @@ public class SystemWorld {
             try {
                 FileUtils.moveDirectoryToDirectory(world, Bukkit.getWorldContainer(), false);
             } catch (IOException e) {
-                System.err.println("Couldn't load world of " + p.getName());
+                WorldSystem.logger().log(Level.SEVERE,"Couldn't load world of " + p.getName());
                 p.sendMessage(PluginConfig.getPrefix() + "§cError: " + e.getMessage());
                 e.printStackTrace();
             }

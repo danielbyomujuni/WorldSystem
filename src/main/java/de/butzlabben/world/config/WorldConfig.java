@@ -90,7 +90,7 @@ public class WorldConfig {
             file.createNewFile();
         } catch (IOException e1) {
             e1.printStackTrace();
-            System.err.println("Error while creating worldconfig for " + uuid.toString());
+            WorldSystem.logger().log(Level.SEVERE,"Error while creating worldconfig for " + uuid.toString());
         }
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
         cfg.set("Informations.ID", dc.getID());
@@ -104,7 +104,7 @@ public class WorldConfig {
             cfg.save(file);
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Error while saving worldconfig for " + uuid.toString());
+            WorldSystem.logger().log(Level.SEVERE,"Error while saving worldconfig for " + uuid.toString());
         }
     }
 

@@ -1,5 +1,6 @@
 package de.butzlabben.inventory;
 
+import de.butzlabben.world.WorldSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -8,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.logging.Level;
 
 public abstract class OrcInventory {
 
@@ -91,7 +93,7 @@ public abstract class OrcInventory {
             if (entry.getKey() >= 0 && entry.getKey() < size) {
                 inv.setItem(entry.getKey(), entry.getValue().getItemStack(p));
             } else {
-                System.err.println("There is a problem with a configured Item!");
+                WorldSystem.logger().log(Level.SEVERE, "There is a problem with a configured Item!");
             }
         }
 

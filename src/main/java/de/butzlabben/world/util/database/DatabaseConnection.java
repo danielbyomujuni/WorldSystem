@@ -14,7 +14,7 @@ public abstract class DatabaseConnection implements DatabaseUtil {
         synchronized (lock) {
             try {
                 if (connection == null || connection.isClosed()) {
-                    System.err.println("[WorldSystem | DB] Connection does not exist or was already closed");
+                    WorldSystem.logger().log(Level.SEVERE,"[WorldSystem | DB] Connection does not exist or was already closed");
                     return;
                 }
                 connection.close();

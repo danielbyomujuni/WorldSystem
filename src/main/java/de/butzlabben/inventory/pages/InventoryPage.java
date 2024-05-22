@@ -50,7 +50,7 @@ public class InventoryPage extends OrcInventory {
 
     public void addItem(OrcItem item) {
         if (i > 36) {
-            System.err.println("More items than allowed in page view");
+            WorldSystem.logger().log(Level.SEVERE,"More items than allowed in page view");
             return;
         }
         addItem(i, item);

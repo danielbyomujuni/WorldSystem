@@ -280,7 +280,7 @@ public class WorldSettingsCommands {
         } catch (IOException e) {
             e.printStackTrace();
             p.sendMessage(MessageConfig.getUnknownError());
-            System.err.println("Couldn't reset world of " + p.getName());
+            WorldSystem.logger().log(Level.SEVERE,"Couldn't reset world of " + p.getName());
         }
     }
 }
