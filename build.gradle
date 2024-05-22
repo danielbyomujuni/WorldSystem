@@ -138,7 +138,7 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.21-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-core:7.2.21-SNAPSHOT")
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.9.0")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.10.0")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.9.0")
 }
 shadowJar {
