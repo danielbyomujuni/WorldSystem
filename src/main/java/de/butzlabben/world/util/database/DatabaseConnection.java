@@ -23,7 +23,7 @@ public abstract class DatabaseConnection implements DatabaseUtil {
                 }
                 connection.close();
             } catch (SQLException e) {
-                System.out.println("[WorldSystem | DB] Connection could not be closed");
+                WorldSystem.logger().log(Level.WARNING,"[WorldSystem | DB] Connection could not be closed");
                 e.printStackTrace();
             }
         }

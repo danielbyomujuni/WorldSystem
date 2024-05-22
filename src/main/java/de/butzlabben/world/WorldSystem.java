@@ -149,7 +149,7 @@ public class WorldSystem extends JavaPlugin {
         }, 20 * 60 * 2, 20 * 60 * 2);
 
         //COMMANDS
-        System.out.println("Registered");
+        WorldSystem.logger().log(Level.INFO,"Registered");
 
         //this.getCommand("ws").setExecutor(new WSCommandMain());
         //this.getCommand("ws").setExecutor(new CommandMain());

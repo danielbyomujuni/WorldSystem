@@ -1,5 +1,6 @@
 package de.butzlabben.world.listener;
 
+import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.config.MessageConfig;
 import de.butzlabben.world.config.WorldConfig;
 import de.butzlabben.world.config.WorldPerm;
@@ -16,6 +17,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class WorldEditListener implements Listener {
@@ -63,7 +65,7 @@ public class WorldEditListener implements Listener {
     }
 
     private boolean isWorldEditCommand(String command) {
-        System.out.println(command);
+        WorldSystem.logger().log(Level.INFO,command);
         return worldEditCommands.contains(command)
                 || worldEditCommands.contains(command.replaceFirst("/", ""))
                 || worldEditCommands.contains(command.replaceFirst("/worldedit:", ""));
