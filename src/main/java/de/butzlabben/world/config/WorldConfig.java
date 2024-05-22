@@ -3,6 +3,7 @@ package de.butzlabben.world.config;
 import com.google.common.collect.Sets;
 import com.mojang.authlib.GameProfile;
 import de.butzlabben.world.GameProfileBuilder;
+import de.butzlabben.world.WorldSystem;
 import de.butzlabben.world.util.PlayerWrapper;
 import de.butzlabben.world.wrapper.WorldTemplate;
 import java.io.File;
@@ -18,6 +19,7 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import java.util.logging.Level;
 
 /**
  * This class represents a worldconfig.yml file Here you can edit and read all

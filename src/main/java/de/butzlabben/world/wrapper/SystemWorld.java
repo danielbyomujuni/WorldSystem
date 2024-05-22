@@ -20,6 +20,7 @@
         import java.io.IOException;
         import java.util.HashMap;
         import java.util.UUID;
+        import java.util.logging.Level;
 
 /**
  * This class represents a systemworld, loaded or not

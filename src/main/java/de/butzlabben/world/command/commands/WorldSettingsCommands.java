@@ -25,6 +25,7 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class WorldSettingsCommands {
     private static final ArrayList<Player> toConfirm = new ArrayList<>();

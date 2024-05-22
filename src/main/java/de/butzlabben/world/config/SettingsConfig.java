@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
 
 //maybe just merge this config with the WorldConfig
 public class SettingsConfig {
