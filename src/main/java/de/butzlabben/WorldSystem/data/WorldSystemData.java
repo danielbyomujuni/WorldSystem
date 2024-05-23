@@ -88,7 +88,7 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
 
     public void update_name(String uuid, String new_name) {
         try {
-            this.void_query(String.format("UPDATE %s SET player_name = %s WHERE player_uuid = '%s;'", WS_WORLDS, new_name, uuid));
+            this.void_query(String.format("UPDATE %s SET player_name = '%s' WHERE player_uuid = '%s;'", WS_WORLDS, new_name, uuid));
         } catch (SQLException e) {
             WorldSystem.logger().log(Level.SEVERE, "Tried to update player name but failed skipping");
             WorldSystem.logger().log(Level.SEVERE, e.getMessage());
