@@ -16,10 +16,10 @@ import java.util.logging.Level;
 public class WorldSystemData extends AbstractSqlLiteDatabase {
 
     private static final String WS_WORLDS = "ws_worlds";
-    private static final String DATABASE_FILE = "plugins/WorldSystem/data.db";
+
 
     private WorldSystemData() throws SQLException {
-        super(DATABASE_FILE); //PluginConfig.getSqliteFile()
+        super(PluginConfig.getSqliteFile());
     }
 
     @SneakyThrows
@@ -74,7 +74,8 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
             res.close();
             return worlds.toArray(new PlayerWorld[worlds.size()]);
         } catch (SQLException e) {
-            WorldSystem.logger().log(Level.SEVERE, "[WorldSystem] Unable To get all the worlds in the SQLite Database");
+            WorldSystem.logger().log(Level.SEVERE, "Unable To get all the worlds in the SQLite Database");
+            WorldSystem.logger().log(Level.SEVERE, e.getMessage());
             WorldSystem.disable_plugin();
             return new PlayerWorld[0];
         }
@@ -84,16 +85,18 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
         try {
             this.void_query(String.format("UPDATE %s SET player_name = %s WHERE player_uuid = %s;", WS_WORLDS, new_name, uuid));
         } catch (SQLException e) {
-            WorldSystem.logger().log(Level.SEVERE, "[WorldSystem] Tried to update player name but failed skipping");
+            WorldSystem.logger().log(Level.SEVERE, "Tried to update player name but failed skipping");
+            WorldSystem.logger().log(Level.SEVERE, e.getMessage());
         }
     }
 
     public void create_new_world_record(PlayerWorld world) {
         try {
-            this.void_query(String.format("INSERT INTO %s (world_id, player_uuid, player_name, last_loaded)\n" +
-                    "VALUES (%d, '%s', '%s', %d);", WS_WORLDS, world.getWorld_id(), world.getPlayer_uuid(), world.getPlayer_name(), world.getLast_loaded()));
+            this.void_query(String.format("INSERT INTO %s (world_id, player_uuid, player_name, last_loaded) VALUES (%d, '%s', '%s', %d);",
+                    WS_WORLDS, world.getWorld_id(), world.getPlayer_uuid(), world.getPlayer_name(), world.getLast_loaded()));
         } catch (SQLException e) {
-            WorldSystem.logger().log(Level.SEVERE, "[WorldSystem] File to Insert to world for player name but failed Disabling");
+            WorldSystem.logger().log(Level.SEVERE, "File to Insert to world for player name but failed Disabling");
+            WorldSystem.logger().log(Level.SEVERE, e.getMessage());
             WorldSystem.disable_plugin();
         }
     }
@@ -105,7 +108,7 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
             int count = res.getInt("count(*)");
             return count;
         } catch (SQLException e) {
-            WorldSystem.logger().log(Level.SEVERE, "[WorldSystem] File to Insert to world for player name but failed Disabling");
+            WorldSystem.logger().log(Level.SEVERE, "File to Insert to world for player name but failed Disabling");
             WorldSystem.disable_plugin();
             return 0;
         }
@@ -128,7 +131,7 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
             res.close();
             return worlds.toArray(new PlayerWorld[worlds.size()]);
         } catch (SQLException e) {
-            WorldSystem.logger().log(Level.SEVERE, "[WorldSystem] Unable To get all the worlds for player in the SQLite Database");
+            WorldSystem.logger().log(Level.SEVERE, "Unable To get all the worlds for player in the SQLite Database");
             WorldSystem.disable_plugin();
             return new PlayerWorld[0];
         }
