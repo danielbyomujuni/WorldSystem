@@ -94,7 +94,7 @@ public class DependenceConfig {
 
         WorldSystemData db = WorldSystemData.connect();
 
-        int id = db.getHighestID();
+        int id = db.getHighestID() + 1;
         String uuid = this.uuid.toString();
         String name = PlayerWrapper.getOfflinePlayer(this.uuid).getName();
         long last_loaded = System.currentTimeMillis();
