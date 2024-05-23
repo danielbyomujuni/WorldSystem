@@ -126,6 +126,7 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
             ResultSet res = this.query(String.format("SELECT * FROM %s WHERE player_uuid = '%s';", WS_WORLDS, uuid));
 
             while (res.next()) {
+                System.out.println(res);
                 int world_id = res.getInt("world_id");
                 String player_uuid = res.getString("player_uuid");
                 String player_name = res.getString("player_name");

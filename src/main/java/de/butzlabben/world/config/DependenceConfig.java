@@ -119,12 +119,6 @@ public class DependenceConfig {
         WorldSystemData db = WorldSystemData.connect();
         PlayerWorld[] worlds = db.getWorldsForPlayer(uuid);
 
-        System.out.println(worlds[0].getWorld_id());
-        System.out.println(worlds[0].getLast_loaded());
-        System.out.println(worlds[0].getPlayer_name());
-        System.out.println(worlds[0].getPlayer_uuid());
-         
-
         return "ID" + worlds[0].getWorld_id() + "-" + uuid;
     }
 
