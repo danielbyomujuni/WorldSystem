@@ -51,7 +51,7 @@ public class DependenceConfig {
     public static int getHighestID() {
         WorldSystemData db = WorldSystemData.connect();
         int highest_id =  db.getHighestID();
-        db.close();
+         
 
         return highest_id;
     }
@@ -86,7 +86,7 @@ public class DependenceConfig {
 
             WorldSystemData db = WorldSystemData.connect();
             db.update_name(uuid, new_name);
-            db.close();
+             
         }
     }
 
@@ -102,7 +102,7 @@ public class DependenceConfig {
         PlayerWorld world = new PlayerWorld(id, uuid, name, last_loaded);
 
         db.create_new_world_record(world);
-        db.close();
+         
     }
 
     public boolean hasWorld() {
@@ -118,7 +118,7 @@ public class DependenceConfig {
 
         WorldSystemData db = WorldSystemData.connect();
         PlayerWorld[] worlds = db.getWorldsForPlayer(uuid);
-        db.close();
+         
 
         return String.format("ID%s-%d", worlds[0].getWorld_id(), uuid);
     }
@@ -133,14 +133,14 @@ public class DependenceConfig {
 
         WorldSystemData db = WorldSystemData.connect();
         db.update_last_loaded(uuid, new_time);
-        db.close();
+         
 
     }
 
     public int getID() {
         WorldSystemData db = WorldSystemData.connect();
         PlayerWorld[] worlds = db.getWorldsForPlayer(this.uuid.toString());
-        db.close();
+         
 
         return worlds[0].getWorld_id();
     }

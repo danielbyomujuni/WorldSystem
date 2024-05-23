@@ -18,6 +18,8 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
     private static final String WS_WORLDS = "ws_worlds";
     private static final String DATABASE_FILE = "plugins/WorldSystem/data.db";
 
+    private static WorldSystemData con;
+
     private WorldSystemData() throws SQLException {
         super(DATABASE_FILE); //PluginConfig.getSqliteFile()
     }
@@ -25,7 +27,10 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
     @SneakyThrows
     public static WorldSystemData connect() {
         try {
-            return new WorldSystemData();
+            if (con == null) {
+                con = new WorldSystemData();
+            }
+            return con;
         } catch (SQLException e) {
             WorldSystem.disable_plugin();
             return new WorldSystemData(); //doesn't create
