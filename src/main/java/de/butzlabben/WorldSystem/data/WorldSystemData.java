@@ -16,9 +16,10 @@ import java.util.logging.Level;
 public class WorldSystemData extends AbstractSqlLiteDatabase {
 
     private static final String WS_WORLDS = "ws_worlds";
+    private static final String DATABASE_FILE = "plugins/WorldSystem/data.db";
 
     private WorldSystemData() throws SQLException {
-        super(PluginConfig.getSqliteFile());
+        super(DATABASE_FILE); //PluginConfig.getSqliteFile()
     }
 
     @SneakyThrows
