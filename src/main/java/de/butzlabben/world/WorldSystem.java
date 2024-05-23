@@ -217,4 +217,8 @@ public class WorldSystem extends JavaPlugin {
         return creator;
     }
 
+    public static void disable_plugin() {
+        Bukkit.getPluginManager().disablePlugin(WorldSystem.getPlugin(WorldSystem.class));
+    }
+
 }

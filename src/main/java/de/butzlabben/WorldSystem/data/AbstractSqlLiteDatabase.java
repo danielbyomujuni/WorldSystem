@@ -9,11 +9,6 @@ public abstract class AbstractSqlLiteDatabase {
     private Connection connection;
     private Statement state;
 
-    public AbstractSqlLiteDatabase() throws SQLException {
-        this.connection = DriverManager.getConnection("jdbc:sqlite:" + PluginConfig.getSqliteFile());
-        this.construct_database();
-    }
-
     public AbstractSqlLiteDatabase(String db_path) throws SQLException {
         this.connection = DriverManager.getConnection("jdbc:sqlite:" + db_path);
         this.state =  this.connection.createStatement();
