@@ -13,7 +13,7 @@ ext {
     mcVersion = "1.20.4"
 }
 archivesBaseName = "WorldSystem"
-version = "2.4.37-dev"
+version = "2.5.0-build-sqlite-dev"
 spigot {
 group "de.butzlabben"
 name = "WorldSystem"
