@@ -39,6 +39,7 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
             this.query(String.format("CREATE TABLE IF NOT EXISTS %s (world_id INTEGER PRIMARY KEY, player_uuid varchar(40), player_name varchar(20), last_loaded long);", WS_WORLDS)).close();
         } catch (SQLException e) {
             WorldSystem.logger().log(Level.SEVERE, "[WorldSystem] Unable To create the SQLite Database");
+            WorldSystem.logger().log(Level.SEVERE, e.getMessage());
             WorldSystem.disable_plugin();
         }
     }
