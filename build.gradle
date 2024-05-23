@@ -129,7 +129,7 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.+'
     testImplementation lombok()
     testAnnotationProcessor lombok()
-    implementation group: 'commons-io', name: 'commons-io', version: '2.15.1'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.16.1'
 
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
