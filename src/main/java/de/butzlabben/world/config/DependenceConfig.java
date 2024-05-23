@@ -120,7 +120,7 @@ public class DependenceConfig {
         PlayerWorld[] worlds = db.getWorldsForPlayer(uuid);
          
 
-        return String.format("ID%s-%d", worlds[0].getWorld_id(), uuid);
+        return String.format("ID%d-%s", worlds[0].getWorld_id(), uuid);
     }
 
     public String getWorldNameByOfflinePlayer() {
