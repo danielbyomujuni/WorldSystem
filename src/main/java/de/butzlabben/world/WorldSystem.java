@@ -37,7 +37,6 @@ public class WorldSystem extends JavaPlugin {
         File folder = getInstance().getDataFolder();
         File dir = new File(folder + "/worldsources");
         File config = new File(folder, "config.yml");
-        File dconfig = new File(folder, "dependence.yml");
         File languages = new File(folder + "/languages");
         File gui = new File(folder, "gui.yml");
 
@@ -67,16 +66,6 @@ public class WorldSystem extends JavaPlugin {
 
         // If has custom language
         MessageConfig.checkConfig(new File(languages, PluginConfig.getLanguage() + ".yml"));
-
-        if (!dconfig.exists()) {
-            try {
-                dconfig.createNewFile();
-            } catch (IOException e) {
-                WorldSystem.logger().log(Level.SEVERE,"Wasn't able to create DependenceConfig");
-                e.printStackTrace();
-            }
-            new DependenceConfig();
-        }
 
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(config);
         SettingsConfig.checkConfig();
