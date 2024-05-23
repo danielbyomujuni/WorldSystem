@@ -15,6 +15,10 @@ public abstract class AbstractSqlLiteDatabase {
         this.construct_database();
     }
 
+    protected void void_query(String sql) throws SQLException {
+        this.state.executeUpdate(sql);
+    }
+
     protected ResultSet query(String sql) throws SQLException {
         return this.state.executeQuery(sql);
     }

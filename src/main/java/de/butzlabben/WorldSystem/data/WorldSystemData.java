@@ -36,7 +36,7 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
     protected void construct_database() {
         try {
             //create the worlds table
-            this.query(String.format("CREATE TABLE IF NOT EXISTS %s (world_id INTEGER PRIMARY KEY, player_uuid varchar(40), player_name varchar(20), last_loaded long);", WS_WORLDS)).close();
+            this.void_query(String.format("CREATE TABLE IF NOT EXISTS %s (world_id INTEGER PRIMARY KEY, player_uuid varchar(40), player_name varchar(20), last_loaded long);", WS_WORLDS));
         } catch (SQLException e) {
             WorldSystem.logger().log(Level.SEVERE, "[WorldSystem] Unable To create the SQLite Database");
             WorldSystem.logger().log(Level.SEVERE, e.getMessage());
@@ -82,7 +82,7 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
 
     public void update_name(String uuid, String new_name) {
         try {
-            this.query(String.format("UPDATE %s SET player_name = %s WHERE player_uuid = %s;", WS_WORLDS, new_name, uuid)).close();
+            this.void_query(String.format("UPDATE %s SET player_name = %s WHERE player_uuid = %s;", WS_WORLDS, new_name, uuid));
         } catch (SQLException e) {
             WorldSystem.logger().log(Level.SEVERE, "[WorldSystem] Tried to update player name but failed skipping");
         }
@@ -90,8 +90,8 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
 
     public void create_new_world_record(PlayerWorld world) {
         try {
-            this.query(String.format("INSERT INTO %s (world_id, player_uuid, player_name, last_loaded)\n" +
-                    "VALUES (%d, '%s', '%s', %d);", WS_WORLDS, world.getWorld_id(), world.getPlayer_uuid(), world.getPlayer_name(), world.getLast_loaded())).close();
+            this.void_query(String.format("INSERT INTO %s (world_id, player_uuid, player_name, last_loaded)\n" +
+                    "VALUES (%d, '%s', '%s', %d);", WS_WORLDS, world.getWorld_id(), world.getPlayer_uuid(), world.getPlayer_name(), world.getLast_loaded()));
         } catch (SQLException e) {
             WorldSystem.logger().log(Level.SEVERE, "[WorldSystem] File to Insert to world for player name but failed Disabling");
             WorldSystem.disable_plugin();
@@ -136,7 +136,7 @@ public class WorldSystemData extends AbstractSqlLiteDatabase {
 
     public void update_last_loaded(String uuid, long new_time) {
         try {
-            this.query(String.format("UPDATE %s SET last_loaded = %s WHERE player_uuid = %s;", WS_WORLDS, new_time, uuid)).close();
+            this.void_query(String.format("UPDATE %s SET last_loaded = %s WHERE player_uuid = %s;", WS_WORLDS, new_time, uuid));
         } catch (SQLException e) {
             WorldSystem.logger().log(Level.SEVERE, "[WorldSystem] Tried to update player name but failed skipping");
         }
