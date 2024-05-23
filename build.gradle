@@ -139,7 +139,7 @@ dependencies {
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.4.0-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-core:7.4.0-SNAPSHOT")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.9.0")
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.9.0")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.10.0")
 }
 shadowJar {
     minimize()
