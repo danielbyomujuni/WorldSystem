@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+
 /**
  * @author Butzlabben
  * @author Jubeki
@@ -34,6 +36,7 @@ public class WorldSystem extends JavaPlugin {
     private CreatorAdapter creator;
 
     public static void createConfigs() {
+
         File folder = getInstance().getDataFolder();
         File dir = new File(folder + "/worldsources");
         File config = new File(folder, "config.yml");
@@ -139,6 +142,7 @@ public class WorldSystem extends JavaPlugin {
 
         //COMMANDS
         WorldSystem.logger().log(Level.INFO,"Registered");
+
 
         //this.getCommand("ws").setExecutor(new WSCommandMain());
         //this.getCommand("ws").setExecutor(new CommandMain());
