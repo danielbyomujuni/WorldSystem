@@ -13,7 +13,7 @@ ext {
     mcVersion = "1.20.4"
 }
 archivesBaseName = "WorldSystem"
-version = "2.4.37-dev"
+version = "2.5.0-build-sqlite-dev"
 spigot {
 group "de.butzlabben"
 name = "WorldSystem"
@@ -106,6 +106,7 @@ load = STARTUP
 repositories {
     mavenCentral()
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/public/" }
+    maven { url "https://repo.aikar.co/content/groups/aikar/" }
     maven { url "https://repo.extendedclip.com/content/repositories/placeholderapi/" }
     maven { url "https://ci.athion.net/job/FastAsyncWorldEdit/ws" }
     maven { url "https://jitpack.io" }
@@ -121,6 +122,8 @@ repositories {
 dependencies {
     implementation("org.yaml:snakeyaml:2.2")
     implementation("net.kyori:adventure-text-minimessage:4.16.0")
+    implementation 'org.xerial:sqlite-jdbc:3.30.1'
+
     compileOnly lombok()
     annotationProcessor lombok()
     //Test dependencies
@@ -140,10 +143,15 @@ dependencies {
     compileOnly("com.sk89q.worldedit:worldedit-core:7.4.0-SNAPSHOT")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.9.0")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.9.0")
+
+    implementation "co.aikar:acf-bukkit:0.5.1-SNAPSHOT"
 }
 shadowJar {
     minimize()
     archiveFileName.set("${project.name}-${project.version}.jar")
+
+    relocate 'co.aikar.commands', 'de.butzlabben.WorldSystem.acf'
+    relocate 'co.aikar.locales', 'de.butzlabben.WorldSystem.locales'
 }
 javadoc {
     options.links(

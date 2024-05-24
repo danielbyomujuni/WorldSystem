@@ -87,12 +87,14 @@ public class WorldConfig {
     public static void create(UUID uuid, WorldTemplate template) {
         DependenceConfig dc = new DependenceConfig(uuid);
         String worldname = dc.getWorldname();
+        WorldSystem.logger().log(Level.INFO, PluginConfig.getWorlddir() + worldname);
         File file = new File(PluginConfig.getWorlddir() + worldname + "/worldconfig.yml");
         try {
             file.createNewFile();
         } catch (IOException e1) {
-            e1.printStackTrace();
             WorldSystem.logger().log(Level.SEVERE,"Error while creating worldconfig for " + uuid.toString());
+            WorldSystem.logger().log(Level.SEVERE,e1.getMessage());
+            e1.printStackTrace();
         }
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
         cfg.set("Informations.ID", dc.getID());

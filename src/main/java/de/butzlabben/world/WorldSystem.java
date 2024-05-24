@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+
 /**
  * @author Butzlabben
  * @author Jubeki
@@ -34,10 +36,10 @@ public class WorldSystem extends JavaPlugin {
     private CreatorAdapter creator;
 
     public static void createConfigs() {
+
         File folder = getInstance().getDataFolder();
         File dir = new File(folder + "/worldsources");
         File config = new File(folder, "config.yml");
-        File dconfig = new File(folder, "dependence.yml");
         File languages = new File(folder + "/languages");
         File gui = new File(folder, "gui.yml");
 
@@ -67,16 +69,6 @@ public class WorldSystem extends JavaPlugin {
 
         // If has custom language
         MessageConfig.checkConfig(new File(languages, PluginConfig.getLanguage() + ".yml"));
-
-        if (!dconfig.exists()) {
-            try {
-                dconfig.createNewFile();
-            } catch (IOException e) {
-                WorldSystem.logger().log(Level.SEVERE,"Wasn't able to create DependenceConfig");
-                e.printStackTrace();
-            }
-            new DependenceConfig();
-        }
 
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(config);
         SettingsConfig.checkConfig();
@@ -151,6 +143,7 @@ public class WorldSystem extends JavaPlugin {
         //COMMANDS
         WorldSystem.logger().log(Level.INFO,"Registered");
 
+
         //this.getCommand("ws").setExecutor(new WSCommandMain());
         //this.getCommand("ws").setExecutor(new CommandMain());
         //this.getCommand("ws get").setExecutor(new WSGet());
@@ -215,6 +208,10 @@ public class WorldSystem extends JavaPlugin {
 
     public CreatorAdapter getAdapter() {
         return creator;
+    }
+
+    public static void disable_plugin() {
+        Bukkit.getPluginManager().disablePlugin(WorldSystem.getPlugin(WorldSystem.class));
     }
 
 }

@@ -22,12 +22,8 @@ build:
     paths:
       - build/libs/*.jar
     expire_in: 1 week
-  only:
-    - master
 
 test:
   stage: test
   script:
-    - ./gradlew check
-after_script:
-  - echo "End CI"
+    - ./gradlew test
