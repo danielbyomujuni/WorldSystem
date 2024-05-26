@@ -65,11 +65,11 @@
                     <relocations>
                         <relocation>
                             <pattern>co.aikar.commands</pattern>
-                            <shadedPattern>de.butzlabben.acf</shadedPattern> <!-- Replace this -->
+                            <shadedPattern>de.butzlabben.WorldSystem.acf</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
                             <pattern>co.aikar.locales</pattern>
-                            <shadedPattern>de.butzlabben.locales</shadedPattern> <!-- Replace this -->
+                            <shadedPattern>de.butzlabben.WorldSystem.locales</shadedPattern> <!-- Replace this -->
                         </relocation>
                     </relocations>
                 </configuration>
@@ -184,7 +184,7 @@
         </dependency>
         <dependency>
             <groupId>co.aikar</groupId>
-            <artifactId>acf-paper</artifactId>
+            <artifactId>acf-bukkit</artifactId>
             <version>0.5.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
