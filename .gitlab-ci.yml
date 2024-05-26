@@ -8,13 +8,18 @@ stages:
 build:
   stage: build
   script:
-    - mvn package
-  artifacts:
-    paths:
-      - target/*.jar
-    expire_in: 1 week
+    - mvn install -B
 
 test:
   stage: test
   script:
     - mvn test
+
+production:
+  stage: production
+  script:
+    - mvn package
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 week
