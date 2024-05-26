@@ -5,13 +5,10 @@ package de.butzlabben.WorldSystem;
 
 import co.aikar.commands.BukkitCommandManager;
 import de.butzlabben.WorldSystem.commands.WSCommands;
+import de.butzlabben.WorldSystem.configs.Config;
 import de.butzlabben.WorldSystem.configs.LanguageConfig;
 
 public class WorldSystem { //TODO extends JavaPlugin
-
-    private static final String LOCALE = "en";
-
-
 
     //TODO: @Override
     public void onEnable() {
@@ -30,7 +27,7 @@ public class WorldSystem { //TODO extends JavaPlugin
     private void create_configs() {
         //Establish the language for the plugin
         LanguageConfig.verify_all_configs();
-        LanguageConfig.set_config(LOCALE);
+        LanguageConfig.set_config(Config.getLanguage());
     }
 
 
