@@ -51,6 +51,7 @@
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/world/WorldSystem.java
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/world/config/GuiConfig.java
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/world/WorldCheckerRunnable.java
+/home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/WorldSystem/commands/WSCommands.java
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/WorldSystem/data/SqlLiteDatabase.java
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/world/util/MoneyUtil.java
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/inventory/OrcItem.java

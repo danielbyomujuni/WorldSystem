@@ -72,6 +72,7 @@ de/butzlabben/world/event/WorldEvent.class
 de/butzlabben/world/wrapper/GeneratorSettings.class
 de/butzlabben/world/command/commands/WSCommands.class
 de/butzlabben/WorldSystem/data/WorldSystemData.class
+de/butzlabben/WorldSystem/commands/WSCommands.class
 de/butzlabben/world/config/Entry.class
 de/butzlabben/world/gui/clicklistener/ComingSoonClickListener.class
 de/butzlabben/world/config/DependenceConfig.class
