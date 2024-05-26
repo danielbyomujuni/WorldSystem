@@ -37,7 +37,7 @@ public class CreateWorldCommand {
     private void create_world(Player player, WorldTemplate template ) {
         Bukkit.getScheduler().runTask(WorldSystem.getInstance(), () -> {
             //create the world
-            if (template.create()) { //add settings;
+            if (template.create(player)) { //add settings;
                 player.sendMessage(MessageConfig.getSettingUpWorld());
             }
         });
