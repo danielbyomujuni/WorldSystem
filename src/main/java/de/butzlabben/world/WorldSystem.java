@@ -1,5 +1,7 @@
 package de.butzlabben.world;
 
+import co.aikar.commands.PaperCommandManager;
+import de.butzlabben.WorldSystem.commands.WSCommands;
 import de.butzlabben.world.command.CommandRegistry;
 import de.butzlabben.world.config.*;
 import de.butzlabben.world.listener.*;
@@ -152,6 +154,8 @@ public class WorldSystem extends JavaPlugin {
         //this.getCommand("ws tnt").setExecutor(new WorldTnt());
         //this.getCommand("ws fire").setExecutor(new WorldFire());
 
+        PaperCommandManager manager = new PaperCommandManager(this);
+        manager.registerCommand(new WSCommands());
             // Bstats deactivated
         // System.setProperty("bstats.relocatecheck", "false");
         // Metrics m = new Metrics(this);
