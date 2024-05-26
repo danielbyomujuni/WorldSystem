@@ -15,8 +15,8 @@ test:
   script:
     - mvn test
 
-production:
-  stage: production
+package:
+  stage: deploy
   script:
     - mvn package
   artifacts:
