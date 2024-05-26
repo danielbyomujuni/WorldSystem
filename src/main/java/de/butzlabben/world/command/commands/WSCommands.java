@@ -165,7 +165,8 @@ public class WSCommands {
     }
 
     public boolean infoComannd(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player p) {
+        if (sender instanceof Player) {
+            Player p = (Player) sender;
             // Player p = (Player) sender;
             WorldPlayer wp = new WorldPlayer(p, p.getWorld().getName());
             if (!wp.isOnSystemWorld()) {
