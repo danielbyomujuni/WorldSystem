@@ -37,6 +37,7 @@ de/butzlabben/world/util/database/DatabaseConnection.class
 de/butzlabben/world/gui/playeroption/TeleportStatus.class
 de/butzlabben/world/event/WorldToggleTntEvent.class
 de/butzlabben/world/event/WorldCreateEvent.class
+de/butzlabben/WorldSystem/commands/CreateWorldCommand.class
 de/butzlabben/WorldSystem/data/PlayerWorld.class
 de/butzlabben/world/util/VersionUtil.class
 de/butzlabben/world/event/WorldRemovememberEvent.class

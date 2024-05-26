@@ -2,6 +2,7 @@ package de.butzlabben.world;
 
 import co.aikar.commands.BukkitCommandManager;
 import de.butzlabben.WorldSystem.commands.WSCommands;
+import de.butzlabben.WorldSystem.configs.LanguageConfig;
 import de.butzlabben.world.command.CommandRegistry;
 import de.butzlabben.world.config.*;
 import de.butzlabben.world.listener.*;
@@ -54,7 +55,7 @@ public class WorldSystem extends JavaPlugin {
 
         PluginConfig.checkConfig(config);
 
-        // Done with #6
+        // Message config is Deprecated
         MessageConfig.checkConfig(new File(languages, "en.yml"));
 
         MessageConfig.checkConfig(new File(languages, "de.yml"));
@@ -91,6 +92,11 @@ public class WorldSystem extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        //create the new plugin system
+        de.butzlabben.WorldSystem.WorldSystem new_ws = new de.butzlabben.WorldSystem.WorldSystem();
+        new_ws.onEnable();
+
         //////
         getCommand("ws").setExecutor(new CommandRegistry());
         getCommand("ws").setTabCompleter(new CommandRegistry());
@@ -154,8 +160,6 @@ public class WorldSystem extends JavaPlugin {
         //this.getCommand("ws tnt").setExecutor(new WorldTnt());
         //this.getCommand("ws fire").setExecutor(new WorldFire());
 
-        BukkitCommandManager manager = new BukkitCommandManager(this);
-        manager.registerCommand(new WSCommands());
             // Bstats deactivated
         // System.setProperty("bstats.relocatecheck", "false");
         // Metrics m = new Metrics(this);

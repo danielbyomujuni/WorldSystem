@@ -49,6 +49,7 @@
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/inventory/OrcListener.java
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/world/wrapper/AsyncCreatorAdapter.java
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/world/WorldSystem.java
+/home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/WorldSystem/commands/CreateWorldCommand.java
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/world/config/GuiConfig.java
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/world/WorldCheckerRunnable.java
 /home/daniel/Software Development/WorldSystem/src/main/java/de/butzlabben/WorldSystem/commands/WSCommands.java
