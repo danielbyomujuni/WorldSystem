@@ -32,7 +32,27 @@ public class WorldTemplate {
         int id = data.getHighestID() + 1;
         String worldname = "ID" + id + "-" + uuid;
 
+        //create an event to different hooks
 
+        //create a new database entry for the world
+
+
+        //setup the world folder
+
+
+        //create a new database entry for the worlds data
+
+
+        //load the world for bukkit
+
+        //lock the world world as createing
+
+
+        //establish a async task for world generation.
+
+
+
+/*
         WorldCreateEvent event = new WorldCreateEvent(uniqueID, creator);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
@@ -110,6 +130,7 @@ public class WorldTemplate {
         }.runTaskLater(WorldSystem.getInstance(), 1);
 
         return true;
-
+        */
+        return false;
     }
 }
